@@ -1,0 +1,121 @@
+Local,Visitante,Distancia
+Industriales,Pinar del Río,147
+Industriales,Artemisa,60
+Industriales,Mayabeque,32
+Industriales,Matanzas,98
+Industriales,Santa Clara,270
+Industriales,Cienfuegos,256
+Industriales,Sancti Spíritus,348
+Industriales,Ciego de Ávila,423
+Industriales,Camaguey,533
+Industriales,Las Tunas,657
+Industriales,Holguín,734
+Industriales,Granma,757
+Industriales,Santiago de Cuba,860
+Industriales,Guantánamo,910
+Industriales,Isla de la Juventud,1048
+Pinar del Río,Artemisa,109
+Pinar del Río,Mayabeque,198
+Pinar del Río,Matanzas,264
+Pinar del Río,Santa Clara,435
+Pinar del Río,Cienfuegos,421
+Pinar del Río,Sancti Spíritus,513
+Pinar del Río,Ciego de Ávila,588
+Pinar del Río,Camaguey,698
+Pinar del Río,Las Tunas,822,
+Pinar del Río,Holguín,899
+Pinar del Río,Granma,897
+Pinar del Río,Santiago de Cuba,1024
+Pinar del Río,Guantánamo,1074
+Pinar del Río,Isla de la Juventud,1060
+Artemisa,Mayabeque,76
+Artemisa,Matanzas,164
+Artemisa,Santa Clara,335
+Artemisa,Cienfuegos,313
+Artemisa,Sancti Spíritus,413
+Artemisa,Ciego de Ávila,485
+Artemisa,Camaguey,593
+Artemisa,Las Tunas,721
+Artemisa,Holguín,802
+Artemisa,Granma,803
+Artemisa,Santiago de Cuba,920
+Artemisa,Guantánamo,964
+Artemisa,Isla de la Juventud,1000
+Mayabeque,Matanzas,66
+Mayabeque,Santa Clara,248
+Mayabeque,Cienfuegos,226
+Mayabeque,Sancti Spíritus,326
+Mayabeque,Ciego de Ávila,398
+Mayabeque,Camaguey,506
+Mayabeque,Las Tunas,634
+Mayabeque,Holguín,715
+Mayabeque,Granma,716
+Mayabeque,Santiago de Cuba,883
+Mayabeque,Guantánamo,877
+Mayabeque,Isla de la Juventud,1070
+Matanzas,Santa Clara,199
+Matanzas,Cienfuegos,197
+Matanzas,Sancti Spíritus,284
+Matanzas,Ciego de Ávila,359
+Matanzas,Camaguey,469
+Matanzas,Las Tunas,594
+Matanzas,Holguín,671
+Matanzas,Granma,670
+Matanzas,Santiago de Cuba,797
+Matanzas,Guantánamo,847
+Matanzas,Isla de la Juventud,1200
+Santa Clara,Cienfuegos,65
+Santa Clara,Sancti Spíritus,85
+Santa Clara,Ciego de Ávila,160
+Santa Clara,Camaguey,270
+Santa Clara,Las Tunas,395
+Santa Clara,Holguín,472
+Santa Clara,Granma,471
+Santa Clara,Santiago de Cuba,598
+Santa Clara,Guantánamo,648
+Santa Clara,Isla de la Juventud,1260
+Cienfuegos,Sancti Spíritus,145
+Cienfuegos,Ciego de Ávila,220
+Cienfuegos,Camaguey,330
+Cienfuegos,Las Tunas,455
+Cienfuegos,Holguín,542
+Cienfuegos,Granma,531
+Cienfuegos,Santiago de Cuba,658
+Cienfuegos,Guantánamo,702
+Cienfuegos,Isla de la Juventud,1299
+Sancti Spíritus,Ciego de Ávila,78
+Sancti Spíritus,Camaguey,186
+Sancti Spíritus,Las Tunas,310
+Sancti Spíritus,Holguín,387
+Sancti Spíritus,Granma,386
+Sancti Spíritus,Santiago de Cuba,513
+Sancti Spíritus,Guantánamo,563
+Sancti Spíritus,Isla de la Juventud,1320
+Ciego de Ávila,Camaguey,100
+Ciego de Ávila,Las Tunas,235
+Ciego de Ávila,Holguín,312
+Ciego de Ávila,Granma,311
+Ciego de Ávila,Santiago de Cuba,438
+Ciego de Ávila,Guantánamo,488
+Ciego de Ávila,Isla de la Juventud,1360
+Camaguey,Las Tunas,125
+Camaguey,Holguín,202
+Camaguey,Granma,201
+Camaguey,Santiago de Cuba,328
+Camaguey,Guantánamo,378
+Camaguey,Isla de la Juventud,1390
+Las Tunas,Holguín,77
+Las Tunas,Granma,76
+Las Tunas,Santiago de Cuba,203
+Las Tunas,Guantánamo,253
+Las Tunas,Isla de la Juventud,1410
+Holguín,Granma,73
+Holguín,Santiago de Cuba,134
+Holguín,Guantánamo,182
+Holguín,Isla de la Juventud,1448
+Granma,Santiago de Cuba,127
+Granma,Guantánamo,233
+Granma,Isla de la Juventud,1490
+Santiago de Cuba,Guantánamo,86
+Santiago de Cuba,Isla de la Juventud,1548
+Guantánamo,Isla de la Juventud,1600

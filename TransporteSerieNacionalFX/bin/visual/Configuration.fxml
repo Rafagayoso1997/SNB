@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXToggleButton?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="config" prefHeight="577.0" prefWidth="754.0" style="-fx-background-color: #FFFFFF;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ConfigurationController">
+    <children>
+        <Label layoutX="168.0" layoutY="99.0" text="Campeón vs Subcampeón en la primera fecha" textFill="#2f2484">
+            <font>
+                <Font name="Segoe UI Symbol" size="20.0" />
+            </font>
+        </Label>
+        <JFXToggleButton fx:id="champVsSub" layoutX="307.0" layoutY="140.0" onAction="#setChampVsSub" text="No" textFill="#2f2484" toggleColor="WHITE" toggleLineColor="#2f2484">
+            <font>
+                <Font name="Segoe UI Symbol" size="22.0" />
+            </font>
+            <cursor>
+                <Cursor fx:constant="HAND" />
+            </cursor>
+        </JFXToggleButton>
+        <JFXComboBox fx:id="comboChamp" focusColor="#2f2484" labelFloat="true" layoutX="118.0" layoutY="206.0" prefHeight="53.0" prefWidth="215.0" promptText="Campeón">
+            <cursor>
+                <Cursor fx:constant="HAND" />
+            </cursor>
+        </JFXComboBox>
+        <JFXComboBox fx:id="comboSub" focusColor="#2f2484" labelFloat="true" layoutX="393.0" layoutY="206.0" prefHeight="53.0" prefWidth="244.0" promptText="Subcampeón">
+            <cursor>
+                <Cursor fx:constant="HAND" />
+            </cursor>
+        </JFXComboBox>
+        <Label layoutX="308.0" layoutY="293.0" text="Segunda Vuelta" textFill="#2f2484">
+            <font>
+                <Font name="Segoe UI Symbol" size="20.0" />
+            </font>
+        </Label>
+        <JFXToggleButton fx:id="secondRoundButton" layoutX="320.0" layoutY="341.0" onAction="#setSecondRound" text="No" textFill="#2f2484" toggleColor="WHITE" toggleLineColor="#2f2484">
+            <font>
+                <Font name="Segoe UI Symbol" size="22.0" />
+            </font>
+            <cursor>
+                <Cursor fx:constant="HAND" />
+            </cursor>
+        </JFXToggleButton>
+        <JFXButton fx:id="save" layoutX="286.0" layoutY="463.0" onAction="#saveConfiguration" style="-fx-background-color: #2f2484; -fx-background-radius: 100;" text="Guardar Configuración" textFill="WHITE">
+            <font>
+                <Font name="Segoe UI Symbol" size="16.0" />
+            </font>
+            <cursor>
+                <Cursor fx:constant="HAND" />
+            </cursor>
+        </JFXButton>
+    </children>
+</AnchorPane>

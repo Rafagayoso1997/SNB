@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXTabPane?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<AnchorPane prefHeight="577.0" prefWidth="754.0" xmlns="http://javafx.com/javafx/8.0.171"
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.CalendarController">
+    <children>
+        <Label layoutX="324.0" layoutY="24.0" text="Calendario" textFill="#2f2484">
+            <font>
+                <Font name="Segoe UI Symbol" size="28.0"/>
+            </font>
+        </Label>
+        <JFXTabPane fx:id="calendarTabPane" layoutX="14.0" layoutY="61.0" prefHeight="507.0" prefWidth="729.0"/>
+    </children>
+</AnchorPane>

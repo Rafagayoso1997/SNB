@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.Shadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="1920.0" maxWidth="1256.0" minHeight="678.0" minWidth="829.0" prefHeight="714.0" prefWidth="962.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.HomeController">
+    <children>
+        <Pane fx:id="sidePane" layoutY="137.0" prefHeight="577.0" prefWidth="208.0" style="-fx-background-color: #2F2484; -fx-background-radius: 0 70 0 0;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="137.0">
+            <children>
+                <JFXButton fx:id="buttonCalendar" buttonType="RAISED" contentDisplay="TOP" graphicTextGap="10.0" layoutX="23.0" layoutY="49.0" onAction="#showCalendar" prefHeight="68.0" prefWidth="150.0" ripplerFill="WHITE" style="-fx-border-color: white; -fx-background-radius: 100; -fx-border-radius: 100;" text="Calendario" textFill="WHITE">
+                    <font>
+                        <Font name="Segoe UI Symbol" size="16.0" />
+                    </font>
+                    <graphic>
+                        <ImageView fitHeight="59.0" fitWidth="51.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@../resources/calendar.png" />
+                            </image>
+                        </ImageView>
+                    </graphic>
+                    <cursor>
+                        <Cursor fx:constant="HAND" />
+                    </cursor>
+                </JFXButton>
+                <JFXButton fx:id="buttonTeam" buttonType="RAISED" contentDisplay="TOP" graphicTextGap="10.0" layoutX="23.0" layoutY="189.0" onAction="#showTeams" prefHeight="68.0" prefWidth="150.0" ripplerFill="WHITE" style="-fx-border-color: white; -fx-background-radius: 100; -fx-border-radius: 100;" text="Equipos" textFill="WHITE">
+                    <font>
+                        <Font name="Segoe UI Symbol" size="16.0" />
+                    </font>
+                    <cursor>
+                        <Cursor fx:constant="HAND" />
+                    </cursor>
+                    <graphic>
+                        <ImageView fitHeight="59.0" fitWidth="51.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@../resources/field.png" />
+                            </image>
+                        </ImageView>
+                    </graphic>
+                </JFXButton>
+            <JFXButton fx:id="buttonInfromation" buttonType="RAISED" contentDisplay="TOP" graphicTextGap="10.0" layoutX="23.0" layoutY="329.0" onAction="#showInformation" prefHeight="86.0" prefWidth="150.0" ripplerFill="WHITE" style="-fx-border-color: white; -fx-background-radius: 100; -fx-border-radius: 100;" text="Ayuda" textFill="WHITE">
+               <font>
+                  <Font name="Segoe UI Symbol" size="16.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <graphic>
+                  <ImageView fitHeight="61.0" fitWidth="63.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../resources/baseballInformation.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </JFXButton>
+            </children>
+        </Pane>
+        <AnchorPane fx:id="pane" layoutX="214.0" layoutY="137.0" prefHeight="577.0" prefWidth="755.0" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0">
+            <children>
+                <ImageView fitHeight="406.0" fitWidth="470.0" layoutX="165.0" layoutY="45.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../resources/snb.png" />
+                    </image>
+                </ImageView>
+                <Label fx:id="information" layoutX="165.0" layoutY="466.0" text="Label" textFill="#2f1a84">
+                    <font>
+                        <Font name="Segoe UI Symbol" size="35.0" />
+                    </font>
+                </Label>
+            </children>
+        </AnchorPane>
+          <JFXButton fx:id="buttonPrincipalMenu" buttonType="RAISED" contentDisplay="CENTER" graphicTextGap="6.0" layoutX="22.0" layoutY="14.0" onAction="#showPrincipalMenu" prefHeight="117.0" prefWidth="127.0" ripplerFill="#2f2484" text=" ">
+              <font>
+                  <Font name="Segoe UI Symbol" size="13.0" />
+              </font>
+              <graphic>
+                  <ImageView fitHeight="106.0" fitWidth="117.0" pickOnBounds="true" preserveRatio="true">
+                      <image>
+                          <Image url="@../resources/snb1.png" />
+                      </image>
+                      <cursor>
+                          <Cursor fx:constant="DEFAULT" />
+                      </cursor>
+                  </ImageView>
+              </graphic>
+              <cursor>
+                  <Cursor fx:constant="HAND" />
+              </cursor>
+              <effect>
+                  <Shadow />
+              </effect>
+          </JFXButton>
+          <JFXButton fx:id="buttonConfigurationSelecctionTeams" buttonType="RAISED" contentDisplay="CENTER" layoutX="721.0" layoutY="37.0" onAction="#showConfigurationSelectionTeams" prefHeight="68.0" prefWidth="59.0" ripplerFill="#2f2484" text=" " AnchorPane.rightAnchor="21.0">
+              <cursor>
+                  <Cursor fx:constant="HAND" />
+              </cursor>
+              <graphic>
+                  <ImageView fitHeight="67.0" fitWidth="86.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true">
+                      <image>
+                          <Image url="@../resources/icons8_settings_60px.png" />
+                      </image>
+                  </ImageView>
+              </graphic>
+          </JFXButton>
+          <JFXButton fx:id="buttonCalendarConfiguration" buttonType="RAISED" contentDisplay="CENTER" layoutX="677.0" layoutY="38.0" onAction="#showCalendarConfiguration" prefHeight="47.0" prefWidth="61.0" ripplerFill="#2f2484" text=" " AnchorPane.rightAnchor="21.0">
+              <cursor>
+                  <Cursor fx:constant="HAND" />
+              </cursor>
+              <graphic>
+                  <FontAwesomeIconView fill="#2f2484" glyphName="CHEVRON_RIGHT" size="60" />
+              </graphic>
+          </JFXButton>
+          <JFXButton fx:id="buttonConfMatrix" buttonType="RAISED" contentDisplay="CENTER" layoutX="677.0" layoutY="38.0" onAction="#showConfigurationMatrix" prefHeight="47.0" prefWidth="61.0" ripplerFill="#2f2484" text=" " AnchorPane.rightAnchor="21.0">
+              <cursor>
+                  <Cursor fx:constant="HAND" />
+              </cursor>
+              <graphic>
+                  <FontAwesomeIconView fill="#2f2484" glyphName="CHEVRON_RIGHT" size="60" />
+              </graphic>
+          </JFXButton>
+          <JFXButton fx:id="buttonReturnSelectionTeamConfiguration" buttonType="RAISED" contentDisplay="CENTER" layoutX="658.0" layoutY="41.0" onAction="#showReturnSelectionTeamConfiguration" prefHeight="47.0" prefWidth="61.0" ripplerFill="#2f2484" text=" " AnchorPane.rightAnchor="108.0">
+              <cursor>
+                  <Cursor fx:constant="HAND" />
+              </cursor>
+              <graphic>
+                  <FontAwesomeIconView fill="#2f2484" glyphName="CHEVRON_LEFT" size="60" />
+              </graphic>
+          </JFXButton>
+          <JFXButton fx:id="buttonReturnCalendarConfiguration" buttonType="RAISED" contentDisplay="CENTER" layoutX="658.0" layoutY="41.0" onAction="#showReturnCalendarConfiguration" prefHeight="47.0" prefWidth="61.0" ripplerFill="#2f2484" text=" " AnchorPane.rightAnchor="108.0">
+              <cursor>
+                  <Cursor fx:constant="HAND" />
+              </cursor>
+              <graphic>
+                  <FontAwesomeIconView fill="#2f2484" glyphName="CHEVRON_LEFT" size="60" />
+              </graphic>
+          </JFXButton>
+          <Label layoutX="303.0" layoutY="51.0" text="Serie Nacional de Beísbol" textFill="#2f2484" AnchorPane.rightAnchor="302.0">
+              <font>
+                  <Font name="Segoe UI Symbol" size="32.0" />
+              </font>
+          </Label>
+    </children>
+</AnchorPane>

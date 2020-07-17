@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="f431f424-8f9f-474a-8daa-5cfa5e47082b" name="Default Changelist" comment="" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CodeStyleSettingsInfer">
+    <option name="done" value="true" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="FxmlFile" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+    <option name="ROOT_SYNC" value="DONT_SYNC" />
+  </component>
+  <component name="ProjectCodeStyleSettingsMigration">
+    <option name="version" value="1" />
+  </component>
+  <component name="ProjectId" id="1Yl8Xb3G48Wtgn2GXxmLtbpKWOS" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="PropertiesComponent">
+    <property name="Downloaded.Files.Path.Enabled" value="false" />
+    <property name="Repository.Attach.Annotations" value="false" />
+    <property name="Repository.Attach.JavaDocs" value="false" />
+    <property name="Repository.Attach.Sources" value="false" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="extract.method.default.visibility" value="private" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
+    <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+    <property name="project.structure.last.edited" value="SDKs" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
+    <property name="settings.editor.splitter.proportion" value="0.24654832" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="logic" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\gayos\OneDrive\Documentos\GitHub\SerieFX\TransporteSerieNacionalFX\src\resources\fonts" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager" selected="Application.Main">
+    <configuration name="Main (1)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="logic.Main" />
+      <module name="TransporteSerieNacionalFX" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="logic.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="application.Main" />
+      <module name="TransporteSerieNacionalFX" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="application.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="MainPruebas" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="logic.MainPruebas" />
+      <module name="TransporteSerieNacionalFX" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="logic.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Main_Rosete_Copia" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="logic.Main_Rosete_Copia" />
+      <module name="TransporteSerieNacionalFX" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="logic.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.Main" />
+        <item itemvalue="Application.Main (1)" />
+        <item itemvalue="Application.MainPruebas" />
+        <item itemvalue="Application.Main_Rosete_Copia" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="f431f424-8f9f-474a-8daa-5cfa5e47082b" name="Default Changelist" comment="" />
+      <created>1583505860648</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1583505860648</updated>
+      <workItem from="1583505865709" duration="2582000" />
+      <workItem from="1583561668645" duration="8814000" />
+      <workItem from="1583597195564" duration="5992000" />
+      <workItem from="1583617444684" duration="646000" />
+      <workItem from="1583655500162" duration="4604000" />
+      <workItem from="1583688595122" duration="216000" />
+      <workItem from="1583738474493" duration="68000" />
+      <workItem from="1584013223231" duration="161000" />
+      <workItem from="1584043685348" duration="288000" />
+      <workItem from="1584054040866" duration="598000" />
+      <workItem from="1584609870237" duration="727000" />
+      <workItem from="1584616472258" duration="14000" />
+      <workItem from="1584629177970" duration="467000" />
+      <workItem from="1584630908603" duration="350000" />
+      <workItem from="1584643433454" duration="289000" />
+      <workItem from="1584650451451" duration="742000" />
+      <workItem from="1584651394181" duration="1145000" />
+      <workItem from="1584653400524" duration="33000" />
+      <workItem from="1584653470624" duration="19000" />
+      <workItem from="1584689395796" duration="2499000" />
+      <workItem from="1587405321816" duration="2541000" />
+      <workItem from="1587478190045" duration="9745000" />
+      <workItem from="1587568374271" duration="10531000" />
+      <workItem from="1587636414773" duration="6651000" />
+      <workItem from="1587652882410" duration="2352000" />
+      <workItem from="1587908681345" duration="13485000" />
+      <workItem from="1587924615083" duration="3384000" />
+      <workItem from="1588254469602" duration="15113000" />
+      <workItem from="1588441098897" duration="729000" />
+      <workItem from="1588695066677" duration="8193000" />
+      <workItem from="1589903132035" duration="4482000" />
+      <workItem from="1590091264528" duration="1693000" />
+      <workItem from="1594764865995" duration="1771000" />
+      <workItem from="1594958566498" duration="23000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/logic/Main.java</url>
+          <line>35</line>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+    <watches-manager>
+      <configuration name="Application">
+        <watch expression="firstDate.games.get(0)" />
+      </configuration>
+    </watches-manager>
+  </component>
+</project>

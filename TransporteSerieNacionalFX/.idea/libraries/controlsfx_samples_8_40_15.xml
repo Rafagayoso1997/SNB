@@ -7,6 +7,15 @@
       <root url="jar://$PROJECT_DIR$/lib/fxsampler-1.0.10.jar!/" />
       <root url="jar://$PROJECT_DIR$/lib/jfoenix-9.0.8.jar!/" />
       <root url="jar://$PROJECT_DIR$/lib/opencsv-4.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/commons-beanutils-1.9.3.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/commons-collections-3.2.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/commons-lang3-3.6.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/commons-logging-1.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/commons-text-1.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/controlsfx-8.40.15.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/fontawesomefx-8.9.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/jfoenix-8.0.8.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/TrayNotification.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>

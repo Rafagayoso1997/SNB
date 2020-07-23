@@ -57,7 +57,7 @@ public class SelectGridController implements Initializable {
                 }*/
                 TrayNotification notification = new TrayNotification();
                 notification.setTitle("Escoger sedes");
-                notification.setMessage("Sedes guardadas con éxito");
+                notification.setMessage("Sedes guardadas con ï¿½xito");
                 notification.setNotificationType(NotificationType.SUCCESS);
                 notification.setRectangleFill(Paint.valueOf("#2F2484"));
                 notification.setAnimationType(AnimationType.FADE);
@@ -89,6 +89,14 @@ public class SelectGridController implements Initializable {
             }
         }
         matrix = Controller.getSingletonController().symmetricCalendar(matrix);
+
+        System.out.println("Matriz de 1 y 2:");
+        for (int i = 0; i < matrix.length; i++) {
+            for (int j = 0; j < matrix.length; j++) {
+                System.out.print(matrix[i][j]);
+            }
+            System.out.println();
+        }
         return matrix;
     }
 
@@ -113,32 +121,18 @@ public class SelectGridController implements Initializable {
                         @Override
                         public void handle(ActionEvent event) {
                             if (matrix[finalI][finalJ].isSelected()) {
-
                                 matrixCalendar[finalJ][finalI] = 2;
                                 matrixCalendar[finalI][finalJ] = 1;
                                 matrix[finalJ][finalI].setSelected(false);
                                 matrix[finalI][finalJ].setSelected(true);
-                               /* System.out.println("---------");
-                                for(int n=0; n < matrixCalendar.length;n++){
-                                    for(int l=0; l < matrixCalendar[n].length;l++){
-                                        System.out.print(matrixCalendar[n][l] + " ");
-                                    }
-                                    System.out.println(" ");
-                                }*/
-                            } else {
 
+                            } else {
                                 matrixCalendar[finalJ][finalI] = 1;
                                 matrixCalendar[finalI][finalJ] = 2;
-                                matrix[finalI][finalJ].setSelected(false);
                                 matrix[finalJ][finalI].setSelected(true);
-                                /*System.out.println("---------");
-                                for(int n=0; n < matrixCalendar.length;n++){
-                                    for(int l=0; l < matrixCalendar[n].length;l++){
-                                        System.out.print(matrixCalendar[n][l] + " ");
-                                    }
-                                    System.out.println(" ");
-                                }*/
+                                matrix[finalI][finalJ].setSelected(false);
                             }
+
                             boolean stop = checkSymetricMatrix();
                             if (stop) {
                                 error = false;
@@ -157,12 +151,11 @@ public class SelectGridController implements Initializable {
 
         }
 
-        if (posChampion != 1 && posSecond != -1) {
+        if (posChampion != -1) {
             matrix[posChampion][posSecond].setDisable(true);
-            //matrixCalendar[posChampion][posSecond] = 2;
             matrix[posSecond][posChampion].setDisable(true);
-            //matrixCalendar[posSecond][posChampion] = 1;
         }
+
         return matrix;
     }
 

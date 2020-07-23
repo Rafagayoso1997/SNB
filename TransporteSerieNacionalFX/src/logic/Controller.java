@@ -214,6 +214,7 @@ public class Controller {
      * Generate the calendar
      */
     public void generateCalendar() {
+
         calendar = new ArrayList<>();
         for (int f = 0; f < indexes.size() - 1; f++) {
             int  j         = 0;
@@ -226,7 +227,7 @@ public class Controller {
                             boolean isIn = isInDate(indexes.get(i), indexes.get(j), date);
                             if (!isIn) {
                                 ArrayList<Integer> pair = new ArrayList<>(2);
-                                if (matrix[i][j] == 2) {
+                                if (matrix[i][j] == 1) {
                                     pair.add(indexes.get(j));
                                     pair.add(indexes.get(i));
                                 } else {
@@ -236,16 +237,47 @@ public class Controller {
                                 date.getGames().add(pair);
                                 lastLocal = matrix[i][j];
                                 matrix[i][j] = 0;
+
+                                System.out.println("Fecha actual: " + date.getGames());
+                                System.out.println("Lastlocal" + lastLocal);
+
+                                System.out.println("Matriz de 1 y 2:");
+                                for (int g = 0; g < matrix.length; g++) {
+                                    for (int h = 0; h < matrix.length; h++) {
+                                        System.out.print(matrix[g][h]);
+                                    }
+                                    System.out.println();
+                                }
                             }
                         }
                     }
                 }
                 if (i == matrix.length - 1) {
                     if (date.getGames().size() != (indexes.size() / 2)) {
-                        i = indexes.indexOf(date.getGames().get(date.getGames().size() - 1).get(0));
-                        j = indexes.indexOf(date.getGames().get(date.getGames().size() - 1).get(1));
+
+                        int local = indexes.indexOf(date.getGames().get(date.getGames().size() - 1).get(0));
+                        int visitor = indexes.indexOf(date.getGames().get(date.getGames().size() - 1).get(1));
+
+                        if (local < visitor){
+                            i = local;
+                            j = visitor;
+                        }
+                        else{
+                            i = visitor;
+                            j = local;
+                        }
+
                         matrix[i][j] = lastLocal;
                         date.getGames().remove(date.getGames().size() - 1);
+
+                        System.out.println(date.getGames());
+                        System.out.println("Matriz de 1 y 2:");
+                        for (int g = 0; g < matrix.length; g++) {
+                            for (int h = 0; h < matrix.length; h++) {
+                                System.out.print(matrix[g][h]);
+                            }
+                            System.out.println();
+                        }
 
                         i--;
                         j++;
@@ -255,6 +287,15 @@ public class Controller {
                 }
             }
             calendar.add(date);
+            System.out.println("************************************************");
+            System.out.println("Calendario:");
+            for (int g = 0; g < calendar.size(); g++) {
+                for (int h = 0; h < calendar.get(g).getGames().size(); h++) {
+                    System.out.print(calendar.get(g).getGames().get(h));
+                }
+                System.out.println();
+            }
+            System.out.println("************************************************");
         }
         if (this.posChampion != -1 && this.posSubChampion != -1) {
             fixChampionSubchampion(calendar);
@@ -266,10 +307,6 @@ public class Controller {
             copyCalendar(secondRoundCalendar, calendar);
             generateSecondRound(secondRoundCalendar);
             calendar.addAll(secondRoundCalendar);
-            /*for (int m = 0; m < secondRoundCalendar.size(); m++) {
-                Date date = secondRoundCalendar.get(m);
-                calendar.add(date);
-            }*/
         }
 
 
@@ -353,8 +390,23 @@ public class Controller {
         boolean champion    = false;
         if (posChampion != -1) {
             champion = true;
-            matrix[posChampion][posSecond] = 2;
-            matrix[posSecond][posChampion] = 1;
+            if(posChampion < posSecond){
+                matrix[posChampion][posSecond] = 2;
+                matrix[posSecond][posChampion] = 1;
+            }
+            else{
+                matrix[posChampion][posSecond] = 2;
+                matrix[posSecond][posChampion] = 1;
+            }
+
+            System.out.println("Matriz de 1 y 2:");
+            for (int i = 0; i < matrix.length; i++) {
+                for (int j = 0; j < matrix.length; j++) {
+                    System.out.print(matrix[i][j]);
+                }
+                System.out.println();
+            }
+
         }
         int cantLocal = (int) Math.floor((matrix.length - 1) / 2) + 1;
         for (int i = 0; i < matrix.length; i++) {

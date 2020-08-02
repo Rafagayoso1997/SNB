@@ -2,10 +2,40 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f431f424-8f9f-474a-8daa-5cfa5e47082b" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/jaxb_core_2_3_0_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/poi_4_1_2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/ooxml-lib/curvesapi-1.06.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/ooxml-lib/xmlbeans-3.1.0.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/poi/poi-4.1.2.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/poi/poi-examples-4.1.2.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/poi/poi-excelant-4.1.2.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/poi/poi-ooxml-4.1.2.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/poi/poi-ooxml-schemas-4.1.2.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/poi/poi-scratchpad-4.1.2.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/poi_lib/SparseBitSet-1.2.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/poi_lib/activation-1.1.1.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/poi_lib/commons-codec-1.13.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/poi_lib/commons-collections4-4.4.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/poi_lib/commons-compress-1.19.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/poi_lib/commons-logging-1.2.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/poi_lib/commons-math3-3.6.1.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/poi_lib/jaxb-api-2.3.1.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/poi_lib/jaxb-core-2.3.0.1.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/poi_lib/jaxb-impl-2.3.2.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/poi_lib/junit-4.12.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/poi_lib/log4j-1.2.17.jar" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controller/SelectGridController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/SelectGridController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/logic/Auxiliar.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/logic/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/logic/Controller.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TransporteSerieNacionalFX.iml" beforeDir="false" afterPath="$PROJECT_DIR$/TransporteSerieNacionalFX.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/controller/CalendarController.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/controller/CalendarController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/controller/SelectGridController$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/controller/SelectGridController$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/controller/SelectGridController.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/controller/SelectGridController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/logic/Auxiliar.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/logic/Controller.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/logic/Controller.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/logic/Duel.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/logic/Duel.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/visual/Calendar.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/bin/visual/Calendar.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controller/CalendarController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/CalendarController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/logic/Duel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/logic/Duel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/visual/Calendar.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/visual/Calendar.fxml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -42,7 +72,7 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="extract.method.default.visibility" value="private" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/logic" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/lib/poi" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="project.structure.last.edited" value="Libraries" />
@@ -56,6 +86,8 @@
       <recent name="logic" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\gayos\Documents\GitHub\SNB\TransporteSerieNacionalFX\lib\poi" />
+      <recent name="C:\Users\gayos\Documents\GitHub\SNB\TransporteSerieNacionalFX\lib" />
       <recent name="C:\Users\gayos\Documents\GitHub\SNB\TransporteSerieNacionalFX\src\logic" />
       <recent name="C:\Users\gayos\Documents\GitHub\SNB\TransporteSerieNacionalFX\src\controller" />
       <recent name="C:\Users\gayos\OneDrive\Documentos\GitHub\SerieFX\TransporteSerieNacionalFX\src\resources\fonts" />
@@ -186,6 +218,9 @@
       <workItem from="1595281596428" duration="491000" />
       <workItem from="1595440758405" duration="79000" />
       <workItem from="1595445237102" duration="707000" />
+      <workItem from="1595537772572" duration="28000" />
+      <workItem from="1596371809230" duration="590000" />
+      <workItem from="1596378624544" duration="2105000" />
     </task>
     <servers />
   </component>

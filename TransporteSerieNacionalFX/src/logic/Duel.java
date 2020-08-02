@@ -1,14 +1,17 @@
 package logic;
 
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
+
 /**
  * Class responsible for representations of the duel between two teams
  *
- * @author Rafael Gayoso and Mario Herrera
+ * @visitor Rafael Gayoso and Mario Herrera
  */
 public class Duel {
 
-    private String local;//Name of the local team
-    private String visitor;//Name of the visitor team
+   private SimpleStringProperty local;
+   private SimpleStringProperty visitor;
 
     /**
      * Class constructor
@@ -17,43 +20,27 @@ public class Duel {
      * @param visitor name of the visitor team
      */
     public Duel(String local, String visitor) {
-        this.local = local;
-        this.visitor = visitor;
+        this.local = new SimpleStringProperty(local);
+        this.visitor = new SimpleStringProperty(visitor);
     }
 
-    /**
-     * Return the local team name
-     *
-     * @return local
-     */
-    public String getLocal() {
+    @Override
+    public String toString() {
+
+        return (local.get() + " vs " + visitor.get());
+    }
+
+    public void setLocal(String value) { localProperty().set(value); }
+    public String getLocal() { return localProperty().get(); }
+    public StringProperty localProperty() {
+        if (local == null) local = new SimpleStringProperty(this, "firstName");
         return local;
     }
 
-    /**
-     * Set the local team name
-     *
-     * @param local
-     */
-    public void setLocal(String local) {
-        this.local = local;
-    }
-
-    /**
-     * Return the visitor team name
-     *
-     * @return visitor
-     */
-    public String getVisitor() {
+    public void setVisitor(String value) { visitorProperty().set(value); }
+    public String getVisitor() { return visitorProperty().get(); }
+    public StringProperty visitorProperty() {
+        if (visitor == null) visitor = new SimpleStringProperty(this, "lastName");
         return visitor;
-    }
-
-    /**
-     * Set the visitor team name
-     *
-     * @param visitor
-     */
-    public void setVisitor(String visitor) {
-        this.visitor = visitor;
     }
 }

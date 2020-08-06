@@ -16,6 +16,10 @@ public class Date {
      *
      * @param n number of teams
      */
+
+    public Date(){
+        this.games = new ArrayList<>();
+    }
     public Date(int n) {
         this.games = new ArrayList<>(n / 2);
     }

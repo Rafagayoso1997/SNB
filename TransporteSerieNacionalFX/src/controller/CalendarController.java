@@ -18,6 +18,7 @@ import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -72,7 +73,7 @@ public class CalendarController implements Initializable {
         System.out.println("HELLO");
 
 
-        Workbook workbook = new HSSFWorkbook();
+        Workbook workbook = new XSSFWorkbook();
         for (int k = 0; k < tables.size() ; k++) {
             TableView<Duel> table = tables.get(k);
             Sheet spreadsheet = workbook.createSheet("Fecha " + (k+1));
@@ -99,7 +100,7 @@ public class CalendarController implements Initializable {
 
         FileOutputStream fileOut = null;
         try {
-            fileOut = new FileOutputStream("Calendario.xls");
+            fileOut = new FileOutputStream("Calendario.xlsx");
             workbook.write(fileOut);
             fileOut.close();
         } catch (Exception e) {

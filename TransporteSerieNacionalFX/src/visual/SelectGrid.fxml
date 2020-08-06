@@ -19,19 +19,19 @@
                 <Cursor fx:constant="HAND" />
             </cursor>
         </JFXButton>
-        <ScrollPane layoutX="69.0" layoutY="14.0" prefHeight="513.0" prefWidth="798.0" AnchorPane.bottomAnchor="55.0" AnchorPane.rightAnchor="4.0">
+        <ScrollPane layoutX="69.0" layoutY="14.0" prefHeight="513.0" prefWidth="738.0" AnchorPane.bottomAnchor="55.0" AnchorPane.rightAnchor="4.0">
             <content>
-                <GridPane fx:id="selectionGrid" prefHeight="506.0" prefWidth="722.0">
+                <GridPane fx:id="selectionGrid" prefHeight="506.0" prefWidth="734.0">
 
                 </GridPane>
             </content>
         </ScrollPane>
-        <Label layoutX="39.0" layoutY="538.0" text="Calendario Balanceado:" AnchorPane.bottomAnchor="14.0" AnchorPane.rightAnchor="616.0">
+        <Label layoutX="14.0" layoutY="537.0" text="Calendario Balanceado:" AnchorPane.bottomAnchor="15.0" AnchorPane.rightAnchor="575.0">
             <font>
                 <Font name="Segoe UI Symbol" size="16.0" />
             </font>
         </Label>
-        <FontAwesomeIconView fx:id="balanceCalendar" fill="#10a132" glyphName="CHECK" layoutX="201.0" layoutY="561.0" size="30" AnchorPane.bottomAnchor="11.128347396850586" AnchorPane.rightAnchor="571.0" />
-        <FontAwesomeIconView fx:id="notbalanceCalendar" fill="#f50000" glyphName="TIMES" layoutX="204.0" layoutY="560.0" size="30" AnchorPane.bottomAnchor="12.128347396850586" AnchorPane.rightAnchor="574.4285717010498" />
+        <FontAwesomeIconView fx:id="balanceCalendar" fill="#10a132" glyphName="CHECK" layoutX="213.0" layoutY="559.0" size="30" AnchorPane.bottomAnchor="13.128347396850586" AnchorPane.rightAnchor="538.0" />
+        <FontAwesomeIconView fx:id="notbalanceCalendar" fill="#f50000" glyphName="TIMES" layoutX="217.0" layoutY="560.0" size="30" AnchorPane.bottomAnchor="12.128347396850586" AnchorPane.rightAnchor="540.4285717010498" />
     </children>
 </AnchorPane>

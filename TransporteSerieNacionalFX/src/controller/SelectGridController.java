@@ -57,7 +57,7 @@ public class SelectGridController implements Initializable {
                 }*/
                 TrayNotification notification = new TrayNotification();
                 notification.setTitle("Escoger sedes");
-                notification.setMessage("Sedes guardadas con ï¿½xito");
+                notification.setMessage("Sedes guardadas con éxito");
                 notification.setNotificationType(NotificationType.SUCCESS);
                 notification.setRectangleFill(Paint.valueOf("#2F2484"));
                 notification.setAnimationType(AnimationType.FADE);

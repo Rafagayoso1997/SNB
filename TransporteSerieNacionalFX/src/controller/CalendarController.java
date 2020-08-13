@@ -68,7 +68,6 @@ public class CalendarController implements Initializable {
                 int posLocal = calendar.get(i).getGames().get(j).get(0);
                 int posVisitor = calendar.get(i).getGames().get(j).get(1);
                 table.getItems().add(new Duel(controller.getTeams().get(posLocal), controller.getTeams().get(posVisitor)));
-                //table.getItems().add(controller.getSingletonController().getTeams().get(posVisitante));
             }
 
             Tab tab = new Tab("Fecha " + (i + 1));

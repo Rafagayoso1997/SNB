@@ -43,6 +43,7 @@ public class SelectionTeamsController implements Initializable {
     @FXML
     void selectTeams(ActionEvent event) {
         ArrayList<Integer> indexes = new ArrayList<>(teamsSelectionListView.getSelectionModel().getSelectedIndices().size());
+
         teamsNames = new ArrayList<>(teamsSelectionListView.getSelectionModel().getSelectedIndices().size());
         System.out.println(HomeController.escogidos);
         for (int i = 0; i < teamsSelectionListView.getSelectionModel().getSelectedIndices().size(); i++) {
@@ -54,15 +55,15 @@ public class SelectionTeamsController implements Initializable {
         }
         if (indexes.size() <= 2) {
             notification = getNotification();
-            notification.setTitle("Selección de equipos");
-            notification.setMessage("Debe escoger más de dos equipos");
+            notification.setTitle("Selecciï¿½n de equipos");
+            notification.setMessage("Debe escoger mï¿½s de dos equipos");
             notification.setNotificationType(NotificationType.ERROR);
             notification.setRectangleFill(Paint.valueOf("#2F2484"));
             notification.setAnimationType(AnimationType.FADE);
             notification.showAndDismiss(Duration.seconds(2));
         } else if (indexes.size() % 2 != 0) {
             notification = getNotification();
-            notification.setTitle("Selección de equipos");
+            notification.setTitle("Selecciï¿½n de equipos");
             notification.setMessage("Debe escoger una cantidad par de equipos");
             notification.setNotificationType(NotificationType.ERROR);
             notification.setRectangleFill(Paint.valueOf("#2F2484"));
@@ -72,6 +73,7 @@ public class SelectionTeamsController implements Initializable {
             HomeController.escogidos = true;
             System.out.println(HomeController.escogidos);
             teams = indexes.size();
+            System.out.println(indexes);
             Controller.getSingletonController().setIndexes(indexes);
         }
 

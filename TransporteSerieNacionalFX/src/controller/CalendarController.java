@@ -128,7 +128,7 @@ public class CalendarController implements Initializable {
     public void showSuccessfulMessage(){
         TrayNotification notification = new TrayNotification();
         notification.setTitle("Guardar Calendario");
-        notification.setMessage("Calendario exportado con Ã©xtio");
+        notification.setMessage("Calendario exportado con éxito");
         notification.setNotificationType(NotificationType.SUCCESS);
         notification.setRectangleFill(Paint.valueOf("#2F2484"));
         notification.setAnimationType(AnimationType.FADE);

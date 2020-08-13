@@ -70,7 +70,7 @@
                   <Tooltip text="Información sobre la aplicación" />
                </tooltip>
             </JFXButton>
-            <JFXButton fx:id="buttonInfromation1" buttonType="RAISED" graphicTextGap="5.0" layoutX="21.0" layoutY="261.0" lineSpacing="10.0" onAction="#showInformation" prefHeight="51.0" prefWidth="150.0" ripplerFill="WHITE" style="-fx-border-color: white; -fx-background-radius: 100; -fx-border-radius: 100;" text="Importar" textAlignment="JUSTIFY" textFill="WHITE" textOverrun="CENTER_WORD_ELLIPSIS">
+            <JFXButton fx:id="buttonImportCalendar" buttonType="RAISED" graphicTextGap="5.0" layoutX="21.0" layoutY="261.0" lineSpacing="10.0" onAction="#importCalendar" prefHeight="51.0" prefWidth="150.0" ripplerFill="WHITE" style="-fx-border-color: white; -fx-background-radius: 100; -fx-border-radius: 100;" text="Importar" textAlignment="JUSTIFY" textFill="WHITE" textOverrun="CENTER_WORD_ELLIPSIS">
                <font>
                   <Font name="Segoe UI Symbol" size="16.0" />
                </font>

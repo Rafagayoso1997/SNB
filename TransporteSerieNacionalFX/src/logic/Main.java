@@ -33,13 +33,15 @@ public class Main {
 
         probando.setIndexes(indexes);
 
-        probando.generateCalendar();
+   //     probando.generateCalendar();
+
+        ArrayList<Date> calendar = ReadExcel.readExcel("Calendario.xlsx");
 
 
 
         //probando.changeDuel(probando.getCalendar());
 
-		/*System.out.println("Calendario Final:");
+		System.out.println("Calendario Final:");
 		for (int i= 0; i < calendar.size(); i++) {
 			for(int j=0; j < calendar.get(i).getGames().size();j++){
 				int posLocal = calendar.get(i).getGames().get(j).get(0);
@@ -48,12 +50,12 @@ public class Main {
 
 			}
 			System.out.println(" ");
-		}*/
+		}
 		/*System.out.println("---------------");
 		System.out.println("Distancia:");
 		System.out.println(probando.calculateDistance(calendar));
 		System.out.println("---------------");
-		System.out.println("Cambiar posición de una fecha ");
+		System.out.println("Cambiar posiciï¿½n de una fecha ");
 		probando.changeDatePosition(calendar);
 		System.out.println("---------------");
 		System.out.println("Intercambiar dos equipos");

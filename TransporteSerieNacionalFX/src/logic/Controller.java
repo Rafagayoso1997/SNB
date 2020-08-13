@@ -24,6 +24,8 @@ public class Controller {
     private final int ITERATIONS = 200000;//Number of iterations
     private ArrayList<LocalVisitorDistance> positionsDistance;//List of LocalVisitorDistance
     private ArrayList<String> teams;//List of teams
+
+
     private ArrayList<Date> calendar;//List of Date that belongs to the calendar
     private double[][] matrixDistance;//Matrix that represents the distance between teams
     private ArrayList<Integer> indexes;
@@ -176,6 +178,11 @@ public class Controller {
 
     public ArrayList<Date> getCalendar() {
         return calendar;
+    }
+
+
+    public void setCalendar(ArrayList<Date> calendar) {
+        this.calendar = calendar;
     }
 
     /**

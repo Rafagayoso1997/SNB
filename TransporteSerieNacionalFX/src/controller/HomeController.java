@@ -18,13 +18,20 @@ import javafx.scene.shape.CubicCurveTo;
 import javafx.scene.shape.LineTo;
 import javafx.scene.shape.MoveTo;
 import javafx.scene.shape.Path;
+import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 import javafx.util.Duration;
+import logic.Controller;
+import logic.Date;
+import logic.ReadExcel;
 import tray.animations.AnimationType;
 import tray.notification.NotificationType;
 import tray.notification.TrayNotification;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.ResourceBundle;
 
@@ -33,13 +40,10 @@ public class HomeController implements Initializable {
     public static boolean conf = false;
     public static boolean escogidos = false;
     public static boolean matrix = false;
-    boolean displayed = false;
     private TrayNotification notification;
-    @FXML
-    private JFXButton buttonCalendar;
+    private File file;
 
-    @FXML
-    private JFXButton buttonTeam;
+
 
     @FXML
     private JFXButton buttonPrincipalMenu;
@@ -55,7 +59,8 @@ public class HomeController implements Initializable {
     private JFXButton buttonConfMatrix;
 
     @FXML
-    private Pane sidePane;
+    private JFXButton buttonImportCalendar;
+
 
     @FXML
     private AnchorPane pane;
@@ -184,6 +189,37 @@ public class HomeController implements Initializable {
         notification.setAnimationType(AnimationType.FADE);
         notification.showAndDismiss(Duration.seconds(2));
 
+    }
+
+    @FXML
+    void importCalendar(ActionEvent event) {
+        Stage stage= new Stage();
+        FileChooser fc= new FileChooser();
+
+        fc.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Documento Excel","*xlsx"));
+        file = fc.showOpenDialog(stage);
+
+        try {
+
+            ArrayList<Date> importedCalendar=ReadExcel.readExcel(file.toString());
+            Controller.getSingletonController().setCalendar(importedCalendar);
+
+            /*ArrayList<Date> calendar = Controller.getSingletonController().getCalendar();
+            System.out.println("Calendario Final:");
+            for (int i= 0; i < calendar.size(); i++) {
+                for(int j=0; j < calendar.get(i).getGames().size();j++){
+                    int posLocal = calendar.get(i).getGames().get(j).get(0);
+                    int posVisitor = calendar.get(i).getGames().get(j).get(1);
+                    System.out.print("["+ Controller.getSingletonController().getTeams().get(posLocal)+","+ Controller.getSingletonController().getTeams().get(posVisitor)+"]");
+
+                }
+                System.out.println(" ");
+            }*/
+
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML

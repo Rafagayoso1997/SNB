@@ -216,6 +216,14 @@ public class HomeController implements Initializable {
                 System.out.println(" ");
             }*/
 
+            notification = getNotification();
+            notification.setTitle("Imoortación de Calendario");
+            notification.setMessage("Calendario importado con éxito");
+            notification.setNotificationType(NotificationType.SUCCESS);
+            notification.setRectangleFill(Paint.valueOf("#2F2484"));
+            notification.setAnimationType(AnimationType.FADE);
+            notification.showAndDismiss(Duration.seconds(2));
+
 
         } catch (IOException e) {
             e.printStackTrace();

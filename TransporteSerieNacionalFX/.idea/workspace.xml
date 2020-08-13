@@ -2,18 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f431f424-8f9f-474a-8daa-5cfa5e47082b" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/controller/CalendarController.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/controller/CalendarController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/logic/Date.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/logic/Date.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/visual/Home.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/bin/visual/Home.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/visual/SelectGrid.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/bin/visual/SelectGrid.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controller/CalendarController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/CalendarController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controller/ReadExcelController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/ReadExcelController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/logic/Date.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/logic/Date.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/visual/Home.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/visual/Home.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/visual/ReadExcelExampl.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/visual/ReadExcelExampl.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/visual/SelectGrid.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/visual/SelectGrid.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/datos - copia.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/datos - copia1.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/datos - copia2.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/datos - copiaA.csv" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -208,6 +200,7 @@
       <workItem from="1596484948606" duration="118000" />
       <workItem from="1596488089737" duration="260000" />
       <workItem from="1596737676650" duration="79000" />
+      <workItem from="1597329430781" duration="1534000" />
     </task>
     <servers />
   </component>
@@ -228,15 +221,6 @@
     </option>
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/logic/Main.java</url>
-          <line>35</line>
-          <option name="timeStamp" value="2" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
     <watches-manager>
       <configuration name="Application">
         <watch expression="firstDate.games.get(0)" />

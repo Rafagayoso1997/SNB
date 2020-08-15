@@ -1,4 +1,4 @@
 # SNB
-Trabajo Tesis
+Thesis
 
-Programa que se encarga de la generación del Calendario Nacional de Beisbol de la Serie Nacional de Beisbol en Cuba
+System for generate calendars of the Serie Nacional de Beisbol in Cuba, usin AI

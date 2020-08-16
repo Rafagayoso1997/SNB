@@ -10,7 +10,11 @@ import javafx.scene.control.Tab;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.paint.Paint;
 import javafx.scene.text.Font;
+import javafx.stage.DirectoryChooser;
+import javafx.stage.Stage;
+import javafx.util.Duration;
 import logic.Controller;
 import logic.Date;
 import logic.Duel;
@@ -19,7 +23,11 @@ import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import tray.animations.AnimationType;
+import tray.notification.NotificationType;
+import tray.notification.TrayNotification;
 
+import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.URL;
@@ -31,6 +39,8 @@ public class CalendarController implements Initializable {
     private ArrayList<Date> calendar;
     private Controller controller;
     private ArrayList<TableView> tables;
+
+    public static boolean saved = false; // boolean that indicates if the file was saved;
 
     @FXML
     private JFXTabPane calendarTabPane;
@@ -58,7 +68,6 @@ public class CalendarController implements Initializable {
                 int posLocal = calendar.get(i).getGames().get(j).get(0);
                 int posVisitor = calendar.get(i).getGames().get(j).get(1);
                 table.getItems().add(new Duel(controller.getTeams().get(posLocal), controller.getTeams().get(posVisitor)));
-                //table.getItems().add(controller.getSingletonController().getTeams().get(posVisitante));
             }
 
             Tab tab = new Tab("Fecha " + (i + 1));
@@ -70,7 +79,10 @@ public class CalendarController implements Initializable {
 
     @FXML
     void saveExcel(ActionEvent event) throws IOException {
-        System.out.println("HELLO");
+
+        DirectoryChooser dc = new DirectoryChooser();
+        File f = dc.showDialog(new Stage());
+
 
 
         Workbook workbook = new XSSFWorkbook();
@@ -100,12 +112,26 @@ public class CalendarController implements Initializable {
 
         FileOutputStream fileOut = null;
         try {
-            fileOut = new FileOutputStream("Calendario.xlsx");
+
+            fileOut = new FileOutputStream(f.getAbsolutePath()+"/ Calendario Serie Nacional.xlsx");
             workbook.write(fileOut);
             fileOut.close();
+            saved = true;
+            showSuccessfulMessage();
         } catch (Exception e) {
+            saved = false;
             e.printStackTrace();
         }
+    }
+
+    public void showSuccessfulMessage(){
+        TrayNotification notification = new TrayNotification();
+        notification.setTitle("Guardar Calendario");
+        notification.setMessage("Calendario exportado con éxito");
+        notification.setNotificationType(NotificationType.SUCCESS);
+        notification.setRectangleFill(Paint.valueOf("#2F2484"));
+        notification.setAnimationType(AnimationType.FADE);
+        notification.showAndDismiss(Duration.seconds(2));
     }
 }
 

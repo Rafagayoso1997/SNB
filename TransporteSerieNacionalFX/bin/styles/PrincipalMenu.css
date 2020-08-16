@@ -1,0 +1,12 @@
+.jfx-button, .jfx-button:focused{
+    -fx-effect: dropshadow(two-pass-box , #011b1d, 50, 0.1 , 1, 3);
+    -fx-background-color: #2F2484;
+    -fx-background-insets: 2 2 2 2 ;
+    /*-fx-border-color: white;*/
+    -fx-background-radius: 10 0 10 0;
+    /*-fx-border-radius:100;*/
+}
+
+.jfx-button:hover{
+    -fx-effect: dropshadow(two-pass-box , #011b1d, 8, 0.1 , 1, 3);
+}

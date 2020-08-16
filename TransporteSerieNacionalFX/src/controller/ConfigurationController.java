@@ -76,7 +76,7 @@ public class ConfigurationController implements Initializable {
                 ok = false;
                 TrayNotification notification = new TrayNotification();
                 notification.setTitle("Escoger equipos");
-                notification.setMessage("El campeón y subcampeón deben diferentes");
+                notification.setMessage("El campe?n y subcampe?n deben diferentes");
                 notification.setNotificationType(NotificationType.ERROR);
                 notification.setRectangleFill(Paint.valueOf("#2F2484"));
                 notification.setAnimationType(AnimationType.FADE);
@@ -89,7 +89,7 @@ public class ConfigurationController implements Initializable {
                     ok = false;
                     TrayNotification notification = new TrayNotification();
                     notification.setTitle("Escoger equipos");
-                    notification.setMessage("El campeón y subcampeón deben haber sido seleccionados previamente");
+                    notification.setMessage("El campe?n y subcampe?n deben haber sido seleccionados previamente");
                     notification.setNotificationType(NotificationType.ERROR);
                     notification.setRectangleFill(Paint.valueOf("#2F2484"));
                     notification.setAnimationType(AnimationType.FADE);

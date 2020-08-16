@@ -201,8 +201,9 @@ public class HomeController implements Initializable {
 
         try {
 
-            ArrayList<Date> importedCalendar=ReadExcel.readExcel(file.toString());
-            Controller.getSingletonController().setCalendar(importedCalendar);
+            if(file != null){
+                ArrayList<Date> importedCalendar=ReadExcel.readExcel(file.toString());
+                Controller.getSingletonController().setCalendar(importedCalendar);
 
             /*ArrayList<Date> calendar = Controller.getSingletonController().getCalendar();
             System.out.println("Calendario Final:");
@@ -216,14 +217,16 @@ public class HomeController implements Initializable {
                 System.out.println(" ");
             }*/
 
-            notification = getNotification();
-            notification.setTitle("Imoortación de Calendario");
-            notification.setMessage("Calendario importado con éxito");
-            notification.setNotificationType(NotificationType.SUCCESS);
-            notification.setRectangleFill(Paint.valueOf("#2F2484"));
-            notification.setAnimationType(AnimationType.FADE);
-            notification.showAndDismiss(Duration.seconds(2));
+                notification = getNotification();
+                notification.setTitle("Imoortación de Calendario");
+                notification.setMessage("Calendario importado con éxito");
+                notification.setNotificationType(NotificationType.SUCCESS);
+                notification.setRectangleFill(Paint.valueOf("#2F2484"));
+                notification.setAnimationType(AnimationType.FADE);
+                notification.showAndDismiss(Duration.seconds(2));
 
+
+            }
 
         } catch (IOException e) {
             e.printStackTrace();

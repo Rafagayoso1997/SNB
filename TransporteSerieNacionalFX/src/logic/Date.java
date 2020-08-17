@@ -14,7 +14,7 @@ public class Date {
     /**
      * Class constructor
      *
-     * @param n number of teams
+     * @param n number of resources.teams
      */
 
     public Date(){

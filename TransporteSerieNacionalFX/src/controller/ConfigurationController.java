@@ -61,6 +61,7 @@ public class ConfigurationController implements Initializable {
     void setSecondRound(ActionEvent event) {
         if (secondRoundButton.isSelected()) {
             secondRoundButton.setText("Sí");
+
         } else {
             secondRoundButton.setText("No");
         }

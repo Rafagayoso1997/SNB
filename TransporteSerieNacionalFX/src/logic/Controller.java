@@ -23,11 +23,11 @@ public class Controller {
     private final int PENALIZATION = 100000;//Penalization if the calendar breach the restrictions
     private final int ITERATIONS = 200000;//Number of iterations
     private ArrayList<LocalVisitorDistance> positionsDistance;//List of LocalVisitorDistance
-    private ArrayList<String> teams;//List of teams
+    private ArrayList<String> teams;//List of resources.teams
 
 
     private ArrayList<Date> calendar;//List of Date that belongs to the calendar
-    private double[][] matrixDistance;//Matrix that represents the distance between teams
+    private double[][] matrixDistance;//Matrix that represents the distance between resources.teams
     private ArrayList<Integer> indexes;
     private static Controller singletonController;//Singleton Pattern
     private int posChampion;//Position of the champion team
@@ -186,7 +186,7 @@ public class Controller {
     }
 
     /**
-     * Create the list of teams from the file
+     * Create the list of resources.teams from the file
      *
      * @param direction
      */
@@ -334,7 +334,7 @@ public class Controller {
     }
 
     /**
-     * Swap the position of two teams from a duel
+     * Swap the position of two resources.teams from a duel
      *
      * @param duel ArrayList
      */
@@ -616,7 +616,7 @@ public class Controller {
     }
 
     /**
-     * Mutation that change the position of the local and the visitor teams on a Date
+     * Mutation that change the position of the local and the visitor resources.teams on a Date
      *
      * @param calendar
      */
@@ -690,7 +690,7 @@ public class Controller {
     }
 
     /**
-     * Mutation that swap the appearance of two teams
+     * Mutation that swap the appearance of two resources.teams
      *
      * @param calendar
      */
@@ -729,7 +729,7 @@ public class Controller {
     }
 
     /**
-     * Mutation that swap to teams in a Date
+     * Mutation that swap to resources.teams in a Date
      *
      * @param calendar
      */

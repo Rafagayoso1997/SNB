@@ -83,7 +83,6 @@ public class SelectionTeamsController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         HomeController.escogidos = false;
-        //teams = indexes.size();
         teams = 0;
         Controller.getSingletonController().setIndexes(new ArrayList<>());
         List<String> teams = Controller.getSingletonController().getTeams();
@@ -92,7 +91,7 @@ public class SelectionTeamsController implements Initializable {
         teamsSelectionListView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
             @Override
             public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-                Image     image     = new Image(getClass().getResourceAsStream("/teams/" + newValue + ".png"));
+                Image     image     = new Image(getClass().getResourceAsStream("/resources/teams/" + newValue + ".png"));
                 ImageView teamImage = new ImageView(image);
                 teamImage.setFitHeight(imageSelectionPane.getHeight());
                 teamImage.setFitWidth(imageSelectionPane.getWidth());

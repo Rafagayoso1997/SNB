@@ -31,7 +31,7 @@ public class TeamsController implements Initializable {
         teamsListView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
             @Override
             public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-                Image     image     = new Image(getClass().getResourceAsStream("/teams/" + newValue + ".png"));
+                Image     image     = new Image(getClass().getResourceAsStream("/resources/teams/" + newValue + ".png"));
                 ImageView teamImage = new ImageView(image);
                 teamImage.setFitHeight(imagePane.getHeight());
                 teamImage.setFitWidth(imagePane.getWidth());

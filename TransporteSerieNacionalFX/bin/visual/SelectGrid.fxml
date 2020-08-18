@@ -9,29 +9,29 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="panel" prefHeight="577.0" prefWidth="754.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.SelectGridController">
+<AnchorPane fx:id="panel" prefHeight="863.0" prefWidth="1713.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.SelectGridController">
     <children>
-        <JFXButton fx:id="click" layoutX="355.0" layoutY="532.0" onAction="#click" style="-fx-background-color: #2f2484; -fx-background-radius: 100;" text="Guardar Sedes" textFill="WHITE" AnchorPane.bottomAnchor="8.0" AnchorPane.rightAnchor="340.0">
+        <JFXButton fx:id="click" layoutX="931.0" layoutY="810.0" onAction="#click" prefHeight="49.0" prefWidth="158.0" style="-fx-background-color: #2f2484; -fx-background-radius: 100;" text="Guardar Sedes" textFill="WHITE" AnchorPane.bottomAnchor="4.0" AnchorPane.rightAnchor="624.0">
             <font>
-                <Font name="Segoe UI Symbol" size="16.0" />
+                <Font name="Segoe UI Symbol" size="20.0" />
             </font>
             <cursor>
                 <Cursor fx:constant="HAND" />
             </cursor>
         </JFXButton>
-        <ScrollPane layoutX="69.0" layoutY="14.0" prefHeight="513.0" prefWidth="738.0" AnchorPane.bottomAnchor="55.0" AnchorPane.rightAnchor="4.0">
+        <ScrollPane layoutX="69.0" layoutY="14.0" prefHeight="802.0" prefWidth="1713.0" AnchorPane.bottomAnchor="55.0" AnchorPane.rightAnchor="4.0">
             <content>
-                <GridPane fx:id="selectionGrid" prefHeight="506.0" prefWidth="734.0">
+                <GridPane fx:id="selectionGrid" prefHeight="799.0" prefWidth="1698.0">
 
                 </GridPane>
             </content>
         </ScrollPane>
-        <Label layoutX="14.0" layoutY="537.0" text="Calendario Balanceado:" AnchorPane.bottomAnchor="15.0" AnchorPane.rightAnchor="575.0">
+        <Label layoutX="397.0" layoutY="793.0" prefHeight="52.0" prefWidth="494.0" text="Calendario Balanceado:" textFill="#2f2484" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="822.0">
             <font>
-                <Font name="Segoe UI Symbol" size="16.0" />
+                <Font name="Segoe UI Symbol" size="40.0" />
             </font>
         </Label>
-        <FontAwesomeIconView fx:id="balanceCalendar" fill="#10a132" glyphName="CHECK" layoutX="213.0" layoutY="559.0" size="30" AnchorPane.bottomAnchor="13.128347396850586" AnchorPane.rightAnchor="538.0" />
-        <FontAwesomeIconView fx:id="notbalanceCalendar" fill="#f50000" glyphName="TIMES" layoutX="217.0" layoutY="560.0" size="30" AnchorPane.bottomAnchor="12.128347396850586" AnchorPane.rightAnchor="540.4285717010498" />
+        <FontAwesomeIconView fx:id="balanceCalendar" fill="#10a132" glyphName="CHECK" layoutX="825.0" layoutY="850.0" size="48" AnchorPane.bottomAnchor="5.205356597900391" AnchorPane.rightAnchor="840.0" />
+        <FontAwesomeIconView fx:id="notbalanceCalendar" fill="#f50000" glyphName="TIMES" layoutX="828.0" layoutY="850.0" size="48" text="" wrappingWidth="40.999997831881046" AnchorPane.bottomAnchor="5.0" AnchorPane.rightAnchor="844.0" />
     </children>
 </AnchorPane>

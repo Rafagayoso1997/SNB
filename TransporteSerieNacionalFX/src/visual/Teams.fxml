@@ -1,19 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXListView?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="577.0" prefWidth="754.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.TeamsController">
+<AnchorPane prefHeight="863.0" prefWidth="1713.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.TeamsController">
     <children>
-        <JFXListView fx:id="teamsListView" layoutX="80.0" layoutY="85.0" prefHeight="452.0" prefWidth="301.0" />
-        <Pane fx:id="imagePane" layoutX="430.0" layoutY="99.0" prefHeight="294.0" prefWidth="294.0" />
-        <Label layoutX="371.0" layoutY="40.0" text="Equipos" textFill="#2f2484">
+        <JFXListView fx:id="teamsListView" layoutX="80.0" layoutY="85.0" prefHeight="766.0" prefWidth="463.0">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></JFXListView>
+        <Pane fx:id="imagePane" layoutX="596.0" layoutY="84.0" prefHeight="766.0" prefWidth="561.0" />
+        <Label layoutX="748.0" layoutY="14.0" text="Equipos" textFill="#2f2484">
             <font>
-                <Font name="Segoe UI Symbol" size="30.0" />
+                <Font name="Segoe UI Symbol" size="48.0" />
             </font>
         </Label>
+      <Label layoutX="1244.0" layoutY="84.0" text="Datos del Equipo" textFill="#2f2484">
+         <font>
+            <Font name="Segoe UI Symbol" size="48.0" />
+         </font>
+      </Label>
+      <Separator layoutX="1250.0" layoutY="138.0" orientation="VERTICAL" prefHeight="715.0" prefWidth="3.0" />
+      <Separator layoutX="1646.0" layoutY="119.0" orientation="VERTICAL" prefHeight="734.0" prefWidth="6.0" />
+      <Separator layoutX="1253.0" layoutY="852.0" prefHeight="0.0" prefWidth="395.0" />
+      <Separator layoutX="1606.0" layoutY="118.0" prefHeight="3.0" prefWidth="40.0" />
     </children>
 </AnchorPane>

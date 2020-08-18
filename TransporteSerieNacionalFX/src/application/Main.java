@@ -19,6 +19,8 @@ public class Main extends Application {
 
             //primaryStage.setResizable(false);
             primaryStage.show();
+
+
         } catch (Exception e) {
             e.printStackTrace();
         }

@@ -5,5 +5,6 @@
     <file url="file://$PROJECT_DIR$/src/controller/ConfigurationController.java" charset="ISO-8859-1" />
     <file url="file://$PROJECT_DIR$/src/controller/HomeController.java" charset="windows-1252" />
     <file url="file://$PROJECT_DIR$/src/controller/SelectGridController.java" charset="ISO-8859-1" />
+    <file url="file://$PROJECT_DIR$/src/controller/SelectionTeamsController.java" charset="ISO-8859-1" />
   </component>
 </project>

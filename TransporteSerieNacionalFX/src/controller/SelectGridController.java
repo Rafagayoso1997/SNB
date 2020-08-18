@@ -101,8 +101,8 @@ public class SelectGridController implements Initializable {
     }
 
     private JFXToggleButton[][] generateMatrixToggleButton(int size) {
-        int posChampion = Controller.getSingletonController().getIndexes().indexOf(Controller.getSingletonController().getPosChampion());
-        int posSecond   = Controller.getSingletonController().getIndexes().indexOf(Controller.getSingletonController().getPosSubChampion());
+        int posChampion = Controller.getSingletonController().getTeamsIndexes().indexOf(Controller.getSingletonController().getPosChampion());
+        int posSecond   = Controller.getSingletonController().getTeamsIndexes().indexOf(Controller.getSingletonController().getPosSubChampion());
         //false el equipo no se ha cogido
         //matrixCalendar = generateMatrix(SIZE);
 

@@ -36,6 +36,10 @@ public class Controller {
     private int posSubChampion;//Position of the subchampion team
     private boolean secondRound;
 
+
+
+    private float calendarDistance;
+
     private int[][] matrix;
 
     /**
@@ -53,6 +57,7 @@ public class Controller {
         fillMatrixDistance();
         this.secondRound = false;
         this.matrix = new int[teamsIndexes.size()][teamsIndexes.size()];
+        this.calendarDistance = 0;
     }
 
     /**
@@ -94,6 +99,13 @@ public class Controller {
         this.mutationsIndexes = mutationsIndexes;
     }
 
+    public float getCalendarDistance() {
+        return calendarDistance;
+    }
+
+    public void setCalendarDistance(float calendarDistance) {
+        this.calendarDistance = calendarDistance;
+    }
 
     /**
      * Return the LocalVisitorDistance list
@@ -911,9 +923,7 @@ public class Controller {
             int mutation = ThreadLocalRandom.current().nextInt(0, mutationsIndexes.size());
             newCalendar = new ArrayList<>();
             copyCalendar(newCalendar, this.calendar);
-            //System.out.println("Mutaciones :"+mutationsIndexes.size());
-            //Si tengo dos mutaciones y escojo el numero 4, va a dar error
-            System.out.println("Se aplicó la mutacion" +mutationsIndexes.get(mutation));
+
             switch (mutationsIndexes.get(mutation)) {
 
                 case 0:
@@ -985,7 +995,7 @@ public class Controller {
         for (int z = 0; z < this.calendar.size(); z++) {
             System.out.println(this.calendar.get(z).getGames());
         }
-
+        calendarDistance = distance;
         System.out.println("Distancia Original Calendario Mutado :" + calculateDistance(this.calendar));
         System.out.println();
         System.out.println("Mutado " + distance);

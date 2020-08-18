@@ -10,6 +10,7 @@
 
 }
 
+
 .jfx-button:focused {
     -fx-background-color: transparent;
     -fx-background-insets: -1.4, 0, 1;
@@ -30,6 +31,7 @@
      -fx-pref-width: 288;
      -fx-pref-height: 30;
      -fx-cursor: hand;*/
+    -fx-font: 30px "Segoe UI Symbol";
     -fx-text-fill: #2f2484;
 }
 
@@ -46,9 +48,9 @@
 }
 
 .table-cell {
-    -fx-pref-width: 380;
+    -fx-pref-width: 600;
     -fx-border-color: -fx-box-border -fx-box-border transparent transparent;
-    -fx-font: 20px "Segoe UI Symbol";
+    -fx-font: 30px "Segoe UI Symbol";
     -fx-text-fill: #2f2484;
     -fx-alignment: CENTER;
 }
@@ -80,6 +82,7 @@
      -fx-pref-width: 288;
      -fx-pref-height: 30;
      -fx-cursor: hand;*/
+    -fx-font: 34px "Segoe UI Symbol";
     -fx-text-fill: #2f2484;
 }
 

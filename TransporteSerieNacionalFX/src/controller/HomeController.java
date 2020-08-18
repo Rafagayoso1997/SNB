@@ -100,7 +100,7 @@ public class HomeController implements Initializable {
             notification.setAnimationType(AnimationType.FADE);
             notification.showAndDismiss(Duration.seconds(2));
             conf = false;
-            buttonReturnCalendarConfiguration.setVisible(false);
+
             buttonConfigurationSelecctionTeams.setVisible(true);
         }
     }
@@ -135,7 +135,7 @@ public class HomeController implements Initializable {
 
     @FXML
     void showConfigurationMatrix(ActionEvent event) throws IOException {
-        if (!SelectionTeamsController.ok) {
+        if (!escogidos) {
             notification = getNotification();
             notification.setTitle("Configuración del calendario");
             notification.setMessage("Debe guardar la configuración");

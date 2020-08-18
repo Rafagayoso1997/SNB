@@ -31,7 +31,7 @@ public class Main {
         indexes.add(14);
         indexes.add(15);
 
-        probando.setIndexes(indexes);
+        probando.setTeamsIndexes(indexes);
 
    //     probando.generateCalendar();
 

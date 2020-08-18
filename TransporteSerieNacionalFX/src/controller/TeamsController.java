@@ -6,6 +6,7 @@ import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.SelectionMode;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
@@ -28,6 +29,7 @@ public class TeamsController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         List<String> teams = Controller.getSingletonController().getTeams();
         teamsListView.setItems(FXCollections.observableArrayList(teams));
+        teamsListView.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
         teamsListView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
             @Override
             public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {

@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="1920.0" maxWidth="1256.0" minHeight="678.0" minWidth="829.0" prefHeight="714.0" prefWidth="962.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.HomeController">
+<AnchorPane maxHeight="1920.0" maxWidth="1920.0" minHeight="678.0" minWidth="829.0" prefHeight="1000.0" prefWidth="1920.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.HomeController">
     <children>
         <Pane fx:id="sidePane" layoutY="137.0" prefHeight="577.0" prefWidth="208.0" style="-fx-background-color: #2F2484; -fx-background-radius: 0 70 0 0;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="137.0">
             <children>
@@ -90,14 +90,14 @@
             </JFXButton>
             </children>
         </Pane>
-        <AnchorPane fx:id="pane" layoutX="214.0" layoutY="137.0" prefHeight="577.0" prefWidth="755.0" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0">
+        <AnchorPane fx:id="pane" layoutX="208.0" layoutY="137.0" prefHeight="863.0" prefWidth="1713.0" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="-1.0">
             <children>
-                <ImageView fitHeight="406.0" fitWidth="470.0" layoutX="165.0" layoutY="45.0" pickOnBounds="true" preserveRatio="true">
+                <ImageView fitHeight="694.0" fitWidth="906.0" layoutX="502.0" layoutY="56.0" pickOnBounds="true" preserveRatio="true">
                     <image>
                         <Image url="@../resources/snb.png" />
                     </image>
                 </ImageView>
-                <Label fx:id="information" layoutX="165.0" layoutY="466.0" text="Label" textFill="#2f1a84">
+                <Label fx:id="information" layoutX="571.0" layoutY="750.0" prefHeight="51.0" prefWidth="580.0" text="bn" textFill="#2f1a84">
                     <font>
                         <Font name="Segoe UI Symbol" size="35.0" />
                     </font>
@@ -137,7 +137,7 @@
                   </ImageView>
               </graphic>
           </JFXButton>
-          <JFXButton fx:id="buttonCalendarConfiguration" buttonType="RAISED" contentDisplay="CENTER" layoutX="677.0" layoutY="38.0" onAction="#showCalendarConfiguration" prefHeight="47.0" prefWidth="61.0" ripplerFill="#2f2484" text=" " AnchorPane.rightAnchor="21.0">
+          <JFXButton fx:id="buttonCalendarConfiguration" buttonType="RAISED" contentDisplay="CENTER" layoutX="1836.0" layoutY="41.0" onAction="#showCalendarConfiguration" prefHeight="47.0" prefWidth="61.0" ripplerFill="#2f2484" text=" ">
               <cursor>
                   <Cursor fx:constant="HAND" />
               </cursor>
@@ -153,7 +153,7 @@
                   <FontAwesomeIconView fill="#2f2484" glyphName="CHEVRON_RIGHT" size="60" />
               </graphic>
           </JFXButton>
-          <JFXButton fx:id="buttonReturnSelectionTeamConfiguration" buttonType="RAISED" contentDisplay="CENTER" layoutX="658.0" layoutY="41.0" onAction="#showReturnSelectionTeamConfiguration" prefHeight="47.0" prefWidth="61.0" ripplerFill="#2f2484" text=" " AnchorPane.rightAnchor="108.0">
+          <JFXButton fx:id="buttonReturnSelectionTeamConfiguration" buttonType="RAISED" contentDisplay="CENTER" layoutX="1812.0" layoutY="40.0" onAction="#showReturnSelectionTeamConfiguration" prefHeight="47.0" prefWidth="61.0" ripplerFill="#2f2484" text=" " AnchorPane.rightAnchor="45.0">
               <cursor>
                   <Cursor fx:constant="HAND" />
               </cursor>
@@ -161,17 +161,9 @@
                   <FontAwesomeIconView fill="#2f2484" glyphName="CHEVRON_LEFT" size="60" />
               </graphic>
           </JFXButton>
-          <JFXButton fx:id="buttonReturnCalendarConfiguration" buttonType="RAISED" contentDisplay="CENTER" layoutX="658.0" layoutY="41.0" onAction="#showReturnCalendarConfiguration" prefHeight="47.0" prefWidth="61.0" ripplerFill="#2f2484" text=" " AnchorPane.rightAnchor="108.0">
-              <cursor>
-                  <Cursor fx:constant="HAND" />
-              </cursor>
-              <graphic>
-                  <FontAwesomeIconView fill="#2f2484" glyphName="CHEVRON_LEFT" size="60" />
-              </graphic>
-          </JFXButton>
-          <Label layoutX="303.0" layoutY="51.0" text="Serie Nacional de Beísbol" textFill="#2f2484" AnchorPane.rightAnchor="302.0">
+          <Label layoutX="705.0" layoutY="41.0" prefHeight="93.0" prefWidth="719.0" text="Serie Nacional de Beísbol" textFill="#2f2484" AnchorPane.rightAnchor="496.0">
               <font>
-                  <Font name="Segoe UI Symbol" size="32.0" />
+                  <Font name="Segoe UI Symbol" size="64.0" />
               </font>
           </Label>
     </children>

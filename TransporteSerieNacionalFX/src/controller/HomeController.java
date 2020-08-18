@@ -124,17 +124,18 @@ public class HomeController implements Initializable {
             notification.setAnimationType(AnimationType.FADE);
             notification.showAndDismiss(Duration.seconds(2));
         } else {
-            this.createPage(home, "/visual/Configuration.fxml");
-            buttonReturnSelectionTeamConfiguration.setVisible(true);
-            //this.createPage(home,"/visual/SelectGrid.fxml");
+
+            this.createPage(home, "/visual/SelectGrid.fxml");
+            buttonConfigurationSelecctionTeams.setVisible(false);
+            buttonConfMatrix.setVisible(false);
             buttonCalendarConfiguration.setVisible(false);
-            buttonConfMatrix.setVisible(true);
+            buttonReturnSelectionTeamConfiguration.setVisible(true);
         }
     }
 
     @FXML
     void showConfigurationMatrix(ActionEvent event) throws IOException {
-        if (!ConfigurationController.ok) {
+        if (!SelectionTeamsController.ok) {
             notification = getNotification();
             notification.setTitle("Configuración del calendario");
             notification.setMessage("Debe guardar la configuración");
@@ -146,8 +147,8 @@ public class HomeController implements Initializable {
             this.createPage(home, "/visual/SelectGrid.fxml");
             buttonConfigurationSelecctionTeams.setVisible(false);
             buttonConfMatrix.setVisible(false);
-            buttonReturnSelectionTeamConfiguration.setVisible(false);
-            buttonReturnCalendarConfiguration.setVisible(true);
+            buttonReturnSelectionTeamConfiguration.setVisible(true);
+            //buttonReturnCalendarConfiguration.setVisible(true);
             pane.resize(1000,1000);
             System.out.print(pane.getHeight() + " " + pane.getWidth());
 
@@ -163,15 +164,6 @@ public class HomeController implements Initializable {
         buttonReturnSelectionTeamConfiguration.setVisible(false);
         buttonConfMatrix.setVisible(false);
     }
-
-    @FXML
-    void showReturnCalendarConfiguration(ActionEvent event) throws IOException {
-        this.createPage(home, "/visual/Configuration.fxml");
-        buttonConfMatrix.setVisible(true);
-        buttonReturnSelectionTeamConfiguration.setVisible(true);
-        buttonReturnCalendarConfiguration.setVisible(false);
-    }
-
 
     @FXML
     void showPrincipalMenu(ActionEvent event) throws IOException {
@@ -246,7 +238,7 @@ public class HomeController implements Initializable {
         buttonCalendarConfiguration.setVisible(false);
         buttonConfMatrix.setVisible(false);
         buttonReturnSelectionTeamConfiguration.setVisible(false);
-        buttonReturnCalendarConfiguration.setVisible(false);
+
     }
 
 

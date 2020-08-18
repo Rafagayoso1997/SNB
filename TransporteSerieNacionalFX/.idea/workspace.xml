@@ -2,101 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f431f424-8f9f-474a-8daa-5cfa5e47082b" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/jfxtras_labs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TransporteSerieNacionalFX.iml" beforeDir="false" afterPath="$PROJECT_DIR$/TransporteSerieNacionalFX.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/application/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/application/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/controller/ConfigurationController.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/controller/ConfigurationController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/controller/SelectionTeamsController$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/controller/SelectionTeamsController$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/controller/SelectionTeamsController.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/controller/SelectionTeamsController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/controller/TeamsController$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/controller/TeamsController$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/resources/baseball.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/resources/bats.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/resources/excel.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/resources/fonts/GoogleSans-Bold.ttf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/resources/fonts/GoogleSans-BoldItalic.ttf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/resources/fonts/GoogleSans-Italic.ttf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/resources/fonts/GoogleSans-Medium.ttf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/resources/fonts/GoogleSans-MediumItalic.ttf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/resources/fonts/GoogleSans-Regular.ttf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/resources/icons8_baseball_player_100px.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/resources/icons8_baseball_player_48px.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/resources/icons8_baseball_player_48px_1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/resources/icons8_baseball_player_60px.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/resources/icons8_calendar_48px_1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/resources/icons8_import_80px.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/resources/icons8_settings_50px.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/resources/icons8_toggle_off_30px.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/resources/icons8_toggle_off_50px_1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/resources/icons8_toggle_on_30px.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/resources/icons8_toggle_on_50px_1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/resources/location (1).png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/resources/locations.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/resources/tournament.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/styles/PrincipalMenu.css" beforeDir="false" afterPath="$PROJECT_DIR$/bin/styles/PrincipalMenu.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/teams/Artemisa.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/teams/Camaguey.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/teams/Ciego de Ávila.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/teams/Cienfuegos.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/teams/Granma.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/teams/Guantánamo.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/teams/Holguín.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/teams/Industriales.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/teams/Isla de la Juventud.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/teams/Las Tunas.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/teams/Matanzas.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/teams/Mayabeque.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/teams/Pinar del Río.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/teams/Sancti Spíritus.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/teams/Santiago de Cuba.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/teams/Villa Clara.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/application/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/application/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controller/ConfigurationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/ConfigurationController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controller/SelectionTeamsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/SelectionTeamsController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controller/TeamsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/TeamsController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/logic/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/logic/Controller.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/logic/Date.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/logic/Date.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/logic/Duel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/logic/Duel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/resources/baseball.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/resources/bats.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/resources/excel.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/resources/fonts/GoogleSans-Bold.ttf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/resources/fonts/GoogleSans-BoldItalic.ttf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/resources/fonts/GoogleSans-Italic.ttf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/resources/fonts/GoogleSans-Medium.ttf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/resources/fonts/GoogleSans-MediumItalic.ttf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/resources/fonts/GoogleSans-Regular.ttf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/resources/icons8_baseball_player_100px.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/resources/icons8_baseball_player_48px.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/resources/icons8_baseball_player_48px_1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/resources/icons8_baseball_player_60px.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/resources/icons8_calendar_48px_1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/resources/icons8_import_80px.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/resources/icons8_settings_50px.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/resources/icons8_toggle_off_30px.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/resources/icons8_toggle_off_50px_1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/resources/icons8_toggle_on_30px.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/resources/icons8_toggle_on_50px_1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/resources/location (1).png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/resources/locations.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/resources/tournament.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/styles/PrincipalMenu.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/PrincipalMenu.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/teams/Artemisa.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/teams/Camaguey.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/teams/Ciego de Ávila.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/teams/Cienfuegos.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/teams/Granma.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/teams/Guantánamo.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/teams/Holguín.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/teams/Industriales.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/teams/Isla de la Juventud.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/teams/Las Tunas.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/teams/Matanzas.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/teams/Mayabeque.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/teams/Pinar del Río.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/teams/Sancti Spíritus.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/teams/Santiago de Cuba.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/teams/Villa Clara.png" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -305,7 +211,8 @@
       <workItem from="1597679521041" duration="658000" />
       <workItem from="1597682525088" duration="445000" />
       <workItem from="1597683010137" duration="11000" />
-      <workItem from="1597699901997" duration="2406000" />
+      <workItem from="1597699901997" duration="2480000" />
+      <workItem from="1597771083225" duration="265000" />
     </task>
     <servers />
   </component>

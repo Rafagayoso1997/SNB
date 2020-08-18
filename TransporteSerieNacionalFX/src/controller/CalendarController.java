@@ -6,6 +6,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -45,6 +46,21 @@ public class CalendarController implements Initializable {
     @FXML
     private JFXTabPane calendarTabPane;
 
+    @FXML
+    private Label lblCalendarKM;
+
+    @FXML
+    private Label lblMoreKMTeam;
+
+    @FXML
+    private Label lblLessKMTeam;
+
+    @FXML
+    private Label lblLessKM;
+
+    @FXML
+    private Label lblMoreKM;
+
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -52,8 +68,11 @@ public class CalendarController implements Initializable {
         controller = Controller.getSingletonController();
 
         controller.generateCalendar();
+
         tables = new ArrayList<>();
         calendar = controller.getCalendar();
+        float distance = controller.getCalendarDistance();
+        lblCalendarKM.setText(""+distance);
         for (int i = 0; i < calendar.size(); i++) {
             TableView<Duel> table = new TableView<Duel>();
             TableColumn<Duel, String> col = new TableColumn<>("Local");

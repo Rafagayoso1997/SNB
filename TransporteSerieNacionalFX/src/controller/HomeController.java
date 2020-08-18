@@ -129,7 +129,7 @@ public class HomeController implements Initializable {
             buttonConfigurationSelecctionTeams.setVisible(false);
             buttonConfMatrix.setVisible(false);
             buttonCalendarConfiguration.setVisible(false);
-            buttonReturnSelectionTeamConfiguration.setVisible(true);
+            buttonReturnSelectionTeamConfiguration.setVisible(false);
         }
     }
 

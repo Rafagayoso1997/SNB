@@ -90,7 +90,7 @@ public class SelectionTeamsController implements Initializable {
             comboChamp.setVisible(true);
             comboSub.setVisible(true);
             btnSwap.setVisible(true);
-            champVsSub.setText("S�");
+            champVsSub.setText("Sí");
 
             //DAVID change => update the Champion ComboBox and Sub-Champion ComboBox
             comboChamp.setItems(teamsSelectionListView.getSelectionModel().getSelectedItems());
@@ -106,7 +106,7 @@ public class SelectionTeamsController implements Initializable {
     @FXML
     void setSecondRound(ActionEvent event) {
         if (secondRoundButton.isSelected()) {
-            secondRoundButton.setText("S�");
+            secondRoundButton.setText("Sí");
 
         } else {
             secondRoundButton.setText("No");
@@ -130,15 +130,15 @@ public class SelectionTeamsController implements Initializable {
         }*/
         if (indexes.size() <= 2) {
             notification = getNotification();
-            notification.setTitle("Selecci�n de equipos");
-            notification.setMessage("Debe escoger m�s de dos equipos");
+            notification.setTitle("Selección de equipos");
+            notification.setMessage("Debe escoger más de dos equipos");
             notification.setNotificationType(NotificationType.ERROR);
             notification.setRectangleFill(Paint.valueOf("#2F2484"));
             notification.setAnimationType(AnimationType.FADE);
             notification.showAndDismiss(Duration.seconds(1));
         } else if (indexes.size() % 2 != 0) {
             notification = getNotification();
-            notification.setTitle("Selecci�n de equipos.");
+            notification.setTitle("Selección de equipos.");
             notification.setMessage("Debe escoger una cantidad par de equipos.");
             notification.setNotificationType(NotificationType.ERROR);
             notification.setRectangleFill(Paint.valueOf("#2F2484"));
@@ -148,8 +148,8 @@ public class SelectionTeamsController implements Initializable {
 
         if (indexesMutations.size() ==0 ) {
             notification = getNotification();
-            notification.setTitle("Selecci�n de equipos");
-            notification.setMessage("Debe escoger al menos una mutaci�n");
+            notification.setTitle("Selección de equipos");
+            notification.setMessage("Debe escoger al menos una mutación");
             notification.setNotificationType(NotificationType.ERROR);
             notification.setRectangleFill(Paint.valueOf("#2F2484"));
             notification.setAnimationType(AnimationType.FADE);
@@ -162,12 +162,12 @@ public class SelectionTeamsController implements Initializable {
             if (posSub == posChampion) {
                 //ok = false;
                 TrayNotification notification = new TrayNotification();
-                notification.setTitle("Selecci�n equipos");
+                notification.setTitle("Selección equipos");
                 if(posChampion == -1 && posSub == -1){
-                    notification.setMessage("Debe escoger al campe�n y subcampe�n.");
+                    notification.setMessage("Debe escoger al campeón y subcampeón.");
                 }
                 else {
-                    notification.setMessage("El campe�n y subcampe�n deben diferentes");
+                    notification.setMessage("El campeón y subcampeón deben diferentes");
                 }
                 notification.setNotificationType(NotificationType.ERROR);
                 notification.setRectangleFill(Paint.valueOf("#2F2484"));
@@ -181,7 +181,7 @@ public class SelectionTeamsController implements Initializable {
                     //ok = false;
                     TrayNotification notification = new TrayNotification();
                     notification.setTitle("Escoger equipos");
-                    notification.setMessage("El campe�n y subcampe�n deben haber sido seleccionados previamente");
+                    notification.setMessage("El campeón y subcampeón deben haber sido seleccionados previamente");
                     notification.setNotificationType(NotificationType.ERROR);
                     notification.setRectangleFill(Paint.valueOf("#2F2484"));
                     notification.setAnimationType(AnimationType.FADE);

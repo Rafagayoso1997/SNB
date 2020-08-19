@@ -28,7 +28,7 @@ import java.util.List;
 import java.util.ResourceBundle;
 import java.util.stream.Collectors;
 
-public class SelectionTeamsController implements Initializable {
+public class ConfigurationCalendarController implements Initializable {
 
     private TrayNotification notification;
 

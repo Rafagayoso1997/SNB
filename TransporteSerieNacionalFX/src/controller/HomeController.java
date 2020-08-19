@@ -110,14 +110,14 @@ public class HomeController implements Initializable {
 
             buttonConfigurationSelecctionTeams.setVisible(true);
         }*/
-       this.createPage(home, "/visual/SelectionTeams.fxml");
+       this.createPage(home, "/visual/ConfigurationCalendar.fxml");
         buttonCalendarConfiguration.setVisible(true);
 
     }
 
     @FXML
     void showConfigurationSelectionTeams(ActionEvent event) throws IOException {
-       /* this.createPage(home, "/visual/SelectionTeams.fxml");
+       /* this.createPage(home, "/visual/ConfigurationCalendar.fxml");
         buttonConfigurationSelecctionTeams.setVisible(false);
         buttonCalendarConfiguration.setVisible(true);
         */
@@ -156,7 +156,7 @@ public class HomeController implements Initializable {
 
     @FXML
     void showReturnSelectionTeamConfiguration(ActionEvent event) throws IOException {
-        this.createPage(home, "/visual/SelectionTeams.fxml");
+        this.createPage(home, "/visual/ConfigurationCalendar.fxml");
         buttonCalendarConfiguration.setVisible(true);
         buttonReturnSelectionTeamConfiguration.setVisible(false);
 

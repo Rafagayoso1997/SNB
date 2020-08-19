@@ -21,7 +21,7 @@ public class Controller {
     private final int MAX_VISITOR_GAMES = 4;//Number of games that a visitor team can play in a row
     private final int MAX_HOME_GAMES = 5;
     private final int PENALIZATION = 100000;//Penalization if the calendar breach the restrictions
-    private final int ITERATIONS = 200000;//Number of iterations
+    private int iterations;//Number of iterations
     private ArrayList<LocalVisitorDistance> positionsDistance;//List of LocalVisitorDistance
     private ArrayList<String> teams;//List of resources.teams
 
@@ -58,6 +58,7 @@ public class Controller {
         this.secondRound = false;
         this.matrix = new int[teamsIndexes.size()][teamsIndexes.size()];
         this.calendarDistance = 0;
+        this.iterations = 0;
     }
 
     /**
@@ -79,6 +80,15 @@ public class Controller {
 
     public void setMatrix(int[][] matrix) {
         this.matrix = matrix;
+    }
+
+
+    public int getIterations() {
+        return iterations;
+    }
+
+    public void setIterations(int iterations) {
+        this.iterations = iterations;
     }
 
 
@@ -918,7 +928,7 @@ public class Controller {
         System.out.println(" Original :" + distance);
 
         int i = 0;
-        while (i < ITERATIONS) {
+        while (i < iterations) {
 
             int mutation = ThreadLocalRandom.current().nextInt(0, mutationsIndexes.size());
             newCalendar = new ArrayList<>();

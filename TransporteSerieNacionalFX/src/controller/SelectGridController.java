@@ -21,11 +21,14 @@ import tray.animations.AnimationType;
 import tray.notification.NotificationType;
 import tray.notification.TrayNotification;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class SelectGridController implements Initializable {
+
+    private HomeController homeController;
 
     @FXML
     private AnchorPane panel;
@@ -35,17 +38,23 @@ public class SelectGridController implements Initializable {
     private FontAwesomeIconView notbalanceCalendar;
     @FXML
     private GridPane selectionGrid;
+
+    @FXML
+    private JFXButton btnCalendar;
+
     boolean error = false;
     JFXToggleButton[][] matrix;
     static int[][] matrixCalendar;
-    private final int SIZE = SelectionTeamsController.teams;
-    private ArrayList<String> names = SelectionTeamsController.teamsNames;
+    private final int SIZE = ConfigurationCalendarController.teams;
+    private ArrayList<String> names = ConfigurationCalendarController.teamsNames;
+
+
 
     @FXML
-    private JFXButton click;
+    private JFXButton saveLocations;
 
     @FXML
-    void click(ActionEvent event) {
+    void saveLocations(ActionEvent event) {
         if (matrix != null) {
             if (!error) {
                 HomeController.matrix = true;
@@ -63,7 +72,8 @@ public class SelectGridController implements Initializable {
                 notification.setAnimationType(AnimationType.FADE);
                 notification.showAndDismiss(Duration.seconds(2));
                 Controller.getSingletonController().setMatrix(matrixCalendar);
-                HomeController.conf = true;
+                btnCalendar.setDisable(false);
+                homeController.conf = true;
             } else {
                 TrayNotification notification = new TrayNotification();
                 notification.setTitle("Escoger sedes");
@@ -159,10 +169,14 @@ public class SelectGridController implements Initializable {
         return matrix;
     }
 
+
+
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         matrixCalendar = generateMatrix(SIZE);
         HomeController.matrix = false;
+        btnCalendar.setDisable(true);
 
         Controller.getSingletonController().setMatrix(null);
         HomeController.conf = false;
@@ -234,6 +248,19 @@ public class SelectGridController implements Initializable {
         }
 
         return symmetric;
+    }
+
+    //*********************DAVID CHANGES******************
+
+    @FXML
+    void showCalendar(ActionEvent event) throws IOException {
+        AnchorPane structureOver = homeController.getPrincipalPane();
+        homeController.createPage(structureOver, "/visual/Calendar.fxml");
+        homeController.getButtonReturnSelectionTeamConfiguration().setVisible(false);
+    }
+
+    public void setHomeController(HomeController homeController) {
+        this.homeController = homeController;
     }
 
 }

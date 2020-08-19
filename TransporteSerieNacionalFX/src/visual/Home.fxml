@@ -125,27 +125,7 @@
                   <Shadow />
               </effect>
           </JFXButton>
-          <JFXButton fx:id="buttonConfigurationSelecctionTeams" buttonType="RAISED" contentDisplay="CENTER" layoutX="721.0" layoutY="37.0" onAction="#showConfigurationSelectionTeams" prefHeight="68.0" prefWidth="59.0" ripplerFill="#2f2484" text=" " AnchorPane.rightAnchor="21.0">
-              <cursor>
-                  <Cursor fx:constant="HAND" />
-              </cursor>
-              <graphic>
-                  <ImageView fitHeight="67.0" fitWidth="86.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true">
-                      <image>
-                          <Image url="@../resources/icons8_settings_60px.png" />
-                      </image>
-                  </ImageView>
-              </graphic>
-          </JFXButton>
           <JFXButton fx:id="buttonCalendarConfiguration" buttonType="RAISED" contentDisplay="CENTER" layoutX="1836.0" layoutY="41.0" onAction="#showCalendarConfiguration" prefHeight="47.0" prefWidth="61.0" ripplerFill="#2f2484" text=" ">
-              <cursor>
-                  <Cursor fx:constant="HAND" />
-              </cursor>
-              <graphic>
-                  <FontAwesomeIconView fill="#2f2484" glyphName="CHEVRON_RIGHT" size="60" />
-              </graphic>
-          </JFXButton>
-          <JFXButton fx:id="buttonConfMatrix" buttonType="RAISED" contentDisplay="CENTER" layoutX="677.0" layoutY="38.0" onAction="#showConfigurationMatrix" prefHeight="47.0" prefWidth="61.0" ripplerFill="#2f2484" text=" " AnchorPane.rightAnchor="21.0">
               <cursor>
                   <Cursor fx:constant="HAND" />
               </cursor>

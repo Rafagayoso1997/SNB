@@ -1,14 +1,21 @@
 package logic;
 
+import org.apache.commons.math3.util.MathUtils;
+
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class Main {
 
     public static void main(String[] args) throws IOException {
 
 
-        Controller probando = Controller.getSingletonController();
+
+
+
+        /*Controller probando = Controller.getSingletonController();
         probando.setPosChampion(-1);
         probando.setPosSubChampion(-1);
         probando.setSecondRound(false);
@@ -31,17 +38,17 @@ public class Main {
         indexes.add(14);
         indexes.add(15);
 
-        probando.setTeamsIndexes(indexes);
+        probando.setTeamsIndexes(indexes);*/
 
    //     probando.generateCalendar();
 
-        ArrayList<Date> calendar = ReadExcel.readExcel("Calendario.xlsx");
+       // ArrayList<Date> calendar = ReadExcel.readExcel("Calendario.xlsx");
 
 
 
         //probando.changeDuel(probando.getCalendar());
 
-		System.out.println("Calendario Final:");
+		/*System.out.println("Calendario Final:");
 		for (int i= 0; i < calendar.size(); i++) {
 			for(int j=0; j < calendar.get(i).getGames().size();j++){
 				int posLocal = calendar.get(i).getGames().get(j).get(0);
@@ -50,7 +57,7 @@ public class Main {
 
 			}
 			System.out.println(" ");
-		}
+		}*/
 		/*System.out.println("---------------");
 		System.out.println("Distancia:");
 		System.out.println(probando.calculateDistance(calendar));

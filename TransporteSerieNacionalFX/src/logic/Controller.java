@@ -38,7 +38,16 @@ public class Controller {
 
 
 
-    private float calendarDistance;
+
+    private float calendarDistance,lessDistance,moreDistance;
+    private String teamLessDistance;
+
+
+
+
+
+    private String teamMoreDistance;
+
 
     private int[][] matrix;
 
@@ -58,6 +67,10 @@ public class Controller {
         this.secondRound = false;
         this.matrix = new int[teamsIndexes.size()][teamsIndexes.size()];
         this.calendarDistance = 0;
+        this.lessDistance = 0;
+        this.moreDistance =0;
+        this.teamMoreDistance="";
+        this.teamLessDistance = "";
         this.iterations = 0;
     }
 
@@ -153,6 +166,38 @@ public class Controller {
         this.matrixDistance = matrixDistance;
     }
 
+
+    public float getLessDistance() {
+        return lessDistance;
+    }
+
+    public void setLessDistance(float lessDistance) {
+        this.lessDistance = lessDistance;
+    }
+
+    public float getMoreDistance() {
+        return moreDistance;
+    }
+
+    public void setMoreDistance(float moreDistance) {
+        this.moreDistance = moreDistance;
+    }
+
+    public String getTeamLessDistance() {
+        return teamLessDistance;
+    }
+
+    public void setTeamLessDistance(String teamLessDistance) {
+        this.teamLessDistance = teamLessDistance;
+    }
+
+    public String getTeamMoreDistance() {
+        return teamMoreDistance;
+    }
+
+    public void setTeamMoreDistance(String teamMoreDistance) {
+        this.teamMoreDistance = teamMoreDistance;
+    }
     /**
      * Return the champion team position
      *
@@ -280,7 +325,7 @@ public class Controller {
                                 lastLocal = matrix[i][j];
                                 matrix[i][j] = 0;
 
-                                System.out.println("Fecha actual: " + date.getGames());
+                               /* System.out.println("Fecha actual: " + date.getGames());
                                 System.out.println("Lastlocal" + lastLocal);
 
                                 System.out.println("Matriz de 1 y 2:");
@@ -289,7 +334,7 @@ public class Controller {
                                         System.out.print(matrix[g][h]);
                                     }
                                     System.out.println();
-                                }
+                                }*/
                             }
                         }
                     }
@@ -313,13 +358,13 @@ public class Controller {
                         date.getGames().remove(date.getGames().size() - 1);
 
                         System.out.println(date.getGames());
-                        System.out.println("Matriz de 1 y 2:");
+                        /*System.out.println("Matriz de 1 y 2:");
                         for (int g = 0; g < matrix.length; g++) {
                             for (int h = 0; h < matrix.length; h++) {
                                 System.out.print(matrix[g][h]);
                             }
                             System.out.println();
-                        }
+                        }*/
 
                         i--;
                         j++;
@@ -441,13 +486,13 @@ public class Controller {
                 matrix[posSecond][posChampion] = 1;
             }
 
-            System.out.println("Matriz de 1 y 2:");
+           /* System.out.println("Matriz de 1 y 2:");
             for (int i = 0; i < matrix.length; i++) {
                 for (int j = 0; j < matrix.length; j++) {
                     System.out.print(matrix[i][j]);
                 }
                 System.out.println();
-            }
+            }*/
 
         }
         int cantLocal = (int) Math.floor((matrix.length - 1) / 2) + 1;
@@ -1011,6 +1056,27 @@ public class Controller {
         System.out.println("Mutado " + distance);
         System.out.println();
         System.out.println("Cantidad de actualizaciones: " + actualization);
+
+        ArrayList<ArrayList<Double>> itiner= itineraryDistances(this.calendar);
+
+
+        for (int l=0; l < itiner.size();l++){
+            for (int p=0; p < itiner.get(0).size();p++){
+                System.out.print(itiner.get(l).get(p)+" ");
+            }
+            System.out.println();
+        }
+
+        lessStatistics();
+        moreStatistics();
+
+       /* System.out.println("----------");
+        for (int l=0; l < itiner.get(0).size();l++){
+            for (int p=0; p < itiner.size();p++){
+                System.out.print(itiner.get(p).get(l)+" ");
+            }
+            System.out.println();
+        }*/
         return this.calendar;
     }
 
@@ -1091,5 +1157,89 @@ public class Controller {
             i++;
         }
         return cont;
+    }
+
+    private void calculateMoreDistanceStatitstics(){
+        ArrayList<ArrayList<Integer>> itinerary = teamsItinerary(this.calendar);
+
+
+    }
+
+    private ArrayList<ArrayList<Double>> itineraryDistances(ArrayList<Date> calendar){
+        ArrayList<ArrayList<Double>> distancesItinerary = new ArrayList<>();
+        ArrayList<ArrayList<Integer>> itinerary = teamsItinerary(calendar);
+
+        for (int i = 0; i < itinerary.size() - 1; i++) {
+
+            ArrayList<Double> distances = new ArrayList<>(teamsIndexes.size());
+            for (int m = 0; m < teamsIndexes.size(); m++) {
+                distances.add(0.0);
+            }
+            ArrayList<Integer> row1 = itinerary.get(i);
+            ArrayList<Integer> row2 = itinerary.get(i + 1);
+            for (int j = 0; j < itinerary.get(i).size(); j++) {
+                int    first  = row1.get(j);
+                int    second = row2.get(j);
+                double dist   = matrixDistance[second][first];
+                distances.set(j, distances.get(j) + dist);
+                if (teamsIndexes.get(j) == second) {
+                    distances.set(j, 0.0);
+                }
+            }
+            distancesItinerary.add(distances);
+        }
+        return distancesItinerary;
+    }
+
+    private void lessStatistics(){
+        ArrayList<ArrayList<Double>> itiner= itineraryDistances(this.calendar);
+        ArrayList<Double> distances = new ArrayList<>();
+        double max = Double.MAX_VALUE;
+        double sum = 0;
+        int pos = -1;
+        for (int l=0; l < itiner.get(0).size();l++){
+
+            for (int p=0; p < itiner.size();p++){
+                sum+=itiner.get(p).get(l);
+            }
+            distances.add(sum);
+            if(sum <=max){
+                max = sum;
+            }
+            sum = 0;
+
+        }
+
+        lessDistance = (float)max;
+        //System.out.println("SUma minima "+max);
+        pos = distances.indexOf(max);
+        teamLessDistance = teams.get(teamsIndexes.indexOf(pos));
+        //System.out.println("Posicion "+teams.get(teamsIndexes.indexOf(pos)));
+    }
+
+    private void moreStatistics(){
+        ArrayList<ArrayList<Double>> itiner= itineraryDistances(this.calendar);
+        ArrayList<Double> distances = new ArrayList<>();
+        double max = Double.MIN_VALUE;
+        double sum = 0;
+        int pos = -1;
+        for (int l=0; l < itiner.get(0).size();l++){
+
+            for (int p=0; p < itiner.size();p++){
+                sum+=itiner.get(p).get(l);
+            }
+            distances.add(sum);
+            if(sum >=max){
+                max = sum;
+            }
+            sum = 0;
+
+        }
+
+        moreDistance = (float)max;
+        //System.out.println("SUma minima "+max);
+        pos = distances.indexOf(max);
+        teamMoreDistance = teams.get(teamsIndexes.indexOf(pos));
+        //System.out.println("Posicion "+teams.get(teamsIndexes.indexOf(pos)));
     }
 }

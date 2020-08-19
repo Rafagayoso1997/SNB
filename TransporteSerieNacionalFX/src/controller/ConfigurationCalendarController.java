@@ -13,6 +13,8 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.SelectionMode;
+import javafx.scene.control.Spinner;
+import javafx.scene.control.SpinnerValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.input.ScrollEvent;
 import javafx.scene.paint.Paint;
@@ -64,6 +66,9 @@ public class ConfigurationCalendarController implements Initializable {
 
     @FXML
     private JFXButton btnSwap;
+
+    @FXML
+    private Spinner<Integer> iterationsSpinner;
 
 
     @FXML
@@ -146,14 +151,15 @@ public class ConfigurationCalendarController implements Initializable {
             notification.showAndDismiss(Duration.seconds(1));
         }
 
-        if (indexesMutations.size() ==0 ) {
+        if (indexesMutations.size() <=1 ) {
             notification = getNotification();
             notification.setTitle("Selección de equipos");
-            notification.setMessage("Debe escoger al menos una mutación");
+            notification.setMessage("Debe escoger al menos dos mutaciones");
             notification.setNotificationType(NotificationType.ERROR);
             notification.setRectangleFill(Paint.valueOf("#2F2484"));
             notification.setAnimationType(AnimationType.FADE);
             notification.showAndDismiss(Duration.seconds(1));
+            ok = false;
         }
 
         if (champVsSub.isSelected()) {
@@ -205,6 +211,7 @@ public class ConfigurationCalendarController implements Initializable {
             Controller.getSingletonController().setPosChampion(posChampion);
             Controller.getSingletonController().setPosSubChampion(posSub);
             Controller.getSingletonController().setSecondRound(secondRound);
+            Controller.getSingletonController().setIterations(iterationsSpinner.getValueFactory().getValue());
         }
             //ok = true;
         /*if (ok) {
@@ -220,6 +227,8 @@ public class ConfigurationCalendarController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         HomeController.escogidos = false;
+        iterationsSpinner.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(1,Integer.MAX_VALUE));
+        iterationsSpinner.getValueFactory().setValue(20000);
 
         Controller.getSingletonController().setPosChampion(-1);
         Controller.getSingletonController().setPosSubChampion(-1);

@@ -72,7 +72,16 @@ public class CalendarController implements Initializable {
         tables = new ArrayList<>();
         calendar = controller.getCalendar();
         float distance = controller.getCalendarDistance();
+        float lessDistance = controller.getLessDistance();
+        String teamLessDistance = controller.getTeamLessDistance();
+
+        float moreDistance = controller.getMoreDistance();
+        String teamMoreDistance = controller.getTeamMoreDistance();
         lblCalendarKM.setText(""+distance);
+        lblLessKM.setText(""+lessDistance);
+        lblLessKMTeam.setText(""+teamLessDistance);
+        lblMoreKM.setText(""+moreDistance);
+        lblMoreKMTeam.setText(""+teamMoreDistance);
         for (int i = 0; i < calendar.size(); i++) {
             TableView<Duel> table = new TableView<Duel>();
             TableColumn<Duel, String> col = new TableColumn<>("Local");

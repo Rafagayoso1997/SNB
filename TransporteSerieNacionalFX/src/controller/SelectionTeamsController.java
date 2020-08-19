@@ -8,10 +8,13 @@ import file_management.ReadFiles;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.SelectionMode;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.input.ScrollEvent;
 import javafx.scene.paint.Paint;
 import javafx.util.Duration;
 import logic.Controller;
@@ -23,6 +26,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.stream.Collectors;
 
 public class SelectionTeamsController implements Initializable {
 
@@ -58,14 +62,25 @@ public class SelectionTeamsController implements Initializable {
     @FXML
     private JFXListView<String> mutationListView;
 
+    @FXML
+    private JFXButton btnSwap;
+
 
     @FXML
     void selectAllTeams(ActionEvent event) {
         if (selectAll.isSelected()) {
+
+            //DAVID change => update the Champion ComboBox and Sub-Champion ComboBox
             teamsSelectionListView.getSelectionModel().selectAll();
+            comboChamp.setItems(teamsSelectionListView.getItems());
+            comboSub.setItems(teamsSelectionListView.getItems());
 
         } else {
             teamsSelectionListView.getSelectionModel().clearSelection();
+
+            //DAVID change => update the Champion ComboBox and Sub-Champion ComboBox
+            comboChamp.setItems(teamsSelectionListView.getSelectionModel().getSelectedItems());
+            comboSub.setItems(teamsSelectionListView.getSelectionModel().getSelectedItems());
         }
     }
 
@@ -74,10 +89,16 @@ public class SelectionTeamsController implements Initializable {
         if (champVsSub.isSelected()) {
             comboChamp.setVisible(true);
             comboSub.setVisible(true);
-            champVsSub.setText("Sí");
+            btnSwap.setVisible(true);
+            champVsSub.setText("SÃ­");
+
+            //DAVID change => update the Champion ComboBox and Sub-Champion ComboBox
+            comboChamp.setItems(teamsSelectionListView.getSelectionModel().getSelectedItems());
+            comboSub.setItems(teamsSelectionListView.getSelectionModel().getSelectedItems());
         } else {
             comboChamp.setVisible(false);
             comboSub.setVisible(false);
+            btnSwap.setVisible(false);
             champVsSub.setText("No");
         }
     }
@@ -85,7 +106,7 @@ public class SelectionTeamsController implements Initializable {
     @FXML
     void setSecondRound(ActionEvent event) {
         if (secondRoundButton.isSelected()) {
-            secondRoundButton.setText("Sí");
+            secondRoundButton.setText("SÃ­");
 
         } else {
             secondRoundButton.setText("No");
@@ -102,22 +123,22 @@ public class SelectionTeamsController implements Initializable {
         System.out.println(HomeController.escogidos);
         /*for (int i = 0; i < teamsSelectionListView.getSelectionModel().getSelectedIndices().size(); i++) {
             indexes.add(teamsSelectionListView.getSelectionModel().getSelectedIndices().get(i));
-        }
+        } //
         for (int i = 0; i < teamsSelectionListView.getSelectionModel().getSelectedItems().size(); i++) {
             String nombre = teamsSelectionListView.getSelectionModel().getSelectedItems().get(i);
             teamsNames.add(nombre);
         }*/
         if (indexes.size() <= 2) {
             notification = getNotification();
-            notification.setTitle("Selección de equipos");
-            notification.setMessage("Debe escoger más de dos equipos");
+            notification.setTitle("SelecciÃ³n de equipos");
+            notification.setMessage("Debe escoger mÃ¡s de dos equipos");
             notification.setNotificationType(NotificationType.ERROR);
             notification.setRectangleFill(Paint.valueOf("#2F2484"));
             notification.setAnimationType(AnimationType.FADE);
             notification.showAndDismiss(Duration.seconds(1));
         } else if (indexes.size() % 2 != 0) {
             notification = getNotification();
-            notification.setTitle("Selección de equipos.");
+            notification.setTitle("SelecciÃ³n de equipos.");
             notification.setMessage("Debe escoger una cantidad par de equipos.");
             notification.setNotificationType(NotificationType.ERROR);
             notification.setRectangleFill(Paint.valueOf("#2F2484"));
@@ -127,8 +148,8 @@ public class SelectionTeamsController implements Initializable {
 
         if (indexesMutations.size() ==0 ) {
             notification = getNotification();
-            notification.setTitle("Selección de equipos");
-            notification.setMessage("Debe escoger al menos una mutación");
+            notification.setTitle("SelecciÃ³n de equipos");
+            notification.setMessage("Debe escoger al menos una mutaciÃ³n");
             notification.setNotificationType(NotificationType.ERROR);
             notification.setRectangleFill(Paint.valueOf("#2F2484"));
             notification.setAnimationType(AnimationType.FADE);
@@ -141,12 +162,12 @@ public class SelectionTeamsController implements Initializable {
             if (posSub == posChampion) {
                 //ok = false;
                 TrayNotification notification = new TrayNotification();
-                notification.setTitle("Selección equipos");
+                notification.setTitle("SelecciÃ³n equipos");
                 if(posChampion == -1 && posSub == -1){
-                    notification.setMessage("Debe escoger al campeón y subcampeón.");
+                    notification.setMessage("Debe escoger al campeÃ³n y subcampeÃ³n.");
                 }
                 else {
-                    notification.setMessage("El campeón y subcampeón deben diferentes");
+                    notification.setMessage("El campeÃ³n y subcampeÃ³n deben diferentes");
                 }
                 notification.setNotificationType(NotificationType.ERROR);
                 notification.setRectangleFill(Paint.valueOf("#2F2484"));
@@ -160,7 +181,7 @@ public class SelectionTeamsController implements Initializable {
                     //ok = false;
                     TrayNotification notification = new TrayNotification();
                     notification.setTitle("Escoger equipos");
-                    notification.setMessage("El campeón y subcampeón deben haber sido seleccionados previamente");
+                    notification.setMessage("El campeÃ³n y subcampeÃ³n deben haber sido seleccionados previamente");
                     notification.setNotificationType(NotificationType.ERROR);
                     notification.setRectangleFill(Paint.valueOf("#2F2484"));
                     notification.setAnimationType(AnimationType.FADE);
@@ -200,12 +221,8 @@ public class SelectionTeamsController implements Initializable {
         Controller.getSingletonController().setPosSubChampion(-1);
         Controller.getSingletonController().setSecondRound(false);
         secondRoundButton.setSelected(false);
-        List<String> teamsName = Controller.getSingletonController().getTeams();
-        comboChamp.setItems(FXCollections.observableArrayList(teamsName));
-        comboSub.setItems(FXCollections.observableArrayList(teamsName));
-        comboChamp.setVisible(false);
-        comboSub.setVisible(false);
-        teams = 0;
+
+        //fill the TeamsListView
         Controller.getSingletonController().setTeamsIndexes(new ArrayList<>());
         List<String> teams = Controller.getSingletonController().getTeams();
         teamsSelectionListView.setItems(FXCollections.observableArrayList(teams));
@@ -220,18 +237,83 @@ public class SelectionTeamsController implements Initializable {
             }
         });
 
+        //Fill the Champion and Sub-Champions ComboBox
+        comboChamp.setVisible(false);
+        comboSub.setVisible(false);
+        btnSwap.setVisible(false);
+
+        this.teams = 0;
+
+
         List<String> mutations = ReadFiles.readMutations();
         mutationListView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
         mutationListView.setItems(FXCollections.observableList(mutations));
-
-
-
-
     }
 
     private TrayNotification getNotification() {
         return new TrayNotification();
     }
 
+    //************DAVID's New Methods**************\\
 
+    @FXML
+    void scrollListView(ScrollEvent event) {
+        System.out.println("Scroll");
+    }
+
+    @FXML
+    void mouseClickedListView(MouseEvent event) {
+        System.out.println("Clicked");
+        System.out.println(teamsSelectionListView.getSelectionModel().getSelectedIndices());
+
+        if (comboChamp.isVisible() || comboSub.isVisible()) {
+            comboChamp.setItems(teamsSelectionListView.getSelectionModel().getSelectedItems());
+            comboSub.setItems(teamsSelectionListView.getSelectionModel().getSelectedItems());
+        }
+    }
+
+    @FXML
+    void selectTeamChamp(ActionEvent event) {
+        System.out.println("Champion Team Selected => " + comboChamp.getSelectionModel().getSelectedItem());
+        //update Sub-Champion ComboBox without Champion Team
+
+        /*
+        if (comboChamp.getSelectionModel().getSelectedItem().equalsIgnoreCase(comboSub.getSelectionModel().getSelectedItem())) {
+            comboSub.getSelectionModel().clearSelection();
+            System.out.println("Same selection. Swap Team to Sub-Champion");
+        } else if (!comboSub.getSelectionModel().isEmpty() && comboChamp.getSelectionModel().getSelectedItem().equalsIgnoreCase(comboSub.getSelectionModel().getSelectedItem())) {
+            String teamSwap = comboSub.getSelectionModel().getSelectedItem();
+            comboSub.getSelectionModel().select(comboChamp.getSelectionModel().getSelectedItem());
+            comboChamp.getSelectionModel().select(teamSwap);
+        }
+        */
+
+        List<String> list = comboChamp.getItems().stream().collect(Collectors.toList());
+        list.remove(comboChamp.getSelectionModel().getSelectedItem());
+        comboSub.setItems(FXCollections.observableList(list));
+
+    }
+
+    @FXML
+    void selectTeamSubChamp(ActionEvent event) {
+        System.out.println("Sub-Champion Team Selected => " + comboSub.getSelectionModel().getSelectedItem());
+
+        //comentario
+
+
+
+        /*
+        if (comboSub.getSelectionModel().getSelectedItem().equalsIgnoreCase(comboChamp.getSelectionModel().getSelectedItem())) {
+            comboChamp.getSelectionModel().clearSelection();
+        }
+
+         */
+    }
+
+    @FXML
+    void swapTeams(ActionEvent event) {
+        String teamSwap = comboSub.getSelectionModel().getSelectedItem();
+        comboSub.getSelectionModel().select(comboChamp.getSelectionModel().getSelectedItem());
+        comboChamp.getSelectionModel().select(teamSwap);
+    }
 }

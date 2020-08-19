@@ -11,7 +11,7 @@
 
 <AnchorPane fx:id="panel" prefHeight="863.0" prefWidth="1713.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.SelectGridController">
     <children>
-        <JFXButton fx:id="saveLocations" layoutX="931.0" layoutY="810.0" onAction="#saveLocations" prefHeight="49.0" prefWidth="158.0" stylesheets="@../styles/PrincipalMenu.css" text="Guardar Sedes" textFill="WHITE" AnchorPane.bottomAnchor="4.0" AnchorPane.rightAnchor="624.0">
+        <JFXButton fx:id="saveLocations" layoutX="928.0" layoutY="809.0" onAction="#saveLocations" prefHeight="49.0" prefWidth="158.0" stylesheets="@../styles/PrincipalMenu.css" text="Guardar Sedes" textFill="WHITE" AnchorPane.bottomAnchor="5.0" AnchorPane.rightAnchor="631.0">
             <font>
                 <Font name="Segoe UI Symbol" size="18.0" />
             </font>
@@ -19,7 +19,7 @@
                 <Cursor fx:constant="HAND" />
             </cursor>
         </JFXButton>
-        <ScrollPane layoutX="69.0" layoutY="14.0" prefHeight="802.0" prefWidth="1713.0" AnchorPane.bottomAnchor="55.0" AnchorPane.rightAnchor="4.0">
+        <ScrollPane layoutX="69.0" layoutY="14.0" prefHeight="793.0" prefWidth="1713.0" AnchorPane.bottomAnchor="64.0" AnchorPane.rightAnchor="4.0">
             <content>
                 <GridPane fx:id="selectionGrid" prefHeight="799.0" prefWidth="1698.0">
 

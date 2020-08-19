@@ -172,7 +172,6 @@ public class SelectGridController implements Initializable {
 
 
 
-
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         matrixCalendar = generateMatrix(SIZE);
@@ -257,6 +256,7 @@ public class SelectGridController implements Initializable {
     void showCalendar(ActionEvent event) throws IOException {
         AnchorPane structureOver = homeController.getPrincipalPane();
         homeController.createPage(structureOver, "/visual/Calendar.fxml");
+        homeController.getButtonReturnSelectionTeamConfiguration().setVisible(false);
     }
 
     public void setHomeController(HomeController homeController) {

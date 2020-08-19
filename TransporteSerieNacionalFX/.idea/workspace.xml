@@ -3,17 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="f431f424-8f9f-474a-8daa-5cfa5e47082b" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/controller/HomeController.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/controller/HomeController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/styles/application.css" beforeDir="false" afterPath="$PROJECT_DIR$/bin/styles/application.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/visual/SelectGrid.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/bin/visual/SelectGrid.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/visual/SelectionTeams.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/bin/visual/SelectionTeams.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controller/CalendarController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/CalendarController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controller/HomeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/HomeController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/logic/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/logic/Controller.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/styles/application.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/application.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/visual/Calendar.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/visual/Calendar.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/visual/Configuration.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/visual/SelectGrid.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/visual/SelectGrid.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -74,6 +63,18 @@
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\gayos\Documents\GitHub\SNB\TransporteSerieNacionalFX\src\styles" />
     </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
   </component>
   <component name="RunManager" selected="Application.Main">
     <configuration name="Main (1)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
@@ -210,7 +211,8 @@
       <workItem from="1597682525088" duration="445000" />
       <workItem from="1597683010137" duration="11000" />
       <workItem from="1597699901997" duration="2480000" />
-      <workItem from="1597771083225" duration="14425000" />
+      <workItem from="1597771083225" duration="14529000" />
+      <workItem from="1597841603709" duration="1622000" />
     </task>
     <servers />
   </component>
@@ -222,12 +224,13 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
           </value>
         </entry>
       </map>
     </option>
-    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
     <state width="1495" height="211" key="GridCell.Tab.0.bottom" timestamp="1597843045691">

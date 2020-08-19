@@ -45,8 +45,8 @@ public class SelectGridController implements Initializable {
     boolean error = false;
     JFXToggleButton[][] matrix;
     static int[][] matrixCalendar;
-    private final int SIZE = SelectionTeamsController.teams;
-    private ArrayList<String> names = SelectionTeamsController.teamsNames;
+    private final int SIZE = ConfigurationCalendarController.teams;
+    private ArrayList<String> names = ConfigurationCalendarController.teamsNames;
 
 
 

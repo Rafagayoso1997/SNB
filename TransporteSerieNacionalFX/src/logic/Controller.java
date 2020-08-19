@@ -1215,7 +1215,6 @@ public class Controller {
         //System.out.println("SUma minima "+max);
         //pos = distances.indexOf(max);
         teamLessDistance = teams.get(teamsIndexes.indexOf(pos));
-        System.out.println("Posicion del arreglo "+pos+". Posicion dentro del if "+posTest);
     }
 
     private void moreStatistics(){

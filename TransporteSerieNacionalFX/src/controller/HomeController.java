@@ -48,8 +48,7 @@ public class HomeController implements Initializable {
     @FXML
     private JFXButton buttonPrincipalMenu;
 
-    @FXML
-    private JFXButton buttonConfigurationSelecctionTeams;
+
 
 
     @FXML
@@ -112,7 +111,6 @@ public class HomeController implements Initializable {
             buttonConfigurationSelecctionTeams.setVisible(true);
         }*/
        this.createPage(home, "/visual/SelectionTeams.fxml");
-        buttonConfigurationSelecctionTeams.setVisible(false);
         buttonCalendarConfiguration.setVisible(true);
 
     }
@@ -159,7 +157,6 @@ public class HomeController implements Initializable {
     @FXML
     void showReturnSelectionTeamConfiguration(ActionEvent event) throws IOException {
         this.createPage(home, "/visual/SelectionTeams.fxml");
-        buttonConfigurationSelecctionTeams.setVisible(false);
         buttonCalendarConfiguration.setVisible(true);
         buttonReturnSelectionTeamConfiguration.setVisible(false);
 

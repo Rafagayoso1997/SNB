@@ -1,0 +1,4 @@
+Cambiar una fecha de lugar.
+Intercambiar orden de una fecha.
+Intercambiar dos fechas pasando una al lugar de la otra.
+Intercambiar un enfrentamiento de una fecha con otro de otra fecha.

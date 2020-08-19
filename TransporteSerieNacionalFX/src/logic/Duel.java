@@ -4,7 +4,7 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
 /**
- * Class responsible for representations of the duel between two teams
+ * Class responsible for representations of the duel between two resources.teams
  *
  * @visitor Rafael Gayoso and Mario Herrera
  */

@@ -3,23 +3,91 @@
 <?import com.jfoenix.controls.JFXButton?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
 <?import com.jfoenix.controls.JFXTabPane?>
-<AnchorPane prefHeight="577.0" prefWidth="755.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.CalendarController">
+<AnchorPane prefHeight="863.0" prefWidth="1713.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.CalendarController">
     <children>
-        <Label layoutX="324.0" layoutY="24.0" text="Calendario" textFill="#2f2484">
+        <Label layoutX="713.0" layoutY="14.0" text="Calendario" textFill="#2f2484">
             <font>
-                <Font name="Segoe UI Symbol" size="28.0" />
+                <Font name="Segoe UI Symbol" size="36.0" />
             </font>
         </Label>
-       <JFXTabPane fx:id="calendarTabPane" layoutX="14.0" layoutY="61.0" prefHeight="460.0" prefWidth="729.0"/>
-        <JFXButton fx:id="saveExcel" buttonType="RAISED" layoutX="650.0" layoutY="530.0" onAction="#saveExcel" ripplerFill="#f8f6f6" style="-fx-background-color: green;" text="Exportar" textFill="WHITE">
+        <JFXTabPane fx:id="calendarTabPane" layoutX="14.0" layoutY="61.0" prefHeight="689.0" prefWidth="1183.0" />
+        <JFXButton fx:id="saveExcel" buttonType="RAISED" layoutX="738.0" layoutY="772.0" onAction="#saveExcel" ripplerFill="#f8f6f6" stylesheets="@../styles/PrincipalMenu.css" text="Exportar" textFill="WHITE">
             <cursor>
                 <Cursor fx:constant="HAND" />
             </cursor>
+         <font>
+            <Font size="24.0" />
+         </font>
         </JFXButton>
+      <Label layoutX="1244.0" layoutY="41.0" text="Estadísticas" textFill="#2f2484">
+         <font>
+            <Font name="Segoe UI Symbol" size="28.0" />
+         </font>
+      </Label>
+      <Separator layoutX="1203.0" layoutY="61.0" prefHeight="0.0" prefWidth="34.0" />
+      <Separator layoutX="1398.0" layoutY="63.0" prefHeight="3.0" prefWidth="296.0" />
+      <Separator layoutX="1203.0" layoutY="751.0" prefHeight="3.0" prefWidth="492.0" />
+      <Separator layoutX="1200.0" layoutY="61.0" orientation="VERTICAL" prefHeight="689.0" prefWidth="6.0" />
+      <Separator layoutX="1693.0" layoutY="61.0" orientation="VERTICAL" prefHeight="689.0" prefWidth="6.0" />
+      <AnchorPane layoutX="1203.0" layoutY="81.0" prefHeight="671.0" prefWidth="492.0">
+         <children>
+            <Label layoutX="14.0" layoutY="26.0" text="Total de km del calendario:" textFill="#2f2484">
+               <font>
+                  <Font size="22.0" />
+               </font>
+            </Label>
+            <Label fx:id="lblCalendarKM" layoutX="289.0" layoutY="26.0" text="n" textFill="#2f2484">
+               <font>
+                  <Font name="Segoe UI Symbol" size="22.0" />
+               </font>
+            </Label>
+            <Label layoutX="14.0" layoutY="107.0" text="Equipo con más KM recorridos:" textFill="#2f2484">
+               <font>
+                  <Font size="22.0" />
+               </font>
+            </Label>
+            <Label fx:id="lblMoreKMTeam" layoutX="326.0" layoutY="107.0" text="n" textFill="#2f2484">
+               <font>
+                  <Font name="Segoe UI Symbol" size="22.0" />
+               </font>
+            </Label>
+            <Label layoutX="14.0" layoutY="189.0" text="Equipo con menos KM recorridos:" textFill="#2f2484">
+               <font>
+                  <Font size="22.0" />
+               </font>
+            </Label>
+            <Label fx:id="lblLessKMTeam" layoutX="350.0" layoutY="189.0" text="n" textFill="#2f2484">
+               <font>
+                  <Font name="Segoe UI Symbol" size="22.0" />
+               </font>
+            </Label>
+            <Label layoutX="14.0" layoutY="279.0" text="Cantidad de KM del viaje más corto:" textFill="#2f2484">
+               <font>
+                  <Font size="22.0" />
+               </font>
+            </Label>
+            <Label fx:id="lblLessKM" layoutX="373.0" layoutY="279.0" text="n" textFill="#2f2484">
+               <font>
+                  <Font name="Segoe UI Symbol" size="22.0" />
+               </font>
+            </Label>
+            <Label layoutX="14.0" layoutY="367.0" text="Cantidad de KM del viaje más largo:" textFill="#2f2484">
+               <font>
+                  <Font size="22.0" />
+               </font>
+            </Label>
+            <Label fx:id="lblMoreKM" layoutX="373.0" layoutY="367.0" text="n" textFill="#2f2484">
+               <font>
+                  <Font name="Segoe UI Symbol" size="22.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
 
     </children>
 </AnchorPane>

@@ -123,7 +123,7 @@ public class SelectionTeamsController implements Initializable {
         System.out.println(HomeController.escogidos);
         /*for (int i = 0; i < teamsSelectionListView.getSelectionModel().getSelectedIndices().size(); i++) {
             indexes.add(teamsSelectionListView.getSelectionModel().getSelectedIndices().get(i));
-        }
+        } //
         for (int i = 0; i < teamsSelectionListView.getSelectionModel().getSelectedItems().size(); i++) {
             String nombre = teamsSelectionListView.getSelectionModel().getSelectedItems().get(i);
             teamsNames.add(nombre);

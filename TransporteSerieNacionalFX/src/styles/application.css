@@ -48,7 +48,7 @@
 }
 
 .table-cell {
-    -fx-pref-width: 600;
+    -fx-pref-width: 500;
     -fx-border-color: -fx-box-border -fx-box-border transparent transparent;
     -fx-font: 30px "Segoe UI Symbol";
     -fx-text-fill: #2f2484;

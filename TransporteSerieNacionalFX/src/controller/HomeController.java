@@ -131,7 +131,17 @@ public class HomeController implements Initializable {
             notification.showAndDismiss(Duration.seconds(2));
         } else {
 
-            this.createPage(home, "/visual/SelectGrid.fxml");
+            //this.createPage(home, "/visual/SelectGrid.fxml");
+
+            //DAVID Change
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(HomeController.class.getResource("/visual/SelectGrid.fxml"));
+            home = loader.load();
+            SelectGridController selectGridController = loader.getController();
+            selectGridController.setHomeController(this);
+            this.setNode(home);
+            //UNTIL HERE
+
             buttonConfigurationSelecctionTeams.setVisible(false);
             buttonConfMatrix.setVisible(false);
             buttonCalendarConfiguration.setVisible(false);
@@ -270,5 +280,8 @@ public class HomeController implements Initializable {
         return new TrayNotification();
     }
 
-
+    //********************DAVID CHaNGE
+    public AnchorPane getPrincipalPane() {
+        return this.pane;
+    }
 }

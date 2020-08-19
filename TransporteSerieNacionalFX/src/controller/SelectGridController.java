@@ -21,11 +21,14 @@ import tray.animations.AnimationType;
 import tray.notification.NotificationType;
 import tray.notification.TrayNotification;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class SelectGridController implements Initializable {
+
+    private HomeController homeController;
 
     @FXML
     private AnchorPane panel;
@@ -70,7 +73,7 @@ public class SelectGridController implements Initializable {
                 notification.showAndDismiss(Duration.seconds(2));
                 Controller.getSingletonController().setMatrix(matrixCalendar);
                 btnCalendar.setDisable(false);
-                HomeController.conf = true;
+                homeController.conf = true;
             } else {
                 TrayNotification notification = new TrayNotification();
                 notification.setTitle("Escoger sedes");
@@ -166,10 +169,7 @@ public class SelectGridController implements Initializable {
         return matrix;
     }
 
-    @FXML
-    void showCalendar(ActionEvent event) {
 
-    }
 
 
 
@@ -249,6 +249,18 @@ public class SelectGridController implements Initializable {
         }
 
         return symmetric;
+    }
+
+    //*********************DAVID CHANGES******************
+
+    @FXML
+    void showCalendar(ActionEvent event) throws IOException {
+        AnchorPane structureOver = homeController.getPrincipalPane();
+        homeController.createPage(structureOver, "/visual/Calendar.fxml");
+    }
+
+    public void setHomeController(HomeController homeController) {
+        this.homeController = homeController;
     }
 
 }

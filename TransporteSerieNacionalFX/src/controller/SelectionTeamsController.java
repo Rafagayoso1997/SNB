@@ -90,7 +90,7 @@ public class SelectionTeamsController implements Initializable {
             comboChamp.setVisible(true);
             comboSub.setVisible(true);
             btnSwap.setVisible(true);
-            champVsSub.setText("SÃ­");
+            champVsSub.setText("Sí");
 
             //DAVID change => update the Champion ComboBox and Sub-Champion ComboBox
             comboChamp.setItems(teamsSelectionListView.getSelectionModel().getSelectedItems());
@@ -106,7 +106,7 @@ public class SelectionTeamsController implements Initializable {
     @FXML
     void setSecondRound(ActionEvent event) {
         if (secondRoundButton.isSelected()) {
-            secondRoundButton.setText("SÃ­");
+            secondRoundButton.setText("Sí");
 
         } else {
             secondRoundButton.setText("No");
@@ -130,15 +130,15 @@ public class SelectionTeamsController implements Initializable {
         }*/
         if (indexes.size() <= 2) {
             notification = getNotification();
-            notification.setTitle("SelecciÃ³n de equipos");
-            notification.setMessage("Debe escoger mÃ¡s de dos equipos");
+            notification.setTitle("Selección de equipos");
+            notification.setMessage("Debe escoger más de dos equipos");
             notification.setNotificationType(NotificationType.ERROR);
             notification.setRectangleFill(Paint.valueOf("#2F2484"));
             notification.setAnimationType(AnimationType.FADE);
             notification.showAndDismiss(Duration.seconds(1));
         } else if (indexes.size() % 2 != 0) {
             notification = getNotification();
-            notification.setTitle("SelecciÃ³n de equipos.");
+            notification.setTitle("Selección de equipos.");
             notification.setMessage("Debe escoger una cantidad par de equipos.");
             notification.setNotificationType(NotificationType.ERROR);
             notification.setRectangleFill(Paint.valueOf("#2F2484"));
@@ -148,8 +148,8 @@ public class SelectionTeamsController implements Initializable {
 
         if (indexesMutations.size() ==0 ) {
             notification = getNotification();
-            notification.setTitle("SelecciÃ³n de equipos");
-            notification.setMessage("Debe escoger al menos una mutaciÃ³n");
+            notification.setTitle("Selección de equipos");
+            notification.setMessage("Debe escoger al menos una mutación");
             notification.setNotificationType(NotificationType.ERROR);
             notification.setRectangleFill(Paint.valueOf("#2F2484"));
             notification.setAnimationType(AnimationType.FADE);
@@ -157,37 +157,41 @@ public class SelectionTeamsController implements Initializable {
         }
 
         if (champVsSub.isSelected()) {
-            posChampion = comboChamp.getSelectionModel().getSelectedIndex();
-            posSub = comboSub.getSelectionModel().getSelectedIndex();
-            if (posSub == posChampion) {
+            String champion = comboChamp.getSelectionModel().getSelectedItem();
+            String subchampion = comboSub.getSelectionModel().getSelectedItem();
+            //posChampion = comboChamp.getSelectionModel().getSelectedIndex();
+            //posSub = comboSub.getSelectionModel().getSelectedIndex();
+            if (champion.equalsIgnoreCase(subchampion)) {
                 //ok = false;
                 TrayNotification notification = new TrayNotification();
-                notification.setTitle("SelecciÃ³n equipos");
-                if(posChampion == -1 && posSub == -1){
-                    notification.setMessage("Debe escoger al campeÃ³n y subcampeÃ³n.");
+                notification.setTitle("Selección equipos");
+                if(champion == null && subchampion == null){
+                    notification.setMessage("Debe escoger al campeón y subcampeón.");
                 }
                 else {
-                    notification.setMessage("El campeÃ³n y subcampeÃ³n deben diferentes");
+                    notification.setMessage("El campeón y subcampeón deben diferentes");
                 }
                 notification.setNotificationType(NotificationType.ERROR);
                 notification.setRectangleFill(Paint.valueOf("#2F2484"));
                 notification.setAnimationType(AnimationType.FADE);
                 notification.showAndDismiss(Duration.seconds(1));
             } else {
-                String  champion    = comboChamp.getSelectionModel().getSelectedItem();
-                String  subchampion = comboSub.getSelectionModel().getSelectedItem();
+                champion    = comboChamp.getSelectionModel().getSelectedItem();
+                subchampion = comboSub.getSelectionModel().getSelectedItem();
                 ArrayList<String> teams = teamsNames;
                 if (!teams.contains(champion) || !teams.contains(subchampion)) {
                     //ok = false;
                     TrayNotification notification = new TrayNotification();
                     notification.setTitle("Escoger equipos");
-                    notification.setMessage("El campeÃ³n y subcampeÃ³n deben haber sido seleccionados previamente");
+                    notification.setMessage("El campeón y subcampeón deben haber sido seleccionados previamente");
                     notification.setNotificationType(NotificationType.ERROR);
                     notification.setRectangleFill(Paint.valueOf("#2F2484"));
                     notification.setAnimationType(AnimationType.FADE);
                     notification.showAndDismiss(Duration.seconds(1));
                 } else {
                     ok = true;
+                    posChampion = Controller.getSingletonController().getTeams().indexOf(champion);
+                    posSub = Controller.getSingletonController().getTeams().indexOf(subchampion);
                 }
             }
 

@@ -11,7 +11,7 @@
 
 <AnchorPane fx:id="panel" prefHeight="863.0" prefWidth="1713.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.SelectGridController">
     <children>
-        <JFXButton fx:id="click" layoutX="931.0" layoutY="810.0" onAction="#click" prefHeight="49.0" prefWidth="158.0" stylesheets="@../styles/PrincipalMenu.css" text="Guardar Sedes" textFill="WHITE" AnchorPane.bottomAnchor="4.0" AnchorPane.rightAnchor="624.0">
+        <JFXButton fx:id="saveLocations" layoutX="931.0" layoutY="810.0" onAction="#saveLocations" prefHeight="49.0" prefWidth="158.0" stylesheets="@../styles/PrincipalMenu.css" text="Guardar Sedes" textFill="WHITE" AnchorPane.bottomAnchor="4.0" AnchorPane.rightAnchor="624.0">
             <font>
                 <Font name="Segoe UI Symbol" size="18.0" />
             </font>
@@ -33,5 +33,10 @@
         </Label>
         <FontAwesomeIconView fx:id="balanceCalendar" fill="#10a132" glyphName="CHECK" layoutX="825.0" layoutY="850.0" size="48" AnchorPane.bottomAnchor="5.205356597900391" AnchorPane.rightAnchor="840.0" />
         <FontAwesomeIconView fx:id="notbalanceCalendar" fill="#f50000" glyphName="TIMES" layoutX="828.0" layoutY="850.0" size="48" text="" wrappingWidth="40.999997831881046" AnchorPane.bottomAnchor="5.0" AnchorPane.rightAnchor="844.0" />
+      <JFXButton fx:id="btnCalendar" layoutX="1172.0" layoutY="818.0" onAction="#showCalendar" stylesheets="@../styles/PrincipalMenu.css" text="Calendario" textFill="WHITE">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </JFXButton>
     </children>
 </AnchorPane>

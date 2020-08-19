@@ -84,7 +84,7 @@ public class HomeController implements Initializable {
 
     @FXML
     void showCalendar(ActionEvent event) throws IOException {
-        if (!conf) {
+       /*if (!conf) {
             TrayNotification notification = new TrayNotification("Generación de Calendario",
                     "Debe completar todas las configuraciones", NotificationType.ERROR);
             notification.setRectangleFill(Paint.valueOf("#E81123"));
@@ -102,14 +102,20 @@ public class HomeController implements Initializable {
             conf = false;
 
             buttonConfigurationSelecctionTeams.setVisible(true);
-        }
+        }*/
+       this.createPage(home, "/visual/SelectionTeams.fxml");
+        buttonConfigurationSelecctionTeams.setVisible(false);
+        buttonCalendarConfiguration.setVisible(true);
+
     }
 
     @FXML
     void showConfigurationSelectionTeams(ActionEvent event) throws IOException {
-        this.createPage(home, "/visual/SelectionTeams.fxml");
+       /* this.createPage(home, "/visual/SelectionTeams.fxml");
         buttonConfigurationSelecctionTeams.setVisible(false);
         buttonCalendarConfiguration.setVisible(true);
+        */
+
 
     }
 

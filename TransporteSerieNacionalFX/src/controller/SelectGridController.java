@@ -35,17 +35,23 @@ public class SelectGridController implements Initializable {
     private FontAwesomeIconView notbalanceCalendar;
     @FXML
     private GridPane selectionGrid;
+
+    @FXML
+    private JFXButton btnCalendar;
+
     boolean error = false;
     JFXToggleButton[][] matrix;
     static int[][] matrixCalendar;
     private final int SIZE = SelectionTeamsController.teams;
     private ArrayList<String> names = SelectionTeamsController.teamsNames;
 
-    @FXML
-    private JFXButton click;
+
 
     @FXML
-    void click(ActionEvent event) {
+    private JFXButton saveLocations;
+
+    @FXML
+    void saveLocations(ActionEvent event) {
         if (matrix != null) {
             if (!error) {
                 HomeController.matrix = true;
@@ -63,6 +69,7 @@ public class SelectGridController implements Initializable {
                 notification.setAnimationType(AnimationType.FADE);
                 notification.showAndDismiss(Duration.seconds(2));
                 Controller.getSingletonController().setMatrix(matrixCalendar);
+                btnCalendar.setDisable(false);
                 HomeController.conf = true;
             } else {
                 TrayNotification notification = new TrayNotification();
@@ -159,10 +166,18 @@ public class SelectGridController implements Initializable {
         return matrix;
     }
 
+    @FXML
+    void showCalendar(ActionEvent event) {
+
+    }
+
+
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         matrixCalendar = generateMatrix(SIZE);
         HomeController.matrix = false;
+        btnCalendar.setDisable(true);
 
         Controller.getSingletonController().setMatrix(null);
         HomeController.conf = false;

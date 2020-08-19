@@ -1193,7 +1193,7 @@ public class Controller {
 
     private void lessStatistics(){
         ArrayList<ArrayList<Double>> itiner= itineraryDistances(this.calendar);
-        ArrayList<Double> distances = new ArrayList<>();
+        //ArrayList<Double> distances = new ArrayList<>();
         double max = Double.MAX_VALUE;
         double sum = 0;
         int pos = -1;
@@ -1202,9 +1202,10 @@ public class Controller {
             for (int p=0; p < itiner.size();p++){
                 sum+=itiner.get(p).get(l);
             }
-            distances.add(sum);
+            //distances.add(sum);
             if(sum <=max){
                 max = sum;
+                pos = l;
             }
             sum = 0;
 
@@ -1212,14 +1213,14 @@ public class Controller {
 
         lessDistance = (float)max;
         //System.out.println("SUma minima "+max);
-        pos = distances.indexOf(max);
+        //pos = distances.indexOf(max);
         teamLessDistance = teams.get(teamsIndexes.indexOf(pos));
-        //System.out.println("Posicion "+teams.get(teamsIndexes.indexOf(pos)));
+        System.out.println("Posicion del arreglo "+pos+". Posicion dentro del if "+posTest);
     }
 
     private void moreStatistics(){
         ArrayList<ArrayList<Double>> itiner= itineraryDistances(this.calendar);
-        ArrayList<Double> distances = new ArrayList<>();
+        //ArrayList<Double> distances = new ArrayList<>();
         double max = Double.MIN_VALUE;
         double sum = 0;
         int pos = -1;
@@ -1228,9 +1229,10 @@ public class Controller {
             for (int p=0; p < itiner.size();p++){
                 sum+=itiner.get(p).get(l);
             }
-            distances.add(sum);
+            //distances.add(sum);
             if(sum >=max){
                 max = sum;
+                pos = l;
             }
             sum = 0;
 
@@ -1238,7 +1240,7 @@ public class Controller {
 
         moreDistance = (float)max;
         //System.out.println("SUma minima "+max);
-        pos = distances.indexOf(max);
+        //pos = distances.indexOf(max);
         teamMoreDistance = teams.get(teamsIndexes.indexOf(pos));
         //System.out.println("Posicion "+teams.get(teamsIndexes.indexOf(pos)));
     }

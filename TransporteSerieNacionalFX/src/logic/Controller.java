@@ -57,7 +57,7 @@ public class Controller {
     private Controller() {
         this.teams = new ArrayList<>();
         this.positionsDistance = new ArrayList<>();
-        createTeams("data.csv");
+        createTeams("src/files/data.csv");
         this.calendar = new ArrayList<>();
         this.posChampion = -1;
         this.posSubChampion = -1;

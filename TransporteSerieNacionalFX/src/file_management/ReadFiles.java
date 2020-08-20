@@ -21,7 +21,7 @@ public class ReadFiles {
         try {
             // Apertura del fichero y creacion de BufferedReader para poder
             // hacer una lectura comoda (disponer del metodo readLine()).
-            file = new File("Mutaciones.txt");
+            file = new File("src/files/Mutaciones.txt");
             fr = new java.io.FileReader(file);
             br = new BufferedReader(fr);
 

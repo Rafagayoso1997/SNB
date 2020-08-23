@@ -2,51 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f431f424-8f9f-474a-8daa-5cfa5e47082b" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/application/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/application/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/controller/HomeController.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/controller/HomeController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/file_management/ReadFiles.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/file_management/ReadFiles.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/resources/teams/Artemisa.png" beforeDir="false" afterPath="$PROJECT_DIR$/bin/resources/teams/Artemisa.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/resources/teams/Camaguey.png" beforeDir="false" afterPath="$PROJECT_DIR$/bin/resources/teams/Camaguey.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/resources/teams/Ciego de Ávila.png" beforeDir="false" afterPath="$PROJECT_DIR$/bin/resources/teams/Ciego de Ávila.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/resources/teams/Cienfuegos.png" beforeDir="false" afterPath="$PROJECT_DIR$/bin/resources/teams/Cienfuegos.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/resources/teams/Granma.png" beforeDir="false" afterPath="$PROJECT_DIR$/bin/resources/teams/Granma.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/resources/teams/Guantánamo.png" beforeDir="false" afterPath="$PROJECT_DIR$/bin/resources/teams/Guantánamo.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/resources/teams/Holguín.png" beforeDir="false" afterPath="$PROJECT_DIR$/bin/resources/teams/Holguín.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/resources/teams/Industriales.png" beforeDir="false" afterPath="$PROJECT_DIR$/bin/resources/teams/Industriales.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/resources/teams/Isla de la Juventud.png" beforeDir="false" afterPath="$PROJECT_DIR$/bin/resources/teams/Isla de la Juventud.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/resources/teams/Las Tunas.png" beforeDir="false" afterPath="$PROJECT_DIR$/bin/resources/teams/Las Tunas.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/resources/teams/Matanzas.png" beforeDir="false" afterPath="$PROJECT_DIR$/bin/resources/teams/Matanzas.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/resources/teams/Mayabeque.png" beforeDir="false" afterPath="$PROJECT_DIR$/bin/resources/teams/Mayabeque.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/resources/teams/Pinar del Río.png" beforeDir="false" afterPath="$PROJECT_DIR$/bin/resources/teams/Pinar del Río.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/resources/teams/Sancti Spíritus.png" beforeDir="false" afterPath="$PROJECT_DIR$/bin/resources/teams/Sancti Spíritus.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/resources/teams/Santiago de Cuba.png" beforeDir="false" afterPath="$PROJECT_DIR$/bin/resources/teams/Santiago de Cuba.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/resources/teams/Villa Clara.png" beforeDir="false" afterPath="$PROJECT_DIR$/bin/resources/teams/Villa Clara.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/styles/application.css" beforeDir="false" afterPath="$PROJECT_DIR$/bin/styles/application.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/visual/Home.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/bin/visual/Home.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/visual/SelectGrid.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/bin/visual/SelectGrid.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/application/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/application/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controller/HomeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/HomeController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/file_management/ReadFiles.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/file_management/ReadFiles.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/resources/teams/Artemisa.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/teams/Artemisa.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/resources/teams/Camaguey.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/teams/Camaguey.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/resources/teams/Ciego de Ávila.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/teams/Ciego de Ávila.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/resources/teams/Cienfuegos.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/teams/Cienfuegos.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/resources/teams/Granma.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/teams/Granma.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/resources/teams/Guantánamo.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/teams/Guantánamo.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/resources/teams/Holguín.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/teams/Holguín.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/resources/teams/Industriales.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/teams/Industriales.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/resources/teams/Isla de la Juventud.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/teams/Isla de la Juventud.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/resources/teams/Las Tunas.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/teams/Las Tunas.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/resources/teams/Matanzas.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/teams/Matanzas.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/resources/teams/Mayabeque.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/teams/Mayabeque.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/resources/teams/Pinar del Río.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/teams/Pinar del Río.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/resources/teams/Sancti Spíritus.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/teams/Sancti Spíritus.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/resources/teams/Santiago de Cuba.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/teams/Santiago de Cuba.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/resources/teams/Villa Clara.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/teams/Villa Clara.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/styles/PrincipalMenu.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/PrincipalMenu.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/styles/application.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/application.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/visual/Calendar.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/visual/Calendar.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/visual/ConfigurationCalendar.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/visual/ConfigurationCalendar.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/visual/Home.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/visual/Home.fxml" afterDir="false" />
@@ -276,7 +232,8 @@
       <workItem from="1598125643094" duration="48000" />
       <workItem from="1598140090719" duration="309000" />
       <workItem from="1598141526602" duration="1429000" />
-      <workItem from="1598184798752" duration="2456000" />
+      <workItem from="1598184798752" duration="2795000" />
+      <workItem from="1598206443821" duration="282000" />
     </task>
     <servers />
   </component>

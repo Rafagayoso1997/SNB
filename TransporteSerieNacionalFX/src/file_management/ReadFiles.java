@@ -8,7 +8,7 @@ import java.util.List;
 public class ReadFiles {
 
 
-    public ReadFiles(File fileToRead){
+    public ReadFiles(){
 
     }
 

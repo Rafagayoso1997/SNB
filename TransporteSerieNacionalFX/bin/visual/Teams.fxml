@@ -8,26 +8,26 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="863.0" prefWidth="1713.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.TeamsController">
+<AnchorPane prefHeight="651.0" prefWidth="1148.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.TeamsController">
     <children>
-        <JFXListView fx:id="teamsListView" layoutX="80.0" layoutY="85.0" prefHeight="766.0" prefWidth="463.0">
+        <JFXListView fx:id="teamsListView" layoutX="21.0" layoutY="85.0" prefHeight="497.0" prefWidth="310.0">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></JFXListView>
-        <Pane fx:id="imagePane" layoutX="596.0" layoutY="84.0" prefHeight="766.0" prefWidth="561.0" />
-        <Label layoutX="748.0" layoutY="14.0" text="Equipos" textFill="#2f2484">
+        <Pane fx:id="imagePane" layoutX="354.0" layoutY="85.0" prefHeight="497.0" prefWidth="354.0" />
+        <Label layoutX="528.0" layoutY="14.0" text="Equipos" textFill="#2f2484">
             <font>
                 <Font name="Segoe UI Symbol" size="48.0" />
             </font>
         </Label>
-      <Label layoutX="1244.0" layoutY="84.0" text="Datos del Equipo" textFill="#2f2484">
+      <Label layoutX="719.0" layoutY="55.0" text="Datos del Equipo" textFill="#2f2484">
          <font>
             <Font name="Segoe UI Symbol" size="48.0" />
          </font>
       </Label>
-      <Separator layoutX="1250.0" layoutY="138.0" orientation="VERTICAL" prefHeight="715.0" prefWidth="3.0" />
-      <Separator layoutX="1646.0" layoutY="119.0" orientation="VERTICAL" prefHeight="734.0" prefWidth="6.0" />
-      <Separator layoutX="1253.0" layoutY="852.0" prefHeight="0.0" prefWidth="395.0" />
-      <Separator layoutX="1606.0" layoutY="118.0" prefHeight="3.0" prefWidth="40.0" />
+      <Separator layoutX="719.0" layoutY="107.0" orientation="VERTICAL" prefHeight="470.0" prefWidth="6.0" />
+      <Separator layoutX="1115.0" layoutY="91.0" orientation="VERTICAL" prefHeight="487.0" prefWidth="6.0" />
+      <Separator layoutX="719.0" layoutY="576.0" prefHeight="0.0" prefWidth="395.0" />
+      <Separator layoutX="1081.0" layoutY="90.0" prefHeight="3.0" prefWidth="40.0" />
     </children>
 </AnchorPane>

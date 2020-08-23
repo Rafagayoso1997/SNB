@@ -92,7 +92,7 @@ public class HomeController implements Initializable {
     @FXML
     void showCalendar(ActionEvent event) throws IOException {
        /*if (!conf) {
-            TrayNotification notification = new TrayNotification("Generación de Calendario",
+            TrayNotification notification = new TrayNotification("Generaci?n de Calendario",
                     "Debe completar todas las configuraciones", NotificationType.ERROR);
             notification.setRectangleFill(Paint.valueOf("#E81123"));
             notification.setAnimationType(AnimationType.FADE);
@@ -100,7 +100,7 @@ public class HomeController implements Initializable {
         } else {
             this.createPage(home, "/visual/Calendar.fxml");
             notification = getNotification();
-            notification.setTitle("Generación de Calendario");
+            notification.setTitle("Generaci?n de Calendario");
             notification.setMessage("Calendario del torneo");
             notification.setNotificationType(NotificationType.SUCCESS);
             notification.setRectangleFill(Paint.valueOf("#2F2484"));
@@ -207,8 +207,8 @@ public class HomeController implements Initializable {
             }*/
 
                 notification = getNotification();
-                notification.setTitle("Imoortación de Calendario");
-                notification.setMessage("Calendario importado con éxito");
+                notification.setTitle("Imoortaci?n de Calendario");
+                notification.setMessage("Calendario importado con ?xito");
                 notification.setNotificationType(NotificationType.SUCCESS);
                 notification.setRectangleFill(Paint.valueOf("#2F2484"));
                 notification.setAnimationType(AnimationType.FADE);

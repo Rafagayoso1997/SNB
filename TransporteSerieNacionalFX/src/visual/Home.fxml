@@ -9,68 +9,73 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="1920.0" maxWidth="1920.0" minHeight="678.0" minWidth="829.0" prefHeight="1000.0" prefWidth="1920.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.HomeController">
+<AnchorPane maxHeight="1920.0" maxWidth="1920.0" minHeight="678.0" minWidth="829.0" prefHeight="786.0" prefWidth="1360.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.HomeController">
     <children>
-        <Pane fx:id="sidePane" layoutY="137.0" prefHeight="577.0" prefWidth="208.0" style="-fx-background-color: #2F2484; -fx-background-radius: 0 70 0 0;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="137.0">
+        <AnchorPane fx:id="pane" layoutX="211.0" layoutY="137.0" prefHeight="651.0" prefWidth="1148.0">
             <children>
-                <JFXButton fx:id="buttonCalendar" alignment="CENTER" buttonType="RAISED" graphicTextGap="5.0" layoutX="21.0" layoutY="68.0" onAction="#showCalendar" prefHeight="51.0" prefWidth="150.0" ripplerFill="WHITE" stylesheets="@../styles/PrincipalMenu.css" text="Calendario" textFill="WHITE">
+                <ImageView fx:id="logo" fitHeight="500.0" fitWidth="516.0" layoutX="338.0" layoutY="27.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../resources/snb.png" />
+                    </image>
+                </ImageView>
+                <Label fx:id="information" layoutX="353.0" layoutY="511.0" prefHeight="117.0" prefWidth="516.0" text="bn" textFill="#2f1a84">
                     <font>
-                        <Font name="Segoe UI Symbol" size="16.0" />
+                        <Font name="Segoe UI Symbol" size="35.0" />
+                    </font>
+                </Label>
+            </children>
+        </AnchorPane>
+      <AnchorPane layoutX="-2.0" prefHeight="136.0" prefWidth="1360.0" AnchorPane.leftAnchor="-2.0" AnchorPane.rightAnchor="2.0">
+         <children>
+                <JFXButton fx:id="buttonPrincipalMenu" buttonType="RAISED" contentDisplay="CENTER" graphicTextGap="6.0" onAction="#showPrincipalMenu" prefHeight="136.0" prefWidth="150.0" ripplerFill="#2f2484" text=" " AnchorPane.rightAnchor="1210.0">
+                    <font>
+                        <Font name="Segoe UI Symbol" size="13.0" />
                     </font>
                     <graphic>
-                        <ImageView fitHeight="37.0" fitWidth="48.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="106.0" fitWidth="117.0" pickOnBounds="true" preserveRatio="true">
                             <image>
-                                <Image url="@../resources/calendar.png" />
+                                <Image url="@../resources/snb1.png" />
                             </image>
+                            <cursor>
+                                <Cursor fx:constant="DEFAULT" />
+                            </cursor>
                         </ImageView>
                     </graphic>
                     <cursor>
                         <Cursor fx:constant="HAND" />
                     </cursor>
-               <tooltip>
-                  <Tooltip text="Calendario generado para el torneo" />
-               </tooltip>
+                    <effect>
+                        <Shadow />
+                    </effect>
                 </JFXButton>
-                <JFXButton fx:id="buttonTeam" buttonType="RAISED" graphicTextGap="5.0" layoutX="21.0" layoutY="163.0" onAction="#showTeams" prefHeight="51.0" prefWidth="150.0" ripplerFill="WHITE" stylesheets="@../styles/PrincipalMenu.css" text="Equipos" textFill="WHITE">
-                    <font>
-                        <Font name="Segoe UI Symbol" size="16.0" />
-                    </font>
+                <JFXButton fx:id="buttonCalendarConfiguration" buttonType="RAISED" contentDisplay="CENTER" layoutX="1187.0" layoutY="23.0" onAction="#showCalendarConfiguration" prefHeight="92.0" prefWidth="85.0" ripplerFill="#2f2484" text=" " AnchorPane.leftAnchor="1187.0" AnchorPane.rightAnchor="46.0">
                     <cursor>
                         <Cursor fx:constant="HAND" />
                     </cursor>
-               <graphic>
-                        <ImageView fitHeight="38.0" fitWidth="38.0" pickOnBounds="true" preserveRatio="true">
-                            <image>
-                                <Image url="@../resources/field.png" />
-                            </image>
-                        </ImageView>
-               </graphic>
-               <tooltip>
-                  <Tooltip text="Listado de los equipoes participantes en el torneo" />
-               </tooltip>
+                    <graphic>
+                        <FontAwesomeIconView fill="#2f2484" glyphName="CHEVRON_RIGHT" size="60" />
+                    </graphic>
                 </JFXButton>
-            <JFXButton fx:id="buttonInfromation" buttonType="RAISED" graphicTextGap="5.0" layoutX="21.0" layoutY="360.0" onAction="#showInformation" prefHeight="51.0" prefWidth="150.0" ripplerFill="WHITE" stylesheets="@../styles/PrincipalMenu.css" text="Ayuda" textFill="WHITE">
-               <font>
-                  <Font name="Segoe UI Symbol" size="16.0" />
-               </font>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-               <graphic>
-                  <ImageView fitHeight="43.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../resources/baseballInformation.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-               <tooltip>
-                  <Tooltip text="Información sobre la aplicación" />
-               </tooltip>
-            </JFXButton>
-            <JFXButton fx:id="buttonImportCalendar" buttonType="RAISED" graphicTextGap="5.0" layoutX="21.0" layoutY="261.0" lineSpacing="10.0" onAction="#importCalendar" prefHeight="51.0" prefWidth="150.0" ripplerFill="WHITE" stylesheets="@../styles/PrincipalMenu.css" text="Importar" textAlignment="JUSTIFY" textFill="WHITE" textOverrun="CENTER_WORD_ELLIPSIS">
+                <JFXButton fx:id="buttonReturnSelectionTeamConfiguration" buttonType="RAISED" contentDisplay="CENTER" layoutX="1187.0" layoutY="23.0" onAction="#showReturnSelectionTeamConfiguration" prefHeight="92.0" prefWidth="127.0" ripplerFill="#2f2484" text=" " AnchorPane.leftAnchor="1187.0" AnchorPane.rightAnchor="46.0">
+                    <cursor>
+                        <Cursor fx:constant="HAND" />
+                    </cursor>
+                    <graphic>
+                        <FontAwesomeIconView fill="#2f2484" glyphName="CHEVRON_LEFT" size="60" />
+                    </graphic>
+                </JFXButton>
+                <Label layoutX="360.0" layoutY="10.0" prefHeight="117.0" prefWidth="768.0" text="Serie Nacional de Beísbol" textFill="#2f2484" AnchorPane.leftAnchor="360.0" AnchorPane.rightAnchor="232.0">
+                    <font>
+                        <Font name="Segoe UI Symbol" size="64.0" />
+                    </font>
+                </Label>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="-3.0" layoutY="137.0" prefHeight="659.0" prefWidth="213.0" style="-fx-background-color: #2F2484; -fx-background-radius: 0 70 0 0;">
+         <children>
+            <JFXButton fx:id="buttonImportCalendar" buttonType="RAISED" graphicTextGap="5.0" layoutX="30.0" layoutY="384.0" lineSpacing="10.0" onAction="#importCalendar" prefHeight="66.0" prefWidth="150.0" ripplerFill="WHITE" stylesheets="@../styles/PrincipalMenu.css" text="Importar" textAlignment="JUSTIFY" textFill="WHITE" textOverrun="CENTER_WORD_ELLIPSIS" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="30.0">
                <font>
                   <Font name="Segoe UI Symbol" size="16.0" />
                </font>
@@ -88,63 +93,61 @@
                   <Tooltip text="Permite importar un calendario desde un fichero Excel y modificarlo" />
                </tooltip>
             </JFXButton>
-            </children>
-        </Pane>
-        <AnchorPane fx:id="pane" layoutX="208.0" layoutY="137.0" prefHeight="863.0" prefWidth="1713.0" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="-1.0">
-            <children>
-                <ImageView fitHeight="694.0" fitWidth="906.0" layoutX="502.0" layoutY="56.0" pickOnBounds="true" preserveRatio="true">
-                    <image>
-                        <Image url="@../resources/snb.png" />
-                    </image>
-                </ImageView>
-                <Label fx:id="information" layoutX="571.0" layoutY="750.0" prefHeight="51.0" prefWidth="580.0" text="bn" textFill="#2f1a84">
-                    <font>
-                        <Font name="Segoe UI Symbol" size="35.0" />
-                    </font>
-                </Label>
-            </children>
-        </AnchorPane>
-          <JFXButton fx:id="buttonPrincipalMenu" buttonType="RAISED" contentDisplay="CENTER" graphicTextGap="6.0" layoutX="22.0" layoutY="14.0" onAction="#showPrincipalMenu" prefHeight="117.0" prefWidth="127.0" ripplerFill="#2f2484" text=" ">
-              <font>
-                  <Font name="Segoe UI Symbol" size="13.0" />
-              </font>
-              <graphic>
-                  <ImageView fitHeight="106.0" fitWidth="117.0" pickOnBounds="true" preserveRatio="true">
-                      <image>
-                          <Image url="@../resources/snb1.png" />
-                      </image>
-                      <cursor>
-                          <Cursor fx:constant="DEFAULT" />
-                      </cursor>
+            <JFXButton fx:id="buttonInfromation" buttonType="RAISED" graphicTextGap="5.0" layoutX="30.0" layoutY="282.0" onAction="#showInformation" prefHeight="66.0" prefWidth="150.0" ripplerFill="WHITE" stylesheets="@../styles/PrincipalMenu.css" text="Ayuda" textFill="WHITE" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="30.0">
+               <font>
+                  <Font name="Segoe UI Symbol" size="16.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <graphic>
+                  <ImageView fitHeight="43.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../resources/baseballInformation.png" />
+                     </image>
                   </ImageView>
-              </graphic>
-              <cursor>
-                  <Cursor fx:constant="HAND" />
-              </cursor>
-              <effect>
-                  <Shadow />
-              </effect>
-          </JFXButton>
-          <JFXButton fx:id="buttonCalendarConfiguration" buttonType="RAISED" contentDisplay="CENTER" layoutX="1836.0" layoutY="41.0" onAction="#showCalendarConfiguration" prefHeight="47.0" prefWidth="61.0" ripplerFill="#2f2484" text=" ">
-              <cursor>
-                  <Cursor fx:constant="HAND" />
-              </cursor>
-              <graphic>
-                  <FontAwesomeIconView fill="#2f2484" glyphName="CHEVRON_RIGHT" size="60" />
-              </graphic>
-          </JFXButton>
-          <JFXButton fx:id="buttonReturnSelectionTeamConfiguration" buttonType="RAISED" contentDisplay="CENTER" layoutX="1812.0" layoutY="40.0" onAction="#showReturnSelectionTeamConfiguration" prefHeight="47.0" prefWidth="61.0" ripplerFill="#2f2484" text=" " AnchorPane.rightAnchor="45.0">
-              <cursor>
-                  <Cursor fx:constant="HAND" />
-              </cursor>
-              <graphic>
-                  <FontAwesomeIconView fill="#2f2484" glyphName="CHEVRON_LEFT" size="60" />
-              </graphic>
-          </JFXButton>
-          <Label layoutX="705.0" layoutY="41.0" prefHeight="93.0" prefWidth="719.0" text="Serie Nacional de Beísbol" textFill="#2f2484" AnchorPane.rightAnchor="496.0">
-              <font>
-                  <Font name="Segoe UI Symbol" size="64.0" />
-              </font>
-          </Label>
+               </graphic>
+               <tooltip>
+                  <Tooltip text="Información sobre la aplicación" />
+               </tooltip>
+            </JFXButton>
+                <JFXButton fx:id="buttonTeam" buttonType="RAISED" graphicTextGap="5.0" layoutX="30.0" layoutY="191.0" onAction="#showTeams" prefHeight="66.0" prefWidth="150.0" ripplerFill="WHITE" stylesheets="@../styles/PrincipalMenu.css" text="Equipos" textFill="WHITE" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="30.0">
+                    <font>
+                        <Font name="Segoe UI Symbol" size="16.0" />
+                    </font>
+                    <cursor>
+                        <Cursor fx:constant="HAND" />
+                    </cursor>
+               <graphic>
+                        <ImageView fitHeight="38.0" fitWidth="38.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@../resources/field.png" />
+                            </image>
+                        </ImageView>
+               </graphic>
+               <tooltip>
+                  <Tooltip text="Listado de los equipoes participantes en el torneo" />
+               </tooltip>
+                </JFXButton>
+                <JFXButton fx:id="buttonCalendar" alignment="CENTER" buttonType="RAISED" graphicTextGap="5.0" layoutX="30.0" layoutY="101.0" onAction="#showCalendar" prefHeight="66.0" prefWidth="150.0" ripplerFill="WHITE" stylesheets="@../styles/PrincipalMenu.css" text="Calendario" textFill="WHITE" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="30.0">
+                    <font>
+                        <Font name="Segoe UI Symbol" size="16.0" />
+                    </font>
+                    <graphic>
+                        <ImageView fitHeight="37.0" fitWidth="48.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@../resources/calendar.png" />
+                            </image>
+                        </ImageView>
+                    </graphic>
+                    <cursor>
+                        <Cursor fx:constant="HAND" />
+                    </cursor>
+               <tooltip>
+                  <Tooltip text="Calendario generado para el torneo" />
+               </tooltip>
+                </JFXButton>
+         </children>
+      </AnchorPane>
     </children>
 </AnchorPane>

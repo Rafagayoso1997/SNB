@@ -8,15 +8,16 @@
 <?import javafx.scene.text.Font?>
 
 <?import com.jfoenix.controls.JFXTabPane?>
-<AnchorPane prefHeight="863.0" prefWidth="1713.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.CalendarController">
+<AnchorPane prefHeight="651.0" prefWidth="1148.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.CalendarController">
     <children>
-        <Label layoutX="578.0" layoutY="15.0" text="Calendario" textFill="#2f2484">
+        <Label layoutX="498.0" layoutY="15.0" text="Calendario" textFill="#2f2484">
             <font>
                 <Font name="Segoe UI Symbol" size="36.0" />
             </font>
         </Label>
-        <JFXTabPane fx:id="calendarTabPane" layoutX="14.0" layoutY="61.0" prefHeight="689.0" prefWidth="1000.0" />
-        <JFXButton fx:id="saveExcel" buttonType="RAISED" layoutX="738.0" layoutY="772.0" onAction="#saveExcel" ripplerFill="#f8f6f6" stylesheets="@../styles/PrincipalMenu.css" text="Exportar" textFill="WHITE">
+        <JFXTabPane fx:id="calendarTabPane" layoutX="14.0" layoutY="88.0" prefHeight="471.0" prefWidth="612.0" />
+
+        <JFXButton fx:id="saveExcel" buttonType="RAISED" layoutX="523.0" layoutY="574.0" onAction="#saveExcel" ripplerFill="#f8f6f6" stylesheets="@../styles/PrincipalMenu.css" text="Exportar" textFill="WHITE">
             <cursor>
                 <Cursor fx:constant="HAND" />
             </cursor>
@@ -24,66 +25,65 @@
             <Font size="24.0" />
          </font>
         </JFXButton>
-      <Label layoutX="1082.0" layoutY="42.0" text="Estadísticas" textFill="#2f2484">
+      <Label layoutX="634.0" layoutY="68.0" text="Estadísticas" textFill="#2f2484">
          <font>
             <Font name="Segoe UI Symbol" size="28.0" />
          </font>
       </Label>
-      <Separator layoutX="1041.0" layoutY="62.0" prefHeight="0.0" prefWidth="34.0" />
-      <Separator layoutX="1236.0" layoutY="64.0" prefHeight="3.0" prefWidth="386.0" />
-      <Separator layoutX="1041.0" layoutY="752.0" prefHeight="3.0" prefWidth="584.0" />
-      <Separator layoutX="1038.0" layoutY="62.0" orientation="VERTICAL" prefHeight="689.0" prefWidth="6.0" />
-      <Separator layoutX="1620.0" layoutY="62.0" orientation="VERTICAL" prefHeight="689.0" prefWidth="6.0" />
-      <AnchorPane layoutX="1041.0" layoutY="82.0" prefHeight="668.0" prefWidth="577.0">
+      <Separator layoutX="778.0" layoutY="90.0" prefHeight="3.0" prefWidth="360.0" />
+      <Separator layoutX="627.0" layoutY="94.0" orientation="VERTICAL" prefHeight="471.0" prefWidth="12.0" />
+      <Separator layoutX="1136.0" layoutY="88.0" orientation="VERTICAL" prefHeight="471.0" prefWidth="12.0" />
+      <Separator layoutX="626.0" layoutY="558.0" prefHeight="3.0" prefWidth="513.0" />
+      <AnchorPane layoutX="631.0" layoutY="88.0" prefHeight="471.0" prefWidth="503.0">
          <children>
             <Label layoutX="14.0" layoutY="26.0" text="Total de km del calendario:" textFill="#2f2484">
                <font>
-                  <Font size="22.0" />
+                  <Font size="20.0" />
                </font>
             </Label>
-            <Label fx:id="lblCalendarKM" layoutX="289.0" layoutY="26.0" text="n" textFill="#2f2484">
+            <Label fx:id="lblCalendarKM" layoutX="266.0" layoutY="26.0" text="n" textFill="#2f2484">
                <font>
-                  <Font name="Segoe UI Symbol" size="22.0" />
+                  <Font name="Segoe UI Symbol" size="20.0" />
                </font>
             </Label>
             <Label layoutX="14.0" layoutY="107.0" text="Equipo con más KM recorridos:" textFill="#2f2484">
                <font>
-                  <Font size="22.0" />
+                  <Font size="20.0" />
                </font>
             </Label>
-            <Label fx:id="lblMoreKMTeam" layoutX="326.0" layoutY="107.0" text="n" textFill="#2f2484">
+            <Label fx:id="lblMoreKMTeam" layoutX="295.0" layoutY="107.0" text="n" textFill="#2f2484">
                <font>
-                  <Font name="Segoe UI Symbol" size="22.0" />
+                  <Font name="Segoe UI Symbol" size="20.0" />
                </font>
             </Label>
             <Label layoutX="14.0" layoutY="189.0" text="Equipo con menos KM recorridos:" textFill="#2f2484">
                <font>
-                  <Font size="22.0" />
+                  <Font size="20.0" />
                </font>
             </Label>
-            <Label fx:id="lblLessKMTeam" layoutX="350.0" layoutY="189.0" text="n" textFill="#2f2484">
+            <Label fx:id="lblLessKMTeam" layoutX="320.0" layoutY="189.0" text="n" textFill="#2f2484">
                <font>
-                  <Font name="Segoe UI Symbol" size="22.0" />
+                  <Font name="Segoe UI Symbol" size="20.0" />
                </font>
             </Label>
             <Label layoutX="14.0" layoutY="279.0" text="Cantidad de KM del viaje más corto:" textFill="#2f2484">
                <font>
-                  <Font size="22.0" />
+                  <Font size="20.0" />
                </font>
             </Label>
-            <Label fx:id="lblLessKM" layoutX="373.0" layoutY="279.0" text="n" textFill="#2f2484">
+            <Label fx:id="lblLessKM" layoutX="341.0" layoutY="279.0" text="n" textFill="#2f2484">
                <font>
-                  <Font name="Segoe UI Symbol" size="22.0" />
+                  <Font name="Segoe UI Symbol" size="20.0" />
                </font>
             </Label>
             <Label layoutX="14.0" layoutY="367.0" text="Cantidad de KM del viaje más largo:" textFill="#2f2484">
                <font>
-                  <Font size="22.0" />
+                  <Font size="20.0" />
                </font>
             </Label>
-            <Label fx:id="lblMoreKM" layoutX="373.0" layoutY="367.0" text="n" textFill="#2f2484">
+            <Label fx:id="lblMoreKM" layoutX="341.0" layoutY="367.0" text="n" textFill="#2f2484">
                <font>
-                  <Font name="Segoe UI Symbol" size="22.0" />
+                  <Font name="Segoe UI Symbol" size="20.0" />
                </font>
             </Label>
          </children>

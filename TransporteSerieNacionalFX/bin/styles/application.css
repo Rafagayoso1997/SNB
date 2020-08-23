@@ -48,9 +48,9 @@
 }
 
 .table-cell {
-    -fx-pref-width: 500;
+    -fx-pref-width: 300;
     -fx-border-color: -fx-box-border -fx-box-border transparent transparent;
-    -fx-font: 30px "Segoe UI Symbol";
+    -fx-font: 24px "Segoe UI Symbol";
     -fx-text-fill: #2f2484;
     -fx-alignment: CENTER;
 }
@@ -109,6 +109,11 @@
     -jfx-toggle-line-color: #999999;
     -jfx-untoggle-color: #E81123;
     -jfx-untoggle-line-color:#999999;
+}
+
+#logo:medium-device{
+    -fx-pref-height: 100;
+    -fx-pref-width: 100;
 }
 
 

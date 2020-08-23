@@ -12,11 +12,15 @@ public class Main extends Application {
     public void start(Stage primaryStage) {
         try {
             Parent root = FXMLLoader.load(getClass().getResource("/visual/Home.fxml"));
-            Scene scene = new Scene(root);
-            scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
+            Scene scene = new Scene(root); //1920,1000 tamaño de la ventana
+            scene.getStylesheets().add(getClass().getResource("/styles/application.css").toExternalForm());
             primaryStage.setScene(scene);
+            primaryStage.setResizable(false);
+
             //primaryStage.setResizable(false);
             primaryStage.show();
+
+
         } catch (Exception e) {
             e.printStackTrace();
         }

@@ -1,11 +1,16 @@
 package controller;
 
+import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTabPane;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TableColumn;
@@ -43,6 +48,10 @@ public class CalendarController implements Initializable {
 
     public static boolean saved = false; // boolean that indicates if the file was saved;
 
+
+    @FXML
+    private JFXButton saveExcel;
+
     @FXML
     private JFXTabPane calendarTabPane;
 
@@ -61,6 +70,8 @@ public class CalendarController implements Initializable {
     @FXML
     private Label lblMoreKM;
 
+    @FXML
+    private JFXButton configMutations;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -111,8 +122,6 @@ public class CalendarController implements Initializable {
         DirectoryChooser dc = new DirectoryChooser();
         File f = dc.showDialog(new Stage());
 
-
-
         Workbook workbook = new XSSFWorkbook();
         for (int k = 0; k < tables.size() ; k++) {
             TableView<Duel> table = tables.get(k);
@@ -151,6 +160,26 @@ public class CalendarController implements Initializable {
             e.printStackTrace();
         }
     }
+
+
+    @FXML
+    void configMutations(ActionEvent event)  {
+        Parent root;
+        try {
+            root = FXMLLoader.load(getClass().getResource("/visual/MutationsConfiguration.fxml"));
+            Stage stage = new Stage();
+            stage.setTitle("My New Stage Title");
+            stage.setScene(new Scene(root));
+            stage.show();
+            // Hide this current window (if this is what you want)
+           // ((Node)(event.getSource())).getScene().getWindow().hide();
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+
 
     public void showSuccessfulMessage(){
         TrayNotification notification = new TrayNotification();

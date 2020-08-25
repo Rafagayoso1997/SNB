@@ -17,7 +17,7 @@
         </Label>
         <JFXTabPane fx:id="calendarTabPane" layoutX="14.0" layoutY="88.0" prefHeight="471.0" prefWidth="612.0" />
 
-        <JFXButton fx:id="saveExcel" buttonType="RAISED" layoutX="523.0" layoutY="574.0" onAction="#saveExcel" ripplerFill="#f8f6f6" stylesheets="@../styles/PrincipalMenu.css" text="Exportar" textFill="WHITE">
+        <JFXButton fx:id="saveExcel" buttonType="RAISED" layoutX="302.0" layoutY="565.0" onAction="#saveExcel" ripplerFill="#f8f6f6" stylesheets="@../styles/PrincipalMenu.css" text="Exportar Calendario" textFill="WHITE">
             <cursor>
                 <Cursor fx:constant="HAND" />
             </cursor>
@@ -88,6 +88,14 @@
             </Label>
          </children>
       </AnchorPane>
+      <JFXButton fx:id="configMutations" buttonType="RAISED" layoutX="601.0" layoutY="565.0" onAction="#configMutations" ripplerFill="#f8f6f6" stylesheets="@../styles/PrincipalMenu.css" text="Configurar Calendario" textFill="WHITE">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+         <font>
+            <Font size="24.0" />
+         </font>
+      </JFXButton>
 
     </children>
 </AnchorPane>

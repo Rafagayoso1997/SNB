@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXListView?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="632.0" prefWidth="1148.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MutationsConfiguration">
+    <children>
+      <ScrollPane layoutX="21.0" layoutY="30.0">
+         <content>
+              <JFXListView fx:id="mutationsListView" prefHeight="573.0" prefWidth="789.0" stylesheets="@../styles/PrincipalMenu.css">
+                  <cursor>
+                      <Cursor fx:constant="HAND" />
+                  </cursor>
+            </JFXListView>
+         </content>
+      </ScrollPane>
+      <Label layoutX="890.0" layoutY="15.0" text="Configuraciones" textFill="#2f2484">
+         <font>
+            <Font name="Segoe UI Emoji" size="26.0" />
+         </font>
+      </Label>
+      <JFXComboBox fx:id="comboDate1" labelFloat="true" layoutX="862.0" layoutY="97.0" prefHeight="31.0" prefWidth="243.0" promptText="Fecha" />
+      <JFXComboBox fx:id="comboDate2" layoutX="862.0" layoutY="187.0" prefHeight="31.0" prefWidth="243.0" promptText="Fecha" />
+      <JFXComboBox fx:id="comboDuel1" layoutX="862.0" layoutY="285.0" prefHeight="31.0" prefWidth="243.0" promptText="Enfrentamiento" />
+      <JFXComboBox fx:id="comboDuel2" layoutX="862.0" layoutY="396.0" prefHeight="31.0" prefWidth="243.0" promptText="Enfrentamiento" />
+    </children>
+</AnchorPane>

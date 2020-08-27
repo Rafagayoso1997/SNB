@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="632.0" prefWidth="1148.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ConfigurationCalendarController">
+<AnchorPane prefHeight="632.0" prefWidth="1148.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ConfigurationCalendarController">
     <children>
         <JFXButton fx:id="select" layoutX="619.0" layoutY="579.0" onAction="#selectTeams" prefHeight="51.0" prefWidth="135.0" stylesheets="@../styles/PrincipalMenu.css" text="Seleccionar" textFill="#fcf8f8">
             <font>
@@ -41,11 +41,6 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </JFXToggleButton>
-      <JFXComboBox fx:id="comboChamp" focusColor="#2f2484" labelFloat="true" layoutX="356.0" layoutY="81.0" onAction="#selectTeamChamp" prefHeight="53.0" prefWidth="195.0" promptText="Campeón">
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor>
-      </JFXComboBox>
       <JFXComboBox fx:id="comboSub" focusColor="#2f2484" labelFloat="true" layoutX="641.0" layoutY="81.0" onAction="#selectTeamSubChamp" prefHeight="53.0" prefWidth="175.0" promptText="Subcampeón">
          <cursor>
             <Cursor fx:constant="HAND" />
@@ -90,5 +85,6 @@
          </font>
       </Label>
       <Spinner fx:id="iterationsSpinner" layoutX="999.0" layoutY="84.0" prefHeight="48.0" prefWidth="135.0" stylesheets="@../styles/PrincipalMenu.css" />
+      <JFXComboBox fx:id="comboChamp" labelFloat="true" layoutX="351.0" layoutY="87.0" onAction="#selectTeamChamp" prefHeight="53.0" prefWidth="195.0" promptText="Campeón" />
     </children>
 </AnchorPane>

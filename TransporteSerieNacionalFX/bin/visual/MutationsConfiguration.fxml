@@ -1,32 +1,95 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXComboBox?>
 <?import com.jfoenix.controls.JFXListView?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane prefHeight="632.0" prefWidth="1148.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MutationsConfiguration">
     <children>
-      <ScrollPane layoutX="21.0" layoutY="30.0">
+      <ScrollPane layoutX="14.0" layoutY="30.0" prefHeight="235.0" prefWidth="846.0">
          <content>
-              <JFXListView fx:id="mutationsListView" prefHeight="573.0" prefWidth="789.0" stylesheets="@../styles/PrincipalMenu.css">
+              <JFXListView fx:id="mutationsListView" prefHeight="233.0" prefWidth="840.0" stylesheets="@../styles/PrincipalMenu.css">
                   <cursor>
                       <Cursor fx:constant="HAND" />
                   </cursor>
             </JFXListView>
          </content>
       </ScrollPane>
-      <Label layoutX="890.0" layoutY="15.0" text="Configuraciones" textFill="#2f2484">
+      <Label layoutX="929.0" layoutY="15.0" text="Configuraciones" textFill="#2f2484">
          <font>
             <Font name="Segoe UI Emoji" size="26.0" />
          </font>
       </Label>
-      <JFXComboBox fx:id="comboDate1" labelFloat="true" layoutX="862.0" layoutY="97.0" prefHeight="31.0" prefWidth="243.0" promptText="Fecha" />
-      <JFXComboBox fx:id="comboDate2" layoutX="862.0" layoutY="187.0" prefHeight="31.0" prefWidth="243.0" promptText="Fecha" />
-      <JFXComboBox fx:id="comboDuel1" layoutX="862.0" layoutY="285.0" prefHeight="31.0" prefWidth="243.0" promptText="Enfrentamiento" />
-      <JFXComboBox fx:id="comboDuel2" layoutX="862.0" layoutY="396.0" prefHeight="31.0" prefWidth="243.0" promptText="Enfrentamiento" />
+      <AnchorPane fx:id="pane" layoutX="859.0" layoutY="45.0" prefHeight="561.0" prefWidth="284.0">
+         <children>
+            <JFXComboBox fx:id="comboDate1" labelFloat="true" layoutX="39.0" layoutY="51.0" prefHeight="31.0" prefWidth="243.0" promptText="Seleccione una fecha">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </JFXComboBox>
+            <JFXComboBox fx:id="comboDate2" layoutX="39.0" layoutY="145.0" prefHeight="31.0" prefWidth="243.0" promptText="Seleccione una fecha">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </JFXComboBox>
+            <JFXComboBox fx:id="comboDuel1" layoutX="39.0" layoutY="234.0" prefHeight="31.0" prefWidth="243.0" promptText="Seleccione un enfrentamiento">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </JFXComboBox>
+            <JFXComboBox fx:id="comboDuel2" layoutX="39.0" layoutY="329.0" prefHeight="31.0" prefWidth="243.0" promptText="Seleccione un enfrentamiento">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </JFXComboBox>
+         </children>
+      </AnchorPane>
+      <ScrollPane layoutX="14.0" layoutY="352.0" prefHeight="266.0" prefWidth="846.0">
+         <content>
+            <JFXListView fx:id="selectedMutationListView" prefHeight="261.0" prefWidth="842.0" stylesheets="@../styles/PrincipalMenu.css">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </JFXListView>
+         </content>
+      </ScrollPane>
+      <JFXButton fx:id="selectMutations" buttonType="RAISED" contentDisplay="CENTER" layoutX="481.0" layoutY="272.0" onAction="#selectMutations" prefHeight="72.0" prefWidth="79.0" text=" ">
+         <graphic>
+            <ImageView fitHeight="60.0" fitWidth="91.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../resources/down-arrow%20(1).png" />
+               </image>
+            </ImageView>
+         </graphic>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </JFXButton>
+      <JFXButton fx:id="removeMutations" buttonType="RAISED" contentDisplay="CENTER" layoutX="295.0" layoutY="272.0" onAction="#removeMutations" prefHeight="72.0" prefWidth="79.0" text=" ">
+         <graphic>
+            <ImageView fitHeight="60.0" fitWidth="91.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../resources/up-arrow%20(1).png" />
+               </image>
+            </ImageView>
+         </graphic>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </JFXButton>
     </children>
 </AnchorPane>

@@ -22,9 +22,6 @@
     -fx-border-color: #ff0006;
 }
 
-.combo-box {
-    -fx-border-insets: 0 0 0 0;
-}
 
 .table-view .column-header .label {
     /* -fx-background-color: white;
@@ -70,11 +67,6 @@
 .list-cell:hover {
     -fx-background-color: #c8d4ff;
 
-}
-
-.combo-box, .choice-box {
-    -fx-background-color: none;
-    -fx-border-width: 0 0 1 0;
 }
 
 #table .table-view .column-header .label {

@@ -3,13 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="f431f424-8f9f-474a-8daa-5cfa5e47082b" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/styles/application.css" beforeDir="false" afterPath="$PROJECT_DIR$/bin/styles/application.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/visual/ConfigurationCalendar.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/bin/visual/ConfigurationCalendar.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/visual/MutationsConfiguration.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/bin/visual/MutationsConfiguration.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/controller/MutationsConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/MutationsConfiguration.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/styles/application.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/application.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/visual/ConfigurationCalendar.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/visual/ConfigurationCalendar.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/visual/MutationsConfiguration.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/visual/MutationsConfiguration.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/logic/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/logic/Controller.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -239,7 +234,8 @@
       <workItem from="1598267281721" duration="758000" />
       <workItem from="1598388063247" duration="5854000" />
       <workItem from="1598394524364" duration="607000" />
-      <workItem from="1598557625239" duration="7218000" />
+      <workItem from="1598557625239" duration="7299000" />
+      <workItem from="1598645210886" duration="3641000" />
     </task>
     <servers />
   </component>
@@ -298,7 +294,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/src/controller/MutationsConfiguration.java</url>
-          <line>189</line>
+          <line>192</line>
           <properties class="controller.MutationsConfiguration" method="selectMutations">
             <option name="EMULATED" value="true" />
           </properties>

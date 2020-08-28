@@ -166,21 +166,24 @@ public class MutationsConfiguration implements Initializable {
 
     }
 
-    private void comboBoxValidation(JFXComboBox<String> comboDate2, JFXComboBox<String> comboDuel2) {
-        comboDate2.getSelectionModel().selectedIndexProperty().addListener(new ChangeListener<Number>() {
+    private void comboBoxValidation(JFXComboBox<String> comboDate, JFXComboBox<String> comboDuel) {
+        comboDate.getSelectionModel().selectedIndexProperty().addListener(new ChangeListener<Number>() {
             @Override
             public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
-                comboDuel2.getItems().clear();
-                int position = (int) newValue;
-                Controller controller = Controller.getSingletonController();
-                Date date = controller.getCalendar().get(position);
-                for (int j = 0; j < date.getGames().size(); j++) {
-                    int posLocal = date.getGames().get(j).get(0);
-                    int posVisitor = date.getGames().get(j).get(1);
-                    String element = ""+controller.getTeams().get(posLocal) + " - "+controller.getTeams().get(posVisitor);
-                    //table.getItems().add(new Duel(controller.getTeams().get(posLocal), controller.getTeams().get(posVisitor)));
-                    comboDuel2.getItems().add(element);
+                if((int)newValue !=-1){
+                    comboDuel.getItems().clear();
+                    int position = (int) newValue;
+                    Controller controller = Controller.getSingletonController();
+                    Date date = controller.getCalendar().get(position);
+                    for (int j = 0; j < date.getGames().size(); j++) {
+                        int posLocal = date.getGames().get(j).get(0);
+                        int posVisitor = date.getGames().get(j).get(1);
+                        String element = ""+controller.getTeams().get(posLocal) + " - "+controller.getTeams().get(posVisitor);
+                        //table.getItems().add(new Duel(controller.getTeams().get(posLocal), controller.getTeams().get(posVisitor)));
+                        comboDuel.getItems().add(element);
+                    }
                 }
+
             }
         });
     }

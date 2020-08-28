@@ -26,6 +26,9 @@ public class Controller {
     private ArrayList<String> teams;//List of resources.teams
 
 
+
+    private ArrayList<ArrayList<Integer>> configurationsList;//list of configurations for the mutations
+
     private ArrayList<Date> calendar;//List of Date that belongs to the calendar
     private double[][] matrixDistance;//Matrix that represents the distance between resources.teams
     private ArrayList<Integer> teamsIndexes;
@@ -72,6 +75,7 @@ public class Controller {
         this.teamMoreDistance="";
         this.teamLessDistance = "";
         this.iterations = 0;
+        this.configurationsList = new ArrayList<>();
     }
 
     /**
@@ -128,6 +132,14 @@ public class Controller {
 
     public void setCalendarDistance(float calendarDistance) {
         this.calendarDistance = calendarDistance;
+    }
+
+    public ArrayList<ArrayList<Integer>> getConfigurationsList() {
+        return configurationsList;
+    }
+
+    public void setConfigurationsList(ArrayList<ArrayList<Integer>> configurationsList) {
+        this.configurationsList = configurationsList;
     }
 
     /**
@@ -831,6 +843,7 @@ public class Controller {
      * @param calendar
      */
     private void changeDateOrder(ArrayList<Date> calendar) {
+
         int firstDate = ThreadLocalRandom.current().nextInt(0, calendar.size() - 1);
 
         int lastDate = firstDate;
@@ -1242,5 +1255,17 @@ public class Controller {
         //pos = distances.indexOf(max);
         teamMoreDistance = teams.get(teamsIndexes.indexOf(pos));
         //System.out.println("Posicion "+teams.get(teamsIndexes.indexOf(pos)));
+    }
+
+    private boolean useRandom(ArrayList<Integer> list){
+        boolean useRandom = true;
+
+        for (int i = 0; i < list.size(); i++) {
+            if(list.get(i) !=-1){
+                useRandom = false;
+                break;
+            }
+        }
+     return useRandom;
     }
 }

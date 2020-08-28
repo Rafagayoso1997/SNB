@@ -4,6 +4,7 @@
     -fx-background-insets: 2 2 2 2 ;
     /*-fx-border-color: white;*/
     -fx-background-radius: 0 10 0 10;
+    -fx-text-fill: white;
     /*-fx-border-radius:100;*/
 }
 

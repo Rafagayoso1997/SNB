@@ -59,6 +59,10 @@ public class MutationsConfiguration implements Initializable {
     @FXML
     private JFXButton removeMutations;
 
+    @FXML
+    private JFXButton buttonApplyMuttations;
+
+
 
 
     @Override
@@ -223,4 +227,10 @@ public class MutationsConfiguration implements Initializable {
 
         System.out.println(positionsMutationsSelected);
     }
+
+    @FXML
+    void applyMutations(ActionEvent event) {
+        //Aqui va la funcionalidad del boton de aplicar las mutaciones
+    }
+
 }

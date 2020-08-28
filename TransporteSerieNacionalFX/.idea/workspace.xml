@@ -4,7 +4,10 @@
     <list default="true" id="f431f424-8f9f-474a-8daa-5cfa5e47082b" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/controller/MutationsConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/MutationsConfiguration.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/logic/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/logic/Controller.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/resources/down-arrow (1).png" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/down-arrow.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/resources/up-arrow (1).png" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/up-arrow.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/styles/PrincipalMenu.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/PrincipalMenu.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/visual/MutationsConfiguration.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/visual/MutationsConfiguration.fxml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -235,7 +238,7 @@
       <workItem from="1598388063247" duration="5854000" />
       <workItem from="1598394524364" duration="607000" />
       <workItem from="1598557625239" duration="7299000" />
-      <workItem from="1598645210886" duration="3641000" />
+      <workItem from="1598645210886" duration="4565000" />
     </task>
     <servers />
   </component>
@@ -294,7 +297,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/src/controller/MutationsConfiguration.java</url>
-          <line>192</line>
+          <line>196</line>
           <properties class="controller.MutationsConfiguration" method="selectMutations">
             <option name="EMULATED" value="true" />
           </properties>

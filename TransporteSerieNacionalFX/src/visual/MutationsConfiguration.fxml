@@ -28,7 +28,7 @@
             <Font name="Segoe UI Emoji" size="26.0" />
          </font>
       </Label>
-      <AnchorPane fx:id="pane" layoutX="859.0" layoutY="45.0" prefHeight="561.0" prefWidth="284.0">
+      <AnchorPane fx:id="pane" layoutX="859.0" layoutY="45.0" prefHeight="386.0" prefWidth="284.0">
          <children>
             <JFXComboBox fx:id="comboDate1" labelFloat="true" layoutX="39.0" layoutY="51.0" prefHeight="31.0" prefWidth="243.0" promptText="Seleccione una fecha">
                <cursor>
@@ -65,7 +65,7 @@
          <graphic>
             <ImageView fitHeight="60.0" fitWidth="91.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../resources/down-arrow%20(1).png" />
+                  <Image url="@../resources/down-arrow.png" />
                </image>
             </ImageView>
          </graphic>
@@ -80,7 +80,7 @@
          <graphic>
             <ImageView fitHeight="60.0" fitWidth="91.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../resources/up-arrow%20(1).png" />
+                  <Image url="@../resources/up-arrow.png" />
                </image>
             </ImageView>
          </graphic>
@@ -90,6 +90,14 @@
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
+      </JFXButton>
+      <JFXButton fx:id="buttonApplyMuttations" buttonType="RAISED" layoutX="924.0" layoutY="496.0" onAction="#applyMutations" stylesheets="@../styles/PrincipalMenu.css" text="Aplicar mutaciones">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+         <font>
+            <Font name="Segoe UI Emoji" size="20.0" />
+         </font>
       </JFXButton>
     </children>
 </AnchorPane>

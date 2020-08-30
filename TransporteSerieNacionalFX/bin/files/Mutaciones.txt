@@ -1,4 +1,4 @@
 Cambiar una fecha de lugar.V,V,F,F
-Intercambiar orden de una fecha.V,F,F,F
+Invertir el orden de una secuencia de fechas.V,V,F,F
 Intercambiar dos fechas pasando una al lugar de la otra.V,V,F,F
-Intercambiar un enfrentamiento de una fecha con otro de otra fecha.V,V,V,V
+Mover un enfrentamiento de una fecha hacia otra fecha.V,V,V,F

@@ -161,10 +161,10 @@ public class MutationsConfiguration implements Initializable {
                 }
                 System.out.println("Lista de configuraciones");
                 System.out.println(configurationsList);
-                comboDate1.getSelectionModel().clearSelection();
-                comboDate2.getSelectionModel().clearSelection();
-                comboDuel1.getSelectionModel().clearSelection();
-                comboDuel2.getSelectionModel().clearSelection();
+                comboDate1.getSelectionModel().select(configurationsList.get(positionsMutationsSelected.get((int)newValue)).get(0));
+                comboDate2.getSelectionModel().select(configurationsList.get(positionsMutationsSelected.get((int)newValue)).get(1));
+                comboDuel1.getSelectionModel().select(configurationsList.get(positionsMutationsSelected.get((int)newValue)).get(2));
+                comboDuel2.getSelectionModel().select(configurationsList.get(positionsMutationsSelected.get((int)newValue)).get(3));
             }
         });
 
@@ -230,7 +230,34 @@ public class MutationsConfiguration implements Initializable {
 
     @FXML
     void applyMutations(ActionEvent event) {
-        //Aqui va la funcionalidad del boton de aplicar las mutaciones
-    }
 
+        int lastPosSelected = selectedMutationListView.getSelectionModel().getSelectedIndex();
+        int realPos = positionsMutationsSelected.get(lastPosSelected);
+
+        configurationsList.get(realPos).set(0, comboDate1.getSelectionModel().getSelectedIndex());
+        configurationsList.get(realPos).set(1, comboDate2.getSelectionModel().getSelectedIndex());
+        configurationsList.get(realPos).set(2, comboDuel1.getSelectionModel().getSelectedIndex());
+        configurationsList.get(realPos).set(3, comboDuel2.getSelectionModel().getSelectedIndex());
+
+        Controller.getSingletonController().setConfigurationsList(configurationsList);
+
+        System.out.println("mutaciones seleccionadas: " + positionsMutationsSelected);
+
+        ArrayList<Date> newCalendar = new ArrayList<>();
+        Controller.getSingletonController().copyCalendar(newCalendar, Controller.getSingletonController().getCalendar());
+
+        for(int i = 0; i < positionsMutationsSelected.size(); i++){
+            Controller.getSingletonController().selectMutation(newCalendar, positionsMutationsSelected.get(i));
+        }
+
+        System.out.println("************************************************");
+        System.out.println("Calendario:");
+        for (int g = 0; g < newCalendar.size(); g++) {
+            for (int h = 0; h < newCalendar.get(g).getGames().size(); h++) {
+                System.out.print(newCalendar.get(g).getGames().get(h));
+            }
+            System.out.println();
+        }
+        System.out.println("************************************************");
+    }
 }

@@ -1,22 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="f431f424-8f9f-474a-8daa-5cfa5e47082b" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/controller/CalendarController.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/controller/CalendarController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/controller/HomeController.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/controller/HomeController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/controller/MutationsConfiguration$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/controller/MutationsConfiguration$2.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/controller/MutationsConfiguration$3.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/controller/MutationsConfiguration.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/logic/Controller.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/logic/Controller.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/visual/MutationsConfiguration.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/bin/visual/MutationsConfiguration.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controller/CalendarController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/CalendarController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controller/HomeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/HomeController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controller/MutationsConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/MutationsConfigurationController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/logic/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/logic/Controller.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/visual/MutationsConfiguration.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/visual/MutationsConfiguration.fxml" afterDir="false" />
-    </list>
+    <list default="true" id="f431f424-8f9f-474a-8daa-5cfa5e47082b" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -274,6 +259,7 @@
       <workItem from="1599002787808" duration="458000" />
       <workItem from="1599041035217" duration="9263000" />
       <workItem from="1599069015742" duration="2222000" />
+      <workItem from="1599074132533" duration="6000" />
     </task>
     <servers />
   </component>

@@ -31,8 +31,10 @@ import tray.notification.TrayNotification;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collections;
 import java.util.ResourceBundle;
 
 public class HomeController implements Initializable {
@@ -44,16 +46,12 @@ public class HomeController implements Initializable {
     private File file;
 
 
-
     @FXML
     private JFXButton buttonPrincipalMenu;
 
 
-
-
     @FXML
     private JFXButton buttonCalendarConfiguration;
-
 
 
     @FXML
@@ -64,7 +62,6 @@ public class HomeController implements Initializable {
     private AnchorPane pane;
 
     private AnchorPane home;
-
 
 
     @FXML
@@ -110,7 +107,8 @@ public class HomeController implements Initializable {
 
             buttonConfigurationSelecctionTeams.setVisible(true);
         }*/
-       this.createPage(home, "/visual/ConfigurationCalendar.fxml");
+        this.createPage(home, "/visual/ConfigurationCalendar.fxml");
+        Controller.getSingletonController().setGeneratedCalendar(true);
         buttonCalendarConfiguration.setVisible(true);
 
     }
@@ -182,16 +180,26 @@ public class HomeController implements Initializable {
 
     @FXML
     void importCalendar(ActionEvent event) {
-        Stage stage= new Stage();
-        FileChooser fc= new FileChooser();
+        Stage stage = new Stage();
+        FileChooser fc = new FileChooser();
 
-        fc.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Documento Excel","*xlsx"));
+        fc.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Documento Excel", "*xlsx"));
         file = fc.showOpenDialog(stage);
 
         try {
 
-            if(file != null){
-                ArrayList<Date> importedCalendar=ReadExcel.readExcel(file.toString());
+            if (file != null) {
+                ArrayList<Date> importedCalendar = ReadExcel.readExcel(file.toString());
+                ArrayList<Integer> indexes = new ArrayList<>();
+                for(int i=0; i < importedCalendar.get(0).getGames().size();i++){
+                    ArrayList<Integer> game = importedCalendar.get(0).getGames().get(i);
+                    indexes.addAll(game);
+                }
+                Collections.sort(indexes);
+                System.out.println(indexes);
+
+
+                Controller.getSingletonController().setTeamsIndexes(indexes);
                 Controller.getSingletonController().setCalendar(importedCalendar);
 
             /*ArrayList<Date> calendar = Controller.getSingletonController().getCalendar();
@@ -213,8 +221,8 @@ public class HomeController implements Initializable {
                 notification.setRectangleFill(Paint.valueOf("#2F2484"));
                 notification.setAnimationType(AnimationType.FADE);
                 notification.showAndDismiss(Duration.seconds(2));
-
-
+                Controller.getSingletonController().setGeneratedCalendar(false);
+                this.createPage(home, "/visual/Calendar.fxml");
             }
 
         } catch (IOException e) {

@@ -27,7 +27,7 @@
             <Font size="24.0" />
          </font>
       </JFXToggleButton>
-        <JFXListView fx:id="teamsSelectionListView" layoutX="14.0" layoutY="82.0" onMouseClicked="#mouseClickedListView" onScroll="#scrollListView" prefHeight="493.0" prefWidth="323.0" stylesheets="@../styles/PrincipalMenu.css" />
+        <JFXListView fx:id="teamsSelectionListView" layoutX="14.0" layoutY="82.0" onMouseClicked="#mouseClickedListView" onScroll="#scrollListView" prefHeight="493.0" prefWidth="270.0" stylesheets="@../styles/PrincipalMenu.css" />
       <Label layoutX="350.0" layoutY="26.0" text="Seleccionar campeón y subcampeón" textFill="#2f2484">
          <font>
             <Font name="Segoe UI Symbol" size="24.0" />

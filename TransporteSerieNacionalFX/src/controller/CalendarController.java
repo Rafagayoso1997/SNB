@@ -77,12 +77,20 @@ public class CalendarController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
 
         controller = Controller.getSingletonController();
+        boolean generated = controller.isGeneratedCalendar();
 
-        controller.generateCalendar();
+        if(generated) {
+            controller.generateCalendar();
+        }else {
+            controller.lessStatistics();
+            controller.moreStatistics();
+
+        }
+
 
         tables = new ArrayList<>();
         calendar = controller.getCalendar();
-        float distance = controller.getCalendarDistance();
+        float distance = controller.calculateDistance(controller.getCalendar());
         float lessDistance = controller.getLessDistance();
         String teamLessDistance = controller.getTeamLessDistance();
 

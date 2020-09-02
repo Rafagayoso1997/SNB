@@ -11,6 +11,8 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.SelectionMode;
+import javafx.scene.control.Spinner;
+import javafx.scene.control.SpinnerValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
@@ -62,11 +64,15 @@ public class MutationsConfiguration implements Initializable {
     @FXML
     private JFXButton buttonApplyMuttations;
 
+    @FXML
+    private Spinner<Integer> iterations;
 
 
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        iterations.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(1,Integer.MAX_VALUE));
+        iterations.getValueFactory().setValue(20000);
         mutationsToAdd = new ArrayList<>();
         positionsMutationsSelected = new ArrayList<>();
         booleanValues = new ArrayList<>();
@@ -246,9 +252,12 @@ public class MutationsConfiguration implements Initializable {
         ArrayList<Date> newCalendar = new ArrayList<>();
         Controller.getSingletonController().copyCalendar(newCalendar, Controller.getSingletonController().getCalendar());
 
-        for(int i = 0; i < positionsMutationsSelected.size(); i++){
-            Controller.getSingletonController().selectMutation(newCalendar, positionsMutationsSelected.get(i));
-        }
+       // for(int j=0; j < iterations.getValueFactory().getValue();j++){
+            for(int i = 0; i < positionsMutationsSelected.size(); i++){
+                Controller.getSingletonController().selectMutation(newCalendar, positionsMutationsSelected.get(i));
+            }
+       // }
+
 
         System.out.println("************************************************");
         System.out.println("Calendario:");

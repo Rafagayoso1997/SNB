@@ -159,7 +159,7 @@ public class ConfigurationCalendarController implements Initializable {
             notification.setRectangleFill(Paint.valueOf("#2F2484"));
             notification.setAnimationType(AnimationType.FADE);
             notification.showAndDismiss(Duration.seconds(1));
-            ok = false;
+
         }
 
         if (champVsSub.isSelected()) {
@@ -198,6 +198,7 @@ public class ConfigurationCalendarController implements Initializable {
                     ok = true;
                     posChampion = Controller.getSingletonController().getTeams().indexOf(champion);
                     posSub = Controller.getSingletonController().getTeams().indexOf(subchampion);
+
                 }
             }
 

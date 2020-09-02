@@ -3,23 +3,17 @@
   <component name="ChangeListManager">
     <list default="true" id="f431f424-8f9f-474a-8daa-5cfa5e47082b" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/application/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/application/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/controller/ConfigurationCalendarController.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/controller/ConfigurationCalendarController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/controller/MutationsConfiguration$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/controller/MutationsConfiguration$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/controller/MutationsConfiguration$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/controller/MutationsConfiguration$2.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/controller/MutationsConfiguration$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/controller/MutationsConfiguration$3.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/controller/MutationsConfiguration.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/controller/MutationsConfiguration.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/logic/Controller.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/logic/Controller.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/resources/down-arrow (1).png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/resources/up-arrow (1).png" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/bin/styles/PrincipalMenu.css" beforeDir="false" afterPath="$PROJECT_DIR$/bin/styles/PrincipalMenu.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/styles/application.css" beforeDir="false" afterPath="$PROJECT_DIR$/bin/styles/application.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/visual/Home.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/bin/visual/Home.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/visual/MutationsConfiguration.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/bin/visual/MutationsConfiguration.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src.rar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/visual/ConfigurationCalendar.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/bin/visual/ConfigurationCalendar.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src (2).rar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controller/CalendarController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/CalendarController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controller/ConfigurationCalendarController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/ConfigurationCalendarController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controller/HomeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/HomeController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/controller/MutationsConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/MutationsConfiguration.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/files/Mutaciones.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/files/Mutaciones.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/logic/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/logic/Controller.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/styles/PrincipalMenu.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/PrincipalMenu.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/visual/ConfigurationCalendar.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/visual/ConfigurationCalendar.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/visual/MutationsConfiguration.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/visual/MutationsConfiguration.fxml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -57,10 +51,11 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="extract.method.default.visibility" value="private" />
-    <property name="last_opened_file_path" value="$USER_HOME$/Desktop/JFoenix-master" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/logic" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+    <property name="nodejs_package_manager_path" value="npm" />
     <property name="project.structure.last.edited" value="Libraries" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -68,21 +63,21 @@
     <property name="settings.editor.splitter.proportion" value="0.24654832" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\gayos\Documents\GitHub\SNB\TransporteSerieNacionalFX\src\resources" />
-      <recent name="C:\Users\gayos\Documents\GitHub\SNB\TransporteSerieNacionalFX\src\controller" />
-      <recent name="C:\Users\gayos\Documents\GitHub\SNB\TransporteSerieNacionalFX\lib" />
-      <recent name="C:\Users\gayos\Documents\GitHub\SNB\TransporteSerieNacionalFX\lib\poi" />
-      <recent name="C:\Users\gayos\Documents\GitHub\SNB\TransporteSerieNacionalFX\src\logic" />
-    </key>
-    <key name="CopyClassDialog.RECENTS_KEY">
-      <recent name="logic" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\gayos\Documents\GitHub\SNB\TransporteSerieNacionalFX\src\visual" />
       <recent name="C:\Users\gayos\Documents\GitHub\SNB\TransporteSerieNacionalFX\src\controller" />
       <recent name="C:\Users\gayos\Documents\GitHub\SNB\TransporteSerieNacionalFX\src\files" />
       <recent name="C:\Users\gayos\Documents\GitHub\SNB\TransporteSerieNacionalFX\src\styles" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="logic" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\gayos\Documents\GitHub\SNB\TransporteSerieNacionalFX\src\logic" />
+      <recent name="C:\Users\gayos\Documents\GitHub\SNB\TransporteSerieNacionalFX\src\resources" />
+      <recent name="C:\Users\gayos\Documents\GitHub\SNB\TransporteSerieNacionalFX\src\controller" />
+      <recent name="C:\Users\gayos\Documents\GitHub\SNB\TransporteSerieNacionalFX\lib" />
+      <recent name="C:\Users\gayos\Documents\GitHub\SNB\TransporteSerieNacionalFX\lib\poi" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -266,7 +261,16 @@
       <workItem from="1598557625239" duration="7299000" />
       <workItem from="1598645210886" duration="4730000" />
       <workItem from="1598695952540" duration="559000" />
-      <workItem from="1598821891519" duration="1350000" />
+      <workItem from="1598821891519" duration="1689000" />
+      <workItem from="1598826475024" duration="297000" />
+      <workItem from="1598826971625" duration="172000" />
+      <workItem from="1598877402342" duration="1156000" />
+      <workItem from="1598891284265" duration="389000" />
+      <workItem from="1598895724205" duration="622000" />
+      <workItem from="1598897558409" duration="620000" />
+      <workItem from="1598900170393" duration="1798000" />
+      <workItem from="1599002787808" duration="458000" />
+      <workItem from="1599041035217" duration="5061000" />
     </task>
     <servers />
   </component>
@@ -324,12 +328,12 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-method">
-          <url>file://$PROJECT_DIR$/src/controller/MutationsConfiguration.java</url>
-          <line>196</line>
-          <properties class="controller.MutationsConfiguration" method="selectMutations">
+          <url>file://$PROJECT_DIR$/src/controller/HomeController.java</url>
+          <line>126</line>
+          <properties class="controller.HomeController" method="showCalendarConfiguration">
             <option name="EMULATED" value="true" />
           </properties>
-          <option name="timeStamp" value="1" />
+          <option name="timeStamp" value="2" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

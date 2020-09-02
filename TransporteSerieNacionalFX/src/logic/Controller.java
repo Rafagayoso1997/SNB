@@ -5,6 +5,7 @@ import com.opencsv.CSVReader;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.lang.reflect.Array;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayDeque;
 import java.util.ArrayList;
@@ -24,7 +25,16 @@ public class Controller {
     private int iterations;//Number of iterations
     private ArrayList<LocalVisitorDistance> positionsDistance;//List of LocalVisitorDistance
     private ArrayList<String> teams;//List of resources.teams
+    private boolean generatedCalendar;
 
+
+
+    private boolean isCopied;
+
+
+
+
+    private ArrayList<ArrayList<Integer>> configurationsList;//list of configurations for the mutations
 
     private ArrayList<Date> calendar;//List of Date that belongs to the calendar
     private double[][] matrixDistance;//Matrix that represents the distance between resources.teams
@@ -36,20 +46,16 @@ public class Controller {
     private int posSubChampion;//Position of the subchampion team
     private boolean secondRound;
 
-
-
-
     private float calendarDistance,lessDistance,moreDistance;
     private String teamLessDistance;
 
-
-
-
-
     private String teamMoreDistance;
 
-
     private int[][] matrix;
+
+
+
+    private ArrayList<Date> calendarCopy;
 
     /**
      * Class Constructor
@@ -59,6 +65,7 @@ public class Controller {
         this.positionsDistance = new ArrayList<>();
         createTeams("src/files/data.csv");
         this.calendar = new ArrayList<>();
+        this.calendarCopy = new ArrayList<>();
         this.posChampion = -1;
         this.posSubChampion = -1;
         this.teamsIndexes = new ArrayList<>();
@@ -72,6 +79,9 @@ public class Controller {
         this.teamMoreDistance="";
         this.teamLessDistance = "";
         this.iterations = 0;
+        this.configurationsList = new ArrayList<>();
+        this.generatedCalendar = true;
+        this.isCopied = false;
     }
 
     /**
@@ -113,6 +123,13 @@ public class Controller {
         this.teamsIndexes = teamsIndexes;
     }
 
+    public boolean isGeneratedCalendar() {
+        return generatedCalendar;
+    }
+
+    public void setGeneratedCalendar(boolean generatedCalendar) {
+        this.generatedCalendar = generatedCalendar;
+    }
 
     public ArrayList<Integer> getMutationsIndexes() {
         return mutationsIndexes;
@@ -128,6 +145,30 @@ public class Controller {
 
     public void setCalendarDistance(float calendarDistance) {
         this.calendarDistance = calendarDistance;
+    }
+
+    public ArrayList<ArrayList<Integer>> getConfigurationsList() {
+        return configurationsList;
+    }
+
+    public void setConfigurationsList(ArrayList<ArrayList<Integer>> configurationsList) {
+        this.configurationsList = configurationsList;
+    }
+
+    public ArrayList<Date> getCalendarCopy() {
+        return calendarCopy;
+    }
+
+    public void setCalendarCopy(ArrayList<Date> calendarCopy) {
+        this.calendarCopy = calendarCopy;
+    }
+
+    public boolean isCopied() {
+        return isCopied;
+    }
+
+    public void setCopied(boolean copied) {
+        isCopied = copied;
     }
 
     /**
@@ -599,6 +640,7 @@ public class Controller {
     private ArrayList<ArrayList<Integer>> teamsItinerary(ArrayList<Date> calendar) {
         ArrayList<ArrayList<Integer>> teamDate = new ArrayList<>();
         ArrayList<Integer>            row      = new ArrayList<>();
+        System.out.println("Indices de equipos" + teamsIndexes);
         for (int k = 0; k < teamsIndexes.size(); k++) {
             row.add(teamsIndexes.get(k));
         }
@@ -672,20 +714,44 @@ public class Controller {
      *
      * @param calendar
      */
-    private void changeDatePosition(ArrayList<Date> calendar) {
+    private void changeDatePosition(ArrayList<Date> calendar, int number) {
+        int selectedDate = -1;
+        int dateToChange = -1;
 
-        int selectedDate = ThreadLocalRandom.current().nextInt(0, calendar.size());
+        if(!configurationsList.isEmpty()){
+                selectedDate = configurationsList.get(number).get(0);
+                dateToChange = configurationsList.get(number).get(1);
+        }
 
-        int dateToChange = 0;
+        if(selectedDate == -1){
+            selectedDate = ThreadLocalRandom.current().nextInt(0, calendar.size());
+        }
 
-        do {
-            dateToChange = ThreadLocalRandom.current().nextInt(0, calendar.size());
-        } while ((calendar.size() > 3) && ((selectedDate - dateToChange) <= 1) && ((selectedDate - dateToChange) >= (-1)));
+        if (dateToChange == -1) {
+            do {
+                dateToChange = ThreadLocalRandom.current().nextInt(0, calendar.size());
+            } while ((calendar.size() > 3) && ((selectedDate - dateToChange) <= 1) && ((selectedDate - dateToChange) >= (-1)));
+        }
 
+        /*System.out.println("Fecha real a cambiar: " + selectedDate);
+        System.out.println("Fecha para donde va: " + dateToChange);*/
 
         Date date = calendar.get(selectedDate);
 
-        calendar.add(dateToChange, date);
+        if(dateToChange < calendar.size() - 1){
+            if(selectedDate < dateToChange){
+                calendar.add(dateToChange + 1, date);
+            }
+            else{
+                calendar.add(dateToChange, date);
+            }
+        }
+        else{
+            calendar.add(dateToChange, date);
+            calendar.add(calendar.size()-2, calendar.get(calendar.size()-1));
+            calendar.remove(calendar.size()-1);
+        }
+
 
         if (dateToChange >= selectedDate) {
             calendar.remove(selectedDate);
@@ -721,9 +787,17 @@ public class Controller {
      *
      * @param calendar
      */
-    private void changeBetweenLocalAndVisitorOfATeam(ArrayList<Date> calendar) {
+    private void changeBetweenLocalAndVisitorOfATeam(ArrayList<Date> calendar, int number) {
+        int selectedTeam = -1;
 
-        int selectedTeam = ThreadLocalRandom.current().nextInt(0, teams.size());
+        if(!configurationsList.isEmpty()){
+            selectedTeam = configurationsList.get(number).get(2);
+        }
+
+        if(selectedTeam == -1){
+            selectedTeam = ThreadLocalRandom.current().nextInt(0, teams.size());
+        }
+
 
         for (int i = 0; i < calendar.size(); i++) {
             for (int j = 0; j < calendar.get(i).getGames().size(); j++) {
@@ -735,8 +809,6 @@ public class Controller {
 
                     calendar.get(i).getGames().get(j).set(0, visitor);
                     calendar.get(i).getGames().get(j).set(1, local);
-
-                    System.out.println(calendar.get(i).getGames().get(j));
                 }
             }
         }
@@ -748,25 +820,32 @@ public class Controller {
      *
      * @param calendar
      */
-    private void swapDates(ArrayList<Date> calendar) {
+    private void swapDates(ArrayList<Date> calendar, int number) {
+        int firstDate = -1;
+        int secondDate = -1;
 
-        int firstDate = ThreadLocalRandom.current().nextInt(0, calendar.size());
+        if(!configurationsList.isEmpty()){
+            firstDate = configurationsList.get(number).get(0);
+            secondDate = configurationsList.get(number).get(1);
+        }
 
+        if(firstDate == -1){
+            do {
+                firstDate = ThreadLocalRandom.current().nextInt(0, calendar.size());
+            } while (firstDate == secondDate);
+        }
 
-        int secondDate = 0;
-
-        do {
-            secondDate = ThreadLocalRandom.current().nextInt(0, calendar.size());
-        } while (firstDate == secondDate);
-
+        if(secondDate == -1){
+            do {
+                secondDate = ThreadLocalRandom.current().nextInt(0, calendar.size());
+            } while (firstDate == secondDate);
+        }
 
         Date auxFirstDate  = calendar.get(firstDate);
         Date auxSecondDate = calendar.get(secondDate);
 
         calendar.set(firstDate, auxSecondDate);
         calendar.set(secondDate, auxFirstDate);
-
-
     }
 
     /**
@@ -813,11 +892,24 @@ public class Controller {
      *
      * @param calendar
      */
-    private void changeTeamsInDate(ArrayList<Date> calendar) {
-        int  selectedDateIndex = ThreadLocalRandom.current().nextInt(0, calendar.size());
+    private void changeTeamsInDate(ArrayList<Date> calendar, int number) {
+        int selectedDateIndex = -1;
+        int selectedDuel = -1;
+
+
+        if(!configurationsList.isEmpty()){
+            selectedDateIndex = configurationsList.get(number).get(0);
+            selectedDuel = configurationsList.get(number).get(2);
+        }
+
+        if(selectedDateIndex == -1){
+            selectedDateIndex = ThreadLocalRandom.current().nextInt(0, calendar.size());
+        }
         Date selectedDate      = calendar.get(selectedDateIndex);
 
-        int selectedDuel = ThreadLocalRandom.current().nextInt(0, selectedDate.getGames().size());
+        if(selectedDuel == -1){
+            selectedDuel = ThreadLocalRandom.current().nextInt(0, selectedDate.getGames().size());
+        }
 
         int temp = selectedDate.getGames().get(selectedDuel).get(0);
         selectedDate.getGames().get(selectedDuel).set(0, selectedDate.getGames().get(selectedDuel).get(1));
@@ -830,13 +922,29 @@ public class Controller {
      *
      * @param calendar
      */
-    private void changeDateOrder(ArrayList<Date> calendar) {
-        int firstDate = ThreadLocalRandom.current().nextInt(0, calendar.size() - 1);
+    private void changeDateOrder(ArrayList<Date> calendar, int number) {
+        int firstDate = -1;
+        int lastDate = -1;
 
-        int lastDate = firstDate;
+        if(!configurationsList.isEmpty()){
+            firstDate = configurationsList.get(number).get(0);
+            lastDate = configurationsList.get(number).get(1);
 
-        while (lastDate <= firstDate) {
-            lastDate = ThreadLocalRandom.current().nextInt(0, calendar.size());
+            if(firstDate > lastDate){
+                int temp = lastDate;
+                lastDate = firstDate;
+                firstDate = temp;
+            }
+        }
+
+        if(firstDate == -1) {
+            firstDate = ThreadLocalRandom.current().nextInt(0, calendar.size() - 1);
+        }
+
+        if(lastDate == -1) {
+            while (lastDate <= firstDate) {
+                lastDate = ThreadLocalRandom.current().nextInt(0, calendar.size());
+            }
         }
 
         Deque<Date> stack = new ArrayDeque<>();
@@ -858,20 +966,39 @@ public class Controller {
      *
      * @param calendar
      */
-    private void changeDuel(ArrayList<Date> calendar) {
+    private void changeDuel(ArrayList<Date> calendar, int number) {
 
-        int posFirstDate = ThreadLocalRandom.current().nextInt(0, calendar.size() - 1);
-        int posLastDate  = posFirstDate;
+        int posFirstDate = -1;
+        int posLastDate = -1;
+        int posFirstDuel = -1;
 
-        while (posLastDate == posFirstDate) {
-            posLastDate = ThreadLocalRandom.current().nextInt(0, calendar.size());
+        if(!configurationsList.isEmpty()){
+            posFirstDate = configurationsList.get(number).get(0);
+            posLastDate = configurationsList.get(number).get(1);
+            posFirstDuel = configurationsList.get(number).get(2);
+        }
+
+        if(posFirstDate == -1){
+            do{
+                posFirstDate = ThreadLocalRandom.current().nextInt(0, calendar.size());
+            }
+            while (posLastDate == posFirstDate);
+        }
+
+        if(posLastDate == -1) {
+            do{
+                posLastDate = ThreadLocalRandom.current().nextInt(0, calendar.size());
+            }
+            while (posLastDate == posFirstDate);
         }
 
         Date firstDate = calendar.get(posFirstDate);
 
         Date secondDate = calendar.get(posLastDate);
 
-        int posFirstDuel = ThreadLocalRandom.current().nextInt(0, firstDate.getGames().size() - 1);
+        if(posFirstDuel == -1){
+            posFirstDuel = ThreadLocalRandom.current().nextInt(0, firstDate.getGames().size());
+        }
 
         swapTeams(posFirstDuel, false, firstDate, secondDate);
     }
@@ -979,41 +1106,8 @@ public class Controller {
             newCalendar = new ArrayList<>();
             copyCalendar(newCalendar, this.calendar);
 
-            switch (mutationsIndexes.get(mutation)) {
+            selectMutation(newCalendar, mutation);
 
-                case 0:
-                    changeDatePosition(newCalendar);
-                    break;
-
-                case 1:
-                    changeDateOrder(newCalendar);//changeTeams(newCalendar);
-                    break;
-
-                case 2:
-                    swapDates(newCalendar);//changeLocalAndVisitorOnADate(newCalendar);
-                    break;
-                case 3:
-                    changeDuel(newCalendar);
-                    break;
-                /*case 4:
-                    changeTeamsInDate(newCalendar);
-                    break;
-
-                case 5:
-                    changeBetweenLocalAndVisitorOfATeam(newCalendar);
-                    break;
-
-                case 6:
-                    changeDateOrder(newCalendar);
-                    break;
-
-                case 7:
-                    swapDates(newCalendar);
-                    break;*/
-
-                default:
-                    throw new IllegalStateException("Unexpected value: " + mutation);
-            }
             if (this.posChampion != -1 && this.posSubChampion != -1) {
                 fixChampionSubchampion(newCalendar);
                /* if (posLocalTeam != this.posChampion && posSecondTeam != this.posSubChampion) {
@@ -1086,7 +1180,7 @@ public class Controller {
      * @param newCopy
      * @param copy
      */
-    private void copyCalendar(ArrayList<Date> newCopy, ArrayList<Date> copy) {
+    public void copyCalendar(ArrayList<Date> newCopy, ArrayList<Date> copy) {
         for (int i = 0; i < copy.size(); i++) {
             Date                          date  = new Date(null);
             ArrayList<ArrayList<Integer>> games = new ArrayList<>();
@@ -1191,7 +1285,7 @@ public class Controller {
         return distancesItinerary;
     }
 
-    private void lessStatistics(){
+    public void lessStatistics(){
         ArrayList<ArrayList<Double>> itiner= itineraryDistances(this.calendar);
         //ArrayList<Double> distances = new ArrayList<>();
         double max = Double.MAX_VALUE;
@@ -1217,7 +1311,7 @@ public class Controller {
         teamLessDistance = teams.get(teamsIndexes.indexOf(pos));
     }
 
-    private void moreStatistics(){
+    public void moreStatistics(){
         ArrayList<ArrayList<Double>> itiner= itineraryDistances(this.calendar);
         //ArrayList<Double> distances = new ArrayList<>();
         double max = Double.MIN_VALUE;
@@ -1243,4 +1337,56 @@ public class Controller {
         teamMoreDistance = teams.get(teamsIndexes.indexOf(pos));
         //System.out.println("Posicion "+teams.get(teamsIndexes.indexOf(pos)));
     }
+
+    private boolean useRandom(ArrayList<Integer> list){
+        boolean useRandom = true;
+
+        for (int i = 0; i < list.size(); i++) {
+            if(list.get(i) !=-1){
+                useRandom = false;
+                break;
+            }
+        }
+     return useRandom;
+    }
+
+    public void selectMutation(ArrayList<Date> calendar, int number){
+
+        switch (mutationsIndexes.get(number)) {
+
+            case 0:
+                changeDatePosition(calendar, number);
+                break;
+
+            case 1:
+                changeDateOrder(calendar, number);//changeTeams(newCalendar);
+                break;
+
+            case 2:
+                swapDates(calendar, number);//changeLocalAndVisitorOnADate(newCalendar);
+                break;
+            case 3:
+                changeDuel(calendar, number);
+                break;
+                /*case 4:
+                    changeTeamsInDate(calendar, number);
+                    break;
+
+                case 5:
+                    changeBetweenLocalAndVisitorOfATeam(calendar, number);
+                    break;
+
+                case 6:
+                    changeDateOrder(calendar, number);
+                    break;
+
+                case 7:
+                    swapDates(calendar);
+                    break;*/
+
+            default:
+                throw new IllegalStateException("Unexpected value: " + number);
+        }
+    }
+
 }

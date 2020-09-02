@@ -159,7 +159,7 @@ public class ConfigurationCalendarController implements Initializable {
             notification.setRectangleFill(Paint.valueOf("#2F2484"));
             notification.setAnimationType(AnimationType.FADE);
             notification.showAndDismiss(Duration.seconds(1));
-            ok = false;
+
         }
 
         if (champVsSub.isSelected()) {
@@ -198,6 +198,7 @@ public class ConfigurationCalendarController implements Initializable {
                     ok = true;
                     posChampion = Controller.getSingletonController().getTeams().indexOf(champion);
                     posSub = Controller.getSingletonController().getTeams().indexOf(subchampion);
+
                 }
             }
 
@@ -238,6 +239,7 @@ public class ConfigurationCalendarController implements Initializable {
         //fill the TeamsListView
         Controller.getSingletonController().setTeamsIndexes(new ArrayList<>());
         List<String> teams = Controller.getSingletonController().getTeams();
+
         teamsSelectionListView.setItems(FXCollections.observableArrayList(teams));
         teamsSelectionListView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
         teamsSelectionListView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
@@ -258,7 +260,12 @@ public class ConfigurationCalendarController implements Initializable {
         this.teams = 0;
 
 
-        List<String> mutations = ReadFiles.readMutations();
+        List<String> mutationsReaded = ReadFiles.readMutations();
+        List<String> mutations = new ArrayList<>();
+        for (int i = 0; i < mutationsReaded.size() ; i++) {
+            String[] mutation = mutationsReaded.get(i).split("\\.");
+            mutations.add(mutation[0]);
+        }
         mutationListView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
         mutationListView.setItems(FXCollections.observableList(mutations));
     }

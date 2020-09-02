@@ -29,6 +29,11 @@ public class Controller {
 
 
 
+    private boolean isCopied;
+
+
+
+
     private ArrayList<ArrayList<Integer>> configurationsList;//list of configurations for the mutations
 
     private ArrayList<Date> calendar;//List of Date that belongs to the calendar
@@ -47,6 +52,8 @@ public class Controller {
     private String teamMoreDistance;
 
     private int[][] matrix;
+
+
 
     private ArrayList<Date> calendarCopy;
 
@@ -74,6 +81,7 @@ public class Controller {
         this.iterations = 0;
         this.configurationsList = new ArrayList<>();
         this.generatedCalendar = true;
+        this.isCopied = false;
     }
 
     /**
@@ -145,6 +153,22 @@ public class Controller {
 
     public void setConfigurationsList(ArrayList<ArrayList<Integer>> configurationsList) {
         this.configurationsList = configurationsList;
+    }
+
+    public ArrayList<Date> getCalendarCopy() {
+        return calendarCopy;
+    }
+
+    public void setCalendarCopy(ArrayList<Date> calendarCopy) {
+        this.calendarCopy = calendarCopy;
+    }
+
+    public boolean isCopied() {
+        return isCopied;
+    }
+
+    public void setCopied(boolean copied) {
+        isCopied = copied;
     }
 
     /**

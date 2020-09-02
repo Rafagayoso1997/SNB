@@ -43,8 +43,8 @@ import java.util.ResourceBundle;
 public class CalendarController implements Initializable {
 
     private ArrayList<Date> calendar;
-    private Controller controller;
-    private ArrayList<TableView> tables;
+    private  Controller controller;
+    private  ArrayList<TableView> tables;
 
     public static boolean saved = false; // boolean that indicates if the file was saved;
 
@@ -78,18 +78,24 @@ public class CalendarController implements Initializable {
 
         controller = Controller.getSingletonController();
         boolean generated = controller.isGeneratedCalendar();
+        boolean copied = controller.isCopied();
 
-        if(generated) {
-            controller.generateCalendar();
-        }else {
-            controller.lessStatistics();
-            controller.moreStatistics();
+        if(copied){
+            calendar = controller.getCalendarCopy();
+        }else{
 
+            if(generated) {
+                controller.generateCalendar();
+            }else {
+                controller.lessStatistics();
+                controller.moreStatistics();
+            }
+            calendar = controller.getCalendar();
         }
 
 
         tables = new ArrayList<>();
-        calendar = controller.getCalendar();
+        //calendar = controller.getCalendar();
         float distance = controller.calculateDistance(controller.getCalendar());
         float lessDistance = controller.getLessDistance();
         String teamLessDistance = controller.getTeamLessDistance();
@@ -174,9 +180,10 @@ public class CalendarController implements Initializable {
     void configMutations(ActionEvent event)  {
         Parent root;
         try {
+
             root = FXMLLoader.load(getClass().getResource("/visual/MutationsConfiguration.fxml"));
             Stage stage = new Stage();
-            stage.setTitle("My New Stage Title");
+            stage.setTitle("Configuración de las mutaciones");
             stage.setScene(new Scene(root));
             stage.show();
             // Hide this current window (if this is what you want)
@@ -198,6 +205,9 @@ public class CalendarController implements Initializable {
         notification.setAnimationType(AnimationType.FADE);
         notification.showAndDismiss(Duration.seconds(2));
     }
+
+
+
 }
 
 

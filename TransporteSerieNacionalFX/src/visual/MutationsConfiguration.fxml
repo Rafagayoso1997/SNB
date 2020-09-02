@@ -6,24 +6,14 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.Spinner?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="632.0" prefWidth="1148.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MutationsConfiguration">
+<AnchorPane prefHeight="632.0" prefWidth="1148.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MutationsConfigurationController">
     <children>
-      <ScrollPane layoutX="14.0" layoutY="30.0" prefHeight="235.0" prefWidth="846.0">
-         <content>
-              <JFXListView fx:id="mutationsListView" prefHeight="233.0" prefWidth="840.0" stylesheets="@../styles/PrincipalMenu.css">
-                  <cursor>
-                      <Cursor fx:constant="HAND" />
-                  </cursor>
-            </JFXListView>
-         </content>
-      </ScrollPane>
       <Label layoutX="929.0" layoutY="15.0" text="Configuraciones" textFill="#2f2484">
          <font>
             <Font name="Segoe UI Emoji" size="26.0" />
@@ -53,15 +43,6 @@
             </JFXComboBox>
          </children>
       </AnchorPane>
-      <ScrollPane layoutX="14.0" layoutY="352.0" prefHeight="266.0" prefWidth="846.0">
-         <content>
-            <JFXListView fx:id="selectedMutationListView" prefHeight="261.0" prefWidth="842.0" stylesheets="@../styles/PrincipalMenu.css">
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-            </JFXListView>
-         </content>
-      </ScrollPane>
       <JFXButton fx:id="selectMutations" buttonType="RAISED" contentDisplay="CENTER" layoutX="481.0" layoutY="272.0" onAction="#selectMutations" prefHeight="72.0" prefWidth="79.0" text=" ">
          <graphic>
             <ImageView fitHeight="60.0" fitWidth="91.0" pickOnBounds="true" preserveRatio="true">
@@ -105,6 +86,16 @@
             <Font name="Segoe UI Emoji" size="21.0" />
          </font>
       </Label>
-      <Spinner fx:id="iterations" layoutX="1008.0" layoutY="453.0" prefHeight="48.0" prefWidth="128.0" stylesheets="@../styles/PrincipalMenu.css" />
+      <Spinner fx:id="iterations" editable="true" layoutX="1008.0" layoutY="453.0" prefHeight="48.0" prefWidth="128.0" stylesheets="@../styles/PrincipalMenu.css" />
+      <JFXListView fx:id="selectedMutationListView" layoutX="16.0" layoutY="360.0" prefHeight="261.0" prefWidth="842.0" stylesheets="@../styles/PrincipalMenu.css">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </JFXListView>
+        <JFXListView fx:id="mutationsListView" layoutX="17.0" layoutY="15.0" prefHeight="233.0" prefWidth="840.0" stylesheets="@../styles/PrincipalMenu.css">
+            <cursor>
+                <Cursor fx:constant="HAND" />
+            </cursor>
+      </JFXListView>
     </children>
 </AnchorPane>

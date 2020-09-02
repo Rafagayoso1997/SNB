@@ -10,22 +10,29 @@ import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Control;
 import javafx.scene.control.SelectionMode;
 import javafx.scene.control.Spinner;
 import javafx.scene.control.SpinnerValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 import logic.Controller;
 import logic.Date;
 import logic.Duel;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
-public class MutationsConfiguration implements Initializable {
+public class MutationsConfigurationController implements Initializable {
+
+
+
+    private HomeController homeController;
 
     private ArrayList<ArrayList<Boolean>> booleanValues;//lista de boolean para saber que componentes activar o no
 
@@ -68,10 +75,9 @@ public class MutationsConfiguration implements Initializable {
     private Spinner<Integer> iterations;
 
 
-
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        iterations.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(1,Integer.MAX_VALUE));
+        iterations.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(1, Integer.MAX_VALUE));
         iterations.getValueFactory().setValue(20000);
         mutationsToAdd = new ArrayList<>();
         positionsMutationsSelected = new ArrayList<>();
@@ -86,17 +92,16 @@ public class MutationsConfiguration implements Initializable {
         //lleno la lista de mutaciones y separo los datos de configuracion
         List<String> mutationsReaded = ReadFiles.readMutations();
         List<String> mutations = new ArrayList<>();
-        for (int i = 0; i < mutationsReaded.size() ; i++) {
+        for (int i = 0; i < mutationsReaded.size(); i++) {
             String[] mutation = mutationsReaded.get(i).split("\\.");
             mutations.add(mutation[0]);
 
             String[] values = mutation[1].split(",");
             ArrayList<Boolean> booleans = new ArrayList<>();
-            for(int j=0; j < values.length;j++){
-                if(values[j].equalsIgnoreCase("V")){
+            for (int j = 0; j < values.length; j++) {
+                if (values[j].equalsIgnoreCase("V")) {
                     booleans.add(true);
-                }
-                else{
+                } else {
                     booleans.add(false);
                 }
             }
@@ -110,11 +115,11 @@ public class MutationsConfiguration implements Initializable {
 
 
         // Ciclo para crear las listas dependiendo las mutaciones que hayan
-       for (int i = 0; i < mutationsListView.getItems().size() ; i++) {
+        for (int i = 0; i < mutationsListView.getItems().size(); i++) {
             ArrayList<Integer> configuration = new ArrayList<>();
             //metodo para llenar las listas dependiedno la cantidad de componentes de configuracion que hayan
-            for (int j=0; j< pane.getChildren().size();j++){
-                    configuration.add(-1);
+            for (int j = 0; j < pane.getChildren().size(); j++) {
+                configuration.add(-1);
             }
             configurationsList.add(configuration);
         }
@@ -122,7 +127,7 @@ public class MutationsConfiguration implements Initializable {
 
         int dates = Controller.getSingletonController().getCalendar().size();
         for (int i = 0; i < dates; i++) {
-            String date = "Fecha "+(i+1);
+            String date = "Fecha " + (i + 1);
             comboDate1.getItems().add(date);
             comboDate2.getItems().add(date);
         }
@@ -132,7 +137,7 @@ public class MutationsConfiguration implements Initializable {
         mutationsListView.getSelectionModel().selectedIndexProperty().addListener(new ChangeListener<Number>() {
             @Override
             public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
-                if((int)newValue != -1) {
+                if ((int) newValue != -1) {
                     selectMutations.setVisible(true);
                     removeMutations.setVisible(true);
                 }
@@ -158,7 +163,7 @@ public class MutationsConfiguration implements Initializable {
                 comboDuel1.setVisible(values.get(2));
                 comboDuel2.setVisible(values.get(3));
 
-                if((int) oldValue!= -1) {
+                if ((int) oldValue != -1) {
                     int positionOld = positionsMutationsSelected.get((int) oldValue);
                     configurationsList.get(positionOld).set(0, comboDate1.getSelectionModel().getSelectedIndex());
                     configurationsList.get(positionOld).set(1, comboDate2.getSelectionModel().getSelectedIndex());
@@ -167,10 +172,10 @@ public class MutationsConfiguration implements Initializable {
                 }
                 System.out.println("Lista de configuraciones");
                 System.out.println(configurationsList);
-                comboDate1.getSelectionModel().select(configurationsList.get(positionsMutationsSelected.get((int)newValue)).get(0));
-                comboDate2.getSelectionModel().select(configurationsList.get(positionsMutationsSelected.get((int)newValue)).get(1));
-                comboDuel1.getSelectionModel().select(configurationsList.get(positionsMutationsSelected.get((int)newValue)).get(2));
-                comboDuel2.getSelectionModel().select(configurationsList.get(positionsMutationsSelected.get((int)newValue)).get(3));
+                comboDate1.getSelectionModel().select(configurationsList.get(positionsMutationsSelected.get((int) newValue)).get(0));
+                comboDate2.getSelectionModel().select(configurationsList.get(positionsMutationsSelected.get((int) newValue)).get(1));
+                comboDuel1.getSelectionModel().select(configurationsList.get(positionsMutationsSelected.get((int) newValue)).get(2));
+                comboDuel2.getSelectionModel().select(configurationsList.get(positionsMutationsSelected.get((int) newValue)).get(3));
             }
         });
 
@@ -180,7 +185,7 @@ public class MutationsConfiguration implements Initializable {
         comboDate.getSelectionModel().selectedIndexProperty().addListener(new ChangeListener<Number>() {
             @Override
             public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
-                if((int)newValue !=-1){
+                if ((int) newValue != -1) {
                     comboDuel.getItems().clear();
                     int position = (int) newValue;
                     Controller controller = Controller.getSingletonController();
@@ -188,7 +193,7 @@ public class MutationsConfiguration implements Initializable {
                     for (int j = 0; j < date.getGames().size(); j++) {
                         int posLocal = date.getGames().get(j).get(0);
                         int posVisitor = date.getGames().get(j).get(1);
-                        String element = ""+controller.getTeams().get(posLocal) + " - "+controller.getTeams().get(posVisitor);
+                        String element = "" + controller.getTeams().get(posLocal) + " - " + controller.getTeams().get(posVisitor);
                         //table.getItems().add(new Duel(controller.getTeams().get(posLocal), controller.getTeams().get(posVisitor)));
                         comboDuel.getItems().add(element);
                     }
@@ -204,14 +209,13 @@ public class MutationsConfiguration implements Initializable {
         //positionsMutationsSelected = (ArrayList<Integer>) mutationsListView.getSelectionModel().getSelectedIndices();
 
 
-
-        for (int i = 0; i < mutationsListView.getSelectionModel().getSelectedItems().size() ; i++) {
+        for (int i = 0; i < mutationsListView.getSelectionModel().getSelectedItems().size(); i++) {
             String mutation = mutationsListView.getSelectionModel().getSelectedItems().get(i);
             int pos = mutationsListView.getSelectionModel().getSelectedIndices().get(i);
-            if(!mutationsToAdd.contains(mutation))
+            if (!mutationsToAdd.contains(mutation))
                 mutationsToAdd.add(mutation);
 
-            if(!positionsMutationsSelected.contains(pos))
+            if (!positionsMutationsSelected.contains(pos))
                 positionsMutationsSelected.add(pos);
         }
 
@@ -235,28 +239,46 @@ public class MutationsConfiguration implements Initializable {
     }
 
     @FXML
-    void applyMutations(ActionEvent event) {
+    void applyMutations(ActionEvent event) throws IOException {
+        System.out.println(positionsMutationsSelected);
+        System.out.println(selectedMutationListView.getSelectionModel().getSelectedIndex());
+
+
 
         int lastPosSelected = selectedMutationListView.getSelectionModel().getSelectedIndex();
-        int realPos = positionsMutationsSelected.get(lastPosSelected);
+        //si no seleccionas ninguna configuracion para las mutaciones
+        if(lastPosSelected != -1){
+            int realPos = positionsMutationsSelected.get(lastPosSelected);
 
-        configurationsList.get(realPos).set(0, comboDate1.getSelectionModel().getSelectedIndex());
-        configurationsList.get(realPos).set(1, comboDate2.getSelectionModel().getSelectedIndex());
-        configurationsList.get(realPos).set(2, comboDuel1.getSelectionModel().getSelectedIndex());
-        configurationsList.get(realPos).set(3, comboDuel2.getSelectionModel().getSelectedIndex());
+            configurationsList.get(realPos).set(0, comboDate1.getSelectionModel().getSelectedIndex());
+            configurationsList.get(realPos).set(1, comboDate2.getSelectionModel().getSelectedIndex());
+            configurationsList.get(realPos).set(2, comboDuel1.getSelectionModel().getSelectedIndex());
+            configurationsList.get(realPos).set(3, comboDuel2.getSelectionModel().getSelectedIndex());
+        }
+
 
         Controller.getSingletonController().setConfigurationsList(configurationsList);
+        if(Controller.getSingletonController().getMutationsIndexes().isEmpty())
+            Controller.getSingletonController().setMutationsIndexes(positionsMutationsSelected);
 
         System.out.println("mutaciones seleccionadas: " + positionsMutationsSelected);
 
         ArrayList<Date> newCalendar = new ArrayList<>();
         Controller.getSingletonController().copyCalendar(newCalendar, Controller.getSingletonController().getCalendar());
 
-       // for(int j=0; j < iterations.getValueFactory().getValue();j++){
-            for(int i = 0; i < positionsMutationsSelected.size(); i++){
+        //for (int j = 0; j < iterations.getValueFactory().getValue(); j++) {
+            for (int i = 0; i < positionsMutationsSelected.size(); i++) {
                 Controller.getSingletonController().selectMutation(newCalendar, positionsMutationsSelected.get(i));
             }
-       // }
+        //}
+
+        Controller.getSingletonController().setCalendarCopy(newCalendar);
+        Controller.getSingletonController().setGeneratedCalendar(false);
+        Controller.getSingletonController().setCopied(true);
+
+        /*AnchorPane structureOver = homeController.getPrincipalPane();
+        homeController.createPage(structureOver, "/visual/Calendar.fxml");
+        homeController.getButtonReturnSelectionTeamConfiguration().setVisible(false);*/
 
 
         System.out.println("************************************************");
@@ -268,5 +290,16 @@ public class MutationsConfiguration implements Initializable {
             System.out.println();
         }
         System.out.println("************************************************");
+
+        Stage stage = (Stage) selectMutations.getScene().getWindow();
+        stage.close();
+    }
+
+    public HomeController getHomeController() {
+        return homeController;
+    }
+
+    public void setHomeController(HomeController homeController) {
+        this.homeController = homeController;
     }
 }

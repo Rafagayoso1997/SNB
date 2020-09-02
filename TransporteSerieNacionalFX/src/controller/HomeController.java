@@ -10,6 +10,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.control.Control;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
@@ -109,6 +110,7 @@ public class HomeController implements Initializable {
         }*/
         this.createPage(home, "/visual/ConfigurationCalendar.fxml");
         Controller.getSingletonController().setGeneratedCalendar(true);
+        Controller.getSingletonController().setCopied(false);
         buttonCalendarConfiguration.setVisible(true);
 
     }
@@ -222,6 +224,7 @@ public class HomeController implements Initializable {
                 notification.setAnimationType(AnimationType.FADE);
                 notification.showAndDismiss(Duration.seconds(2));
                 Controller.getSingletonController().setGeneratedCalendar(false);
+                Controller.getSingletonController().setCopied(false);
                 this.createPage(home, "/visual/Calendar.fxml");
             }
 

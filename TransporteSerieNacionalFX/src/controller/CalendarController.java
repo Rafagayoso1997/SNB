@@ -1,7 +1,7 @@
 package controller;
 
-import com.jfoenix.controls.JFXButton;
-import com.jfoenix.controls.JFXTabPane;
+import com.jfoenix.controls.*;
+import com.sun.xml.internal.ws.policy.privateutil.PolicyUtils;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -16,6 +16,10 @@ import javafx.scene.control.Tab;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseButton;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Paint;
 import javafx.scene.text.Font;
 import javafx.stage.DirectoryChooser;
@@ -43,16 +47,16 @@ import java.util.ResourceBundle;
 public class CalendarController implements Initializable {
 
     private ArrayList<Date> calendar;
-    private  Controller controller;
-    private  ArrayList<TableView> tables;
+    private Controller controller;
+    private ArrayList<TableView> tables;
     private HomeController homeController;
     public static boolean saved = false; // boolean that indicates if the file was saved;
 
     @FXML
     private JFXButton btnStatistics;
 
-
-
+    @FXML
+    private JFXButton popupBtn;
 
 
     @FXML
@@ -91,15 +95,15 @@ public class CalendarController implements Initializable {
         boolean generated = controller.isGeneratedCalendar();
         boolean copied = controller.isCopied();
 
-        if(copied){
+        if (copied) {
             calendar = controller.getCalendarCopy();
             controller.lessStatistics(calendar);
             controller.moreStatistics(calendar);
-        }else{
+        } else {
 
-            if(generated) {
+            if (generated) {
                 controller.generateCalendar();
-            }else {
+            } else {
                 controller.lessStatistics(controller.getCalendar());
                 controller.moreStatistics(controller.getCalendar());
             }
@@ -109,17 +113,17 @@ public class CalendarController implements Initializable {
 
         tables = new ArrayList<>();
         //calendar = controller.getCalendar();
-        float distance = controller.calculateDistance(calendar);
+        /*float distance = controller.calculateDistance(calendar);
         float lessDistance = controller.getLessDistance();
         String teamLessDistance = controller.getTeamLessDistance();
 
         float moreDistance = controller.getMoreDistance();
         String teamMoreDistance = controller.getTeamMoreDistance();
-        lblCalendarKM.setText(""+distance);
-        lblLessKM.setText(""+lessDistance);
-        lblLessKMTeam.setText(""+teamLessDistance);
-        lblMoreKM.setText(""+moreDistance);
-        lblMoreKMTeam.setText(""+teamMoreDistance);
+        lblCalendarKM.setText("" + distance);
+        lblLessKM.setText("" + lessDistance);
+        lblLessKMTeam.setText("" + teamLessDistance);
+        lblMoreKM.setText("" + moreDistance);
+        lblMoreKMTeam.setText("" + teamMoreDistance);*/
         for (int i = 0; i < calendar.size(); i++) {
             TableView<Duel> table = new TableView<Duel>();
             TableColumn<Duel, String> col = new TableColumn<>("Local");
@@ -127,7 +131,7 @@ public class CalendarController implements Initializable {
             col.setCellValueFactory(new PropertyValueFactory<>("local"));
             col2.setCellValueFactory(new PropertyValueFactory<>("visitor"));
 
-            ObservableList<TableColumn<Duel,?>> columns = table.getColumns();
+            ObservableList<TableColumn<Duel, ?>> columns = table.getColumns();
             columns.add(col);
             columns.add(col2);
             for (int j = 0; j < calendar.get(i).getGames().size(); j++) {
@@ -141,18 +145,48 @@ public class CalendarController implements Initializable {
             tables.add(table);
             calendarTabPane.getTabs().add(tab);
         }
+
+
+        AnchorPane popupPane = new AnchorPane();
+        VBox vBox = new VBox();
+        JFXListView<JFXButton> list = new JFXListView<JFXButton>();
+        JFXButton btnStat = new JFXButton("Estadísticas");
+        JFXButton btnExcel = new JFXButton("Exportar");
+        JFXButton btnMutations = new JFXButton("Configurar Mutaciones");
+
+        vBox.getChildren().add(btnStat);
+        vBox.getChildren().add(btnExcel);
+        vBox.getChildren().add(btnMutations);
+        popupPane.getChildren().add(vBox);
+        JFXPopup popup = new JFXPopup(popupPane);
+
+        popupBtn.setOnAction(event -> {
+            popup.show(popupBtn, JFXPopup.PopupVPosition.TOP, JFXPopup.PopupHPosition.RIGHT);
+        });
+        btnStat.setOnAction(event -> {
+            showStatistics();
+            popup.hide();
+        });
+        btnExcel.setOnAction(event -> {
+            saveExcel();
+            popup.hide();
+
+        });
+        btnMutations.setOnAction(event -> {
+            configMutations();
+            popup.hide();
+        });
     }
 
-    @FXML
-    void saveExcel(ActionEvent event) throws IOException {
-
+    // @FXML
+    void saveExcel(/*ActionEvent event*/) {
         DirectoryChooser dc = new DirectoryChooser();
         File f = dc.showDialog(new Stage());
 
         Workbook workbook = new XSSFWorkbook();
-        for (int k = 0; k < tables.size() ; k++) {
+        for (int k = 0; k < tables.size(); k++) {
             TableView<Duel> table = tables.get(k);
-            Sheet spreadsheet = workbook.createSheet("Fecha " + (k+1));
+            Sheet spreadsheet = workbook.createSheet("Fecha " + (k + 1));
 
             Row row = spreadsheet.createRow(0);
 
@@ -163,10 +197,9 @@ public class CalendarController implements Initializable {
             for (int i = 0; i < table.getItems().size(); i++) {
                 row = spreadsheet.createRow(i + 1);
                 for (int j = 0; j < table.getColumns().size(); j++) {
-                    if(table.getColumns().get(j).getCellData(i) != null) {
+                    if (table.getColumns().get(j).getCellData(i) != null) {
                         row.createCell(j).setCellValue(table.getColumns().get(j).getCellData(i).toString());
-                    }
-                    else {
+                    } else {
                         row.createCell(j).setCellValue("");
                     }
                 }
@@ -177,20 +210,24 @@ public class CalendarController implements Initializable {
         FileOutputStream fileOut = null;
         try {
 
-            fileOut = new FileOutputStream(f.getAbsolutePath()+"/ Calendario Serie Nacional.xlsx");
-            workbook.write(fileOut);
-            fileOut.close();
-            saved = true;
-            showSuccessfulMessage();
+            fileOut = new FileOutputStream(f.getAbsolutePath() + "/ Calendario Serie Nacional.xlsx");
+            if (fileOut != null) {
+                workbook.write(fileOut);
+                fileOut.close();
+                saved = true;
+                showSuccessfulMessage();
+            }
+
         } catch (Exception e) {
             saved = false;
             e.printStackTrace();
         }
+
     }
 
 
-    @FXML
-    void configMutations(ActionEvent event)  {
+    //@FXML
+    void configMutations(/*ActionEvent event*/) {
         Parent root;
         try {
             /*
@@ -202,16 +239,15 @@ public class CalendarController implements Initializable {
             */
             homeController.createPage(new MutationsConfigurationController(), null, "/visual/MutationsConfiguration.fxml");
             // Hide this current window (if this is what you want)
-           // ((Node)(event.getSource())).getScene().getWindow().hide();
-        }
-        catch (IOException e) {
+            // ((Node)(event.getSource())).getScene().getWindow().hide();
+        } catch (IOException e) {
             e.printStackTrace();
         }
 
     }
 
 
-    public void showSuccessfulMessage(){
+    public void showSuccessfulMessage() {
         TrayNotification notification = new TrayNotification();
         notification.setTitle("Guardar Calendario");
         notification.setMessage("Calendario exportado con éxito");
@@ -221,11 +257,15 @@ public class CalendarController implements Initializable {
         notification.showAndDismiss(Duration.seconds(2));
     }
 
-    @FXML
-    void showStatistics(ActionEvent event) throws IOException {
-        homeController.createPage(new CalendarStatisticsController(), null, "/visual/CalendarStatistics.fxml");
-    }
+    //@FXML
+    void showStatistics(/*ActionEvent event*/) {
+        try {
+            homeController.createPage(new CalendarStatisticsController(), null, "/visual/CalendarStatistics.fxml");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
+    }
 
 
 }

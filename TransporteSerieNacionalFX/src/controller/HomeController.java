@@ -114,7 +114,6 @@ public class HomeController implements Initializable {
         Controller.getSingletonController().setGeneratedCalendar(true);
         Controller.getSingletonController().setCopied(false);
         buttonCalendarConfiguration.setVisible(true);
-
     }
 
     @FXML
@@ -225,6 +224,8 @@ public class HomeController implements Initializable {
                 notification.setRectangleFill(Paint.valueOf("#2F2484"));
                 notification.setAnimationType(AnimationType.FADE);
                 notification.showAndDismiss(Duration.seconds(2));
+                buttonCalendarConfiguration.setVisible(false);
+                buttonReturnSelectionTeamConfiguration.setVisible(false);
                 Controller.getSingletonController().setGeneratedCalendar(false);
                 Controller.getSingletonController().setCopied(false);
                 this.createPage(new CalendarController(),home, "/visual/Calendar.fxml");

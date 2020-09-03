@@ -102,8 +102,11 @@ public class CalendarController implements Initializable {
        // } else {
 
            if (generated) {
-               controller.setCalendar(null);
-               controller.generateCalendar();
+               if(controller.getCalendar().size() ==0){
+                   controller.generateCalendar();
+               }
+               //controller.setCalendar(null);
+
             }
             calendar = controller.getCalendar();
         //}
@@ -147,7 +150,6 @@ public class CalendarController implements Initializable {
 
         AnchorPane popupPane = new AnchorPane();
         VBox vBox = new VBox();
-        JFXListView<JFXButton> list = new JFXListView<JFXButton>();
         JFXButton btnStat = new JFXButton("Estadísticas");
         JFXButton btnExcel = new JFXButton("Exportar");
         JFXButton btnMutations = new JFXButton("Configurar Mutaciones");

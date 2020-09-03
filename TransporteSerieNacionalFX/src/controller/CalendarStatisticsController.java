@@ -2,6 +2,8 @@ package controller;
 
 
 import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXListView;
+import com.jfoenix.controls.JFXPopup;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -14,6 +16,7 @@ import javafx.scene.chart.XYChart;
 import javafx.scene.control.Tooltip;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.VBox;
 import logic.Controller;
 
 import java.io.IOException;
@@ -22,7 +25,7 @@ import java.util.*;
 
 /**
  * The controller for the birthday statistics view.
- * 
+ *
  * @author Marco Jakob
  */
 public class CalendarStatisticsController {
@@ -61,7 +64,6 @@ public class CalendarStatisticsController {
         yAxis.setLabel("Distancia en KM");
 
 
-
         Controller controller = Controller.getSingletonController();
         controller.moreStatistics(controller.getCalendar());
         controller.lessStatistics(controller.getCalendar());
@@ -90,7 +92,7 @@ public class CalendarStatisticsController {
         series2.getData().add(new XYChart.Data(data.get(1), lessDistance));
         series3.getData().add(new XYChart.Data(data.get(2), moreDistance));
 
-        if(controller.isCopied()){
+        if (controller.isCopied()) {
             xAxisData.add("Nuevo Calendario");
             controller.copyMoreStatistics(controller.getCalendarCopy());
             controller.copyLessStatistics(controller.getCalendarCopy());
@@ -107,8 +109,6 @@ public class CalendarStatisticsController {
             series2.getData().add(new XYChart.Data(data.get(4), copyLessDistance));
             series3.getData().add(new XYChart.Data(data.get(5), copyMoreDistance));
         }
-
-
 
 
         barChart.getData().addAll(series1, series2, series3);
@@ -131,18 +131,56 @@ public class CalendarStatisticsController {
         barChart.setBarGap(3);
         barChart.setCategoryGap(20);
 
+        AnchorPane popupPane = new AnchorPane();
+        VBox vBox = new VBox();
+        JFXListView<JFXButton> list = new JFXListView<JFXButton>();
+        JFXButton btnCurrentCalendar = new JFXButton("Mantener el calendario original");
+        JFXButton btnNewCalendar = new JFXButton("Mantener el calendario nuevo");
+
+
+        vBox.getChildren().add(btnCurrentCalendar);
+        vBox.getChildren().add(btnNewCalendar);
+        popupPane.getChildren().add(vBox);
+        JFXPopup popup = new JFXPopup(popupPane);
+
+        if (controller.getCalendarCopy().size()>0) {
+            backButton.setOnAction(event -> {
+                popup.show(backButton, JFXPopup.PopupVPosition.TOP, JFXPopup.PopupHPosition.RIGHT);
+            });
+            btnCurrentCalendar.setOnAction(event -> {
+                popup.hide();
+                returnButton();
+            });
+            btnNewCalendar.setOnAction(event -> {
+                controller.setCalendar(controller.getCalendarCopy());
+                returnButton();
+                popup.hide();
+            });
+
+        }
+        else{
+            backButton.setOnAction( event -> returnButton());
+        }
+
+
     }
 
-    @FXML
-    void returnButton(ActionEvent event) throws IOException {
-        AnchorPane structureOver = homeController.getPrincipalPane();
-        homeController.createPage(new CalendarController(), structureOver, "/visual/Calendar.fxml");
-        homeController.getButtonReturnSelectionTeamConfiguration().setVisible(false);
+
+    //@FXML
+    private void returnButton(/*ActionEvent event*/) {
+        try {
+            AnchorPane structureOver = homeController.getPrincipalPane();
+            homeController.createPage(new CalendarController(), structureOver, "/visual/Calendar.fxml");
+            homeController.getButtonReturnSelectionTeamConfiguration().setVisible(false);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
     }
 
     /**
      * Sets the persons to show the statistics for.
-     * 
+     *
      * @param persons
      */
     /*public void setPersonData(List<Person> persons) {

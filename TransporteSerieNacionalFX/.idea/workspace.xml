@@ -4,8 +4,14 @@
     <list default="true" id="f431f424-8f9f-474a-8daa-5cfa5e47082b" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bin/controller/CalendarController.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/controller/CalendarController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/visual/CalendarStatistics.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/bin/visual/CalendarStatistics.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/application/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/application/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/controller/CalendarController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/CalendarController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controller/ConfigurationCalendarController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/ConfigurationCalendarController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controller/CalendarStatisticsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/CalendarStatisticsController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controller/HomeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/HomeController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controller/MutationsConfigurationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/MutationsConfigurationController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/styles/PrincipalMenu.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/PrincipalMenu.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/visual/CalendarStatistics.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/visual/CalendarStatistics.fxml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -334,22 +340,14 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/controller/SelectGridController.java</url>
-          <line>246</line>
-          <option name="timeStamp" value="6" />
+          <url>file://$PROJECT_DIR$/src/controller/CalendarStatisticsController.java</url>
+          <line>62</line>
+          <option name="timeStamp" value="9" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/controller/CalendarStatisticsController.java</url>
-          <line>59</line>
-          <option name="timeStamp" value="9" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-method">
-          <url>file://$PROJECT_DIR$/src/controller/ConfigurationCalendarController.java</url>
-          <line>124</line>
-          <properties class="controller.ConfigurationCalendarController" method="selectTeams">
-            <option name="EMULATED" value="true" />
-          </properties>
-          <option name="timeStamp" value="11" />
+          <line>145</line>
+          <option name="timeStamp" value="12" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

@@ -143,7 +143,9 @@ public class ConfigurationCalendarController implements Initializable {
             notification.setRectangleFill(Paint.valueOf("#2F2484"));
             notification.setAnimationType(AnimationType.FADE);
             notification.showAndDismiss(Duration.seconds(1));
-        } else if (indexes.size() % 2 != 0) {
+            ok = false;
+        }
+        if (indexes.size() % 2 != 0) {
             notification = getNotification();
             notification.setTitle("Selección de equipos.");
             notification.setMessage("Debe escoger una cantidad par de equipos.");
@@ -151,6 +153,7 @@ public class ConfigurationCalendarController implements Initializable {
             notification.setRectangleFill(Paint.valueOf("#2F2484"));
             notification.setAnimationType(AnimationType.FADE);
             notification.showAndDismiss(Duration.seconds(1));
+            ok = false;
         }
 
         if (indexesMutations.size() <=1 ) {
@@ -161,7 +164,7 @@ public class ConfigurationCalendarController implements Initializable {
             notification.setRectangleFill(Paint.valueOf("#2F2484"));
             notification.setAnimationType(AnimationType.FADE);
             notification.showAndDismiss(Duration.seconds(1));
-
+            ok = false;
         }
 
         if (champVsSub.isSelected()) {
@@ -216,7 +219,7 @@ public class ConfigurationCalendarController implements Initializable {
             Controller.getSingletonController().setSecondRound(secondRound);
             Controller.getSingletonController().setIterations(iterationsSpinner.getValueFactory().getValue());
         }
-            //ok = true;
+        ok = true;
         /*if (ok) {
             secondRound = secondRoundButton.isSelected();
             Controller.getSingletonController().setPosChampion(posChampion);

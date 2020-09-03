@@ -4,13 +4,8 @@
     <list default="true" id="f431f424-8f9f-474a-8daa-5cfa5e47082b" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bin/controller/CalendarController.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/controller/CalendarController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/styles/application.css" beforeDir="false" afterPath="$PROJECT_DIR$/bin/styles/application.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/visual/Calendar.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/bin/visual/Calendar.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/visual/CalendarStatistics.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/bin/visual/CalendarStatistics.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/controller/CalendarController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/CalendarController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/styles/application.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/application.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/visual/Calendar.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/visual/Calendar.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/visual/CalendarStatistics.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/visual/CalendarStatistics.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controller/ConfigurationCalendarController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/ConfigurationCalendarController.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -347,6 +342,14 @@
           <url>file://$PROJECT_DIR$/src/controller/CalendarStatisticsController.java</url>
           <line>59</line>
           <option name="timeStamp" value="9" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/src/controller/ConfigurationCalendarController.java</url>
+          <line>124</line>
+          <properties class="controller.ConfigurationCalendarController" method="selectTeams">
+            <option name="EMULATED" value="true" />
+          </properties>
+          <option name="timeStamp" value="11" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

@@ -95,20 +95,18 @@ public class CalendarController implements Initializable {
         boolean generated = controller.isGeneratedCalendar();
         boolean copied = controller.isCopied();
 
-        if (copied) {
-            calendar = controller.getCalendarCopy();
-            controller.lessStatistics(calendar);
-            controller.moreStatistics(calendar);
-        } else {
+        //if (copied) {
+          //  calendar = controller.getCalendarCopy();
+            //controller.lessStatistics(calendar);
+            //controller.moreStatistics(calendar);
+       // } else {
 
-            if (generated) {
-                controller.generateCalendar();
-            } else {
-                controller.lessStatistics(controller.getCalendar());
-                controller.moreStatistics(controller.getCalendar());
+           if (generated) {
+               controller.setCalendar(null);
+               controller.generateCalendar();
             }
             calendar = controller.getCalendar();
-        }
+        //}
 
 
         tables = new ArrayList<>();

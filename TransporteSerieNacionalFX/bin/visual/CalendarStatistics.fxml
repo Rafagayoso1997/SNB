@@ -9,7 +9,7 @@
 
 <AnchorPane prefHeight="632.0" prefWidth="1148.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.CalendarStatisticsController">
    <children>
-      <BarChart fx:id="barChart" barGap="25.0" categoryGap="60.0" layoutX="22.0" layoutY="49.0" legendSide="TOP" prefHeight="498.0" prefWidth="1105.0" stylesheets="@../styles/PrincipalMenu.css" title="Estadísticas de los Calendarios">
+      <BarChart fx:id="barChart" barGap="5.0" categoryGap="150.0" layoutX="22.0" layoutY="49.0" legendSide="TOP" prefHeight="498.0" prefWidth="1105.0" stylesheets="@../styles/PrincipalMenu.css" title="Estadísticas de los Calendarios">
         <xAxis>
           <CategoryAxis prefHeight="0.0" prefWidth="1087.0" side="BOTTOM" startMargin="120.0" tickLabelGap="5.0" tickLength="5.0" fx:id="xAxis">
                <tickLabelFont>

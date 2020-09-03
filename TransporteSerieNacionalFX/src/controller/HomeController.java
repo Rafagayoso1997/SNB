@@ -309,6 +309,11 @@ public class HomeController implements Initializable {
             ((ConfigurationCalendarController) object).setHomeController(this);
             setNode(anchorPane);
         }
+        else if (object instanceof CalendarStatisticsController) {
+            object = loader.getController();
+            ((CalendarStatisticsController) object).setHomeController(this);
+            setNode(anchorPane);
+        }
 
         //setNode(anchorPane);
     }

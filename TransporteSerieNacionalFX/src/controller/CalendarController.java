@@ -46,12 +46,13 @@ public class CalendarController implements Initializable {
     private  Controller controller;
     private  ArrayList<TableView> tables;
     private HomeController homeController;
-
-    public void setHomeController(HomeController homeController) {
-        this.homeController = homeController;
-    }
-
     public static boolean saved = false; // boolean that indicates if the file was saved;
+
+    @FXML
+    private JFXButton btnStatistics;
+
+
+
 
 
     @FXML
@@ -77,6 +78,11 @@ public class CalendarController implements Initializable {
 
     @FXML
     private JFXButton configMutations;
+
+    public void setHomeController(HomeController homeController) {
+        this.homeController = homeController;
+    }
+
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -213,6 +219,11 @@ public class CalendarController implements Initializable {
         notification.setRectangleFill(Paint.valueOf("#2F2484"));
         notification.setAnimationType(AnimationType.FADE);
         notification.showAndDismiss(Duration.seconds(2));
+    }
+
+    @FXML
+    void showStatistics(ActionEvent event) throws IOException {
+        homeController.createPage(new CalendarStatisticsController(), null, "/visual/CalendarStatistics.fxml");
     }
 
 

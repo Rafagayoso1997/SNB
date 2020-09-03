@@ -96,6 +96,7 @@
             <Font size="24.0" />
          </font>
       </JFXButton>
+      <JFXButton fx:id="btnStatistics" layoutX="938.0" layoutY="575.0" onAction="#showStatistics" stylesheets="@../styles/PrincipalMenu.css" text="Estadisticas" textFill="WHITE" />
 
     </children>
 </AnchorPane>

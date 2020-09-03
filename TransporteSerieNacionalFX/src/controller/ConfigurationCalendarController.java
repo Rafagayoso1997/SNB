@@ -34,6 +34,8 @@ public class ConfigurationCalendarController implements Initializable {
 
     private TrayNotification notification;
 
+    private HomeController homeController;
+
     public static int posChampion = -1, posSub = -2;
     public static boolean secondRound = false;
     public static boolean ok = true;
@@ -335,5 +337,9 @@ public class ConfigurationCalendarController implements Initializable {
         String teamSwap = comboSub.getSelectionModel().getSelectedItem();
         comboSub.getSelectionModel().select(comboChamp.getSelectionModel().getSelectedItem());
         comboChamp.getSelectionModel().select(teamSwap);
+    }
+
+    public void setHomeController(HomeController homeController) {
+        this.homeController = homeController;
     }
 }

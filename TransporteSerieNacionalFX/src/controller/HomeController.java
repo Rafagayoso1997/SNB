@@ -10,6 +10,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Control;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
@@ -108,7 +110,7 @@ public class HomeController implements Initializable {
 
             buttonConfigurationSelecctionTeams.setVisible(true);
         }*/
-        this.createPage(home, "/visual/ConfigurationCalendar.fxml");
+        this.createPage(new ConfigurationCalendarController(), home, "/visual/ConfigurationCalendar.fxml");
         Controller.getSingletonController().setGeneratedCalendar(true);
         Controller.getSingletonController().setCopied(false);
         buttonCalendarConfiguration.setVisible(true);
@@ -140,14 +142,14 @@ public class HomeController implements Initializable {
             //this.createPage(home, "/visual/SelectGrid.fxml");
 
             //DAVID Change
-            FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(HomeController.class.getResource("/visual/SelectGrid.fxml"));
-            home = loader.load();
-            SelectGridController selectGridController = loader.getController();
-            selectGridController.setHomeController(this);
-            this.setNode(home);
+            //FXMLLoader loader = new FXMLLoader();
+            //loader.setLocation(HomeController.class.getResource("/visual/SelectGrid.fxml"));
+            //home = loader.load();
+            //SelectGridController selectGridController = loader.getController();
+            //selectGridController.setHomeController(this);
+            //this.setNode(home);
             //UNTIL HERE
-
+            this.createPage(new SelectGridController(), home, "/visual/SelectGrid.fxml");
             buttonCalendarConfiguration.setVisible(false);
             buttonReturnSelectionTeamConfiguration.setVisible(true);
         }
@@ -156,7 +158,7 @@ public class HomeController implements Initializable {
 
     @FXML
     void showReturnSelectionTeamConfiguration(ActionEvent event) throws IOException {
-        this.createPage(home, "/visual/ConfigurationCalendar.fxml");
+        this.createPage(new ConfigurationCalendarController(), home, "/visual/ConfigurationCalendar.fxml");
         buttonCalendarConfiguration.setVisible(true);
         buttonReturnSelectionTeamConfiguration.setVisible(false);
 
@@ -217,15 +219,15 @@ public class HomeController implements Initializable {
             }*/
 
                 notification = getNotification();
-                notification.setTitle("Imoortaci?n de Calendario");
-                notification.setMessage("Calendario importado con ?xito");
+                notification.setTitle("Importación de Calendario");
+                notification.setMessage("Calendario importado con éxito");
                 notification.setNotificationType(NotificationType.SUCCESS);
                 notification.setRectangleFill(Paint.valueOf("#2F2484"));
                 notification.setAnimationType(AnimationType.FADE);
                 notification.showAndDismiss(Duration.seconds(2));
                 Controller.getSingletonController().setGeneratedCalendar(false);
                 Controller.getSingletonController().setCopied(false);
-                this.createPage(home, "/visual/Calendar.fxml");
+                this.createPage(new CalendarController(),home, "/visual/Calendar.fxml");
             }
 
         } catch (IOException e) {
@@ -275,5 +277,39 @@ public class HomeController implements Initializable {
     //********************DAVID CHaNGE
     public AnchorPane getPrincipalPane() {
         return this.pane;
+    }
+
+    public void createPage(Object object, AnchorPane anchorPane, String loc) throws IOException {
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(HomeController.class.getResource(loc));
+        anchorPane = loader.load();
+
+        if (object instanceof MutationsConfigurationController) {
+
+            Parent root = loader.load(getClass().getResource("/visual/MutationsConfiguration.fxml"));
+            Stage stage = new Stage();
+            stage.setTitle("Configuración de las mutaciones");
+            stage.setScene(new Scene(anchorPane));
+
+
+            object = loader.getController();
+            ((MutationsConfigurationController) object).setHomeController(this);
+
+            stage.show();
+        } else if (object instanceof CalendarController) {
+            object = loader.getController();
+            ((CalendarController) object).setHomeController(this);
+            setNode(anchorPane);
+        } else if (object instanceof SelectGridController) {
+            object = loader.getController();
+            ((SelectGridController) object).setHomeController(this);
+            setNode(anchorPane);
+        } else if (object instanceof ConfigurationCalendarController) {
+            object = loader.getController();
+            ((ConfigurationCalendarController) object).setHomeController(this);
+            setNode(anchorPane);
+        }
+
+        //setNode(anchorPane);
     }
 }

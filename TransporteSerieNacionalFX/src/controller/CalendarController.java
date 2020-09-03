@@ -45,6 +45,11 @@ public class CalendarController implements Initializable {
     private ArrayList<Date> calendar;
     private  Controller controller;
     private  ArrayList<TableView> tables;
+    private HomeController homeController;
+
+    public void setHomeController(HomeController homeController) {
+        this.homeController = homeController;
+    }
 
     public static boolean saved = false; // boolean that indicates if the file was saved;
 
@@ -82,13 +87,15 @@ public class CalendarController implements Initializable {
 
         if(copied){
             calendar = controller.getCalendarCopy();
+            controller.lessStatistics(calendar);
+            controller.moreStatistics(calendar);
         }else{
 
             if(generated) {
                 controller.generateCalendar();
             }else {
-                controller.lessStatistics();
-                controller.moreStatistics();
+                controller.lessStatistics(controller.getCalendar());
+                controller.moreStatistics(controller.getCalendar());
             }
             calendar = controller.getCalendar();
         }
@@ -96,7 +103,7 @@ public class CalendarController implements Initializable {
 
         tables = new ArrayList<>();
         //calendar = controller.getCalendar();
-        float distance = controller.calculateDistance(controller.getCalendar());
+        float distance = controller.calculateDistance(calendar);
         float lessDistance = controller.getLessDistance();
         String teamLessDistance = controller.getTeamLessDistance();
 
@@ -180,12 +187,14 @@ public class CalendarController implements Initializable {
     void configMutations(ActionEvent event)  {
         Parent root;
         try {
-
+            /*
             root = FXMLLoader.load(getClass().getResource("/visual/MutationsConfiguration.fxml"));
             Stage stage = new Stage();
             stage.setTitle("Configuración de las mutaciones");
             stage.setScene(new Scene(root));
             stage.show();
+            */
+            homeController.createPage(new MutationsConfigurationController(), null, "/visual/MutationsConfiguration.fxml");
             // Hide this current window (if this is what you want)
            // ((Node)(event.getSource())).getScene().getWindow().hide();
         }

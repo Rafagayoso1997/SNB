@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f431f424-8f9f-474a-8daa-5cfa5e47082b" name="Default Changelist" comment="" />
-    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -66,18 +65,6 @@
       <recent name="C:\Users\gayos\Documents\GitHub\SNB\TransporteSerieNacionalFX\lib" />
       <recent name="C:\Users\gayos\Documents\GitHub\SNB\TransporteSerieNacionalFX\lib\poi" />
     </key>
-  </component>
-  <component name="RunDashboard">
-    <option name="ruleStates">
-      <list>
-        <RuleState>
-          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
-        </RuleState>
-        <RuleState>
-          <option name="name" value="StatusDashboardGroupingRule" />
-        </RuleState>
-      </list>
-    </option>
   </component>
   <component name="RunManager" selected="Application.Main">
     <configuration name="Main (1)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
@@ -271,49 +258,65 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State>
-              <option name="COLUMN_ORDER" />
-            </State>
+            <State />
           </value>
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
-    <state width="1495" height="262" key="GridCell.Tab.0.bottom" timestamp="1597848736056">
+    <state x="574" y="113" key="#com.intellij.ide.util.MemberChooser" timestamp="1599096674316">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1495" height="262" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1597848736056" />
-    <state width="1495" height="262" key="GridCell.Tab.0.center" timestamp="1597848736055">
+    <state x="574" y="113" key="#com.intellij.ide.util.MemberChooser/0.0.1536.824@0.0.1536.824" timestamp="1599096674316" />
+    <state width="1495" height="241" key="GridCell.Tab.0.bottom" timestamp="1599097299994">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1495" height="262" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1597848736055" />
-    <state width="1495" height="262" key="GridCell.Tab.0.left" timestamp="1597848736055">
+    <state width="1495" height="241" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1599097299994" />
+    <state width="1495" height="241" key="GridCell.Tab.0.center" timestamp="1599097299994">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1495" height="262" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1597848736055" />
-    <state width="1495" height="262" key="GridCell.Tab.0.right" timestamp="1597848736055">
+    <state width="1495" height="241" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1599097299994" />
+    <state width="1495" height="241" key="GridCell.Tab.0.left" timestamp="1599097299994">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1495" height="262" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1597848736055" />
-    <state width="1495" height="262" key="GridCell.Tab.1.bottom" timestamp="1597848736056">
+    <state width="1495" height="241" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1599097299994" />
+    <state width="1495" height="241" key="GridCell.Tab.0.right" timestamp="1599097299994">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1495" height="262" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1597848736056" />
-    <state width="1495" height="262" key="GridCell.Tab.1.center" timestamp="1597848736056">
+    <state width="1495" height="241" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1599097299994" />
+    <state width="1495" height="262" key="GridCell.Tab.1.bottom" timestamp="1599096770962">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1495" height="262" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" timestamp="1597848736056" />
-    <state width="1495" height="262" key="GridCell.Tab.1.left" timestamp="1597848736056">
+    <state width="1495" height="262" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1599096770962" />
+    <state width="1495" height="262" key="GridCell.Tab.1.center" timestamp="1599096770962">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1495" height="262" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" timestamp="1597848736056" />
-    <state width="1495" height="262" key="GridCell.Tab.1.right" timestamp="1597848736056">
+    <state width="1495" height="262" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" timestamp="1599096770962" />
+    <state width="1495" height="262" key="GridCell.Tab.1.left" timestamp="1599096770961">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1495" height="262" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1597848736056" />
+    <state width="1495" height="262" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" timestamp="1599096770961" />
+    <state width="1495" height="262" key="GridCell.Tab.1.right" timestamp="1599096770962">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1495" height="262" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1599096770962" />
+    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup" timestamp="1599096759742">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup/0.0.1536.824@0.0.1536.824" timestamp="1599096759742" />
   </component>
   <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/controller/CalendarController.java</url>
+          <line>194</line>
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
     <watches-manager>
       <configuration name="Application">
         <watch expression="firstDate.games.get(0)" />

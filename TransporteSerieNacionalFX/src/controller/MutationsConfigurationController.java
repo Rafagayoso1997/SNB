@@ -276,9 +276,9 @@ public class MutationsConfigurationController implements Initializable {
         Controller.getSingletonController().setGeneratedCalendar(false);
         Controller.getSingletonController().setCopied(true);
 
-        /*AnchorPane structureOver = homeController.getPrincipalPane();
-        homeController.createPage(structureOver, "/visual/Calendar.fxml");
-        homeController.getButtonReturnSelectionTeamConfiguration().setVisible(false);*/
+        AnchorPane structureOver = homeController.getPrincipalPane();
+        homeController.createPage(new CalendarController(), structureOver, "/visual/Calendar.fxml");
+        homeController.getButtonReturnSelectionTeamConfiguration().setVisible(false);
 
 
         System.out.println("************************************************");

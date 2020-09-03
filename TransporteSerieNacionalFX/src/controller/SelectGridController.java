@@ -255,7 +255,7 @@ public class SelectGridController implements Initializable {
     @FXML
     void showCalendar(ActionEvent event) throws IOException {
         AnchorPane structureOver = homeController.getPrincipalPane();
-        homeController.createPage(structureOver, "/visual/Calendar.fxml");
+        homeController.createPage(new CalendarController(), structureOver, "/visual/Calendar.fxml");
         homeController.getButtonReturnSelectionTeamConfiguration().setVisible(false);
     }
 

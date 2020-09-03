@@ -1161,8 +1161,8 @@ public class Controller {
             System.out.println();
         }
 
-        lessStatistics();
-        moreStatistics();
+        lessStatistics(this.calendar);
+        moreStatistics(this.calendar);
 
        /* System.out.println("----------");
         for (int l=0; l < itiner.get(0).size();l++){
@@ -1285,8 +1285,8 @@ public class Controller {
         return distancesItinerary;
     }
 
-    public void lessStatistics(){
-        ArrayList<ArrayList<Double>> itiner= itineraryDistances(this.calendar);
+    public void lessStatistics(ArrayList<Date> calendar){
+        ArrayList<ArrayList<Double>> itiner= itineraryDistances(calendar);
         //ArrayList<Double> distances = new ArrayList<>();
         double max = Double.MAX_VALUE;
         double sum = 0;
@@ -1311,8 +1311,8 @@ public class Controller {
         teamLessDistance = teams.get(teamsIndexes.indexOf(pos));
     }
 
-    public void moreStatistics(){
-        ArrayList<ArrayList<Double>> itiner= itineraryDistances(this.calendar);
+    public void moreStatistics(ArrayList<Date> calendar){
+        ArrayList<ArrayList<Double>> itiner= itineraryDistances(calendar);
         //ArrayList<Double> distances = new ArrayList<>();
         double max = Double.MIN_VALUE;
         double sum = 0;

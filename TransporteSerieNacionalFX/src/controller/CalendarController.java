@@ -87,13 +87,15 @@ public class CalendarController implements Initializable {
 
         if(copied){
             calendar = controller.getCalendarCopy();
+            controller.lessStatistics(calendar);
+            controller.moreStatistics(calendar);
         }else{
 
             if(generated) {
                 controller.generateCalendar();
             }else {
-                controller.lessStatistics();
-                controller.moreStatistics();
+                controller.lessStatistics(controller.getCalendar());
+                controller.moreStatistics(controller.getCalendar());
             }
             calendar = controller.getCalendar();
         }
@@ -101,7 +103,7 @@ public class CalendarController implements Initializable {
 
         tables = new ArrayList<>();
         //calendar = controller.getCalendar();
-        float distance = controller.calculateDistance(controller.getCalendar());
+        float distance = controller.calculateDistance(calendar);
         float lessDistance = controller.getLessDistance();
         String teamLessDistance = controller.getTeamLessDistance();
 

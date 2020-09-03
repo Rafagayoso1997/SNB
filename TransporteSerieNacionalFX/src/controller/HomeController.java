@@ -219,15 +219,15 @@ public class HomeController implements Initializable {
             }*/
 
                 notification = getNotification();
-                notification.setTitle("Imoortaci?n de Calendario");
-                notification.setMessage("Calendario importado con ?xito");
+                notification.setTitle("Importación de Calendario");
+                notification.setMessage("Calendario importado con éxito");
                 notification.setNotificationType(NotificationType.SUCCESS);
                 notification.setRectangleFill(Paint.valueOf("#2F2484"));
                 notification.setAnimationType(AnimationType.FADE);
                 notification.showAndDismiss(Duration.seconds(2));
                 Controller.getSingletonController().setGeneratedCalendar(false);
                 Controller.getSingletonController().setCopied(false);
-                this.createPage(home, "/visual/Calendar.fxml");
+                this.createPage(new CalendarController(),home, "/visual/Calendar.fxml");
             }
 
         } catch (IOException e) {

@@ -1,14 +1,13 @@
 package controller;
 
-
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXListView;
 import com.jfoenix.controls.JFXPopup;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.chart.BarChart;
 import javafx.scene.chart.CategoryAxis;
 import javafx.scene.chart.NumberAxis;
@@ -19,17 +18,9 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import logic.Controller;
 
-import java.io.IOException;
-import java.text.DateFormatSymbols;
-import java.util.*;
+import java.util.ArrayList;
 
-/**
- * The controller for the birthday statistics view.
- *
- * @author Marco Jakob
- */
 public class CalendarStatisticsController {
-
 
     @FXML
     private JFXButton backButton;
@@ -37,16 +28,46 @@ public class CalendarStatisticsController {
     private HomeController homeController;
 
     @FXML
+    private BarChart<String, Float> barChartCalendar;
+
+    @FXML
+    private CategoryAxis xAxisCalendar;
+
+    @FXML
+    private NumberAxis yAxisCalendar;
+
+    @FXML
+    private BarChart<String, Float> barChartLessTeam;
+
+    @FXML
+    private CategoryAxis xAxisLessTeam;
+
+    @FXML
+    private NumberAxis yAxisLessTeam;
+
+    @FXML
+    private BarChart<String, Float> barChartMoreTeam;
+
+    @FXML
+    private CategoryAxis xAxisMoreTeam;
+
+    @FXML
+    private NumberAxis yAxisMoreTeam;
+
+
+   /* @FXML
     private BarChart<String, Float> barChart;
 
     @FXML
     private CategoryAxis xAxis;
 
     @FXML
-    private NumberAxis yAxis;
+    private NumberAxis yAxis;*/
 
 
-    private ObservableList<String> data = FXCollections.observableArrayList();
+    private ObservableList<String> calendarData = FXCollections.observableArrayList();
+    private ObservableList<String> lessTeamData = FXCollections.observableArrayList();
+    private ObservableList<String> moreTeamData = FXCollections.observableArrayList();
 
     public void setHomeController(HomeController homeController) {
         this.homeController = homeController;
@@ -56,12 +77,17 @@ public class CalendarStatisticsController {
      * Initializes the controller class. This method is automatically called
      * after the fxml file has been loaded.
      */
+
+
+
     @FXML
     private void initialize() {
 
 
-        barChart.setTitle("EstadÌsticas");
-        yAxis.setLabel("Distancia en KM");
+        //barChart.setTitle("Estad√≠sticas");
+        yAxisCalendar.setLabel("Distancia en KM");
+        yAxisLessTeam.setLabel("Distancia en KM");
+        yAxisMoreTeam.setLabel("Distancia en KM");
 
 
         Controller controller = Controller.getSingletonController();
@@ -73,10 +99,44 @@ public class CalendarStatisticsController {
 
         float moreDistance = controller.getMoreDistance();
         String teamMoreDistance = controller.getTeamMoreDistance();
-        ArrayList<String> xAxisData = new ArrayList<>();
 
-        xAxisData.add("Calendario Original");
-        xAxisData.add(teamLessDistance);
+        ArrayList<String> xAxisCalendarData = new ArrayList<>();
+        ArrayList<String> xAxisLessTeamData = new ArrayList<>();
+        ArrayList<String> xAxisMoreTeamData = new ArrayList<>();
+
+        //ArrayList<String> xAxisData = new ArrayList<>();
+
+        /****CAlendarios*****/
+        xAxisCalendarData.add("Calendario Original");
+        calendarData.addAll(xAxisCalendarData);
+        XYChart.Series seriesOriginalCalendar = new XYChart.Series();
+        XYChart.Series seriesCopyCalendar = new XYChart.Series();
+
+        seriesOriginalCalendar.setName("Calendario Original");
+        seriesOriginalCalendar.getData().add(new XYChart.Data(xAxisCalendarData.get(0), controller.calculateDistance(controller.getCalendar())));
+
+        /****Menor Distancia*****/
+        xAxisLessTeamData.add(teamLessDistance);
+        lessTeamData.addAll(xAxisLessTeamData);
+        XYChart.Series seriesOriginalLessTeam = new XYChart.Series();
+        XYChart.Series seriesCopyLessTeam= new XYChart.Series();
+
+        seriesOriginalLessTeam.setName("Equipo que menor distancia recorre del Calendario Original");
+        seriesOriginalLessTeam.getData().add(new XYChart.Data(xAxisLessTeamData.get(0), lessDistance));
+
+        /****Mayor Distancia***/
+
+
+        xAxisMoreTeamData.add(teamMoreDistance);
+        moreTeamData.addAll(xAxisMoreTeamData);
+        XYChart.Series seriesOriginalMoreTeam = new XYChart.Series();
+        XYChart.Series seriesCopyMoreTeam= new XYChart.Series();
+
+        seriesOriginalMoreTeam.setName("Equipo que mayor distancia recorre del Calendario Original");
+        seriesOriginalMoreTeam.getData().add(new XYChart.Data(xAxisMoreTeamData.get(0), moreDistance));
+
+        //barChartCalendar.getData().addAll(seriesOriginalCalendar);
+       /* xAxisData.add(teamLessDistance);
         xAxisData.add(teamMoreDistance);
 
 
@@ -87,49 +147,63 @@ public class CalendarStatisticsController {
         XYChart.Series series2 = new XYChart.Series();
         series2.setName("Equipos que menor distancia recorren");
         XYChart.Series series3 = new XYChart.Series();
-        series3.setName("Equipos que m·s distancia recorren");
+        series3.setName("Equipos que m√°s distancia recorren");
         series1.getData().add(new XYChart.Data(xAxisData.get(0), controller.calculateDistance(controller.getCalendar())));
         series2.getData().add(new XYChart.Data(data.get(1), lessDistance));
-        series3.getData().add(new XYChart.Data(data.get(2), moreDistance));
+        series3.getData().add(new XYChart.Data(data.get(2), moreDistance));*/
 
         if (controller.isCopied()) {
-            xAxisData.add("Nuevo Calendario");
+            xAxisCalendarData.add("Nuevo Calendario");
             controller.copyMoreStatistics(controller.getCalendarCopy());
             controller.copyLessStatistics(controller.getCalendarCopy());
             float copyLessDistance = controller.getCopyLessDistance();
             float copyMoreDistance = controller.getCopyMoreDistance();
             String copyTeamLessDistance = controller.getCopyTeamLessDistance();
             String copyTeamMoreDistance = controller.getCopyTeamMoreDistance();
-            xAxisData.add(copyTeamLessDistance);
-            xAxisData.add(copyTeamMoreDistance);
-            data.add(xAxisData.get(3));
-            data.add(xAxisData.get(4));
-            data.add(xAxisData.get(5));
-            series1.getData().add(new XYChart.Data(xAxisData.get(3), controller.calculateDistance(controller.getCalendarCopy())));
-            series2.getData().add(new XYChart.Data(data.get(4), copyLessDistance));
-            series3.getData().add(new XYChart.Data(data.get(5), copyMoreDistance));
+            xAxisLessTeamData.add(copyTeamLessDistance);
+            xAxisMoreTeamData.add(copyTeamMoreDistance);
+
+            seriesCopyCalendar.setName("Nuevo Calendario");
+            seriesCopyCalendar.getData().add(new XYChart.Data(xAxisCalendarData.get(1), controller.calculateDistance(controller.getCalendarCopy())));
+            seriesCopyLessTeam.setName("Equipo que menor distancia recorre del Nuevo Calendario");
+            seriesCopyLessTeam.getData().add(new XYChart.Data(xAxisLessTeamData.get(1), copyLessDistance));
+            seriesCopyMoreTeam.setName("Equipo que mayor distancia recorre del Nuevo Calendario");
+            seriesCopyMoreTeam.getData().add(new XYChart.Data(xAxisLessTeamData.get(1), copyMoreDistance));
+
         }
 
 
-        barChart.getData().addAll(series1, series2, series3);
+        barChartCalendar.getData().addAll(seriesOriginalCalendar/*, series2, series3*/);
+        barChartLessTeam.getData().add(seriesOriginalLessTeam);
+        barChartMoreTeam.getData().add(seriesOriginalMoreTeam);
 
-        for (XYChart.Series<String, Float> series : barChart.getData()) {
-            for (XYChart.Data<String, Float> item : series.getData()) {
-                /*item.getNode().setOnMousePressed((MouseEvent event) -> {
-                    System.out.println("you clicked " + item.toString() + series.toString());
-                    Tooltip.install(item.getNode(), new Tooltip(item.getXValue() + ":\n" + item.getYValue()));
-                });*/
-                item.getNode().addEventHandler(MouseEvent.MOUSE_ENTERED, new EventHandler<MouseEvent>() {
-                    @Override
-                    public void handle(MouseEvent event) {
-                        Tooltip.install(item.getNode(), new Tooltip(item.getXValue() + ":\n" + item.getYValue()));
-                    }
-                });
+        if(seriesCopyCalendar.getData().size()>0){
+            barChartCalendar.getData().addAll(seriesCopyCalendar);
 
-            }
+            barChartLessTeam.getData().addAll(seriesCopyLessTeam);
+
+            barChartMoreTeam.getData().addAll(seriesCopyMoreTeam);
+
+            barChartCalendar.setCategoryGap(300);
+            barChartLessTeam.setCategoryGap(300);
+            barChartMoreTeam.setCategoryGap(300);
         }
-        barChart.setBarGap(3);
-        barChart.setCategoryGap(20);
+        /*if(seriesCopyLessTeam.getData().size()>0){
+            barChartLessTeam.getData().addAll(seriesCopyLessTeam);
+            //barChartCalendar.setBarGap(3);
+            barChartLessTeam.setCategoryGap(300);
+        }*/
+
+
+        /*barChartCalendar.setBarGap(3);
+        barChartCalendar.setCategoryGap(20);*/
+
+        setTooltipToChart(barChartCalendar);
+
+        setTooltipToChart(barChartLessTeam);
+
+        setTooltipToChart(barChartMoreTeam);
+
 
         AnchorPane popupPane = new AnchorPane();
         VBox vBox = new VBox();
@@ -166,7 +240,24 @@ public class CalendarStatisticsController {
     }
 
 
+
+    static void setTooltipToChart(BarChart<String, Float> barChart) {
+        for (XYChart.Series<String, Float> series : barChart.getData()) {
+            for (XYChart.Data<String, Float> item : series.getData()) {
+                item.getNode().addEventHandler(MouseEvent.MOUSE_ENTERED, new EventHandler<MouseEvent>() {
+                    @Override
+                    public void handle(MouseEvent event) {
+                        Tooltip.install(item.getNode(), new Tooltip(item.getXValue() + ":\n" + item.getYValue()));
+                    }
+                });
+
+            }
+        }
+    }
+
+
     //@FXML
+    @FXML
     private void returnButton(/*ActionEvent event*/) {
         try {
             AnchorPane structureOver = homeController.getPrincipalPane();
@@ -200,6 +291,5 @@ public class CalendarStatisticsController {
 
         barChart.getData().add(series);
     }*/
-
 
 }

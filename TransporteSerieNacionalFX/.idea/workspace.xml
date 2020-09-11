@@ -2,9 +2,24 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f431f424-8f9f-474a-8daa-5cfa5e47082b" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/cssdialects.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/visual/CalendarStatisticsTest.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/jfxtras_labs.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/visual/CalendarStatistics.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/bin/visual/CalendarStatistics.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/visual/CalendarStatistics.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/visual/CalendarStatistics.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TransporteSerieNacionalFX.iml" beforeDir="false" afterPath="$PROJECT_DIR$/TransporteSerieNacionalFX.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/controller/CalendarController.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/controller/CalendarController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/controller/CalendarStatisticsController$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/controller/CalendarStatisticsController.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/controller/CalendarStatisticsController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/controller/HomeController.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/controller/HomeController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/styles/PrincipalMenu.css" beforeDir="false" afterPath="$PROJECT_DIR$/bin/styles/PrincipalMenu.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/styles/application.css" beforeDir="false" afterPath="$PROJECT_DIR$/bin/styles/application.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/visual/CalendarStatistics.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controller/CalendarController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/CalendarController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controller/CalendarStatisticsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/CalendarStatisticsController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controller/HomeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/HomeController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/styles/PrincipalMenu.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/PrincipalMenu.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/styles/application.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/application.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/visual/CalendarStatistics.fxml" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -42,6 +57,7 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="extract.method.default.visibility" value="private" />
+    <property name="last_directory_selection" value="$PROJECT_DIR$/src/application" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/src/visual" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
@@ -50,7 +66,7 @@
     <property name="project.structure.last.edited" value="Libraries" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
-    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
     <property name="settings.editor.splitter.proportion" value="0.24654832" />
   </component>
   <component name="RecentsManager">
@@ -98,12 +114,12 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Main (1)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="logic.Main" />
+    <configuration name="DynamicallyColoredBarChartWithLabel" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="application.DynamicallyColoredBarChartWithLabel" />
       <module name="TransporteSerieNacionalFX" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="logic.*" />
+          <option name="PATTERN" value="application.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -124,12 +140,12 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="MainPruebas" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="logic.MainPruebas" />
+    <configuration name="PopupDemo" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="application.PopupDemo" />
       <module name="TransporteSerieNacionalFX" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="logic.*" />
+          <option name="PATTERN" value="application.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -137,8 +153,8 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="PopupDemo" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="application.PopupDemo" />
+    <configuration name="TableViewDeleteSample" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="application.TableViewDeleteSample" />
       <module name="TransporteSerieNacionalFX" />
       <extension name="coverage">
         <pattern>
@@ -153,10 +169,10 @@
     <recent_temporary>
       <list>
         <item itemvalue="Application.Main" />
+        <item itemvalue="Application.TableViewDeleteSample" />
+        <item itemvalue="Application.DynamicallyColoredBarChartWithLabel" />
         <item itemvalue="Application.BarChartSample" />
         <item itemvalue="Application.PopupDemo" />
-        <item itemvalue="Application.Main (1)" />
-        <item itemvalue="Application.MainPruebas" />
       </list>
     </recent_temporary>
   </component>
@@ -268,6 +284,14 @@
       <workItem from="1599076957381" duration="59000" />
       <workItem from="1599091061269" duration="689000" />
       <workItem from="1599093310678" duration="358000" />
+      <workItem from="1599235228023" duration="1402000" />
+      <workItem from="1599251288422" duration="127000" />
+      <workItem from="1599251453695" duration="218000" />
+      <workItem from="1599476182538" duration="116000" />
+      <workItem from="1599476336418" duration="849000" />
+      <workItem from="1599840203749" duration="357000" />
+      <workItem from="1599848715904" duration="294000" />
+      <workItem from="1599856343268" duration="8624000" />
     </task>
     <servers />
   </component>
@@ -334,13 +358,8 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/controller/CalendarStatisticsController.java</url>
-          <line>62</line>
+          <line>60</line>
           <option name="timeStamp" value="9" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/controller/CalendarStatisticsController.java</url>
-          <line>145</line>
-          <option name="timeStamp" value="12" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

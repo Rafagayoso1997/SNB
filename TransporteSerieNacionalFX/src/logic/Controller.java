@@ -46,10 +46,20 @@ public class Controller {
     private int posSubChampion;//Position of the subchampion team
     private boolean secondRound;
 
-    private float calendarDistance,lessDistance,moreDistance;
+    private float calendarDistance;
+    private float lessDistance;
+    private float moreDistance;
+    private float copyLessDistance;
+
+
+    private float copyMoreDistance;
     private String teamLessDistance;
 
     private String teamMoreDistance;
+
+    private String copyTeamLessDistance;
+
+    private String copyTeamMoreDistance;
 
     private int[][] matrix;
 
@@ -304,6 +314,39 @@ public class Controller {
 
     public void setCalendar(ArrayList<Date> calendar) {
         this.calendar = calendar;
+    }
+
+
+    public float getCopyLessDistance() {
+        return copyLessDistance;
+    }
+
+    public void setCopyLessDistance(float copyLessDistance) {
+        this.copyLessDistance = copyLessDistance;
+    }
+
+    public float getCopyMoreDistance() {
+        return copyMoreDistance;
+    }
+
+    public void setCopyMoreDistance(float copyMoreDistance) {
+        this.copyMoreDistance = copyMoreDistance;
+    }
+
+    public String getCopyTeamLessDistance() {
+        return copyTeamLessDistance;
+    }
+
+    public void setCopyTeamLessDistance(String copyTeamLessDistance) {
+        this.copyTeamLessDistance = copyTeamLessDistance;
+    }
+
+    public String getCopyTeamMoreDistance() {
+        return copyTeamMoreDistance;
+    }
+
+    public void setCopyTeamMoreDistance(String copyTeamMoreDistance) {
+        this.copyTeamMoreDistance = copyTeamMoreDistance;
     }
 
     /**
@@ -1309,6 +1352,34 @@ public class Controller {
         //System.out.println("SUma minima "+max);
         //pos = distances.indexOf(max);
         teamLessDistance = teams.get(teamsIndexes.indexOf(pos));
+
+    }
+
+    public void copyLessStatistics(ArrayList<Date> calendar){
+        ArrayList<ArrayList<Double>> itiner= itineraryDistances(calendar);
+        //ArrayList<Double> distances = new ArrayList<>();
+        double max = Double.MAX_VALUE;
+        double sum = 0;
+        int pos = -1;
+        for (int l=0; l < itiner.get(0).size();l++){
+
+            for (int p=0; p < itiner.size();p++){
+                sum+=itiner.get(p).get(l);
+            }
+            //distances.add(sum);
+            if(sum <=max){
+                max = sum;
+                pos = l;
+            }
+            sum = 0;
+
+        }
+
+        copyLessDistance = (float)max;
+        //System.out.println("SUma minima "+max);
+        //pos = distances.indexOf(max);
+        copyTeamLessDistance = teams.get(teamsIndexes.indexOf(pos));
+
     }
 
     public void moreStatistics(ArrayList<Date> calendar){
@@ -1336,19 +1407,39 @@ public class Controller {
         //pos = distances.indexOf(max);
         teamMoreDistance = teams.get(teamsIndexes.indexOf(pos));
         //System.out.println("Posicion "+teams.get(teamsIndexes.indexOf(pos)));
+
+
     }
 
-    private boolean useRandom(ArrayList<Integer> list){
-        boolean useRandom = true;
+    public void copyMoreStatistics(ArrayList<Date> calendar){
+        ArrayList<ArrayList<Double>> itiner= itineraryDistances(calendar);
+        //ArrayList<Double> distances = new ArrayList<>();
+        double max = Double.MIN_VALUE;
+        double sum = 0;
+        int pos = -1;
+        for (int l=0; l < itiner.get(0).size();l++){
 
-        for (int i = 0; i < list.size(); i++) {
-            if(list.get(i) !=-1){
-                useRandom = false;
-                break;
+            for (int p=0; p < itiner.size();p++){
+                sum+=itiner.get(p).get(l);
             }
+            //distances.add(sum);
+            if(sum >=max){
+                max = sum;
+                pos = l;
+            }
+            sum = 0;
+
         }
-     return useRandom;
+
+        copyMoreDistance = (float)max;
+        //System.out.println("SUma minima "+max);
+        //pos = distances.indexOf(max);
+        copyTeamMoreDistance = teams.get(teamsIndexes.indexOf(pos));
+        //System.out.println("Posicion "+teams.get(teamsIndexes.indexOf(pos)));
+
+
     }
+
 
     public void selectMutation(ArrayList<Date> calendar, int number){
 

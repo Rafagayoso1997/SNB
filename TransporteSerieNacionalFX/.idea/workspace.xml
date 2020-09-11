@@ -2,12 +2,24 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f431f424-8f9f-474a-8daa-5cfa5e47082b" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/cssdialects.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/visual/CalendarStatisticsTest.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/jfxtras_labs.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/visual/Calendar.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/visual/Calendar.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/visual/ConfigurationCalendar.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/visual/ConfigurationCalendar.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/visual/Home.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/visual/Home.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/visual/SelectGrid.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/visual/SelectGrid.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/visual/Teams.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/visual/Teams.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TransporteSerieNacionalFX.iml" beforeDir="false" afterPath="$PROJECT_DIR$/TransporteSerieNacionalFX.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/controller/CalendarController.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/controller/CalendarController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/controller/CalendarStatisticsController$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/controller/CalendarStatisticsController.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/controller/CalendarStatisticsController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/controller/HomeController.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/controller/HomeController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/styles/PrincipalMenu.css" beforeDir="false" afterPath="$PROJECT_DIR$/bin/styles/PrincipalMenu.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/styles/application.css" beforeDir="false" afterPath="$PROJECT_DIR$/bin/styles/application.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/visual/CalendarStatistics.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controller/CalendarController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/CalendarController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controller/CalendarStatisticsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/CalendarStatisticsController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controller/HomeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/HomeController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/styles/PrincipalMenu.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/PrincipalMenu.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/styles/application.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/application.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/visual/CalendarStatistics.fxml" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -22,8 +34,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="CSS File" />
-        <option value="Class" />
         <option value="FxmlFile" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -45,30 +57,33 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="extract.method.default.visibility" value="private" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/lib" />
+    <property name="last_directory_selection" value="$PROJECT_DIR$/src/application" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/visual" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+    <property name="nodejs_package_manager_path" value="npm" />
     <property name="project.structure.last.edited" value="Libraries" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
-    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
     <property name="settings.editor.splitter.proportion" value="0.24654832" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\gayos\Documents\GitHub\SNB\TransporteSerieNacionalFX\lib" />
-      <recent name="C:\Users\gayos\Documents\GitHub\SNB\TransporteSerieNacionalFX\src\resources" />
-      <recent name="C:\Users\gayos\Documents\GitHub\SNB\TransporteSerieNacionalFX\lib\poi" />
+      <recent name="C:\Users\gayos\Documents\GitHub\SNB\TransporteSerieNacionalFX\src\visual" />
       <recent name="C:\Users\gayos\Documents\GitHub\SNB\TransporteSerieNacionalFX\src\logic" />
+      <recent name="C:\Users\gayos\Documents\GitHub\SNB\TransporteSerieNacionalFX\src\resources" />
       <recent name="C:\Users\gayos\Documents\GitHub\SNB\TransporteSerieNacionalFX\src\controller" />
+      <recent name="C:\Users\gayos\Documents\GitHub\SNB\TransporteSerieNacionalFX\lib" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="controller" />
       <recent name="logic" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\gayos\Documents\GitHub\SNB\TransporteSerieNacionalFX\src\controller" />
       <recent name="C:\Users\gayos\Documents\GitHub\SNB\TransporteSerieNacionalFX\src\visual" />
+      <recent name="C:\Users\gayos\Documents\GitHub\SNB\TransporteSerieNacionalFX\src\controller" />
       <recent name="C:\Users\gayos\Documents\GitHub\SNB\TransporteSerieNacionalFX\src\files" />
       <recent name="C:\Users\gayos\Documents\GitHub\SNB\TransporteSerieNacionalFX\src\styles" />
     </key>
@@ -86,12 +101,25 @@
     </option>
   </component>
   <component name="RunManager" selected="Application.Main">
-    <configuration name="Main (1)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="logic.Main" />
+    <configuration name="BarChartSample" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="application.BarChartSample" />
       <module name="TransporteSerieNacionalFX" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="logic.*" />
+          <option name="PATTERN" value="application.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="DynamicallyColoredBarChartWithLabel" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="application.DynamicallyColoredBarChartWithLabel" />
+      <module name="TransporteSerieNacionalFX" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="application.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -112,12 +140,12 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="MainPruebas" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="logic.MainPruebas" />
+    <configuration name="PopupDemo" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="application.PopupDemo" />
       <module name="TransporteSerieNacionalFX" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="logic.*" />
+          <option name="PATTERN" value="application.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -125,12 +153,12 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Main_Rosete_Copia" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="logic.Main_Rosete_Copia" />
+    <configuration name="TableViewDeleteSample" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="application.TableViewDeleteSample" />
       <module name="TransporteSerieNacionalFX" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="logic.*" />
+          <option name="PATTERN" value="application.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -141,9 +169,10 @@
     <recent_temporary>
       <list>
         <item itemvalue="Application.Main" />
-        <item itemvalue="Application.Main (1)" />
-        <item itemvalue="Application.MainPruebas" />
-        <item itemvalue="Application.Main_Rosete_Copia" />
+        <item itemvalue="Application.TableViewDeleteSample" />
+        <item itemvalue="Application.DynamicallyColoredBarChartWithLabel" />
+        <item itemvalue="Application.BarChartSample" />
+        <item itemvalue="Application.PopupDemo" />
       </list>
     </recent_temporary>
   </component>
@@ -233,7 +262,36 @@
       <workItem from="1598140090719" duration="309000" />
       <workItem from="1598141526602" duration="1429000" />
       <workItem from="1598184798752" duration="2795000" />
-      <workItem from="1598206443821" duration="282000" />
+      <workItem from="1598206443821" duration="1728000" />
+      <workItem from="1598267281721" duration="758000" />
+      <workItem from="1598388063247" duration="5854000" />
+      <workItem from="1598394524364" duration="607000" />
+      <workItem from="1598557625239" duration="7299000" />
+      <workItem from="1598645210886" duration="4730000" />
+      <workItem from="1598695952540" duration="559000" />
+      <workItem from="1598821891519" duration="1689000" />
+      <workItem from="1598826475024" duration="297000" />
+      <workItem from="1598826971625" duration="172000" />
+      <workItem from="1598877402342" duration="1156000" />
+      <workItem from="1598891284265" duration="389000" />
+      <workItem from="1598895724205" duration="622000" />
+      <workItem from="1598897558409" duration="620000" />
+      <workItem from="1598900170393" duration="1798000" />
+      <workItem from="1599002787808" duration="458000" />
+      <workItem from="1599041035217" duration="9263000" />
+      <workItem from="1599069015742" duration="2222000" />
+      <workItem from="1599074132533" duration="6000" />
+      <workItem from="1599076957381" duration="59000" />
+      <workItem from="1599091061269" duration="689000" />
+      <workItem from="1599093310678" duration="358000" />
+      <workItem from="1599235228023" duration="1402000" />
+      <workItem from="1599251288422" duration="127000" />
+      <workItem from="1599251453695" duration="218000" />
+      <workItem from="1599476182538" duration="116000" />
+      <workItem from="1599476336418" duration="849000" />
+      <workItem from="1599840203749" duration="357000" />
+      <workItem from="1599848715904" duration="294000" />
+      <workItem from="1599856343268" duration="8624000" />
     </task>
     <servers />
   </component>
@@ -254,46 +312,54 @@
     </option>
   </component>
   <component name="WindowStateProjectService">
-    <state width="1495" height="262" key="GridCell.Tab.0.bottom" timestamp="1597848736056">
+    <state x="574" y="113" key="#com.intellij.ide.util.MemberChooser" timestamp="1599096674316">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1495" height="262" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1597848736056" />
-    <state width="1495" height="262" key="GridCell.Tab.0.center" timestamp="1597848736055">
+    <state x="574" y="113" key="#com.intellij.ide.util.MemberChooser/0.0.1536.824@0.0.1536.824" timestamp="1599096674316" />
+    <state width="1495" height="241" key="GridCell.Tab.0.bottom" timestamp="1599097299994">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1495" height="262" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1597848736055" />
-    <state width="1495" height="262" key="GridCell.Tab.0.left" timestamp="1597848736055">
+    <state width="1495" height="241" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1599097299994" />
+    <state width="1495" height="241" key="GridCell.Tab.0.center" timestamp="1599097299994">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1495" height="262" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1597848736055" />
-    <state width="1495" height="262" key="GridCell.Tab.0.right" timestamp="1597848736055">
+    <state width="1495" height="241" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1599097299994" />
+    <state width="1495" height="241" key="GridCell.Tab.0.left" timestamp="1599097299994">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1495" height="262" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1597848736055" />
-    <state width="1495" height="262" key="GridCell.Tab.1.bottom" timestamp="1597848736056">
+    <state width="1495" height="241" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1599097299994" />
+    <state width="1495" height="241" key="GridCell.Tab.0.right" timestamp="1599097299994">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1495" height="262" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1597848736056" />
-    <state width="1495" height="262" key="GridCell.Tab.1.center" timestamp="1597848736056">
+    <state width="1495" height="241" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1599097299994" />
+    <state width="1495" height="262" key="GridCell.Tab.1.bottom" timestamp="1599096770962">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1495" height="262" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" timestamp="1597848736056" />
-    <state width="1495" height="262" key="GridCell.Tab.1.left" timestamp="1597848736056">
+    <state width="1495" height="262" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1599096770962" />
+    <state width="1495" height="262" key="GridCell.Tab.1.center" timestamp="1599096770962">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1495" height="262" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" timestamp="1597848736056" />
-    <state width="1495" height="262" key="GridCell.Tab.1.right" timestamp="1597848736056">
+    <state width="1495" height="262" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" timestamp="1599096770962" />
+    <state width="1495" height="262" key="GridCell.Tab.1.left" timestamp="1599096770961">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1495" height="262" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1597848736056" />
+    <state width="1495" height="262" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" timestamp="1599096770961" />
+    <state width="1495" height="262" key="GridCell.Tab.1.right" timestamp="1599096770962">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1495" height="262" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1599096770962" />
+    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup" timestamp="1599096759742">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup/0.0.1536.824@0.0.1536.824" timestamp="1599096759742" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/logic/Controller.java</url>
-          <line>275</line>
-          <option name="timeStamp" value="2" />
+          <url>file://$PROJECT_DIR$/src/controller/CalendarStatisticsController.java</url>
+          <line>60</line>
+          <option name="timeStamp" value="9" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

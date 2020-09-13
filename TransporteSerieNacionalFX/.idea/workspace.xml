@@ -1,26 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="f431f424-8f9f-474a-8daa-5cfa5e47082b" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/cssdialects.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/visual/CalendarStatisticsTest.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/jfxtras_labs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TransporteSerieNacionalFX.iml" beforeDir="false" afterPath="$PROJECT_DIR$/TransporteSerieNacionalFX.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/controller/CalendarController.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/controller/CalendarController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/controller/CalendarStatisticsController$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/controller/CalendarStatisticsController.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/controller/CalendarStatisticsController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/controller/HomeController.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/controller/HomeController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/styles/PrincipalMenu.css" beforeDir="false" afterPath="$PROJECT_DIR$/bin/styles/PrincipalMenu.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/styles/application.css" beforeDir="false" afterPath="$PROJECT_DIR$/bin/styles/application.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/visual/CalendarStatistics.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controller/CalendarController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/CalendarController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controller/CalendarStatisticsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/CalendarStatisticsController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controller/HomeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/HomeController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/styles/PrincipalMenu.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/PrincipalMenu.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/styles/application.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/application.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/visual/CalendarStatistics.fxml" beforeDir="false" />
-    </list>
+    <list default="true" id="f431f424-8f9f-474a-8daa-5cfa5e47082b" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -291,7 +272,7 @@
       <workItem from="1599476336418" duration="849000" />
       <workItem from="1599840203749" duration="357000" />
       <workItem from="1599848715904" duration="294000" />
-      <workItem from="1599856343268" duration="8624000" />
+      <workItem from="1599856343268" duration="8840000" />
     </task>
     <servers />
   </component>
@@ -354,15 +335,6 @@
     <state x="431" y="145" width="672" height="678" key="search.everywhere.popup/0.0.1536.824@0.0.1536.824" timestamp="1599096759742" />
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/controller/CalendarStatisticsController.java</url>
-          <line>60</line>
-          <option name="timeStamp" value="9" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
     <watches-manager>
       <configuration name="Application">
         <watch expression="firstDate.games.get(0)" />

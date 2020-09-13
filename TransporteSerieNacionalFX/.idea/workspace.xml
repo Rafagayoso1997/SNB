@@ -2,26 +2,32 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f431f424-8f9f-474a-8daa-5cfa5e47082b" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/cssdialects.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/visual/CalendarStatisticsTest.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/jfxtras_labs.xml" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/resources/bar_chart.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/resources/baseball.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/resources/calendario.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/resources/exportar.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/resources/importar.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/resources/stadium.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/resources/switch.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TransporteSerieNacionalFX.iml" beforeDir="false" afterPath="$PROJECT_DIR$/TransporteSerieNacionalFX.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bin/controller/CalendarController.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/controller/CalendarController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/controller/CalendarStatisticsController$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/controller/CalendarStatisticsController$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/controller/CalendarStatisticsController$1.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bin/controller/CalendarStatisticsController.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/controller/CalendarStatisticsController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/controller/HomeController.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/controller/HomeController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/styles/PrincipalMenu.css" beforeDir="false" afterPath="$PROJECT_DIR$/bin/styles/PrincipalMenu.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/styles/application.css" beforeDir="false" afterPath="$PROJECT_DIR$/bin/styles/application.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/visual/CalendarStatistics.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/resources/baseballInformation.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/resources/calendar.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/resources/field.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/resources/icons8_microsoft_excel_2019_48px.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/resources/icons8_settings_60px.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/visual/Home.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/bin/visual/Home.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/controller/CalendarController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/CalendarController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/controller/CalendarStatisticsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/CalendarStatisticsController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controller/HomeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/HomeController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/styles/PrincipalMenu.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/PrincipalMenu.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/styles/application.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/application.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/visual/CalendarStatistics.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/resources/baseballInformation.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/resources/calendar.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/resources/field.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/resources/icons8_microsoft_excel_2019_48px.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/resources/icons8_settings_60px.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/visual/Home.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/visual/Home.fxml" afterDir="false" />
     </list>
-    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -48,6 +54,10 @@
   </component>
   <component name="ProjectId" id="1Yl8Xb3G48Wtgn2GXxmLtbpKWOS" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
   <component name="PropertiesComponent">
     <property name="Downloaded.Files.Path.Enabled" value="false" />
     <property name="Repository.Attach.Annotations" value="false" />
@@ -58,7 +68,7 @@
     <property name="aspect.path.notification.shown" value="true" />
     <property name="extract.method.default.visibility" value="private" />
     <property name="last_directory_selection" value="$PROJECT_DIR$/src/application" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/visual" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/resources" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
@@ -66,39 +76,27 @@
     <property name="project.structure.last.edited" value="Libraries" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
-    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
+    <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors.Color Scheme Font" />
     <property name="settings.editor.splitter.proportion" value="0.24654832" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\gayos\Documents\GitHub\SNB\TransporteSerieNacionalFX\src\visual" />
-      <recent name="C:\Users\gayos\Documents\GitHub\SNB\TransporteSerieNacionalFX\src\logic" />
-      <recent name="C:\Users\gayos\Documents\GitHub\SNB\TransporteSerieNacionalFX\src\resources" />
-      <recent name="C:\Users\gayos\Documents\GitHub\SNB\TransporteSerieNacionalFX\src\controller" />
-      <recent name="C:\Users\gayos\Documents\GitHub\SNB\TransporteSerieNacionalFX\lib" />
-    </key>
-    <key name="CopyClassDialog.RECENTS_KEY">
-      <recent name="controller" />
-      <recent name="logic" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\gayos\Documents\GitHub\SNB\TransporteSerieNacionalFX\src\visual" />
       <recent name="C:\Users\gayos\Documents\GitHub\SNB\TransporteSerieNacionalFX\src\controller" />
       <recent name="C:\Users\gayos\Documents\GitHub\SNB\TransporteSerieNacionalFX\src\files" />
       <recent name="C:\Users\gayos\Documents\GitHub\SNB\TransporteSerieNacionalFX\src\styles" />
     </key>
-  </component>
-  <component name="RunDashboard">
-    <option name="ruleStates">
-      <list>
-        <RuleState>
-          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
-        </RuleState>
-        <RuleState>
-          <option name="name" value="StatusDashboardGroupingRule" />
-        </RuleState>
-      </list>
-    </option>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="controller" />
+      <recent name="logic" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\gayos\Documents\GitHub\SNB\TransporteSerieNacionalFX\src\resources" />
+      <recent name="C:\Users\gayos\Documents\GitHub\SNB\TransporteSerieNacionalFX\src\visual" />
+      <recent name="C:\Users\gayos\Documents\GitHub\SNB\TransporteSerieNacionalFX\src\logic" />
+      <recent name="C:\Users\gayos\Documents\GitHub\SNB\TransporteSerieNacionalFX\src\controller" />
+      <recent name="C:\Users\gayos\Documents\GitHub\SNB\TransporteSerieNacionalFX\lib" />
+    </key>
   </component>
   <component name="RunManager" selected="Application.Main">
     <configuration name="BarChartSample" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
@@ -166,6 +164,17 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
         <item itemvalue="Application.Main" />
@@ -176,6 +185,7 @@
       </list>
     </recent_temporary>
   </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -291,47 +301,51 @@
       <workItem from="1599476336418" duration="849000" />
       <workItem from="1599840203749" duration="357000" />
       <workItem from="1599848715904" duration="294000" />
-      <workItem from="1599856343268" duration="8624000" />
+      <workItem from="1599856343268" duration="8840000" />
+      <workItem from="1600021049007" duration="7177000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="1" />
+    <option name="version" value="3" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
       <map>
         <entry key="MAIN">
           <value>
-            <State>
-              <option name="COLUMN_ORDER" />
-            </State>
+            <State />
           </value>
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
     <state x="574" y="113" key="#com.intellij.ide.util.MemberChooser" timestamp="1599096674316">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="574" y="113" key="#com.intellij.ide.util.MemberChooser/0.0.1536.824@0.0.1536.824" timestamp="1599096674316" />
-    <state width="1495" height="241" key="GridCell.Tab.0.bottom" timestamp="1599097299994">
+    <state x="499" y="159" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1600030351099">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1495" height="241" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1599097299994" />
-    <state width="1495" height="241" key="GridCell.Tab.0.center" timestamp="1599097299994">
+    <state x="499" y="159" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1536.824@0.0.1536.824" timestamp="1600030351099" />
+    <state width="906" height="224" key="GridCell.Tab.0.bottom" timestamp="1600030702151">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1495" height="241" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1599097299994" />
-    <state width="1495" height="241" key="GridCell.Tab.0.left" timestamp="1599097299994">
+    <state width="906" height="224" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1600030702151" />
+    <state width="906" height="224" key="GridCell.Tab.0.center" timestamp="1600030702150">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1495" height="241" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1599097299994" />
-    <state width="1495" height="241" key="GridCell.Tab.0.right" timestamp="1599097299994">
+    <state width="906" height="224" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1600030702150" />
+    <state width="906" height="224" key="GridCell.Tab.0.left" timestamp="1600030702150">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1495" height="241" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1599097299994" />
+    <state width="906" height="224" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1600030702150" />
+    <state width="906" height="224" key="GridCell.Tab.0.right" timestamp="1600030702151">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="906" height="224" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1600030702151" />
     <state width="1495" height="262" key="GridCell.Tab.1.bottom" timestamp="1599096770962">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -348,21 +362,16 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state width="1495" height="262" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1599096770962" />
+    <state x="277" y="57" key="SettingsEditor" timestamp="1600028754225">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="277" y="57" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1600028754225" />
     <state x="431" y="145" width="672" height="678" key="search.everywhere.popup" timestamp="1599096759742">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="431" y="145" width="672" height="678" key="search.everywhere.popup/0.0.1536.824@0.0.1536.824" timestamp="1599096759742" />
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/controller/CalendarStatisticsController.java</url>
-          <line>60</line>
-          <option name="timeStamp" value="9" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
     <watches-manager>
       <configuration name="Application">
         <watch expression="firstDate.games.get(0)" />

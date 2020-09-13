@@ -4,12 +4,15 @@ import com.jfoenix.controls.*;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Cursor;
 import javafx.scene.Parent;
 import javafx.scene.control.Label;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Paint;
@@ -27,9 +30,7 @@ import tray.animations.AnimationType;
 import tray.notification.NotificationType;
 import tray.notification.TrayNotification;
 
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
+import java.io.*;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -95,26 +96,13 @@ public class CalendarController implements Initializable {
                if(controller.getCalendar().size() ==0){
                    controller.generateCalendar();
                }
-               //controller.setCalendar(null);
 
             }
             calendar = controller.getCalendar();
-        //}
 
 
         tables = new ArrayList<>();
-        //calendar = controller.getCalendar();
-        /*float distance = controller.calculateDistance(calendar);
-        float lessDistance = controller.getLessDistance();
-        String teamLessDistance = controller.getTeamLessDistance();
 
-        float moreDistance = controller.getMoreDistance();
-        String teamMoreDistance = controller.getTeamMoreDistance();
-        lblCalendarKM.setText("" + distance);
-        lblLessKM.setText("" + lessDistance);
-        lblLessKMTeam.setText("" + teamLessDistance);
-        lblMoreKM.setText("" + moreDistance);
-        lblMoreKMTeam.setText("" + teamMoreDistance);*/
         for (int i = 0; i < calendar.size(); i++) {
             TableView<Duel> table = new TableView<Duel>();
             TableColumn<Duel, String> col = new TableColumn<>("Local");
@@ -140,13 +128,19 @@ public class CalendarController implements Initializable {
 
         AnchorPane popupPane = new AnchorPane();
         VBox vBox = new VBox();
-        JFXButton btnStat = new JFXButton("Estadísticas");
-        JFXButton btnExcel = new JFXButton("Exportar");
-        JFXButton btnMutations = new JFXButton("Configurar Mutaciones");
+        JFXButton btnStat = new JFXButton("Mostrar estadísticas");
+        btnStat.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/resources/bar_chart.png"))));
+        btnStat.setCursor(Cursor.HAND);
+        JFXButton btnExcel = new JFXButton("Exportar calendario ");
+        btnExcel.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/resources/exportar.png"))));
+        btnExcel.setCursor(Cursor.HAND);
+        JFXButton btnMutations = new JFXButton("Configurar cambios ");
+        btnMutations.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/resources/switch.png"))));
+        btnMutations.setCursor(Cursor.HAND);
 
         vBox.getChildren().add(btnStat);
-        vBox.getChildren().add(btnExcel);
         vBox.getChildren().add(btnMutations);
+        vBox.getChildren().add(btnExcel);
         popupPane.getChildren().add(vBox);
         JFXPopup popup = new JFXPopup(popupPane);
 

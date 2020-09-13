@@ -7,6 +7,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.scene.Cursor;
 import javafx.scene.Node;
 import javafx.scene.chart.BarChart;
 import javafx.scene.chart.CategoryAxis;
@@ -209,7 +210,9 @@ public class CalendarStatisticsController {
         VBox vBox = new VBox();
         JFXListView<JFXButton> list = new JFXListView<JFXButton>();
         JFXButton btnCurrentCalendar = new JFXButton("Mantener el calendario original");
+        btnCurrentCalendar.setCursor(Cursor.HAND);
         JFXButton btnNewCalendar = new JFXButton("Mantener el calendario nuevo");
+        btnCurrentCalendar.setCursor(Cursor.HAND);
 
 
         vBox.getChildren().add(btnCurrentCalendar);
@@ -230,6 +233,7 @@ public class CalendarStatisticsController {
                 returnButton();
                 popup.hide();
             });
+
 
         }
         else{

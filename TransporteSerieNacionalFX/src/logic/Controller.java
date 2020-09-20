@@ -1443,7 +1443,7 @@ public class Controller {
 
     public void selectMutation(ArrayList<Date> calendar, int number){
 
-        switch (mutationsIndexes.get(number)) {
+        switch (mutationsIndexes.get(mutationsIndexes.indexOf(number))) {
 
             case 0:
                 changeDatePosition(calendar, number);

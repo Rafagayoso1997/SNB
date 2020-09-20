@@ -145,7 +145,7 @@ public class CalendarController implements Initializable {
         JFXPopup popup = new JFXPopup(popupPane);
 
         popupBtn.setOnAction(event -> {
-            popup.show(popupBtn, JFXPopup.PopupVPosition.TOP, JFXPopup.PopupHPosition.RIGHT);
+            popup.show(popupBtn, JFXPopup.PopupVPosition.BOTTOM, JFXPopup.PopupHPosition.RIGHT);
         });
         btnStat.setOnAction(event -> {
             showStatistics();

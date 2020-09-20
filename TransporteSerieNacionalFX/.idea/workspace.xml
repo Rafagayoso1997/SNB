@@ -3,7 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="f431f424-8f9f-474a-8daa-5cfa5e47082b" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/visual/ConfigurationCalendar.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/visual/ConfigurationCalendar.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controller/CalendarController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/CalendarController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -137,19 +137,6 @@
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
-      <option name="arquillianRunConfiguration">
-        <value>
-          <option name="containerStateName" value="" />
-        </value>
-      </option>
-      <option name="TEST_OBJECT" value="CLASS" />
-      <properties />
-      <listeners />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -290,6 +277,8 @@
       <workItem from="1600558567848" duration="619000" />
       <workItem from="1600614530045" duration="683000" />
       <workItem from="1600616789724" duration="6919000" />
+      <workItem from="1600640449148" duration="1190000" />
+      <workItem from="1600645119615" duration="221000" />
     </task>
     <servers />
   </component>
@@ -321,22 +310,22 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state width="320" height="466" key="DebuggerActiveHint/0.0.1536.824@0.0.1536.824" timestamp="1600623422993" />
-    <state width="746" height="315" key="GridCell.Tab.0.bottom" timestamp="1600633874182">
+    <state width="897" height="224" key="GridCell.Tab.0.bottom" timestamp="1600645341385">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="746" height="315" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1600633874182" />
-    <state width="746" height="315" key="GridCell.Tab.0.center" timestamp="1600633874182">
+    <state width="897" height="224" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1600645341385" />
+    <state width="897" height="224" key="GridCell.Tab.0.center" timestamp="1600645341385">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="746" height="315" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1600633874182" />
-    <state width="746" height="315" key="GridCell.Tab.0.left" timestamp="1600633874182">
+    <state width="897" height="224" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1600645341385" />
+    <state width="897" height="224" key="GridCell.Tab.0.left" timestamp="1600645341384">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="746" height="315" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1600633874182" />
-    <state width="746" height="315" key="GridCell.Tab.0.right" timestamp="1600633874182">
+    <state width="897" height="224" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1600645341384" />
+    <state width="897" height="224" key="GridCell.Tab.0.right" timestamp="1600645341385">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="746" height="315" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1600633874182" />
+    <state width="897" height="224" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1600645341385" />
     <state width="746" height="315" key="GridCell.Tab.1.bottom" timestamp="1600633874183">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -369,14 +358,6 @@
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
-        <line-breakpoint enabled="true" type="java-method">
-          <url>file://$PROJECT_DIR$/src/controller/MutationsConfigurationController.java</url>
-          <line>241</line>
-          <properties class="controller.MutationsConfigurationController" method="applyMutations">
-            <option name="EMULATED" value="true" />
-          </properties>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/controller/ConfigurationCalendarController.java</url>
           <line>222</line>

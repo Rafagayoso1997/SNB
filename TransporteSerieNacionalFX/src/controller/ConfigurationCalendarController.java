@@ -17,6 +17,7 @@ import javafx.scene.control.Spinner;
 import javafx.scene.control.SpinnerValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.input.ScrollEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Paint;
 import javafx.util.Duration;
 import logic.Controller;
@@ -24,6 +25,7 @@ import tray.animations.AnimationType;
 import tray.notification.NotificationType;
 import tray.notification.TrayNotification;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -122,7 +124,7 @@ public class ConfigurationCalendarController implements Initializable {
 
 
     @FXML
-    void selectTeams(ActionEvent event) {
+    void selectTeams(ActionEvent event) throws IOException {
         ArrayList<Integer> indexes = new ArrayList<>(teamsSelectionListView.getSelectionModel().getSelectedIndices());
         ArrayList<Integer> indexesMutations = new ArrayList<>(mutationListView.getSelectionModel().getSelectedIndices());
         System.out.println(indexesMutations);
@@ -218,6 +220,7 @@ public class ConfigurationCalendarController implements Initializable {
             Controller.getSingletonController().setPosSubChampion(posSub);
             Controller.getSingletonController().setSecondRound(secondRound);
             Controller.getSingletonController().setIterations(iterationsSpinner.getValueFactory().getValue());
+            showTeamsMatrix();
         }
         ok = true;
         /*if (ok) {
@@ -344,5 +347,11 @@ public class ConfigurationCalendarController implements Initializable {
 
     public void setHomeController(HomeController homeController) {
         this.homeController = homeController;
+    }
+
+    void showTeamsMatrix() throws IOException {
+        AnchorPane structureOver = homeController.getPrincipalPane();
+        homeController.createPage(new SelectGridController(), structureOver, "/visual/SelectGrid.fxml");
+        homeController.getButtonReturnSelectionTeamConfiguration().setVisible(true);
     }
 }

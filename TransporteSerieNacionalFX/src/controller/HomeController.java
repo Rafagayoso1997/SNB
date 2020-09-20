@@ -61,9 +61,6 @@ public class HomeController implements Initializable {
     private JFXButton buttonReturnSelectionTeamConfiguration;
 
 
-    @FXML
-    private JFXButton buttonReturnCalendarConfiguration;
-
 
     @FXML
     private Label information;
@@ -81,81 +78,19 @@ public class HomeController implements Initializable {
 
     @FXML
     void showCalendar(ActionEvent event) throws IOException {
-       /*if (!conf) {
-            TrayNotification notification = new TrayNotification("Generaci?n de Calendario",
-                    "Debe completar todas las configuraciones", NotificationType.ERROR);
-            notification.setRectangleFill(Paint.valueOf("#E81123"));
-            notification.setAnimationType(AnimationType.FADE);
-            notification.showAndDismiss(Duration.seconds(2));
-        } else {
-            this.createPage(home, "/visual/Calendar.fxml");
-            notification = getNotification();
-            notification.setTitle("Generaci?n de Calendario");
-            notification.setMessage("Calendario del torneo");
-            notification.setNotificationType(NotificationType.SUCCESS);
-            notification.setRectangleFill(Paint.valueOf("#2F2484"));
-            notification.setAnimationType(AnimationType.FADE);
-            notification.showAndDismiss(Duration.seconds(2));
-            conf = false;
 
-            buttonConfigurationSelecctionTeams.setVisible(true);
-        }*/
         this.createPage(new ConfigurationCalendarController(), home, "/visual/ConfigurationCalendar.fxml");
         Controller.getSingletonController().setGeneratedCalendar(true);
         Controller.getSingletonController().setCopied(false);
-        buttonCalendarConfiguration.setVisible(true);
-    }
 
-    @FXML
-    void showConfigurationSelectionTeams(ActionEvent event) throws IOException {
-       /* this.createPage(home, "/visual/ConfigurationCalendar.fxml");
-        buttonConfigurationSelecctionTeams.setVisible(false);
-        buttonCalendarConfiguration.setVisible(true);
-        */
-
-
-    }
-
-    @FXML
-    void showCalendarConfiguration(ActionEvent event) throws IOException {
-        if (!escogidos) {
-            notification = getNotification();
-            notification.setTitle("Escoger equipos");
-            notification.setMessage("Debe escoger los equipos participantes");
-            notification.setNotificationType(NotificationType.ERROR);
-            notification.setRectangleFill(Paint.valueOf("#2F2484"));
-            notification.setAnimationType(AnimationType.FADE);
-            notification.showAndDismiss(Duration.seconds(2));
-        } else {
-
-            //this.createPage(home, "/visual/SelectGrid.fxml");
-
-            //DAVID Change
-            //FXMLLoader loader = new FXMLLoader();
-            //loader.setLocation(HomeController.class.getResource("/visual/SelectGrid.fxml"));
-            //home = loader.load();
-            //SelectGridController selectGridController = loader.getController();
-            //selectGridController.setHomeController(this);
-            //this.setNode(home);
-            //UNTIL HERE
-            this.createPage(new SelectGridController(), home, "/visual/SelectGrid.fxml");
-            buttonCalendarConfiguration.setVisible(false);
-            buttonReturnSelectionTeamConfiguration.setVisible(true);
-        }
     }
 
 
     @FXML
     void showReturnSelectionTeamConfiguration(ActionEvent event) throws IOException {
         this.createPage(new ConfigurationCalendarController(), home, "/visual/ConfigurationCalendar.fxml");
-        buttonCalendarConfiguration.setVisible(true);
         buttonReturnSelectionTeamConfiguration.setVisible(false);
 
-    }
-
-    @FXML
-    void showPrincipalMenu(ActionEvent event) throws IOException {
-        System.out.println("MENU");
     }
 
     @FXML
@@ -214,7 +149,6 @@ public class HomeController implements Initializable {
                 notification.setRectangleFill(Paint.valueOf("#2F2484"));
                 notification.setAnimationType(AnimationType.FADE);
                 notification.showAndDismiss(Duration.seconds(2));
-                buttonCalendarConfiguration.setVisible(false);
                 buttonReturnSelectionTeamConfiguration.setVisible(false);
                 Controller.getSingletonController().setGeneratedCalendar(false);
                 Controller.getSingletonController().setCopied(false);
@@ -236,10 +170,7 @@ public class HomeController implements Initializable {
 
         int year = Calendar.getInstance().get(Calendar.YEAR);
         information.setText(" " + (year - 1960) + " Serie Nacional de Be\u00edsbol");
-        buttonCalendarConfiguration.setVisible(false);
-        //buttonConfMatrix.setVisible(false);
         buttonReturnSelectionTeamConfiguration.setVisible(false);
-
     }
 
 
@@ -306,7 +237,5 @@ public class HomeController implements Initializable {
             ((CalendarStatisticsController) object).setHomeController(this);
             setNode(anchorPane);
         }
-
-        //setNode(anchorPane);
     }
 }

@@ -5,7 +5,6 @@
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Tooltip?>
-<?import javafx.scene.effect.Shadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -24,27 +23,14 @@
     </AnchorPane>
     <AnchorPane layoutX="-2.0" prefHeight="136.0" prefWidth="1360.0" AnchorPane.leftAnchor="-2.0" AnchorPane.rightAnchor="2.0">
         <children>
-            <JFXButton fx:id="buttonPrincipalMenu" buttonType="RAISED" contentDisplay="CENTER" graphicTextGap="6.0" onAction="#showPrincipalMenu" prefHeight="136.0" prefWidth="150.0" ripplerFill="#2f2484" text=" " AnchorPane.rightAnchor="1210.0">
-                <font>
-                    <Font name="Segoe UI Symbol" size="13.0" />
-                </font>
-                <graphic>
-                    <ImageView fitHeight="106.0" fitWidth="117.0" pickOnBounds="true" preserveRatio="true">
-                        <image>
-                            <Image url="@../resources/snb1.png" />
-                        </image>
-                        <cursor>
-                            <Cursor fx:constant="DEFAULT" />
-                        </cursor>
-                    </ImageView>
-                </graphic>
-                <cursor>
-                    <Cursor fx:constant="HAND" />
-                </cursor>
-                <effect>
-                    <Shadow />
-                </effect>
-            </JFXButton>
+              <ImageView fitHeight="136.0" fitWidth="168.0" layoutX="23.0" pickOnBounds="true" preserveRatio="true">
+                  <image>
+                      <Image url="@../resources/snb1.png" />
+                  </image>
+                  <cursor>
+                      <Cursor fx:constant="DEFAULT" />
+                  </cursor>
+              </ImageView>
             <JFXButton fx:id="buttonCalendarConfiguration" buttonType="RAISED" contentDisplay="CENTER" layoutX="1187.0" layoutY="23.0" onAction="#showCalendarConfiguration" prefHeight="92.0" prefWidth="85.0" ripplerFill="#2f2484" text=" " AnchorPane.leftAnchor="1187.0" AnchorPane.rightAnchor="46.0">
                 <cursor>
                     <Cursor fx:constant="HAND" />

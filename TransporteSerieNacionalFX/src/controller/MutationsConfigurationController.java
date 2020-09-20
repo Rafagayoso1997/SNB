@@ -255,10 +255,13 @@ public class MutationsConfigurationController implements Initializable {
             configurationsList.get(realPos).set(2, comboDuel1.getSelectionModel().getSelectedIndex());
             configurationsList.get(realPos).set(3, comboDuel2.getSelectionModel().getSelectedIndex());
         }
+        else{
+            lastPosSelected = 0;
+        }
 
 
         Controller.getSingletonController().setConfigurationsList(configurationsList);
-        if(Controller.getSingletonController().getMutationsIndexes().isEmpty())
+        //if(Controller.getSingletonController().getMutationsIndexes().isEmpty())
             Controller.getSingletonController().setMutationsIndexes(positionsMutationsSelected);
 
         System.out.println("mutaciones seleccionadas: " + positionsMutationsSelected);
@@ -283,9 +286,9 @@ public class MutationsConfigurationController implements Initializable {
 
         System.out.println("************************************************");
         System.out.println("Calendario:");
-        for (int g = 0; g < newCalendar.size(); g++) {
-            for (int h = 0; h < newCalendar.get(g).getGames().size(); h++) {
-                System.out.print(newCalendar.get(g).getGames().get(h));
+        for (Date date : newCalendar) {
+            for (int h = 0; h < date.getGames().size(); h++) {
+                System.out.print(date.getGames().get(h));
             }
             System.out.println();
         }

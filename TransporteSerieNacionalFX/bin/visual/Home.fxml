@@ -31,14 +31,6 @@
                       <Cursor fx:constant="DEFAULT" />
                   </cursor>
               </ImageView>
-            <JFXButton fx:id="buttonCalendarConfiguration" buttonType="RAISED" contentDisplay="CENTER" layoutX="1187.0" layoutY="23.0" onAction="#showCalendarConfiguration" prefHeight="92.0" prefWidth="85.0" ripplerFill="#2f2484" text=" " AnchorPane.leftAnchor="1187.0" AnchorPane.rightAnchor="46.0">
-                <cursor>
-                    <Cursor fx:constant="HAND" />
-                </cursor>
-                <graphic>
-                    <FontAwesomeIconView fill="#2f2484" glyphName="CHEVRON_RIGHT" size="60" />
-                </graphic>
-            </JFXButton>
             <JFXButton fx:id="buttonReturnSelectionTeamConfiguration" buttonType="RAISED" contentDisplay="CENTER" layoutX="1187.0" layoutY="23.0" onAction="#showReturnSelectionTeamConfiguration" prefHeight="92.0" prefWidth="127.0" ripplerFill="#2f2484" text=" " AnchorPane.leftAnchor="1187.0" AnchorPane.rightAnchor="46.0">
                 <cursor>
                     <Cursor fx:constant="HAND" />

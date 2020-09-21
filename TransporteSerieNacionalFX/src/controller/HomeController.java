@@ -22,6 +22,7 @@ import tray.animations.AnimationType;
 import tray.notification.NotificationType;
 import tray.notification.TrayNotification;
 
+import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
@@ -161,8 +162,19 @@ public class HomeController implements Initializable {
     }
 
     @FXML
-    void showInformation(ActionEvent event) {
+    void showInformation(ActionEvent event) throws IOException{
+        File file = new File("src/help/help.docx");
 
+        //first check if Desktop is supported by Platform or not
+        if(!Desktop.isDesktopSupported()){
+            System.out.println("Desktop is not supported");
+            return;
+        }
+
+        Desktop desktop = Desktop.getDesktop();
+
+        //let's try to open PDF file
+        if(file.exists()) desktop.open(file);
     }
 
     @Override

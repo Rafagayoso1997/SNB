@@ -82,6 +82,7 @@ public class HomeController implements Initializable {
 
         this.createPage(new ConfigurationCalendarController(), home, "/visual/ConfigurationCalendar.fxml");
         Controller.getSingletonController().setGeneratedCalendar(true);
+        Controller.getSingletonController().setCalendar(new ArrayList<Date>());
         Controller.getSingletonController().setCopied(false);
 
     }
@@ -220,7 +221,7 @@ public class HomeController implements Initializable {
 
         if (object instanceof MutationsConfigurationController) {
 
-            Parent root = loader.load(getClass().getResource("/visual/MutationsConfiguration.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("/visual/MutationsConfiguration.fxml"));
             Stage stage = new Stage();
             stage.setTitle("Configuración de las mutaciones");
             stage.setScene(new Scene(anchorPane));

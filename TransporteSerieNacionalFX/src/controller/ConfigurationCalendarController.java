@@ -128,6 +128,7 @@ public class ConfigurationCalendarController implements Initializable {
         ArrayList<Integer> indexes = new ArrayList<>(teamsSelectionListView.getSelectionModel().getSelectedIndices());
         ArrayList<Integer> indexesMutations = new ArrayList<>(mutationListView.getSelectionModel().getSelectedIndices());
         System.out.println(indexesMutations);
+        //teamsNames = new ArrayList<>();
         teamsNames = new ArrayList<>(teamsSelectionListView.getSelectionModel().getSelectedItems());
         System.out.println(HomeController.escogidos);
         /*for (int i = 0; i < teamsSelectionListView.getSelectionModel().getSelectedIndices().size(); i++) {
@@ -221,6 +222,7 @@ public class ConfigurationCalendarController implements Initializable {
             Controller.getSingletonController().setSecondRound(secondRound);
             Controller.getSingletonController().setIterations(iterationsSpinner.getValueFactory().getValue());
             showTeamsMatrix();
+
         }
         ok = true;
         /*if (ok) {
@@ -265,7 +267,7 @@ public class ConfigurationCalendarController implements Initializable {
         comboSub.setVisible(false);
         btnSwap.setVisible(false);
 
-        this.teams = 0;
+        ConfigurationCalendarController.teams = 0;
 
 
         List<String> mutationsReaded = ReadFiles.readMutations();

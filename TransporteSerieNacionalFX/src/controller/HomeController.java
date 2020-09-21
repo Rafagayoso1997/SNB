@@ -163,7 +163,7 @@ public class HomeController implements Initializable {
 
     @FXML
     void showInformation(ActionEvent event) throws IOException{
-        File file = new File("src/help/help.docx");
+        File file = new File("src/help/help.pdf");
 
         //first check if Desktop is supported by Platform or not
         if(!Desktop.isDesktopSupported()){

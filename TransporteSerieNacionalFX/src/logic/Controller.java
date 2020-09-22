@@ -374,7 +374,7 @@ public class Controller {
         } catch (IOException e) {
             e.getMessage();
         }
-        System.out.println(teams);
+       //System.out.println(teams);
     }
 
 
@@ -1322,62 +1322,54 @@ public class Controller {
     }
 
     public void lessStatistics(ArrayList<Date> calendar) {
-        ArrayList<ArrayList<Double>> itiner = itineraryDistances(calendar);
-        //ArrayList<Double> distances = new ArrayList<>();
+        ArrayList<ArrayList<Double>> itinerary = itineraryDistances(calendar);
         double max = Double.MAX_VALUE;
         double sum = 0;
         int pos = -1;
-        for (int l = 0; l < itiner.get(0).size(); l++) {
+        for (int l = 0; l < itinerary.get(0).size(); l++) {
 
-            for (int p = 0; p < itiner.size(); p++) {
-                sum += itiner.get(p).get(l);
+            for (int p = 0; p < itinerary.size(); p++) {
+                sum += itinerary.get(p).get(l);
             }
-            //distances.add(sum);
+
             if (sum <= max) {
                 max = sum;
                 pos = l;
             }
             sum = 0;
-
         }
 
         lessDistance = (float) max;
-        //System.out.println("SUma minima "+max);
-        //pos = distances.indexOf(max);
-        teamLessDistance = teams.get(teamsIndexes.indexOf(pos));
+        teamLessDistance = teams.get(pos);
 
     }
 
     public void copyLessStatistics(ArrayList<Date> calendar) {
-        ArrayList<ArrayList<Double>> itiner = itineraryDistances(calendar);
-        //ArrayList<Double> distances = new ArrayList<>();
+        ArrayList<ArrayList<Double>> itinerary = itineraryDistances(calendar);
         double max = Double.MAX_VALUE;
         double sum = 0;
         int pos = -1;
-        for (int l = 0; l < itiner.get(0).size(); l++) {
+        for (int l = 0; l < itinerary.get(0).size(); l++) {
 
-            for (int p = 0; p < itiner.size(); p++) {
-                sum += itiner.get(p).get(l);
+            for (int p = 0; p < itinerary.size(); p++) {
+                sum += itinerary.get(p).get(l);
             }
-            //distances.add(sum);
+
             if (sum <= max) {
                 max = sum;
                 pos = l;
             }
             sum = 0;
-
         }
 
         copyLessDistance = (float) max;
-        //System.out.println("SUma minima "+max);
-        //pos = distances.indexOf(max);
-        copyTeamLessDistance = teams.get(teamsIndexes.indexOf(pos));
+        copyTeamLessDistance = teams.get(pos);
 
     }
 
     public void moreStatistics(ArrayList<Date> calendar) {
         ArrayList<ArrayList<Double>> itinerary = itineraryDistances(calendar);
-        //ArrayList<Double> distances = new ArrayList<>();
+
         double max = Double.MIN_VALUE;
         double sum = 0;
         int pos = -1;
@@ -1386,7 +1378,7 @@ public class Controller {
             for (int p = 0; p < itinerary.size(); p++) {
                 sum += itinerary.get(p).get(l);
             }
-            //distances.add(sum);
+
             if (sum >= max) {
                 max = sum;
                 pos = l;
@@ -1395,38 +1387,31 @@ public class Controller {
         }
 
         moreDistance = (float) max;
-        //System.out.println("SUma minima "+max);
-        //pos = distances.indexOf(max);
-        // System.out.println("Posicion "+teams.get(teamsIndexes.indexOf(pos)));
-        teamMoreDistance = teams.get(teamsIndexes.indexOf(pos));
+        teamMoreDistance = teams.get(pos);
 
     }
 
     public void copyMoreStatistics(ArrayList<Date> calendar) {
-        ArrayList<ArrayList<Double>> itiner = itineraryDistances(calendar);
-        //ArrayList<Double> distances = new ArrayList<>();
+        ArrayList<ArrayList<Double>> itinerary = itineraryDistances(calendar);
+
         double max = Double.MIN_VALUE;
         double sum = 0;
         int pos = -1;
-        for (int l = 0; l < itiner.get(0).size(); l++) {
+        for (int l = 0; l < itinerary.get(0).size(); l++) {
 
-            for (int p = 0; p < itiner.size(); p++) {
-                sum += itiner.get(p).get(l);
+            for (int p = 0; p < itinerary.size(); p++) {
+                sum += itinerary.get(p).get(l);
             }
-            //distances.add(sum);
+
             if (sum >= max) {
                 max = sum;
                 pos = l;
             }
             sum = 0;
-
         }
 
         copyMoreDistance = (float) max;
-        //System.out.println("SUma minima "+max);
-        //pos = distances.indexOf(max);
-        //System.out.println("Posicion "+teams.get(teamsIndexes.indexOf(pos)));
-        copyTeamMoreDistance = teams.get(teamsIndexes.indexOf(pos));
+        copyTeamMoreDistance = teams.get(pos);
 
 
     }

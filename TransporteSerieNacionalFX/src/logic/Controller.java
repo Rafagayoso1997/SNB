@@ -374,7 +374,7 @@ public class Controller {
         } catch (IOException e) {
             e.getMessage();
         }
-        System.out.println(teams);
+       //System.out.println(teams);
     }
 
 

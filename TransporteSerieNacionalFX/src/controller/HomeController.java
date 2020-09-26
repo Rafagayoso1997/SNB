@@ -243,7 +243,12 @@ public class HomeController implements Initializable {
             object = loader.getController();
             ((ConfigurationCalendarController) object).setHomeController(this);
             setNode(anchorPane);
+        }else if (object instanceof AdvanceConfigurationController) {
+            object = loader.getController();
+            ((AdvanceConfigurationController) object).setHomeController(this);
+            setNode(anchorPane);
         }
+
         else if (object instanceof CalendarStatisticsController) {
             object = loader.getController();
 

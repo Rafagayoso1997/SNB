@@ -1,6 +1,8 @@
 package logic;
 
 import com.opencsv.CSVReader;
+import file_management.ReadFiles;
+import org.apache.commons.compress.archivers.ar.ArArchiveEntry;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -10,6 +12,7 @@ import java.nio.charset.StandardCharsets;
 import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Deque;
+import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
 /**
@@ -79,7 +82,7 @@ public class Controller {
         this.posChampion = -1;
         this.posSubChampion = -1;
         this.teamsIndexes = new ArrayList<>();
-        this.mutationsIndexes = new ArrayList<>();
+        this.mutationsIndexes = addAllMutations();
         fillMatrixDistance();
         this.secondRound = false;
         this.matrix = new int[teamsIndexes.size()][teamsIndexes.size()];
@@ -203,6 +206,15 @@ public class Controller {
 
     public void setInauguralGame(boolean inauguralGame) {
         this.inauguralGame = inauguralGame;
+    }
+
+    private ArrayList<Integer> addAllMutations(){
+        ArrayList<Integer> mutations  = new ArrayList<>();
+        List<String> mutationsRead = ReadFiles.readMutations();
+        for(int i=0; i < mutationsRead.size();i++){
+            mutations.add(i);
+        }
+        return mutations;
     }
 
     /**
@@ -484,9 +496,9 @@ public class Controller {
             calendar.add(date);
             System.out.println("************************************************");
             System.out.println("Calendario:");
-            for (int g = 0; g < calendar.size(); g++) {
-                for (int h = 0; h < calendar.get(g).getGames().size(); h++) {
-                    System.out.print(calendar.get(g).getGames().get(h));
+            for (Date value : calendar) {
+                for (int h = 0; h < value.getGames().size(); h++) {
+                    System.out.print(value.getGames().get(h));
                 }
                 System.out.println();
             }
@@ -1173,7 +1185,7 @@ public class Controller {
 
             selectMutation(newCalendar, mutation);
 
-            if (this.posChampion != -1 && this.posSubChampion != -1 && !inauguralGame) {
+            if (this.posChampion != -1 && this.posSubChampion != -1) {
                 fixChampionSubchampion(newCalendar);
                /* if (posLocalTeam != this.posChampion && posSecondTeam != this.posSubChampion) {
                     newDistance += PENALIZATION;

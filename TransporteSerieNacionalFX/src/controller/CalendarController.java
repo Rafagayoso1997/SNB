@@ -83,6 +83,8 @@ public class CalendarController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
 
         controller = Controller.getSingletonController();
+
+        System.out.println("Mutaciones a oplicar " +controller.getMutationsIndexes().size());
         boolean generated = controller.isGeneratedCalendar();
         boolean copied = controller.isCopied();
 

@@ -38,6 +38,7 @@ public class HomeController implements Initializable {
     public static boolean matrix = false;
     private TrayNotification notification;
     private File file;
+    private static HomeController singletonController;
 
 
     @FXML
@@ -68,6 +69,10 @@ public class HomeController implements Initializable {
 
     @FXML
     private JFXButton buttonInfromation;
+
+
+    @FXML
+    private JFXButton dataBtn;
 
     public JFXButton getButtonReturnSelectionTeamConfiguration() {
         return buttonReturnSelectionTeamConfiguration;
@@ -163,6 +168,22 @@ public class HomeController implements Initializable {
     }
 
     @FXML
+    void showData(ActionEvent event) throws IOException {
+        File file = new File("src/files/data.csv");
+
+        //first check if Desktop is supported by Platform or not
+        if(!Desktop.isDesktopSupported()){
+            System.out.println("Desktop is not supported");
+            return;
+        }
+
+        Desktop desktop = Desktop.getDesktop();
+
+        //let's try to open PDF file
+        if(file.exists()) desktop.open(file);
+    }
+
+    @FXML
     void showInformation(ActionEvent event) throws IOException{
         File file = new File("src/help/help.pdf");
 
@@ -243,7 +264,12 @@ public class HomeController implements Initializable {
             object = loader.getController();
             ((ConfigurationCalendarController) object).setHomeController(this);
             setNode(anchorPane);
+        }else if (object instanceof AdvanceConfigurationController) {
+            object = loader.getController();
+            ((AdvanceConfigurationController) object).setHomeController(this);
+            setNode(anchorPane);
         }
+
         else if (object instanceof CalendarStatisticsController) {
             object = loader.getController();
 

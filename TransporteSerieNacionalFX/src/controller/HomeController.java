@@ -17,7 +17,7 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 import logic.Controller;
 import logic.Date;
-import logic.ReadExcel;
+import file_management.ReadExcel;
 import tray.animations.AnimationType;
 import tray.notification.NotificationType;
 import tray.notification.TrayNotification;
@@ -169,7 +169,7 @@ public class HomeController implements Initializable {
 
     @FXML
     void showData(ActionEvent event) throws IOException {
-        File file = new File("src/files/data.csv");
+        File file = new File("src/files/Data.xlsx");
 
         //first check if Desktop is supported by Platform or not
         if(!Desktop.isDesktopSupported()){

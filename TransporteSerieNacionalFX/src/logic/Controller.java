@@ -3,16 +3,17 @@ package logic;
 import com.opencsv.CSVReader;
 import file_management.ReadFiles;
 import org.apache.commons.compress.archivers.ar.ArArchiveEntry;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.lang.reflect.Array;
 import java.nio.charset.StandardCharsets;
-import java.util.ArrayDeque;
-import java.util.ArrayList;
-import java.util.Deque;
-import java.util.List;
+import java.util.*;
 import java.util.concurrent.ThreadLocalRandom;
 
 /**
@@ -29,6 +30,10 @@ public class Controller {
     private int iterations;//Number of iterations
     private ArrayList<LocalVisitorDistance> positionsDistance;//List of LocalVisitorDistance
     private ArrayList<String> teams;//List of resources.teams
+
+
+
+    private ArrayList<String>acronyms;
     private boolean generatedCalendar;
 
 
@@ -75,8 +80,9 @@ public class Controller {
         this.maxHomeGame = 2;
         this.inauguralGame = false;
         this.teams = new ArrayList<>();
+        this.acronyms = new ArrayList<>();
         this.positionsDistance = new ArrayList<>();
-        createTeams("src/files/data.csv");
+        createTeams("src/files/Data.xlsx");
         this.calendar = new ArrayList<>();
         this.calendarCopy = new ArrayList<>();
         this.posChampion = -1;
@@ -109,6 +115,13 @@ public class Controller {
         return singletonController;
     }
 
+    public ArrayList<String> getAcronyms() {
+        return acronyms;
+    }
+
+    public void setAcronyms(ArrayList<String> acronyms) {
+        this.acronyms = acronyms;
+    }
 
     public int[][] getMatrix() {
         return matrix;
@@ -208,14 +221,6 @@ public class Controller {
         this.inauguralGame = inauguralGame;
     }
 
-    private ArrayList<Integer> addAllMutations(){
-        ArrayList<Integer> mutations  = new ArrayList<>();
-        List<String> mutationsRead = ReadFiles.readMutations();
-        for(int i=0; i < mutationsRead.size();i++){
-            mutations.add(i);
-        }
-        return mutations;
-    }
 
     /**
      * Return the LocalVisitorDistance list
@@ -394,7 +399,46 @@ public class Controller {
     private void createTeams(String direction) {
 
         try {
-            CSVReader reader = new CSVReader(new InputStreamReader(new FileInputStream(direction), StandardCharsets.ISO_8859_1));
+            FileInputStream fis = new FileInputStream(direction);
+
+            //Creamos el objeto XSSF  para el archivo eexcel
+            XSSFWorkbook workbook = new XSSFWorkbook(fis);
+
+            Sheet sheet = workbook.getSheetAt(0);
+
+            //llenar los acrónimos
+
+            Row row = sheet.getRow(0);
+            for(int i=1;i< row.getLastCellNum();i++){
+                acronyms.add(row.getCell(i).getStringCellValue());
+            }
+            matrixDistance  = new double[acronyms.size()][acronyms.size()];
+
+            System.out.println(acronyms);
+
+            Iterator<Row> rowIterator = sheet.iterator();
+
+            //Nos saltamos la primera fila del encabezado
+            rowIterator.next();
+
+            int posLocal =-1;
+            while (rowIterator.hasNext()){
+                row = rowIterator.next();
+
+                //Recorremos las celdas de la fila
+                Iterator<Cell> cellIterator = row.cellIterator();
+                Cell cell = cellIterator.next();
+                teams.add(cell.getStringCellValue());
+                posLocal++;
+                int posVisitor = -1;
+                while (cellIterator.hasNext()){
+                    posVisitor++;
+                    cell  = cellIterator.next();
+                    //System.out.print(cell.toString() + ";");
+                    positionsDistance.add(new LocalVisitorDistance(posLocal,posVisitor,cell.getNumericCellValue()));
+                }
+            }
+           /* CSVReader reader = new CSVReader(new InputStreamReader(new FileInputStream(direction), StandardCharsets.ISO_8859_1));
             String[] nextLine;
             while ((nextLine = reader.readNext()) != null) {
                 String team1 = nextLine[0];
@@ -410,13 +454,21 @@ public class Controller {
                 int indexTeam2 = teams.indexOf(team2);
                 positionsDistance.add(new LocalVisitorDistance(indexTeam1, indexTeam2, distance));
             }
-            reader.close();
+            reader.close();*/
         } catch (IOException e) {
             e.getMessage();
         }
        //System.out.println(teams);
     }
 
+    private ArrayList<Integer> addAllMutations(){
+        ArrayList<Integer> mutations  = new ArrayList<>();
+        List<String> mutationsRead = ReadFiles.readMutations();
+        for(int i=0; i < mutationsRead.size();i++){
+            mutations.add(i);
+        }
+        return mutations;
+    }
 
     /**
      * Generate the calendar

@@ -6,7 +6,6 @@
 <?import com.jfoenix.controls.JFXToggleButton?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.Spinner?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -27,15 +26,18 @@
             <Font size="24.0" />
          </font>
       </JFXToggleButton>
-        <JFXListView fx:id="teamsSelectionListView" layoutX="14.0" layoutY="82.0" onMouseClicked="#mouseClickedListView" onScroll="#scrollListView" prefHeight="493.0" prefWidth="270.0" stylesheets="@../styles/PrincipalMenu.css" />
+        <JFXListView fx:id="teamsSelectionListView" layoutX="14.0" layoutY="82.0" onMouseClicked="#mouseClickedListView" onScroll="#scrollListView" prefHeight="493.0" prefWidth="270.0" stylesheets="@../styles/PrincipalMenu.css">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></JFXListView>
       <Label layoutX="350.0" layoutY="26.0" text="Seleccionar campeón y subcampeón" textFill="#2f2484">
          <font>
             <Font name="Segoe UI Symbol" size="24.0" />
          </font>
       </Label>
-      <JFXToggleButton fx:id="champVsSub" contentDisplay="RIGHT" layoutX="736.0" layoutY="10.0" onAction="#setChampVsSub" prefHeight="68.0" prefWidth="116.0" size="8.0" text="No" textFill="#2f2484" toggleColor="WHITE" toggleLineColor="#2f2484">
+      <JFXToggleButton fx:id="champVsSub" contentDisplay="RIGHT" layoutX="727.0" layoutY="10.0" onAction="#setChampVsSub" prefHeight="68.0" prefWidth="125.0" text="No" textFill="#2f2484" toggleColor="WHITE" toggleLineColor="#2f2484">
          <font>
-            <Font name="Segoe UI Symbol" size="26.0" />
+            <Font name="Segoe UI Symbol" size="24.0" />
          </font>
          <cursor>
             <Cursor fx:constant="HAND" />
@@ -53,7 +55,7 @@
       </Label>
       <JFXToggleButton fx:id="secondRoundButton" contentDisplay="RIGHT" layoutX="1012.0" layoutY="8.0" onAction="#setSecondRound" prefHeight="68.0" prefWidth="125.0" text="No" textFill="#2f2484" toggleColor="WHITE" toggleLineColor="#2f2484">
          <font>
-            <Font name="Segoe UI Symbol" size="26.0" />
+            <Font name="Segoe UI Symbol" size="24.0" />
          </font>
          <cursor>
             <Cursor fx:constant="HAND" />
@@ -64,7 +66,10 @@
             <Font name="Segoe UI Symbol" size="30.0" />
          </font>
       </Label>
-      <JFXListView fx:id="mutationListView" layoutX="351.0" layoutY="189.0" prefHeight="384.0" prefWidth="789.0" stylesheets="@../styles/PrincipalMenu.css" />
+      <JFXListView fx:id="mutationListView" layoutX="351.0" layoutY="189.0" prefHeight="384.0" prefWidth="789.0" stylesheets="@../styles/PrincipalMenu.css">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></JFXListView>
       <JFXButton fx:id="btnSwap" buttonType="RAISED" layoutX="568.0" layoutY="93.0" onAction="#swapTeams" prefHeight="26.0" prefWidth="64.0" text="">
          <graphic>
             <ImageView fitHeight="31.0" fitWidth="43.0" pickOnBounds="true" preserveRatio="true" rotate="90.0">
@@ -79,12 +84,16 @@
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></JFXButton>
-      <Label layoutX="854.0" layoutY="89.0" text="Iteraciones" textFill="#2f2484">
+      <JFXComboBox fx:id="comboChamp" labelFloat="true" layoutX="351.0" layoutY="87.0" onAction="#selectTeamChamp" prefHeight="53.0" prefWidth="195.0" promptText="Campeón" />
+      <Label layoutX="853.0" layoutY="90.0" text="Juego Inaugural" textFill="#2f2484">
          <font>
-            <Font name="Segoe UI Symbol" size="26.0" />
+            <Font name="Segoe UI Symbol" size="24.0" />
          </font>
       </Label>
-      <Spinner fx:id="iterationsSpinner" layoutX="999.0" layoutY="84.0" prefHeight="48.0" prefWidth="135.0" stylesheets="@../styles/PrincipalMenu.css" />
-      <JFXComboBox fx:id="comboChamp" labelFloat="true" layoutX="351.0" layoutY="87.0" onAction="#selectTeamChamp" prefHeight="53.0" prefWidth="195.0" promptText="Campeón" />
+      <JFXToggleButton fx:id="inauguralGame" contentDisplay="RIGHT" layoutX="1021.0" layoutY="75.0" onAction="#setInauguralGame" prefHeight="66.0" prefWidth="125.0" text="No" textFill="#2f2484" toggleColor="WHITE" toggleLineColor="#2f2484">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </JFXToggleButton>
     </children>
 </AnchorPane>

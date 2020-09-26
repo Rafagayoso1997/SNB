@@ -19,9 +19,10 @@ import java.util.concurrent.ThreadLocalRandom;
  */
 public class Controller {
 
-    private final int MAX_VISITOR_GAMES = 4;//Number of games that a visitor team can play in a row
-    private final int MAX_HOME_GAMES = 5;
-    private final int PENALIZATION = 100000;//Penalization if the calendar breach the restrictions
+    private int maxVisitorGame;//Number of games that a visitor team can play in a row
+    private int maxHomeGame;
+    private boolean inauguralGame;
+    private final int PENALIZATION = 100000;//Penalization if the calendar breaks the restrictions
     private int iterations;//Number of iterations
     private ArrayList<LocalVisitorDistance> positionsDistance;//List of LocalVisitorDistance
     private ArrayList<String> teams;//List of resources.teams
@@ -67,6 +68,9 @@ public class Controller {
      * Class Constructor
      */
     private Controller() {
+        this.maxVisitorGame = 2;
+        this.maxHomeGame = 2;
+        this.inauguralGame = false;
         this.teams = new ArrayList<>();
         this.positionsDistance = new ArrayList<>();
         createTeams("src/files/data.csv");
@@ -84,7 +88,7 @@ public class Controller {
         this.moreDistance = 0;
         this.teamMoreDistance = "";
         this.teamLessDistance = "";
-        this.iterations = 0;
+        this.iterations = 20000;
         this.configurationsList = new ArrayList<>();
         this.generatedCalendar = true;
         this.isCopied = false;
@@ -175,6 +179,30 @@ public class Controller {
 
     public void setCopied(boolean copied) {
         isCopied = copied;
+    }
+
+    public int getMaxVisitorGame() {
+        return maxVisitorGame;
+    }
+
+    public void setMaxVisitorGame(int maxVisitorGame) {
+        this.maxVisitorGame = maxVisitorGame;
+    }
+
+    public int getMaxHomeGame() {
+        return maxHomeGame;
+    }
+
+    public void setMaxHomeGame(int maxHomeGame) {
+        this.maxHomeGame = maxHomeGame;
+    }
+
+    public boolean isInauguralGame() {
+        return inauguralGame;
+    }
+
+    public void setInauguralGame(boolean inauguralGame) {
+        this.inauguralGame = inauguralGame;
     }
 
     /**
@@ -1145,7 +1173,7 @@ public class Controller {
 
             selectMutation(newCalendar, mutation);
 
-            if (this.posChampion != -1 && this.posSubChampion != -1) {
+            if (this.posChampion != -1 && this.posSubChampion != -1 && !inauguralGame) {
                 fixChampionSubchampion(newCalendar);
                /* if (posLocalTeam != this.posChampion && posSecondTeam != this.posSubChampion) {
                     newDistance += PENALIZATION;
@@ -1252,7 +1280,7 @@ public class Controller {
                 int posVisitor = date.getGames().get(j).get(1);
                 counts.set(posLocal, 0);
                 counts.set(posVisitor, counts.get(posVisitor) + 1);
-                if (counts.get(posVisitor) > MAX_VISITOR_GAMES) {
+                if (counts.get(posVisitor) > maxVisitorGame) {
                     cont++;
                     counts.set(posVisitor, 0);
                 }
@@ -1278,7 +1306,7 @@ public class Controller {
                 int posVisitor = date.getGames().get(j).get(1);
                 counts.set(posLocal, counts.get(posLocal) + 1);
                 counts.set(posVisitor, 0);
-                if (counts.get(posLocal) > MAX_VISITOR_GAMES) {
+                if (counts.get(posLocal) > maxVisitorGame) {
                     cont++;
                     counts.set(posLocal, 0);
                 }

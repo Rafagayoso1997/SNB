@@ -72,6 +72,10 @@ public class ConfigurationCalendarController implements Initializable {
     private JFXButton btnSwap;
 
     @FXML
+    private JFXToggleButton inauguralGame;
+
+
+    @FXML
     private Spinner<Integer> iterationsSpinner;
 
 
@@ -119,6 +123,16 @@ public class ConfigurationCalendarController implements Initializable {
 
         } else {
             secondRoundButton.setText("No");
+        }
+    }
+
+    @FXML
+    void setInauguralGame(ActionEvent event) {
+        if (inauguralGame.isSelected()) {
+            inauguralGame.setText("Sí");
+
+        } else {
+            inauguralGame.setText("No");
         }
     }
 
@@ -220,7 +234,7 @@ public class ConfigurationCalendarController implements Initializable {
             Controller.getSingletonController().setPosChampion(posChampion);
             Controller.getSingletonController().setPosSubChampion(posSub);
             Controller.getSingletonController().setSecondRound(secondRound);
-            Controller.getSingletonController().setIterations(iterationsSpinner.getValueFactory().getValue());
+            //Controller.getSingletonController().setIterations(iterationsSpinner.getValueFactory().getValue());
             showTeamsMatrix();
 
         }
@@ -238,8 +252,8 @@ public class ConfigurationCalendarController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         HomeController.escogidos = false;
-        iterationsSpinner.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(1,Integer.MAX_VALUE));
-        iterationsSpinner.getValueFactory().setValue(20000);
+        /*iterationsSpinner.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(1,Integer.MAX_VALUE));
+        iterationsSpinner.getValueFactory().setValue(20000);*/
 
         Controller.getSingletonController().setPosChampion(-1);
         Controller.getSingletonController().setPosSubChampion(-1);
@@ -277,7 +291,9 @@ public class ConfigurationCalendarController implements Initializable {
             mutations.add(mutation[0]);
         }
         mutationListView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+
         mutationListView.setItems(FXCollections.observableList(mutations));
+        mutationListView.getSelectionModel().selectAll();
     }
 
     private TrayNotification getNotification() {

@@ -169,7 +169,12 @@ public class ConfigurationCalendarController implements Initializable {
 
     private void validateData(boolean showMatrix) throws IOException {
         ArrayList<Integer> indexes = new ArrayList<>(teamsSelectionListView.getSelectionModel().getSelectedIndices());
-        teamsNames = new ArrayList<>(teamsSelectionListView.getSelectionModel().getSelectedItems());
+        teamsNames = new ArrayList<>();
+        for (int index : indexes) {
+            teamsNames.add(Controller.getSingletonController().getAcronyms().get(index));
+        }
+        //teamsNames = new ArrayList<>(teamsSelectionListView.getSelectionModel().getSelectedItems());
+        System.out.println(teamsNames);
         if (indexes.size() <= 2) {
             showNotification("Selección de equipos","Debe escoger más de dos equipos", false);
             ok = false;

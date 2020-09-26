@@ -38,6 +38,7 @@ public class HomeController implements Initializable {
     public static boolean matrix = false;
     private TrayNotification notification;
     private File file;
+    private static HomeController singletonController;
 
 
     @FXML

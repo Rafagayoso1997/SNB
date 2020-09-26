@@ -8,6 +8,8 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.SelectionMode;
+import javafx.scene.control.Spinner;
+import javafx.scene.control.SpinnerValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Paint;
 import javafx.util.Duration;
@@ -29,6 +31,9 @@ public class AdvanceConfigurationController implements Initializable {
     private TrayNotification notification;
 
     @FXML
+    private Spinner<Integer> iterationsSpinner;
+
+    @FXML
     private JFXListView<String> mutationListView;
 
     @FXML
@@ -40,6 +45,8 @@ public class AdvanceConfigurationController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        iterationsSpinner.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(1,Integer.MAX_VALUE));
+        iterationsSpinner.getValueFactory().setValue(20000);
 
         List<String> mutationsRead = ReadFiles.readMutations();
         List<String> mutations = new ArrayList<>();
@@ -70,9 +77,9 @@ public class AdvanceConfigurationController implements Initializable {
         }
         if (ok) {
             Controller.getSingletonController().setMutationsIndexes(indexesMutations);
+            Controller.getSingletonController().setIterations(iterationsSpinner.getValueFactory().getValue());
             showTeamsMatrix();
             //showAdvanceConfiguration();
-            //Controller.getSingletonController().setIterations(iterationsSpinner.getValueFactory().getValue());
         }
     }
 

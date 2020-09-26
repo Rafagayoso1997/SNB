@@ -364,7 +364,7 @@ public class ConfigurationCalendarController implements Initializable {
 
     void showAdvanceConfiguration() throws IOException {
         AnchorPane structureOver = homeController.getPrincipalPane();
-        homeController.createPage(new SelectGridController(), structureOver, "/visual/AdvanceConfiguration.fxml");
+        homeController.createPage(new AdvanceConfigurationController(), structureOver, "/visual/AdvanceConfiguration.fxml");
         homeController.getButtonReturnSelectionTeamConfiguration().setVisible(true);
     }
 }

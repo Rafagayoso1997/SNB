@@ -143,11 +143,8 @@ public class ExportFiles {
             row = spreadsheet.createRow(i);
             for(int j=0; j < date.size();j++){
                 int posTeam = teamDate.get(i).get(j);
-                String team = controller.getTeams().get(posTeam);
+                String team = controller.getAcronyms().get(posTeam);
                 Cell cell = row.createCell(j);
-                if(team.equalsIgnoreCase(spreadsheet.getRow(0).getCell(j).getStringCellValue())){
-                    team = "";
-                }
                 cell.setCellStyle(style);
                 cell.setCellValue(team);
             }

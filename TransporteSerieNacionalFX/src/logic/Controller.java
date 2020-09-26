@@ -715,7 +715,7 @@ public class Controller {
         return totalDistance;
     }
 
-    private ArrayList<ArrayList<Integer>> teamsItinerary(ArrayList<Date> calendar) {
+    public ArrayList<ArrayList<Integer>> teamsItinerary(ArrayList<Date> calendar) {
         ArrayList<ArrayList<Integer>> teamDate = new ArrayList<>();
         ArrayList<Integer> row = new ArrayList<>();
         System.out.println("Indices de equipos" + teamsIndexes);
@@ -1327,12 +1327,6 @@ public class Controller {
             i++;
         }
         return cont;
-    }
-
-    private void calculateMoreDistanceStatitstics() {
-        ArrayList<ArrayList<Integer>> itinerary = teamsItinerary(this.calendar);
-
-
     }
 
     private ArrayList<ArrayList<Double>> itineraryDistances(ArrayList<Date> calendar) {

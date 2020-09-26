@@ -3,6 +3,7 @@ package controller;
 import com.jfoenix.controls.*;
 import file_management.ExportFiles;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Cursor;
@@ -14,6 +15,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseButton;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
@@ -48,35 +50,17 @@ public class CalendarController implements Initializable {
     private HomeController homeController;
 
     @FXML
-    private JFXButton btnStatistics;
+    private JFXButton statisticsBtn;
 
     @FXML
-    private JFXButton popupBtn;
-
+    private JFXButton configurationBtn;
 
     @FXML
-    private JFXButton saveExcel;
+    private JFXButton exportBtn;
 
     @FXML
     private JFXTabPane calendarTabPane;
 
-    @FXML
-    private Label lblCalendarKM;
-
-    @FXML
-    private Label lblMoreKMTeam;
-
-    @FXML
-    private Label lblLessKMTeam;
-
-    @FXML
-    private Label lblLessKM;
-
-    @FXML
-    private Label lblMoreKM;
-
-    @FXML
-    private JFXButton configMutations;
 
     public void setHomeController(HomeController homeController) {
         this.homeController = homeController;
@@ -131,55 +115,41 @@ public class CalendarController implements Initializable {
             calendarTabPane.getTabs().add(tab);
         }
 
-        //System.out.println(controller.teamsItinerary(calendar));
-
-        AnchorPane popupPane = new AnchorPane();
-        VBox vBox = new VBox();
-        JFXButton btnStat = new JFXButton("Mostrar estadísticas");
-        btnStat.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/resources/bar_chart.png"))));
-        btnStat.setCursor(Cursor.HAND);
-        JFXButton btnExcel = new JFXButton("Exportar calendario ");
-        btnExcel.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/resources/exportar.png"))));
-        btnExcel.setCursor(Cursor.HAND);
-        JFXButton btnMutations = new JFXButton("Configurar cambios ");
-        btnMutations.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/resources/switch.png"))));
-        btnMutations.setCursor(Cursor.HAND);
-
-        vBox.getChildren().add(btnStat);
-        vBox.getChildren().add(btnMutations);
-        vBox.getChildren().add(btnExcel);
-        popupPane.getChildren().add(vBox);
-        JFXPopup popup = new JFXPopup(popupPane);
-
-        popupBtn.setOnAction(event -> {
-            popup.show(popupBtn, JFXPopup.PopupVPosition.BOTTOM, JFXPopup.PopupHPosition.RIGHT);
-        });
-        btnStat.setOnAction(event -> {
-            showStatistics();
-            popup.hide();
-        });
-        btnExcel.setOnAction(event -> {
-            saveExcel();
-            popup.hide();
-
-        });
-        btnMutations.setOnAction(event -> {
-            configMutations();
-            popup.hide();
-        });
     }
 
+    @FXML
+    void exportCalendar(ActionEvent event) {
+        AnchorPane popupExportPane = new AnchorPane();
+        VBox vBoxExport = new VBox();
+        JFXButton btnExportCalendar = new JFXButton("Exportar Calendario");
+        btnExportCalendar.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/resources/exportar.png"))));
+        btnExportCalendar.setCursor(Cursor.HAND);
 
-    // @FXML
-    void saveExcel() {
-        ExportFiles.exportCalendarInExcelFormat(this.tables);
-        //ExportFiles.exportItineraryInExcelFormat();
+        JFXButton btnExportItinerary = new JFXButton("Exportar Itinerario");
+        btnExportItinerary.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/resources/exportar.png"))));
+        btnExportItinerary.setCursor(Cursor.HAND);
+
+        vBoxExport.getChildren().add(btnExportCalendar);
+        vBoxExport.getChildren().add(btnExportItinerary);
+
+        popupExportPane.getChildren().add(vBoxExport);
+        JFXPopup popupExport = new JFXPopup(popupExportPane);
+
+
+        btnExportCalendar.setOnAction(event1 -> {
+            ExportFiles.exportCalendarInExcelFormat(this.tables);
+            popupExport.hide();
+        });
+        btnExportItinerary.setOnAction(event1 -> {
+            ExportFiles.exportItineraryInExcelFormat();
+            popupExport.hide();
+        });
+
+        popupExport.show(exportBtn, JFXPopup.PopupVPosition.BOTTOM, JFXPopup.PopupHPosition.RIGHT);
     }
 
-
-    //@FXML
-    void configMutations(/*ActionEvent event*/) {
-        Parent root;
+    @FXML
+    void showConfiguration(ActionEvent event) {
         try {
             homeController.createPage(new MutationsConfigurationController(), null, "/visual/MutationsConfiguration.fxml");
             // Hide this current window (if this is what you want)
@@ -187,20 +157,15 @@ public class CalendarController implements Initializable {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
     }
 
-
-
-
-    //@FXML
-    void showStatistics(/*ActionEvent event*/) {
+    @FXML
+    void showStatistics(ActionEvent event) {
         try {
             homeController.createPage(new CalendarStatisticsController(), null, "/visual/CalendarStatistics.fxml");
         } catch (IOException e) {
             e.printStackTrace();
         }
-
     }
 
 

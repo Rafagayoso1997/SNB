@@ -243,7 +243,6 @@ public class SelectGridController implements Initializable {
             }
             cantRow = 0;
         }
-
         return symmetric;
     }
 
@@ -251,6 +250,7 @@ public class SelectGridController implements Initializable {
 
    
    void showCalendar() throws IOException {
+        checkSymetricMatrix();
         AnchorPane structureOver = homeController.getPrincipalPane();
         homeController.createPage(new CalendarController(), structureOver, "/visual/Calendar.fxml");
         homeController.getButtonReturnSelectionTeamConfiguration().setVisible(false);

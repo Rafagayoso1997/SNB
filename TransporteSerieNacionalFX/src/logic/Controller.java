@@ -1,6 +1,8 @@
 package logic;
 
 import com.opencsv.CSVReader;
+import file_management.ReadFiles;
+import org.apache.commons.compress.archivers.ar.ArArchiveEntry;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -10,6 +12,7 @@ import java.nio.charset.StandardCharsets;
 import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Deque;
+import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
 /**
@@ -19,9 +22,10 @@ import java.util.concurrent.ThreadLocalRandom;
  */
 public class Controller {
 
-    private final int MAX_VISITOR_GAMES = 4;//Number of games that a visitor team can play in a row
-    private final int MAX_HOME_GAMES = 5;
-    private final int PENALIZATION = 100000;//Penalization if the calendar breach the restrictions
+    private int maxVisitorGame;//Number of games that a visitor team can play in a row
+    private int maxHomeGame;
+    private boolean inauguralGame;
+    private final int PENALIZATION = 100000;//Penalization if the calendar breaks the restrictions
     private int iterations;//Number of iterations
     private ArrayList<LocalVisitorDistance> positionsDistance;//List of LocalVisitorDistance
     private ArrayList<String> teams;//List of resources.teams
@@ -67,6 +71,9 @@ public class Controller {
      * Class Constructor
      */
     private Controller() {
+        this.maxVisitorGame = 2;
+        this.maxHomeGame = 2;
+        this.inauguralGame = false;
         this.teams = new ArrayList<>();
         this.positionsDistance = new ArrayList<>();
         createTeams("src/files/data.csv");
@@ -75,7 +82,7 @@ public class Controller {
         this.posChampion = -1;
         this.posSubChampion = -1;
         this.teamsIndexes = new ArrayList<>();
-        this.mutationsIndexes = new ArrayList<>();
+        this.mutationsIndexes = addAllMutations();
         fillMatrixDistance();
         this.secondRound = false;
         this.matrix = new int[teamsIndexes.size()][teamsIndexes.size()];
@@ -84,7 +91,7 @@ public class Controller {
         this.moreDistance = 0;
         this.teamMoreDistance = "";
         this.teamLessDistance = "";
-        this.iterations = 0;
+        this.iterations = 20000;
         this.configurationsList = new ArrayList<>();
         this.generatedCalendar = true;
         this.isCopied = false;
@@ -175,6 +182,39 @@ public class Controller {
 
     public void setCopied(boolean copied) {
         isCopied = copied;
+    }
+
+    public int getMaxVisitorGame() {
+        return maxVisitorGame;
+    }
+
+    public void setMaxVisitorGame(int maxVisitorGame) {
+        this.maxVisitorGame = maxVisitorGame;
+    }
+
+    public int getMaxHomeGame() {
+        return maxHomeGame;
+    }
+
+    public void setMaxHomeGame(int maxHomeGame) {
+        this.maxHomeGame = maxHomeGame;
+    }
+
+    public boolean isInauguralGame() {
+        return inauguralGame;
+    }
+
+    public void setInauguralGame(boolean inauguralGame) {
+        this.inauguralGame = inauguralGame;
+    }
+
+    private ArrayList<Integer> addAllMutations(){
+        ArrayList<Integer> mutations  = new ArrayList<>();
+        List<String> mutationsRead = ReadFiles.readMutations();
+        for(int i=0; i < mutationsRead.size();i++){
+            mutations.add(i);
+        }
+        return mutations;
     }
 
     /**
@@ -456,9 +496,9 @@ public class Controller {
             calendar.add(date);
             System.out.println("************************************************");
             System.out.println("Calendario:");
-            for (int g = 0; g < calendar.size(); g++) {
-                for (int h = 0; h < calendar.get(g).getGames().size(); h++) {
-                    System.out.print(calendar.get(g).getGames().get(h));
+            for (Date value : calendar) {
+                for (int h = 0; h < value.getGames().size(); h++) {
+                    System.out.print(value.getGames().get(h));
                 }
                 System.out.println();
             }
@@ -675,7 +715,7 @@ public class Controller {
         return totalDistance;
     }
 
-    private ArrayList<ArrayList<Integer>> teamsItinerary(ArrayList<Date> calendar) {
+    public ArrayList<ArrayList<Integer>> teamsItinerary(ArrayList<Date> calendar) {
         ArrayList<ArrayList<Integer>> teamDate = new ArrayList<>();
         ArrayList<Integer> row = new ArrayList<>();
         System.out.println("Indices de equipos" + teamsIndexes);
@@ -1252,7 +1292,7 @@ public class Controller {
                 int posVisitor = date.getGames().get(j).get(1);
                 counts.set(posLocal, 0);
                 counts.set(posVisitor, counts.get(posVisitor) + 1);
-                if (counts.get(posVisitor) > MAX_VISITOR_GAMES) {
+                if (counts.get(posVisitor) > maxVisitorGame) {
                     cont++;
                     counts.set(posVisitor, 0);
                 }
@@ -1278,7 +1318,7 @@ public class Controller {
                 int posVisitor = date.getGames().get(j).get(1);
                 counts.set(posLocal, counts.get(posLocal) + 1);
                 counts.set(posVisitor, 0);
-                if (counts.get(posLocal) > MAX_VISITOR_GAMES) {
+                if (counts.get(posLocal) > maxVisitorGame) {
                     cont++;
                     counts.set(posLocal, 0);
                 }
@@ -1287,12 +1327,6 @@ public class Controller {
             i++;
         }
         return cont;
-    }
-
-    private void calculateMoreDistanceStatitstics() {
-        ArrayList<ArrayList<Integer>> itinerary = teamsItinerary(this.calendar);
-
-
     }
 
     private ArrayList<ArrayList<Double>> itineraryDistances(ArrayList<Date> calendar) {

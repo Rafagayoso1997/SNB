@@ -1,7 +1,9 @@
 package controller;
 
 import com.jfoenix.controls.*;
+import file_management.ExportFiles;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Cursor;
@@ -13,8 +15,10 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseButton;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.Stage;
@@ -22,9 +26,12 @@ import javafx.util.Duration;
 import logic.Controller;
 import logic.Date;
 import logic.Duel;
-import org.apache.poi.ss.usermodel.Row;
-import org.apache.poi.ss.usermodel.Sheet;
-import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.hssf.usermodel.HSSFCellStyle;
+import org.apache.poi.hssf.usermodel.HSSFFont;
+import org.apache.poi.ss.usermodel.*;
+import org.apache.poi.xssf.usermodel.XSSFCellStyle;
+import org.apache.poi.xssf.usermodel.XSSFColor;
+import org.apache.poi.xssf.usermodel.XSSFFont;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import tray.animations.AnimationType;
 import tray.notification.NotificationType;
@@ -39,40 +46,21 @@ public class CalendarController implements Initializable {
 
     private ArrayList<Date> calendar;
     private Controller controller;
-    private ArrayList<TableView> tables;
+    private ArrayList<TableView<Duel>> tables;
     private HomeController homeController;
-    public static boolean saved = false; // boolean that indicates if the file was saved;
 
     @FXML
-    private JFXButton btnStatistics;
+    private JFXButton statisticsBtn;
 
     @FXML
-    private JFXButton popupBtn;
-
+    private JFXButton configurationBtn;
 
     @FXML
-    private JFXButton saveExcel;
+    private JFXButton exportBtn;
 
     @FXML
     private JFXTabPane calendarTabPane;
 
-    @FXML
-    private Label lblCalendarKM;
-
-    @FXML
-    private Label lblMoreKMTeam;
-
-    @FXML
-    private Label lblLessKMTeam;
-
-    @FXML
-    private Label lblLessKM;
-
-    @FXML
-    private Label lblMoreKM;
-
-    @FXML
-    private JFXButton configMutations;
 
     public void setHomeController(HomeController homeController) {
         this.homeController = homeController;
@@ -83,6 +71,8 @@ public class CalendarController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
 
         controller = Controller.getSingletonController();
+
+        System.out.println("Mutaciones a oplicar " +controller.getMutationsIndexes().size());
         boolean generated = controller.isGeneratedCalendar();
         boolean copied = controller.isCopied();
 
@@ -125,130 +115,57 @@ public class CalendarController implements Initializable {
             calendarTabPane.getTabs().add(tab);
         }
 
-
-        AnchorPane popupPane = new AnchorPane();
-        VBox vBox = new VBox();
-        JFXButton btnStat = new JFXButton("Mostrar estadísticas");
-        btnStat.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/resources/bar_chart.png"))));
-        btnStat.setCursor(Cursor.HAND);
-        JFXButton btnExcel = new JFXButton("Exportar calendario ");
-        btnExcel.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/resources/exportar.png"))));
-        btnExcel.setCursor(Cursor.HAND);
-        JFXButton btnMutations = new JFXButton("Configurar cambios ");
-        btnMutations.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/resources/switch.png"))));
-        btnMutations.setCursor(Cursor.HAND);
-
-        vBox.getChildren().add(btnStat);
-        vBox.getChildren().add(btnMutations);
-        vBox.getChildren().add(btnExcel);
-        popupPane.getChildren().add(vBox);
-        JFXPopup popup = new JFXPopup(popupPane);
-
-        popupBtn.setOnAction(event -> {
-            popup.show(popupBtn, JFXPopup.PopupVPosition.BOTTOM, JFXPopup.PopupHPosition.RIGHT);
-        });
-        btnStat.setOnAction(event -> {
-            showStatistics();
-            popup.hide();
-        });
-        btnExcel.setOnAction(event -> {
-            saveExcel();
-            popup.hide();
-
-        });
-        btnMutations.setOnAction(event -> {
-            configMutations();
-            popup.hide();
-        });
     }
 
-    // @FXML
-    void saveExcel(/*ActionEvent event*/) {
-        DirectoryChooser dc = new DirectoryChooser();
-        File f = dc.showDialog(new Stage());
+    @FXML
+    void exportCalendar(ActionEvent event) {
+        AnchorPane popupExportPane = new AnchorPane();
+        VBox vBoxExport = new VBox();
+        JFXButton btnExportCalendar = new JFXButton("Exportar Calendario");
+        btnExportCalendar.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/resources/exportar.png"))));
+        btnExportCalendar.setCursor(Cursor.HAND);
 
-        Workbook workbook = new XSSFWorkbook();
-        for (int k = 0; k < tables.size(); k++) {
-            TableView<Duel> table = tables.get(k);
-            Sheet spreadsheet = workbook.createSheet("Fecha " + (k + 1));
+        JFXButton btnExportItinerary = new JFXButton("Exportar Itinerario");
+        btnExportItinerary.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/resources/exportar.png"))));
+        btnExportItinerary.setCursor(Cursor.HAND);
 
-            Row row = spreadsheet.createRow(0);
+        vBoxExport.getChildren().add(btnExportCalendar);
+        vBoxExport.getChildren().add(btnExportItinerary);
 
-            for (int j = 0; j < table.getColumns().size(); j++) {
-                row.createCell(j).setCellValue(table.getColumns().get(j).getText());
-            }
-
-            for (int i = 0; i < table.getItems().size(); i++) {
-                row = spreadsheet.createRow(i + 1);
-                for (int j = 0; j < table.getColumns().size(); j++) {
-                    if (table.getColumns().get(j).getCellData(i) != null) {
-                        row.createCell(j).setCellValue(table.getColumns().get(j).getCellData(i).toString());
-                    } else {
-                        row.createCell(j).setCellValue("");
-                    }
-                }
-            }
-        }
+        popupExportPane.getChildren().add(vBoxExport);
+        JFXPopup popupExport = new JFXPopup(popupExportPane);
 
 
-        FileOutputStream fileOut = null;
-        try {
+        btnExportCalendar.setOnAction(event1 -> {
+            ExportFiles.exportCalendarInExcelFormat(this.tables);
+            popupExport.hide();
+        });
+        btnExportItinerary.setOnAction(event1 -> {
+            ExportFiles.exportItineraryInExcelFormat();
+            popupExport.hide();
+        });
 
-            fileOut = new FileOutputStream(f.getAbsolutePath() + "/ Calendario Serie Nacional.xlsx");
-            if (fileOut != null) {
-                workbook.write(fileOut);
-                fileOut.close();
-                saved = true;
-                showSuccessfulMessage();
-            }
-
-        } catch (Exception e) {
-            saved = false;
-            e.printStackTrace();
-        }
-
+        popupExport.show(exportBtn, JFXPopup.PopupVPosition.BOTTOM, JFXPopup.PopupHPosition.RIGHT);
     }
 
-
-    //@FXML
-    void configMutations(/*ActionEvent event*/) {
-        Parent root;
+    @FXML
+    void showConfiguration(ActionEvent event) {
         try {
-            /*
-            root = FXMLLoader.load(getClass().getResource("/visual/MutationsConfiguration.fxml"));
-            Stage stage = new Stage();
-            stage.setTitle("Configuración de las mutaciones");
-            stage.setScene(new Scene(root));
-            stage.show();
-            */
             homeController.createPage(new MutationsConfigurationController(), null, "/visual/MutationsConfiguration.fxml");
             // Hide this current window (if this is what you want)
             // ((Node)(event.getSource())).getScene().getWindow().hide();
         } catch (IOException e) {
             e.printStackTrace();
         }
-
     }
 
-
-    public void showSuccessfulMessage() {
-        TrayNotification notification = new TrayNotification();
-        notification.setTitle("Guardar Calendario");
-        notification.setMessage("Calendario exportado con éxito");
-        notification.setNotificationType(NotificationType.SUCCESS);
-        notification.setRectangleFill(Paint.valueOf("#2F2484"));
-        notification.setAnimationType(AnimationType.FADE);
-        notification.showAndDismiss(Duration.seconds(2));
-    }
-
-    //@FXML
-    void showStatistics(/*ActionEvent event*/) {
+    @FXML
+    void showStatistics(ActionEvent event) {
         try {
             homeController.createPage(new CalendarStatisticsController(), null, "/visual/CalendarStatistics.fxml");
         } catch (IOException e) {
             e.printStackTrace();
         }
-
     }
 
 

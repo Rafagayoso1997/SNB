@@ -1631,53 +1631,6 @@ public class Controller {
         }
     }
 
-    public ArrayList<Date> readExcelItineraryToCalendar(String route) throws IOException {
 
-        Controller controller = Controller.getSingletonController();
-        ArrayList<Date> calendar = new ArrayList<>();
-        controller.teamsIndexes = new ArrayList<>();
-
-        FileInputStream fis = new FileInputStream(route);
-        XSSFWorkbook workbook = new XSSFWorkbook(fis);
-        XSSFSheet xssfSheet = workbook.getSheetAt(0);
-
-        Iterator<Row> rowIterator = xssfSheet.iterator();
-        Row columnNames =  rowIterator.next();
-
-        Iterator<Cell> cellIteratorColumns = columnNames.cellIterator();
-
-        while(cellIteratorColumns.hasNext()){
-            Cell cellNames = cellIteratorColumns.next();
-            teamsIndexes.add(controller.getTeams().indexOf(cellNames.toString()));
-        }
-
-        while (rowIterator.hasNext()){
-
-            Date date = new Date();
-            Row row = rowIterator.next();
-            Iterator<Cell> cellIterator = row.cellIterator();
-
-            int i = 0;
-            while (cellIterator.hasNext()){
-
-                Cell cell  = cellIterator.next();
-                int local = controller.getAcronyms().indexOf(cell.toString());
-                int visitor = teamsIndexes.get(i);
-
-                if(local != visitor){
-                    ArrayList<Integer> pair = new ArrayList<>();
-                    pair.add(local);
-                    pair.add(visitor);
-                    date.getGames().add(pair);
-                }
-                i++;
-            }
-            calendar.add(date);
-        }
-        workbook.close();
-        fis.close();
-
-        return calendar;
-    }
 
 }

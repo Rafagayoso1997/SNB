@@ -278,7 +278,7 @@ public class ConfigurationCalendarController implements Initializable {
             if(indices > 1){
                 int maxGames = indices/2;
                 maxHomeGamesSpinner.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(1,maxGames));
-                maxVisitorGamesSpinner.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(1,maxGames));
+                maxVisitorGamesSpinner.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(1,maxGames-1));
             }
 
         });
@@ -290,7 +290,7 @@ public class ConfigurationCalendarController implements Initializable {
         maxHomeGamesSpinner.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(1,maxGames));
         maxHomeGamesSpinner.getValueFactory().setValue(2);
 
-        maxVisitorGamesSpinner.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(1,maxGames));
+        maxVisitorGamesSpinner.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(1,maxGames-1));
         maxVisitorGamesSpinner.getValueFactory().setValue(2);
 
         //Fill the Champion and Sub-Champions ComboBox

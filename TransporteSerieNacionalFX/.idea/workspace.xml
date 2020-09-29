@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="f431f424-8f9f-474a-8daa-5cfa5e47082b" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/src/file_management/ExportFiles.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/file_management/ExportFiles.java" afterDir="false" />
-    </list>
+    <list default="true" id="f431f424-8f9f-474a-8daa-5cfa5e47082b" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -74,7 +75,20 @@
       <recent name="C:\Users\gayos\Documents\GitHub\SNB\TransporteSerieNacionalFX\lib" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Application.Main">
+    <configuration name="Main (1)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="logic.Main" />
+      <module name="TransporteSerieNacionalFX" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="logic.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="application.Main" />
       <module name="TransporteSerieNacionalFX" />
@@ -88,22 +102,10 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
-      <option name="arquillianRunConfiguration">
-        <value>
-          <option name="containerStateName" value="" />
-        </value>
-      </option>
-      <option name="TEST_OBJECT" value="CLASS" />
-      <properties />
-      <listeners />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <recent_temporary>
       <list>
         <item itemvalue="Application.Main" />
+        <item itemvalue="Application.Main (1)" />
       </list>
     </recent_temporary>
   </component>
@@ -243,7 +245,10 @@
       <workItem from="1600807973109" duration="1041000" />
       <workItem from="1600888842956" duration="568000" />
       <workItem from="1601118729512" duration="27611000" />
-      <workItem from="1601155467588" duration="3700000" />
+      <workItem from="1601155467588" duration="4020000" />
+      <workItem from="1601160778880" duration="26000" />
+      <workItem from="1601165149408" duration="204000" />
+      <workItem from="1601383057026" duration="13536000" />
     </task>
     <servers />
   </component>
@@ -267,10 +272,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="223" y="15" width="1089" height="809" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1536.824@0.0.1536.824" timestamp="1600808421963" />
-    <state x="574" y="113" key="#com.intellij.ide.util.MemberChooser" timestamp="1601159281579">
+    <state x="574" y="113" key="#com.intellij.ide.util.MemberChooser" timestamp="1601394981300">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="574" y="113" key="#com.intellij.ide.util.MemberChooser/0.0.1536.824@0.0.1536.824" timestamp="1601159281579" />
+    <state x="574" y="113" key="#com.intellij.ide.util.MemberChooser/0.0.1536.824@0.0.1536.824" timestamp="1601394981300" />
     <state x="506" y="249" key="#com.intellij.refactoring.move.moveInstanceMethod.MoveInstanceMethodDialog" timestamp="1601122446594">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -287,38 +292,38 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state width="492" height="466" key="DebuggerActiveHint/0.0.1536.824@0.0.1536.824" timestamp="1601124765035" />
-    <state width="1493" height="197" key="GridCell.Tab.0.bottom" timestamp="1601160147051">
+    <state width="1493" height="265" key="GridCell.Tab.0.bottom" timestamp="1601404003892">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="197" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1601160147051" />
-    <state width="1493" height="197" key="GridCell.Tab.0.center" timestamp="1601160147051">
+    <state width="1493" height="265" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1601404003892" />
+    <state width="1493" height="265" key="GridCell.Tab.0.center" timestamp="1601404003892">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="197" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1601160147051" />
-    <state width="1493" height="197" key="GridCell.Tab.0.left" timestamp="1601160147051">
+    <state width="1493" height="265" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1601404003892" />
+    <state width="1493" height="265" key="GridCell.Tab.0.left" timestamp="1601404003892">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="197" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1601160147051" />
-    <state width="1493" height="197" key="GridCell.Tab.0.right" timestamp="1601160147051">
+    <state width="1493" height="265" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1601404003892" />
+    <state width="1493" height="265" key="GridCell.Tab.0.right" timestamp="1601404003892">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="197" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1601160147051" />
-    <state width="1493" height="191" key="GridCell.Tab.1.bottom" timestamp="1601159791853">
+    <state width="1493" height="265" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1601404003892" />
+    <state width="1493" height="265" key="GridCell.Tab.1.bottom" timestamp="1601404003894">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="191" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1601159791853" />
-    <state width="1493" height="191" key="GridCell.Tab.1.center" timestamp="1601159791853">
+    <state width="1493" height="265" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1601404003894" />
+    <state width="1493" height="265" key="GridCell.Tab.1.center" timestamp="1601404003892">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="191" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" timestamp="1601159791853" />
-    <state width="1493" height="191" key="GridCell.Tab.1.left" timestamp="1601159791853">
+    <state width="1493" height="265" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" timestamp="1601404003892" />
+    <state width="1493" height="265" key="GridCell.Tab.1.left" timestamp="1601404003892">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="191" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" timestamp="1601159791853" />
-    <state width="1493" height="191" key="GridCell.Tab.1.right" timestamp="1601159791853">
+    <state width="1493" height="265" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" timestamp="1601404003892" />
+    <state width="1493" height="265" key="GridCell.Tab.1.right" timestamp="1601404003893">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="191" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1601159791853" />
+    <state width="1493" height="265" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1601404003893" />
     <state x="584" y="346" key="ReplaceDuplicatesPrompt" timestamp="1601130333497">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -339,12 +344,39 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="360" y="66" key="new project wizard/0.0.1536.824@0.0.1536.824" timestamp="1601155520790" />
-    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup" timestamp="1601132692749">
+    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup" timestamp="1601400882458">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup/0.0.1536.824@0.0.1536.824" timestamp="1601132692749" />
+    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup/0.0.1536.824@0.0.1536.824" timestamp="1601400882458" />
   </component>
   <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/src/controller/AdvanceConfigurationController.java</url>
+          <line>63</line>
+          <properties class="controller.AdvanceConfigurationController" method="openDuelSelection">
+            <option name="EMULATED" value="true" />
+          </properties>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/controller/CalendarStatisticsController.java</url>
+          <line>93</line>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/controller/CalendarController.java</url>
+          <line>169</line>
+          <option name="timeStamp" value="4" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/file_management/ReadExcel.java</url>
+          <line>97</line>
+          <option name="timeStamp" value="11" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
     <watches-manager>
       <configuration name="Application">
         <watch expression="row.getLastCellNum()" />

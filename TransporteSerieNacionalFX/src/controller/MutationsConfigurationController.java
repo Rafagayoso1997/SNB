@@ -126,7 +126,11 @@ public class MutationsConfigurationController implements Initializable {
 
 
         int dates = Controller.getSingletonController().getCalendar().size();
+        boolean inaugural = Controller.getSingletonController().isInauguralGame();
         for (int i = 0; i < dates; i++) {
+            if(inaugural && (i == 0)){
+                i++;
+            }
             String date = "Fecha " + (i + 1);
             comboDate1.getItems().add(date);
             comboDate2.getItems().add(date);
@@ -250,10 +254,18 @@ public class MutationsConfigurationController implements Initializable {
         if(lastPosSelected != -1){
             int realPos = positionsMutationsSelected.get(lastPosSelected);
 
-            configurationsList.get(realPos).set(0, comboDate1.getSelectionModel().getSelectedIndex());
-            configurationsList.get(realPos).set(1, comboDate2.getSelectionModel().getSelectedIndex());
-            configurationsList.get(realPos).set(2, comboDuel1.getSelectionModel().getSelectedIndex());
-            configurationsList.get(realPos).set(3, comboDuel2.getSelectionModel().getSelectedIndex());
+            if(Controller.getSingletonController().isInauguralGame()){
+                configurationsList.get(realPos).set(0, comboDate1.getSelectionModel().getSelectedIndex() + 1);
+                configurationsList.get(realPos).set(1, comboDate2.getSelectionModel().getSelectedIndex() + 1);
+                configurationsList.get(realPos).set(2, comboDuel1.getSelectionModel().getSelectedIndex() + 1);
+                configurationsList.get(realPos).set(3, comboDuel2.getSelectionModel().getSelectedIndex() + 1);
+            }
+            else{
+                configurationsList.get(realPos).set(0, comboDate1.getSelectionModel().getSelectedIndex());
+                configurationsList.get(realPos).set(1, comboDate2.getSelectionModel().getSelectedIndex());
+                configurationsList.get(realPos).set(2, comboDuel1.getSelectionModel().getSelectedIndex());
+                configurationsList.get(realPos).set(3, comboDuel2.getSelectionModel().getSelectedIndex());
+            }
         }
         else{
             lastPosSelected = 0;
@@ -262,7 +274,7 @@ public class MutationsConfigurationController implements Initializable {
 
         Controller.getSingletonController().setConfigurationsList(configurationsList);
         //if(Controller.getSingletonController().getMutationsIndexes().isEmpty())
-            Controller.getSingletonController().setMutationsIndexes(positionsMutationsSelected);
+        Controller.getSingletonController().setMutationsIndexes(positionsMutationsSelected);
 
         System.out.println("mutaciones seleccionadas: " + positionsMutationsSelected);
 
@@ -275,9 +287,12 @@ public class MutationsConfigurationController implements Initializable {
             }
         //}
 
+        ArrayList<ArrayList<Integer>> itineraryCopy = Controller.getSingletonController().teamsItinerary(newCalendar);
         Controller.getSingletonController().setCalendarCopy(newCalendar);
+        Controller.getSingletonController().setCopied(true);
         Controller.getSingletonController().setGeneratedCalendar(false);
         Controller.getSingletonController().setCopied(true);
+        Controller.getSingletonController().setItineraryCopy(itineraryCopy);
 
         /*AnchorPane structureOver = homeController.getPrincipalPane();
         homeController.createPage(new CalendarController(), structureOver, "/visual/Calendar.fxml");

@@ -107,8 +107,8 @@ public class ExportFiles {
         Sheet spreadsheet = workbook.createSheet("Calendario");
 
 
-        Controller controller =Controller.getSingletonController();
-        ArrayList<ArrayList<Integer>> teamDate = controller.teamsItinerary(controller.getCalendar());
+        Controller controller = Controller.getSingletonController();
+        ArrayList<ArrayList<Integer>> teamDate = controller.getItinerary();
         Row row = spreadsheet.createRow(0);
         //Style of the cell
         XSSFFont headerCellFont = workbook.createFont();
@@ -176,7 +176,7 @@ public class ExportFiles {
     private static void showSuccessfulMessage() {
         TrayNotification notification = new TrayNotification();
         notification.setTitle("Guardar Calendario");
-        notification.setMessage("Calendario exportado con éxito");
+        notification.setMessage("Calendario exportado con ï¿½xito");
         notification.setNotificationType(NotificationType.SUCCESS);
         notification.setRectangleFill(Paint.valueOf("#2F2484"));
         notification.setAnimationType(AnimationType.FADE);

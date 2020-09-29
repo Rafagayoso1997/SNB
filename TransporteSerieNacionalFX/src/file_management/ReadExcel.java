@@ -86,6 +86,8 @@ public class ReadExcel {
             teamsIndexes.add(controller.getTeams().indexOf(cellNames.toString()));
         }
 
+        controller.setTeamsIndexes(teamsIndexes);
+
         while (rowIterator.hasNext()){
 
             Date date = new Date();
@@ -112,6 +114,23 @@ public class ReadExcel {
         workbook.close();
         fis.close();
 
+        /*for (Date value : calendar) {
+            for (int h = 0; h < value.getGames().size(); h++) {
+                System.out.print(value.getGames().get(h));
+            }
+            System.out.println();
+        }*/
+
+        if(calendar.get(0).getGames().size()<2){
+            controller.setInauguralGame(true);
+        }
+        ArrayList<ArrayList<Integer>> itinerary = controller.teamsItinerary(calendar);
+        for (ArrayList<Integer> integers : itinerary) {
+            System.out.println(integers);
+            System.out.println();
+        }
+        controller.setItinerary(itinerary);
+        System.out.println("************************************************");
         return calendar;
     }
 }

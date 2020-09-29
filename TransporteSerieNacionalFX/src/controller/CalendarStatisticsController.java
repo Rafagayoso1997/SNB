@@ -220,7 +220,7 @@ public class CalendarStatisticsController {
         popupPane.getChildren().add(vBox);
         JFXPopup popup = new JFXPopup(popupPane);
 
-        if (controller.getCalendarCopy().size()>0) {
+        if (controller.isCopied()) {
             backButton.setOnAction(event -> {
                 popup.show(backButton, JFXPopup.PopupVPosition.TOP, JFXPopup.PopupHPosition.RIGHT);
             });

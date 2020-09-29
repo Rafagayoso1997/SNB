@@ -274,7 +274,7 @@ public class MutationsConfigurationController implements Initializable {
 
         Controller.getSingletonController().setConfigurationsList(configurationsList);
         //if(Controller.getSingletonController().getMutationsIndexes().isEmpty())
-            Controller.getSingletonController().setMutationsIndexes(positionsMutationsSelected);
+        Controller.getSingletonController().setMutationsIndexes(positionsMutationsSelected);
 
         System.out.println("mutaciones seleccionadas: " + positionsMutationsSelected);
 
@@ -287,9 +287,12 @@ public class MutationsConfigurationController implements Initializable {
             }
         //}
 
+        ArrayList<ArrayList<Integer>> itineraryCopy = Controller.getSingletonController().teamsItinerary(newCalendar);
         Controller.getSingletonController().setCalendarCopy(newCalendar);
+        Controller.getSingletonController().setCopied(true);
         Controller.getSingletonController().setGeneratedCalendar(false);
         Controller.getSingletonController().setCopied(true);
+        Controller.getSingletonController().setItineraryCopy(itineraryCopy);
 
         /*AnchorPane structureOver = homeController.getPrincipalPane();
         homeController.createPage(new CalendarController(), structureOver, "/visual/Calendar.fxml");

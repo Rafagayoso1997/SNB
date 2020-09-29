@@ -93,7 +93,7 @@ public class CalendarController implements Initializable {
 
             }
             calendar = controller.getCalendar();
-            controller.setItinerary(controller.teamsItinerary(calendar));
+            //controller.setItinerary(controller.teamsItinerary(calendar));
 
 
         tables = new ArrayList<>();

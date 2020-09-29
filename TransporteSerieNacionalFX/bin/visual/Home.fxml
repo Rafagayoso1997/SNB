@@ -114,7 +114,7 @@
                      </ImageView>
                   </graphic>
                   <tooltip>
-                     <Tooltip text="Información sobre la aplicación" />
+                     <Tooltip text="Datos a utilizar para la generación del calendario" />
                   </tooltip>
                </JFXButton>
                   <JFXButton fx:id="buttonTeam" alignment="CENTER_RIGHT" buttonType="RAISED" graphicTextGap="15.0" onAction="#showTeams" prefHeight="66.0" prefWidth="166.0" ripplerFill="WHITE" stylesheets="@../styles/PrincipalMenu.css" text="Equipos" textAlignment="RIGHT" textFill="WHITE" GridPane.rowIndex="2">

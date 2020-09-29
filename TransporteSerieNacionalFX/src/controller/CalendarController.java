@@ -84,7 +84,11 @@ public class CalendarController implements Initializable {
 
            if (generated) {
                if(controller.getCalendar().size() ==0){
-                   controller.generateCalendar();
+                   try {
+                       controller.generateCalendar();
+                   } catch (IOException e) {
+                       e.printStackTrace();
+                   }
                }
 
             }

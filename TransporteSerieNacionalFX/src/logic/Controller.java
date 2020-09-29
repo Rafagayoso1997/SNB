@@ -6,6 +6,7 @@ import org.apache.commons.compress.archivers.ar.ArArchiveEntry;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import java.io.FileInputStream;
@@ -71,6 +72,8 @@ public class Controller {
 
 
     private ArrayList<Date> calendarCopy;
+    private ArrayList<ArrayList<Integer>> itinerary;
+    private ArrayList<ArrayList<Integer>> itineraryCopy;
 
     /**
      * Class Constructor
@@ -391,6 +394,22 @@ public class Controller {
         this.copyTeamMoreDistance = copyTeamMoreDistance;
     }
 
+    public ArrayList<ArrayList<Integer>> getItinerary() {
+        return itinerary;
+    }
+
+    public void setItinerary(ArrayList<ArrayList<Integer>> itinerary) {
+        this.itinerary = itinerary;
+    }
+
+    public ArrayList<ArrayList<Integer>> getItineraryCopy() {
+        return itineraryCopy;
+    }
+
+    public void setItineraryCopy(ArrayList<ArrayList<Integer>> itineraryCopy) {
+        this.itineraryCopy = itineraryCopy;
+    }
+
     /**
      * Create the list of resources.teams from the file
      *
@@ -473,7 +492,7 @@ public class Controller {
     /**
      * Generate the calendar
      */
-    public void generateCalendar() {
+    public void generateCalendar() throws IOException {
 
         calendar = new ArrayList<>();
         for (int f = 0; f < teamsIndexes.size() - 1; f++) {
@@ -556,19 +575,27 @@ public class Controller {
             }
             System.out.println("************************************************");
         }
-        if (this.posChampion != -1 && this.posSubChampion != -1) {
+        if (this.posChampion != -1 && !inauguralGame) {
             fixChampionSubchampion(calendar);
         }
 
+        if(inauguralGame){
+            Date inauguralDate = new Date();
+            ArrayList<Integer> pair = new ArrayList<>();
+            pair.add(teamsIndexes.get(posSubChampion));
+            pair.add(teamsIndexes.get(posChampion));
+            inauguralDate.getGames().add(pair);
+            this.calendar.add(0, inauguralDate);
+        }
+
         applyMutations();
+
         if (secondRound) {
             ArrayList<Date> secondRoundCalendar = new ArrayList<>();
             copyCalendar(secondRoundCalendar, calendar);
             generateSecondRound(secondRoundCalendar);
             calendar.addAll(secondRoundCalendar);
         }
-
-
     }
 
     /**
@@ -656,6 +683,12 @@ public class Controller {
                 matrix[posChampion][posSecond] = 2;
                 matrix[posSecond][posChampion] = 1;
             }
+            /*
+            if(isInauguralGame()){
+                int temp =  matrix[posChampion][posSecond];
+                matrix[posChampion][posSecond] =  matrix[posSecond][posChampion];
+                matrix[posSecond][posChampion] = temp;
+            }*/
 
            /* System.out.println("Matriz de 1 y 2:");
             for (int i = 0; i < matrix.length; i++) {
@@ -748,16 +781,16 @@ public class Controller {
     /**
      * Calculate the total distance of a calendar
      *
-     * @param calendar ArrayList
+     * @param
      * @return float
      */
-    public float calculateDistance(ArrayList<Date> calendar) {
+    public float calculateDistance(ArrayList<ArrayList<Integer>> itinerary) {
         float totalDistance = 0;
-        ArrayList<ArrayList<Integer>> teamDate = teamsItinerary(calendar);
-        for (int i = 0; i < teamDate.size() - 1; i++) {
-            ArrayList<Integer> row1 = teamDate.get(i);
-            ArrayList<Integer> row2 = teamDate.get(i + 1);
-            for (int j = 0; j < teamDate.get(i).size(); j++) {
+
+        for (int i = 0; i < itinerary.size() - 1; i++) {
+            ArrayList<Integer> row1 = itinerary.get(i);
+            ArrayList<Integer> row2 = itinerary.get(i + 1);
+            for (int j = 0; j < itinerary.get(i).size(); j++) {
                 int first = row1.get(j);
                 int second = row2.get(j);
                 double dist = matrixDistance[second][first];
@@ -770,15 +803,29 @@ public class Controller {
     public ArrayList<ArrayList<Integer>> teamsItinerary(ArrayList<Date> calendar) {
         ArrayList<ArrayList<Integer>> teamDate = new ArrayList<>();
         ArrayList<Integer> row = new ArrayList<>();
-        System.out.println("Indices de equipos" + teamsIndexes);
+        int startPosition = 0;
+
         for (int k = 0; k < teamsIndexes.size(); k++) {
             row.add(teamsIndexes.get(k));
         }
 
         teamDate.add(row);
 
-        for (int i = 1; i < calendar.size() + 1; i++) {
-            if (secondRound) {
+        if(inauguralGame){
+            startPosition = 1;
+            row = new ArrayList<>();
+            for (int k = 0; k < teamsIndexes.size(); k++) {
+                row.add(teamsIndexes.get(k));
+            }
+            int posChampeon = teamsIndexes.indexOf(calendar.get(0).getGames().get(0).get(0));
+            int posSub = teamsIndexes.indexOf(calendar.get(0).getGames().get(0).get(1));
+            row.set(posSub, posChampeon);
+            teamDate.add(row);
+        }
+
+        for (int i = startPosition; i < calendar.size(); i++) {
+
+            /*if (secondRound) {
                 if ((i - 1) == calendar.size() / 2) {
                     row = new ArrayList<>();
                     for (int j = 0; j < teamsIndexes.size(); j++) {
@@ -786,17 +833,18 @@ public class Controller {
                     }
                     teamDate.add(row);
                 }
-            }
+            }*/
+
             row = new ArrayList<>();
             for (int k = 0; k < teamsIndexes.size(); k++) {
                 row.add(-1);
             }
 
-            Date date = calendar.get(i - 1);
+            Date date = calendar.get(i);
 
-            for (ArrayList<Integer> pair : date.getGames()) {
-                int first = pair.get(0);
-                int second = pair.get(1);
+            for (int m = 0; m < date.getGames().size(); m++) {
+                int first = date.getGames().get(m).get(0);
+                int second = date.getGames().get(m).get(1);
                 row.set(teamsIndexes.indexOf(first), first);
                 row.set(teamsIndexes.indexOf(second), first);
             }
@@ -848,18 +896,26 @@ public class Controller {
         int selectedDate = -1;
         int dateToChange = -1;
 
+        int startPosition = 0;
+
         if (!configurationsList.isEmpty()) {
             selectedDate = configurationsList.get(number).get(0);
             dateToChange = configurationsList.get(number).get(1);
         }
+        else{
+            if(inauguralGame){
+                startPosition = 1;
+            }
+        }
 
         if (selectedDate == -1) {
-            selectedDate = ThreadLocalRandom.current().nextInt(0, calendar.size());
+                selectedDate = ThreadLocalRandom.current().nextInt(startPosition, calendar.size());
         }
 
         if (dateToChange == -1) {
             do {
-                dateToChange = ThreadLocalRandom.current().nextInt(0, calendar.size());
+                dateToChange = ThreadLocalRandom.current().nextInt(startPosition, calendar.size());
+
             } while ((calendar.size() > 3) && ((selectedDate - dateToChange) <= 1) && ((selectedDate - dateToChange) >= (-1)));
         }
 
@@ -951,21 +1007,27 @@ public class Controller {
     private void swapDates(ArrayList<Date> calendar, int number) {
         int firstDate = -1;
         int secondDate = -1;
+        int startPosition = 0;
 
         if (!configurationsList.isEmpty()) {
             firstDate = configurationsList.get(number).get(0);
             secondDate = configurationsList.get(number).get(1);
         }
+        else{
+            if(inauguralGame){
+                startPosition = 1;
+            }
+        }
 
         if (firstDate == -1) {
             do {
-                firstDate = ThreadLocalRandom.current().nextInt(0, calendar.size());
+                firstDate = ThreadLocalRandom.current().nextInt(startPosition, calendar.size());
             } while (firstDate == secondDate);
         }
 
         if (secondDate == -1) {
             do {
-                secondDate = ThreadLocalRandom.current().nextInt(0, calendar.size());
+                secondDate = ThreadLocalRandom.current().nextInt(startPosition, calendar.size());
             } while (firstDate == secondDate);
         }
 
@@ -1053,6 +1115,7 @@ public class Controller {
     private void changeDateOrder(ArrayList<Date> calendar, int number) {
         int firstDate = -1;
         int lastDate = -1;
+        int startPosition = 0;
 
         if (!configurationsList.isEmpty()) {
             firstDate = configurationsList.get(number).get(0);
@@ -1064,14 +1127,19 @@ public class Controller {
                 firstDate = temp;
             }
         }
+        else{
+            if(inauguralGame){
+                startPosition = 1;
+            }
+        }
 
         if (firstDate == -1) {
-            firstDate = ThreadLocalRandom.current().nextInt(0, calendar.size() - 1);
+                firstDate = ThreadLocalRandom.current().nextInt(startPosition, calendar.size() - 1);
         }
 
         if (lastDate == -1) {
             while (lastDate <= firstDate) {
-                lastDate = ThreadLocalRandom.current().nextInt(0, calendar.size());
+                    lastDate = ThreadLocalRandom.current().nextInt(startPosition, calendar.size());
             }
         }
 
@@ -1099,23 +1167,29 @@ public class Controller {
         int posFirstDate = -1;
         int posLastDate = -1;
         int posFirstDuel = -1;
+        int startPosition = 0;
 
         if (!configurationsList.isEmpty()) {
             posFirstDate = configurationsList.get(number).get(0);
             posLastDate = configurationsList.get(number).get(1);
             posFirstDuel = configurationsList.get(number).get(2);
         }
+        else{
+            if(inauguralGame){
+                startPosition = 1;
+            }
+        }
 
         if (posFirstDate == -1) {
             do {
-                posFirstDate = ThreadLocalRandom.current().nextInt(0, calendar.size());
+                posFirstDate = ThreadLocalRandom.current().nextInt(startPosition, calendar.size());
             }
             while (posLastDate == posFirstDate);
         }
 
         if (posLastDate == -1) {
             do {
-                posLastDate = ThreadLocalRandom.current().nextInt(0, calendar.size());
+                posLastDate = ThreadLocalRandom.current().nextInt(startPosition, calendar.size());
             }
             while (posLastDate == posFirstDate);
         }
@@ -1214,13 +1288,12 @@ public class Controller {
      * @return
      */
     private ArrayList<Date> applyMutations() {
-        ArrayList<Date> newCalendar = null;
-        int penalizeVisitorGames = penalizeGamesVisitor(calendar);
-        int penalizeHomeGames = penalizeGamesHome(calendar);
-        ArrayList<ArrayList<Integer>> itinerary = teamsItinerary(calendar);
+        this.itinerary = teamsItinerary(calendar);
+        int penalizeVisitorGames = penalizeGamesVisitor(itinerary);
+        int penalizeHomeGames = penalizeGamesHome(itinerary);
         int longTrips = checkLongTrips(itinerary);
         int actualization = 0;
-        float distance = calculateDistance(this.calendar) + PENALIZATION * (penalizeVisitorGames + penalizeHomeGames);
+        float distance = calculateDistance(this.itinerary) + PENALIZATION * (penalizeVisitorGames + penalizeHomeGames);
         System.out.println("Se incumple " + longTrips);
         if (longTrips > 0) {
             distance += 100 * longTrips;
@@ -1232,54 +1305,56 @@ public class Controller {
 
             int mutation = mutationsIndexes.get(ThreadLocalRandom.current().nextInt(0, mutationsIndexes.size()));
 
-            newCalendar = new ArrayList<>();
-            copyCalendar(newCalendar, this.calendar);
+            this.calendarCopy = new ArrayList<>();
+            copyCalendar(this.calendarCopy, this.calendar);
 
-            selectMutation(newCalendar, mutation);
+            selectMutation(this.calendarCopy, mutation);
 
-            if (this.posChampion != -1 && this.posSubChampion != -1) {
-                fixChampionSubchampion(newCalendar);
+            if (this.posChampion != -1 && !inauguralGame) {
+                fixChampionSubchampion(this.calendarCopy);
                /* if (posLocalTeam != this.posChampion && posSecondTeam != this.posSubChampion) {
                     newDistance += PENALIZATION;
                 }*/
             }
 
-            float newDistance = calculateDistance(newCalendar);
-            itinerary = teamsItinerary(newCalendar);
-            longTrips = checkLongTrips(itinerary);
-
+            this.itineraryCopy = teamsItinerary(this.calendarCopy);
+            float newDistance = calculateDistance(itineraryCopy);
+            longTrips = checkLongTrips(itineraryCopy);
 
             if (longTrips > 0) {
                 newDistance += 100 * longTrips;
             }
 
 
-            penalizeVisitorGames = penalizeGamesVisitor(newCalendar);
-            penalizeHomeGames = penalizeGamesHome(newCalendar);
+            penalizeVisitorGames = penalizeGamesVisitor(itineraryCopy);
+            penalizeHomeGames = penalizeGamesHome(itineraryCopy);
 
             newDistance += PENALIZATION * (penalizeVisitorGames + penalizeHomeGames);
 
             if (newDistance <= distance) {
                 actualization++;
-                this.calendar = newCalendar;
+                this.calendar = this.calendarCopy;
+                this.itinerary = this.getItineraryCopy();
                 distance = newDistance;
                 System.out.println("Se incumple " + longTrips);
             }
             i++;
 
         }
+
         System.out.println("Calendario Mutado:");
         for (int z = 0; z < this.calendar.size(); z++) {
             System.out.println(this.calendar.get(z).getGames());
         }
+
         calendarDistance = distance;
-        System.out.println("Distancia Original Calendario Mutado :" + calculateDistance(this.calendar));
+        System.out.println("Distancia Original Calendario Mutado :" + calculateDistance(this.itinerary));
         System.out.println();
         System.out.println("Mutado " + distance);
         System.out.println();
         System.out.println("Cantidad de actualizaciones: " + actualization);
 
-        ArrayList<ArrayList<Double>> itiner = itineraryDistances(this.calendar);
+        ArrayList<ArrayList<Double>> itiner = itineraryDistances(this.itinerary);
 
 
         for (int l = 0; l < itiner.size(); l++) {
@@ -1289,8 +1364,14 @@ public class Controller {
             System.out.println();
         }
 
-        lessStatistics(this.calendar);
-        moreStatistics(this.calendar);
+        System.out.println("Itinerario Mutado:");
+        for (int z = 0; z < this.itinerary.size(); z++) {
+                System.out.println(this.itinerary.get(z));
+        }
+
+
+        lessStatistics(this.itinerary);
+        moreStatistics(this.itinerary);
 
        /* System.out.println("----------");
         for (int l=0; l < itiner.get(0).size();l++){
@@ -1326,71 +1407,79 @@ public class Controller {
     /**
      * Penalize the calendar if breach the restriction
      *
-     * @param calendar
+     * @param
      * @return
      */
-    private int penalizeGamesVisitor(ArrayList<Date> calendar) {
+    private int penalizeGamesVisitor(ArrayList<ArrayList<Integer>> itinerary) {
+        int cont = 0;
+        ArrayList<Integer> counts = new ArrayList<>();
+
+        for (int i = 0; i < teams.size(); i++) {
+            counts.add(0);
+        }
+
+        for(int i = 0; i  < itinerary.size(); i++) {
+            ArrayList<Integer> row = itinerary.get(i);
+
+            for (int j = 0; j < row.size(); j++) {
+                int destiny = row.get(j);
+
+                if(destiny != j){
+                    counts.set(j, counts.get(j) + 1);
+                }
+                else{
+                    counts.set(j, 0);
+                }
+
+                if (counts.get(j) > maxVisitorGame) {
+                    cont++;
+                    counts.set(j, 0);
+                }
+            }
+        }
+        return cont;
+    }
+
+    private int penalizeGamesHome(ArrayList<ArrayList<Integer>> itinerary) {
         int cont = 0;
         ArrayList<Integer> counts = new ArrayList<>();
         for (int i = 0; i < teams.size(); i++) {
             counts.add(0);
         }
-        int i = 0;
-        while (i < calendar.size()) {
-            Date date = calendar.get(i);
-            int j = 0;
-            while (j < date.getGames().size()) {
-                int posLocal = date.getGames().get(j).get(0);
-                int posVisitor = date.getGames().get(j).get(1);
-                counts.set(posLocal, 0);
-                counts.set(posVisitor, counts.get(posVisitor) + 1);
-                if (counts.get(posVisitor) > maxVisitorGame) {
-                    cont++;
-                    counts.set(posVisitor, 0);
+
+        for(int i = 0; i  < itinerary.size(); i++) {
+            ArrayList<Integer> row = itinerary.get(i);
+
+            for (int j = 0; j < row.size(); j++) {
+                int pos = row.get(j);
+
+                if(pos == j){
+                    counts.set(pos, 0);
                 }
-                j++;
+                else{
+                    counts.set(j, counts.get(j) + 1);
+                }
+
+                if (counts.get(j) > maxVisitorGame) {
+                    cont++;
+                    counts.set(j, 0);
+                }
             }
-            i++;
         }
         return cont;
     }
 
-    private int penalizeGamesHome(ArrayList<Date> calendar) {
-        int cont = 0;
-        ArrayList<Integer> counts = new ArrayList<>();
-        for (int i = 0; i < teams.size(); i++) {
-            counts.add(0);
-        }
-        int i = 0;
-        while (i < calendar.size()) {
-            Date date = calendar.get(i);
-            int j = 0;
-            while (j < date.getGames().size()) {
-                int posLocal = date.getGames().get(j).get(0);
-                int posVisitor = date.getGames().get(j).get(1);
-                counts.set(posLocal, counts.get(posLocal) + 1);
-                counts.set(posVisitor, 0);
-                if (counts.get(posLocal) > maxVisitorGame) {
-                    cont++;
-                    counts.set(posLocal, 0);
-                }
-                j++;
-            }
-            i++;
-        }
-        return cont;
-    }
-
-    private ArrayList<ArrayList<Double>> itineraryDistances(ArrayList<Date> calendar) {
+    private ArrayList<ArrayList<Double>> itineraryDistances(ArrayList<ArrayList<Integer>> itinerary) {
         ArrayList<ArrayList<Double>> distancesItinerary = new ArrayList<>();
-        ArrayList<ArrayList<Integer>> itinerary = teamsItinerary(calendar);
 
         for (int i = 0; i < itinerary.size() - 1; i++) {
 
             ArrayList<Double> distances = new ArrayList<>(teamsIndexes.size());
+
             for (int m = 0; m < teamsIndexes.size(); m++) {
                 distances.add(0.0);
             }
+
             ArrayList<Integer> row1 = itinerary.get(i);
             ArrayList<Integer> row2 = itinerary.get(i + 1);
             for (int j = 0; j < itinerary.get(i).size(); j++) {
@@ -1407,15 +1496,15 @@ public class Controller {
         return distancesItinerary;
     }
 
-    public void lessStatistics(ArrayList<Date> calendar) {
-        ArrayList<ArrayList<Double>> itinerary = itineraryDistances(calendar);
+    public void lessStatistics(ArrayList<ArrayList<Integer>> itinerary) {
+        ArrayList<ArrayList<Double>> distances = itineraryDistances(itinerary);
         double max = Double.MAX_VALUE;
         double sum = 0;
         int pos = -1;
-        for (int l = 0; l < itinerary.get(0).size(); l++) {
+        for (int l = 0; l < distances.get(0).size(); l++) {
 
-            for (int p = 0; p < itinerary.size(); p++) {
-                sum += itinerary.get(p).get(l);
+            for (int p = 0; p < distances.size(); p++) {
+                sum += distances.get(p).get(l);
             }
 
             if (sum <= max) {
@@ -1430,15 +1519,15 @@ public class Controller {
 
     }
 
-    public void copyLessStatistics(ArrayList<Date> calendar) {
-        ArrayList<ArrayList<Double>> itinerary = itineraryDistances(calendar);
+    public void copyLessStatistics(ArrayList<ArrayList<Integer>> itinerary) {
+        ArrayList<ArrayList<Double>> distances = itineraryDistances(itinerary);
         double max = Double.MAX_VALUE;
         double sum = 0;
         int pos = -1;
-        for (int l = 0; l < itinerary.get(0).size(); l++) {
+        for (int l = 0; l < distances.get(0).size(); l++) {
 
-            for (int p = 0; p < itinerary.size(); p++) {
-                sum += itinerary.get(p).get(l);
+            for (int p = 0; p < distances.size(); p++) {
+                sum += distances.get(p).get(l);
             }
 
             if (sum <= max) {
@@ -1453,16 +1542,16 @@ public class Controller {
 
     }
 
-    public void moreStatistics(ArrayList<Date> calendar) {
-        ArrayList<ArrayList<Double>> itinerary = itineraryDistances(calendar);
+    public void moreStatistics(ArrayList<ArrayList<Integer>> itinerary) {
+        ArrayList<ArrayList<Double>> distances = itineraryDistances(itinerary);
 
         double max = Double.MIN_VALUE;
         double sum = 0;
         int pos = -1;
-        for (int l = 0; l < itinerary.get(0).size(); l++) {
+        for (int l = 0; l < distances.get(0).size(); l++) {
 
-            for (int p = 0; p < itinerary.size(); p++) {
-                sum += itinerary.get(p).get(l);
+            for (int p = 0; p < distances.size(); p++) {
+                sum += distances.get(p).get(l);
             }
 
             if (sum >= max) {
@@ -1477,16 +1566,16 @@ public class Controller {
 
     }
 
-    public void copyMoreStatistics(ArrayList<Date> calendar) {
-        ArrayList<ArrayList<Double>> itinerary = itineraryDistances(calendar);
+    public void copyMoreStatistics(ArrayList<ArrayList<Integer>> itinerary) {
+        ArrayList<ArrayList<Double>> distances = itineraryDistances(itinerary);
 
         double max = Double.MIN_VALUE;
         double sum = 0;
         int pos = -1;
-        for (int l = 0; l < itinerary.get(0).size(); l++) {
+        for (int l = 0; l < distances.get(0).size(); l++) {
 
-            for (int p = 0; p < itinerary.size(); p++) {
-                sum += itinerary.get(p).get(l);
+            for (int p = 0; p < distances.size(); p++) {
+                sum += distances.get(p).get(l);
             }
 
             if (sum >= max) {
@@ -1540,6 +1629,55 @@ public class Controller {
             default:
                 throw new IllegalStateException("Unexpected value: " + number);
         }
+    }
+
+    public ArrayList<Date> readExcelItineraryToCalendar(String route) throws IOException {
+
+        Controller controller = Controller.getSingletonController();
+        ArrayList<Date> calendar = new ArrayList<>();
+        controller.teamsIndexes = new ArrayList<>();
+
+        FileInputStream fis = new FileInputStream(route);
+        XSSFWorkbook workbook = new XSSFWorkbook(fis);
+        XSSFSheet xssfSheet = workbook.getSheetAt(0);
+
+        Iterator<Row> rowIterator = xssfSheet.iterator();
+        Row columnNames =  rowIterator.next();
+
+        Iterator<Cell> cellIteratorColumns = columnNames.cellIterator();
+
+        while(cellIteratorColumns.hasNext()){
+            Cell cellNames = cellIteratorColumns.next();
+            teamsIndexes.add(controller.getTeams().indexOf(cellNames.toString()));
+        }
+
+        while (rowIterator.hasNext()){
+
+            Date date = new Date();
+            Row row = rowIterator.next();
+            Iterator<Cell> cellIterator = row.cellIterator();
+
+            int i = 0;
+            while (cellIterator.hasNext()){
+
+                Cell cell  = cellIterator.next();
+                int local = controller.getAcronyms().indexOf(cell.toString());
+                int visitor = teamsIndexes.get(i);
+
+                if(local != visitor){
+                    ArrayList<Integer> pair = new ArrayList<>();
+                    pair.add(local);
+                    pair.add(visitor);
+                    date.getGames().add(pair);
+                }
+                i++;
+            }
+            calendar.add(date);
+        }
+        workbook.close();
+        fis.close();
+
+        return calendar;
     }
 
 }

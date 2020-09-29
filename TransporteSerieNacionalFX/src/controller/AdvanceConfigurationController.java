@@ -45,8 +45,7 @@ public class AdvanceConfigurationController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        iterationsSpinner.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(1,Integer.MAX_VALUE));
-        iterationsSpinner.getValueFactory().setValue(20000);
+        iterationsSpinner.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(1,Integer.MAX_VALUE,20000));
 
         List<String> mutationsRead = ReadFiles.readMutations();
         List<String> mutations = new ArrayList<>();
@@ -67,7 +66,7 @@ public class AdvanceConfigurationController implements Initializable {
         ArrayList<Integer> indexesMutations = new ArrayList<>(mutationListView.getSelectionModel().getSelectedIndices());
         if (indexesMutations.isEmpty()) {
             notification = getNotification();
-            notification.setTitle("Selección de equipos");
+            notification.setTitle("Selección de cambios");
             notification.setMessage("Debe escoger al menos una mutación");
             notification.setNotificationType(NotificationType.ERROR);
             notification.setRectangleFill(Paint.valueOf("#2F2484"));
@@ -79,7 +78,6 @@ public class AdvanceConfigurationController implements Initializable {
             Controller.getSingletonController().setMutationsIndexes(indexesMutations);
             Controller.getSingletonController().setIterations(iterationsSpinner.getValueFactory().getValue());
             showTeamsMatrix();
-            //showAdvanceConfiguration();
         }
     }
 

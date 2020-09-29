@@ -92,8 +92,8 @@ public class CalendarStatisticsController {
 
 
         Controller controller = Controller.getSingletonController();
-        controller.moreStatistics(controller.getCalendar());
-        controller.lessStatistics(controller.getCalendar());
+        controller.moreStatistics(controller.getItinerary());
+        controller.lessStatistics(controller.getItinerary());
 
         float lessDistance = controller.getLessDistance();
         String teamLessDistance = controller.getTeamLessDistance();
@@ -114,7 +114,7 @@ public class CalendarStatisticsController {
         XYChart.Series seriesCopyCalendar = new XYChart.Series();
 
         seriesOriginalCalendar.setName("Calendario Original");
-        seriesOriginalCalendar.getData().add(new XYChart.Data(xAxisCalendarData.get(0), controller.calculateDistance(controller.getCalendar())));
+        seriesOriginalCalendar.getData().add(new XYChart.Data(xAxisCalendarData.get(0), controller.calculateDistance(controller.getItinerary())));
 
         /****Menor Distancia*****/
         xAxisLessTeamData.add(teamLessDistance);
@@ -155,8 +155,8 @@ public class CalendarStatisticsController {
 
         if (controller.isCopied()) {
             xAxisCalendarData.add("Nuevo Calendario");
-            controller.copyMoreStatistics(controller.getCalendarCopy());
-            controller.copyLessStatistics(controller.getCalendarCopy());
+            controller.copyMoreStatistics(controller.getItineraryCopy());
+            controller.copyLessStatistics(controller.getItineraryCopy());
             float copyLessDistance = controller.getCopyLessDistance();
             float copyMoreDistance = controller.getCopyMoreDistance();
             String copyTeamLessDistance = controller.getCopyTeamLessDistance();
@@ -165,7 +165,7 @@ public class CalendarStatisticsController {
             xAxisMoreTeamData.add(copyTeamMoreDistance);
 
             seriesCopyCalendar.setName("Nuevo Calendario");
-            seriesCopyCalendar.getData().add(new XYChart.Data(xAxisCalendarData.get(1), controller.calculateDistance(controller.getCalendarCopy())));
+            seriesCopyCalendar.getData().add(new XYChart.Data(xAxisCalendarData.get(1), controller.calculateDistance(controller.getItineraryCopy())));
             seriesCopyLessTeam.setName("Equipo que menor distancia recorre del Nuevo Calendario");
             seriesCopyLessTeam.getData().add(new XYChart.Data(xAxisLessTeamData.get(1), copyLessDistance));
             seriesCopyMoreTeam.setName("Equipo que mayor distancia recorre del Nuevo Calendario");
@@ -220,7 +220,7 @@ public class CalendarStatisticsController {
         popupPane.getChildren().add(vBox);
         JFXPopup popup = new JFXPopup(popupPane);
 
-        if (controller.getCalendarCopy().size()>0) {
+        if (controller.isCopied()) {
             backButton.setOnAction(event -> {
                 popup.show(backButton, JFXPopup.PopupVPosition.TOP, JFXPopup.PopupHPosition.RIGHT);
             });

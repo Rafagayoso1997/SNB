@@ -121,7 +121,7 @@ public class CalendarController implements Initializable {
 
     }
 
-    @FXML
+    /*@FXML
     void exportCalendar(ActionEvent event) {
         AnchorPane popupExportPane = new AnchorPane();
         VBox vBoxExport = new VBox();
@@ -150,7 +150,7 @@ public class CalendarController implements Initializable {
         });
 
         popupExport.show(exportBtn, JFXPopup.PopupVPosition.BOTTOM, JFXPopup.PopupHPosition.RIGHT);
-    }
+    }*/
 
     @FXML
     void showConfiguration(ActionEvent event) {

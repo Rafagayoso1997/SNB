@@ -169,11 +169,6 @@ public class ConfigurationCalendarController implements Initializable {
 
         } else {
             inauguralGame.setText("No");
-            champVsSub.setSelected(false);
-            champVsSub.setText("No");
-            comboChamp.setVisible(false);
-            comboSub.setVisible(false);
-            btnSwap.setVisible(false);
             Controller.getSingletonController().setInauguralGame(false);
         }
     }
@@ -275,14 +270,14 @@ public class ConfigurationCalendarController implements Initializable {
         HomeController.escogidos = false;
         selectAll.setSelected(true);
         notification = new TrayNotification();
-        lblSymmetricSecondRound.setVisible(false);
-        symmetricSecondRound.setVisible(false);
+        lblSymmetricSecondRound.setVisible(true);
+        symmetricSecondRound.setVisible(true);
 
 
         Controller.getSingletonController().setPosChampion(-1);
         Controller.getSingletonController().setPosSubChampion(-1);
         Controller.getSingletonController().setSecondRound(false);
-        secondRoundButton.setSelected(false);
+        secondRoundButton.setSelected(true);
 
 
 
@@ -314,9 +309,10 @@ public class ConfigurationCalendarController implements Initializable {
         maxVisitorGamesSpinner.getValueFactory().setValue(2);
 
         //Fill the Champion and Sub-Champions ComboBox
-        comboChamp.setVisible(false);
-        comboSub.setVisible(false);
-        btnSwap.setVisible(false);
+        champVsSub.setSelected(true);
+        comboChamp.setVisible(true);
+        comboSub.setVisible(true);
+        btnSwap.setVisible(true);
 
         ConfigurationCalendarController.teams = 0;
     }

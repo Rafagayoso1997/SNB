@@ -127,17 +127,8 @@ public class HomeController implements Initializable {
         try {
 
             if (file != null) {
-                ArrayList<Date> importedCalendar = ReadExcel.readExcel(file.toString());
-                ArrayList<Integer> indexes = new ArrayList<>();
-                for(int i=0; i < importedCalendar.get(0).getGames().size();i++){
-                    ArrayList<Integer> game = importedCalendar.get(0).getGames().get(i);
-                    indexes.addAll(game);
-                }
-                Collections.sort(indexes);
-                System.out.println(indexes);
+                ArrayList<Date> importedCalendar = ReadExcel.readExcelItineraryToCalendar(file.toString());
 
-
-                Controller.getSingletonController().setTeamsIndexes(indexes);
                 Controller.getSingletonController().setCalendar(importedCalendar);
 
             /*ArrayList<Date> calendar = Controller.getSingletonController().getCalendar();

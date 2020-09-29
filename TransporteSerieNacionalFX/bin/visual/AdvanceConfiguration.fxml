@@ -5,6 +5,7 @@
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Spinner?>
+<?import javafx.scene.control.Tooltip?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
@@ -33,9 +34,16 @@
             <Font name="Segoe UI Symbol" size="30.0" />
          </font>
       </Label>
-      <Spinner fx:id="iterationsSpinner" editable="true"  layoutX="14.0" layoutY="66.0" stylesheets="@../styles/PrincipalMenu.css">
+      <Spinner fx:id="iterationsSpinner" editable="true" layoutX="14.0" layoutY="66.0" stylesheets="@../styles/PrincipalMenu.css">
          <cursor>
             <Cursor fx:constant="HAND" />
-         </cursor></Spinner>
+         </cursor>
+         <tooltip>
+            <Tooltip text="Si introduce un valor erróneo, por defecto se efectuará una iteración del algoritmo">
+               <font>
+                  <Font name="Segoe UI Emoji" size="24.0" />
+               </font>
+            </Tooltip>
+         </tooltip></Spinner>
    </children>
 </AnchorPane>

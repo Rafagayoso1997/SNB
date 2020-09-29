@@ -12,10 +12,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Control;
-import javafx.scene.control.SelectionMode;
-import javafx.scene.control.Spinner;
-import javafx.scene.control.SpinnerValueFactory;
+import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.input.ScrollEvent;
 import javafx.scene.layout.AnchorPane;
@@ -82,6 +79,14 @@ public class ConfigurationCalendarController implements Initializable {
     @FXML
     private JFXToggleButton inauguralGame;
 
+    @FXML
+    private JFXToggleButton symmetricSecondRound;
+
+
+    @FXML
+    private Label lblSymmetricSecondRound;
+
+
 
 
     @FXML
@@ -132,10 +137,22 @@ public class ConfigurationCalendarController implements Initializable {
     @FXML
     void setSecondRound(ActionEvent event) {
         if (secondRoundButton.isSelected()) {
-            secondRoundButton.setText("S?");
-
+            secondRoundButton.setText("Sí");
+            lblSymmetricSecondRound.setVisible(true);
+            symmetricSecondRound.setVisible(true);
         } else {
             secondRoundButton.setText("No");
+            lblSymmetricSecondRound.setVisible(false);
+            symmetricSecondRound.setVisible(false);
+        }
+    }
+
+    @FXML
+    void setSymmetricSecondRound(ActionEvent event) {
+        if (symmetricSecondRound.isSelected()) {
+            symmetricSecondRound.setText("Sí");
+        } else {
+            symmetricSecondRound.setText("No");
         }
     }
 
@@ -223,6 +240,7 @@ public class ConfigurationCalendarController implements Initializable {
             }
 
             Controller.getSingletonController().setSecondRound(secondRound);
+            Controller.getSingletonController().setSymmetricSecondRound(symmetricSecondRound.isSelected());
             Controller.getSingletonController().setMaxHomeGame(maxHomeGamesSpinner.getValueFactory().getValue());
             Controller.getSingletonController().setMaxVisitorGame(maxVisitorGamesSpinner.getValueFactory().getValue());
             if(showMatrix)
@@ -257,6 +275,8 @@ public class ConfigurationCalendarController implements Initializable {
         HomeController.escogidos = false;
         selectAll.setSelected(true);
         notification = new TrayNotification();
+        lblSymmetricSecondRound.setVisible(false);
+        symmetricSecondRound.setVisible(false);
 
 
         Controller.getSingletonController().setPosChampion(-1);

@@ -52,6 +52,7 @@ public class Controller {
     private int posChampion;//Position of the champion team
     private int posSubChampion;//Position of the subchampion team
     private boolean secondRound;
+    private boolean symmetricSecondRound;
 
     private float calendarDistance;
     private float lessDistance;
@@ -94,6 +95,7 @@ public class Controller {
         this.mutationsIndexes = addAllMutations();
         fillMatrixDistance();
         this.secondRound = false;
+        this.symmetricSecondRound = false;
         this.matrix = new int[teamsIndexes.size()][teamsIndexes.size()];
         this.calendarDistance = 0;
         this.lessDistance = 0;
@@ -222,6 +224,14 @@ public class Controller {
 
     public void setInauguralGame(boolean inauguralGame) {
         this.inauguralGame = inauguralGame;
+    }
+
+    public boolean isSymmetricSecondRound() {
+        return symmetricSecondRound;
+    }
+
+    public void setSymmetricSecondRound(boolean symmetricSecondRound) {
+        this.symmetricSecondRound = symmetricSecondRound;
     }
 
 

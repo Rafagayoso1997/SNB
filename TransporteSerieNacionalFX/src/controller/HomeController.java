@@ -1,6 +1,7 @@
 package controller;
 
 import com.jfoenix.controls.JFXButton;
+import file_management.ExportFiles;
 import javafx.animation.FadeTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -62,6 +63,8 @@ public class HomeController implements Initializable {
     @FXML
     private JFXButton buttonReturnSelectionTeamConfiguration;
 
+    @FXML
+    private JFXButton buttonExportCalendar;
 
 
     @FXML
@@ -164,6 +167,23 @@ public class HomeController implements Initializable {
 
         } catch (IOException e) {
             e.printStackTrace();
+        }
+    }
+
+    @FXML
+    void exportCalendar(ActionEvent event) {
+
+        if(Controller.getSingletonController().getCalendar().isEmpty()){
+            notification = getNotification();
+            notification.setTitle("Exportación de Calendario");
+            notification.setMessage("No existe ningún calendario para exportar");
+            notification.setNotificationType(NotificationType.ERROR);
+            notification.setRectangleFill(Paint.valueOf("#2F2484"));
+            notification.setAnimationType(AnimationType.FADE);
+            notification.showAndDismiss(Duration.seconds(2));
+        }
+        else{
+            ExportFiles.exportItineraryInExcelFormat();
         }
     }
 

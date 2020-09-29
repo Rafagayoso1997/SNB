@@ -51,7 +51,7 @@
     </AnchorPane>
     <AnchorPane layoutX="-3.0" layoutY="137.0" prefHeight="657.0" prefWidth="213.0" style="-fx-background-color: #2F2484; -fx-background-radius: 0 70 0 0;">
         <children>
-         <GridPane layoutX="7.0" layoutY="67.0" prefHeight="500.0" prefWidth="200.0">
+         <GridPane layoutX="7.0" layoutY="25.0" prefHeight="500.0" prefWidth="200.0">
            <columnConstraints>
              <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
            </columnConstraints>
@@ -61,27 +61,10 @@
              <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />
              <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />
              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
            </rowConstraints>
             <children>
-                <JFXButton fx:id="buttonImportCalendar" alignment="CENTER_RIGHT" buttonType="RAISED" graphicTextGap="6.0" lineSpacing="10.0" onAction="#importCalendar" prefHeight="66.0" prefWidth="166.0" ripplerFill="WHITE" stylesheets="@../styles/PrincipalMenu.css" text="Importar" textAlignment="RIGHT" textFill="WHITE" textOverrun="CENTER_ELLIPSIS" GridPane.rowIndex="1">
-                    <font>
-                        <Font name="Segoe UI Symbol" size="16.0" />
-                    </font>
-                    <cursor>
-                        <Cursor fx:constant="HAND" />
-                    </cursor>
-                    <graphic>
-                        <ImageView fitHeight="62.0" fitWidth="55.0" pickOnBounds="true" preserveRatio="true">
-                            <image>
-                                <Image url="@../resources/importar.png" />
-                            </image>
-                        </ImageView>
-                    </graphic>
-                    <tooltip>
-                        <Tooltip text="Permite importar un calendario desde un fichero Excel y modificarlo" />
-                    </tooltip>
-                </JFXButton>
-                  <JFXButton fx:id="buttonCalendar" alignment="CENTER_RIGHT" buttonType="RAISED" graphicTextGap="5.0" onAction="#showCalendar" prefHeight="66.0" prefWidth="165.0" ripplerFill="WHITE" stylesheets="@../styles/PrincipalMenu.css" text="Calendario" textAlignment="RIGHT" textFill="WHITE" wrapText="true">
+                  <JFXButton fx:id="buttonCalendar" alignment="CENTER_RIGHT" buttonType="RAISED" graphicTextGap="12.0" onAction="#showCalendar" prefHeight="66.0" prefWidth="166.0" ripplerFill="WHITE" stylesheets="@../styles/PrincipalMenu.css" text="Calendario" textAlignment="RIGHT" textFill="WHITE" wrapText="true">
                       <font>
                           <Font name="Segoe UI Symbol" size="16.0" />
                       </font>
@@ -99,7 +82,25 @@
                           <Tooltip text="Calendario generado para el torneo" />
                       </tooltip>
                   </JFXButton>
-               <JFXButton fx:id="dataBtn" buttonType="RAISED" graphicTextGap="20.0" onAction="#showData" prefHeight="66.0" prefWidth="167.0" ripplerFill="WHITE" stylesheets="@../styles/PrincipalMenu.css" text="Datos" textAlignment="RIGHT" textFill="WHITE" wrapText="true" GridPane.halignment="CENTER" GridPane.rowIndex="3">
+                <JFXButton fx:id="buttonImportCalendar" alignment="CENTER_RIGHT" buttonType="RAISED" graphicTextGap="12.0" onAction="#importCalendar" prefHeight="66.0" prefWidth="166.0" ripplerFill="WHITE" stylesheets="@../styles/PrincipalMenu.css" text="Importar  " textAlignment="RIGHT" textFill="WHITE" wrapText="true" GridPane.rowIndex="1">
+                    <font>
+                        <Font name="Segoe UI Symbol" size="16.0" />
+                    </font>
+                    <cursor>
+                        <Cursor fx:constant="HAND" />
+                    </cursor>
+                    <graphic>
+                        <ImageView fitHeight="62.0" fitWidth="55.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@../resources/importar.png" />
+                            </image>
+                        </ImageView>
+                    </graphic>
+                    <tooltip>
+                        <Tooltip text="Permite importar un calendario desde un fichero Excel y modificarlo" />
+                    </tooltip>
+                </JFXButton>
+               <JFXButton fx:id="dataBtn" alignment="CENTER_RIGHT" buttonType="RAISED" graphicTextGap="12.0" onAction="#showData" prefHeight="66.0" prefWidth="166.0" ripplerFill="WHITE" stylesheets="@../styles/PrincipalMenu.css" text="Datos     " textAlignment="RIGHT" textFill="WHITE" wrapText="true" GridPane.halignment="CENTER" GridPane.rowIndex="4">
                   <font>
                      <Font name="Segoe UI Symbol" size="16.0" />
                   </font>
@@ -117,7 +118,7 @@
                      <Tooltip text="Datos a utilizar para la generación del calendario" />
                   </tooltip>
                </JFXButton>
-                  <JFXButton fx:id="buttonTeam" alignment="CENTER_RIGHT" buttonType="RAISED" graphicTextGap="15.0" onAction="#showTeams" prefHeight="66.0" prefWidth="166.0" ripplerFill="WHITE" stylesheets="@../styles/PrincipalMenu.css" text="Equipos" textAlignment="RIGHT" textFill="WHITE" GridPane.rowIndex="2">
+                  <JFXButton fx:id="buttonTeam" alignment="CENTER_RIGHT" buttonType="RAISED" graphicTextGap="12.0" onAction="#showTeams" prefHeight="66.0" prefWidth="166.0" ripplerFill="WHITE" stylesheets="@../styles/PrincipalMenu.css" text="Equipos   " textAlignment="RIGHT" textFill="WHITE" wrapText="true" GridPane.rowIndex="3">
                       <font>
                           <Font name="Segoe UI Symbol" size="16.0" />
                       </font>
@@ -135,7 +136,7 @@
                           <Tooltip text="Listado de los equipos participantes en el torneo" />
                       </tooltip>
                   </JFXButton>
-                <JFXButton fx:id="buttonInfromation" buttonType="RAISED" graphicTextGap="20.0" onAction="#showInformation" prefHeight="66.0" prefWidth="166.0" ripplerFill="WHITE" stylesheets="@../styles/PrincipalMenu.css" text="Ayuda" textAlignment="RIGHT" textFill="WHITE" wrapText="true" GridPane.rowIndex="4">
+                <JFXButton fx:id="buttonInfromation" alignment="CENTER_RIGHT" buttonType="RAISED" graphicTextGap="10.0" onAction="#showInformation" prefHeight="66.0" prefWidth="166.0" ripplerFill="WHITE" stylesheets="@../styles/PrincipalMenu.css" text="Ayuda     " textAlignment="RIGHT" textFill="WHITE" wrapText="true" GridPane.rowIndex="5">
                     <font>
                         <Font name="Segoe UI Symbol" size="16.0" />
                     </font>
@@ -153,6 +154,24 @@
                         <Tooltip text="Información sobre la aplicación" />
                     </tooltip>
                 </JFXButton>
+               <JFXButton fx:id="buttonExportCalendar" alignment="CENTER_RIGHT" buttonType="RAISED" graphicTextGap="12.0" lineSpacing="10.0" onAction="#exportCalendar" prefHeight="66.0" prefWidth="166.0" ripplerFill="WHITE" stylesheets="@../styles/PrincipalMenu.css" text="Exportar  " textAlignment="RIGHT" textFill="WHITE" wrapText="true" GridPane.rowIndex="2">
+                  <font>
+                     <Font name="Segoe UI Symbol" size="16.0" />
+                  </font>
+                  <cursor>
+                     <Cursor fx:constant="HAND" />
+                  </cursor>
+                  <graphic>
+                     <ImageView fitHeight="62.0" fitWidth="55.0" pickOnBounds="true" preserveRatio="true">
+                        <image>
+                           <Image url="@../resources/exportar.png" />
+                        </image>
+                     </ImageView>
+                  </graphic>
+                  <tooltip>
+                     <Tooltip text="Permite importar un calendario desde un fichero Excel y modificarlo" />
+                  </tooltip>
+               </JFXButton>
             </children>
          </GridPane>
         </children>

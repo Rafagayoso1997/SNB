@@ -1,9 +1,6 @@
 package controller;
 
-import com.jfoenix.controls.JFXButton;
-import com.jfoenix.controls.JFXComboBox;
-import com.jfoenix.controls.JFXListView;
-import com.jfoenix.controls.JFXToggleButton;
+import com.jfoenix.controls.*;
 import file_management.ReadFiles;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -85,6 +82,9 @@ public class ConfigurationCalendarController implements Initializable {
 
     @FXML
     private Label lblSymmetricSecondRound;
+
+    @FXML
+    private JFXTextField calendarId;
 
 
 

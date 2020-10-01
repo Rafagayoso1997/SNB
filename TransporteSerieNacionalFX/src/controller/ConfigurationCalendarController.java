@@ -165,11 +165,11 @@ public class ConfigurationCalendarController implements Initializable {
             comboChamp.setVisible(true);
             comboSub.setVisible(true);
             btnSwap.setVisible(true);
-            Controller.getSingletonController().setInauguralGame(true);
+
 
         } else {
             inauguralGame.setText("No");
-            Controller.getSingletonController().setInauguralGame(false);
+
         }
     }
 
@@ -238,6 +238,7 @@ public class ConfigurationCalendarController implements Initializable {
             Controller.getSingletonController().setSymmetricSecondRound(symmetricSecondRound.isSelected());
             Controller.getSingletonController().setMaxHomeGame(maxHomeGamesSpinner.getValueFactory().getValue());
             Controller.getSingletonController().setMaxVisitorGame(maxVisitorGamesSpinner.getValueFactory().getValue());
+            Controller.getSingletonController().setInauguralGame(inauguralGame.isSelected());
             if(showMatrix)
                 showTeamsMatrix();
             else

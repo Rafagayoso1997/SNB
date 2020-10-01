@@ -598,14 +598,22 @@ public class Controller {
             this.calendar.add(0, inauguralDate);
         }
 
-        applyMutations();
-
-        if (secondRound) {
+        if (secondRound && !symmetricSecondRound) {
             ArrayList<Date> secondRoundCalendar = new ArrayList<>();
             copyCalendar(secondRoundCalendar, calendar);
             generateSecondRound(secondRoundCalendar);
             calendar.addAll(secondRoundCalendar);
         }
+
+        applyMutations();
+
+        if (secondRound && symmetricSecondRound) {
+            ArrayList<Date> secondRoundCalendar = new ArrayList<>();
+            copyCalendar(secondRoundCalendar, calendar);
+            generateSecondRound(secondRoundCalendar);
+            calendar.addAll(secondRoundCalendar);
+        }
+
     }
 
     /**
@@ -614,9 +622,15 @@ public class Controller {
      * @param calendar ArrayList
      */
     private void generateSecondRound(ArrayList<Date> calendar) {
-        for (Date date : calendar) {
-            for (int j = 0; j < date.getGames().size(); j++) {
-                ArrayList<Integer> duel = date.getGames().get(j);
+
+
+        if(inauguralGame){
+            calendar.remove(0);
+        }
+
+        for (int i = 0; i < calendar.size(); i++) {
+            for (int j = 0; j < calendar.get(i).getGames().size(); j++) {
+                ArrayList<Integer> duel = calendar.get(i).getGames().get(j);
                 swapDuel(duel);
             }
         }
@@ -835,15 +849,16 @@ public class Controller {
 
         for (int i = startPosition; i < calendar.size(); i++) {
 
-            /*if (secondRound) {
-                if ((i - 1) == calendar.size() / 2) {
+            if (secondRound) {
+
+                if ((i - 1 + startPosition) == calendar.size() / 2) {
                     row = new ArrayList<>();
                     for (int j = 0; j < teamsIndexes.size(); j++) {
                         row.add(teamsIndexes.get(j));
                     }
                     teamDate.add(row);
                 }
-            }*/
+            }
 
             row = new ArrayList<>();
             for (int k = 0; k < teamsIndexes.size(); k++) {
@@ -1301,9 +1316,11 @@ public class Controller {
         this.itinerary = teamsItinerary(calendar);
         int penalizeVisitorGames = penalizeGamesVisitor(itinerary);
         int penalizeHomeGames = penalizeGamesHome(itinerary);
+        int penalizeWrongInaugural = penalizeWrongInaugural(itinerary);
         int longTrips = checkLongTrips(itinerary);
         int actualization = 0;
-        float distance = calculateDistance(this.itinerary) + PENALIZATION * (penalizeVisitorGames + penalizeHomeGames);
+        float distance = calculateDistance(this.itinerary) + PENALIZATION * (penalizeVisitorGames + penalizeHomeGames + penalizeWrongInaugural);
+
         System.out.println("Se incumple " + longTrips);
         if (longTrips > 0) {
             distance += 100 * longTrips;
@@ -1338,8 +1355,9 @@ public class Controller {
 
             penalizeVisitorGames = penalizeGamesVisitor(itineraryCopy);
             penalizeHomeGames = penalizeGamesHome(itineraryCopy);
+            penalizeWrongInaugural = penalizeWrongInaugural(itineraryCopy);
 
-            newDistance += PENALIZATION * (penalizeVisitorGames + penalizeHomeGames);
+            newDistance += PENALIZATION * (penalizeVisitorGames + penalizeHomeGames + penalizeWrongInaugural);
 
             if (newDistance <= distance) {
                 actualization++;
@@ -1477,6 +1495,21 @@ public class Controller {
             }
         }
         return cont;
+    }
+
+    private int penalizeWrongInaugural(ArrayList<ArrayList<Integer>> itinerary){
+        int wrong = 0;
+
+        if(inauguralGame){
+            int champeon = teamsIndexes.get(posChampion);
+            int subChampeon = teamsIndexes.get(posSubChampion);
+
+            if(itinerary.get(2).get(posChampion) == subChampeon || itinerary.get(2).get(posSubChampion) == champeon){
+                wrong = 1;
+            }
+        }
+
+        return wrong;
     }
 
     private ArrayList<ArrayList<Double>> itineraryDistances(ArrayList<ArrayList<Integer>> itinerary) {

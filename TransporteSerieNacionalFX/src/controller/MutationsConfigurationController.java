@@ -26,11 +26,11 @@ import logic.Duel;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 import java.util.ResourceBundle;
 
 public class MutationsConfigurationController implements Initializable {
-
 
 
     private int selectedCalendar;
@@ -128,10 +128,12 @@ public class MutationsConfigurationController implements Initializable {
         }
 
 
-        int dates = Controller.getSingletonController().getCalendar().size();
-        boolean inaugural = Controller.getSingletonController().isInauguralGame();
+        ArrayList<Date> calendar = Controller.getSingletonController().getCalendarsList().get(selectedCalendar);
+        CalendarConfiguration configuration = Controller.getSingletonController().getConfigurations().get(selectedCalendar);
+        int dates = calendar.size();
+        boolean inaugural = configuration.isInauguralGame();
         for (int i = 0; i < dates; i++) {
-            if(inaugural && (i == 0)){
+            if (inaugural && (i == 0)) {
                 i++;
             }
             String date = "Fecha " + (i + 1);
@@ -189,6 +191,7 @@ public class MutationsConfigurationController implements Initializable {
     }
 
     private void comboBoxValidation(JFXComboBox<String> comboDate, JFXComboBox<String> comboDuel) {
+
         comboDate.getSelectionModel().selectedIndexProperty().addListener(new ChangeListener<Number>() {
             @Override
             public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
@@ -196,7 +199,7 @@ public class MutationsConfigurationController implements Initializable {
                     comboDuel.getItems().clear();
                     int position = (int) newValue;
                     Controller controller = Controller.getSingletonController();
-                    Date date = controller.getCalendar().get(position);
+                    Date date = controller.getCalendarsList().get(selectedCalendar).get(position);
                     for (int j = 0; j < date.getGames().size(); j++) {
                         int posLocal = date.getGames().get(j).get(0);
                         int posVisitor = date.getGames().get(j).get(1);
@@ -251,26 +254,26 @@ public class MutationsConfigurationController implements Initializable {
         System.out.println(selectedMutationListView.getSelectionModel().getSelectedIndex());
 
 
-
         int lastPosSelected = selectedMutationListView.getSelectionModel().getSelectedIndex();
         //si no seleccionas ninguna configuracion para las mutaciones
-        if(lastPosSelected != -1){
+        ArrayList<Date> calendar = Controller.getSingletonController().getCalendarsList().get(selectedCalendar);
+        CalendarConfiguration configuration = Controller.getSingletonController().getConfigurations().get(selectedCalendar);
+
+        if (lastPosSelected != -1) {
             int realPos = positionsMutationsSelected.get(lastPosSelected);
 
-            if(Controller.getSingletonController().isInauguralGame()){
+            if (configuration.isInauguralGame()) {
                 configurationsList.get(realPos).set(0, comboDate1.getSelectionModel().getSelectedIndex() + 1);
                 configurationsList.get(realPos).set(1, comboDate2.getSelectionModel().getSelectedIndex() + 1);
                 configurationsList.get(realPos).set(2, comboDuel1.getSelectionModel().getSelectedIndex() + 1);
                 configurationsList.get(realPos).set(3, comboDuel2.getSelectionModel().getSelectedIndex() + 1);
-            }
-            else{
+            } else {
                 configurationsList.get(realPos).set(0, comboDate1.getSelectionModel().getSelectedIndex());
                 configurationsList.get(realPos).set(1, comboDate2.getSelectionModel().getSelectedIndex());
                 configurationsList.get(realPos).set(2, comboDuel1.getSelectionModel().getSelectedIndex());
                 configurationsList.get(realPos).set(3, comboDuel2.getSelectionModel().getSelectedIndex());
             }
-        }
-        else{
+        } else {
             lastPosSelected = 0;
         }
 
@@ -281,27 +284,14 @@ public class MutationsConfigurationController implements Initializable {
 
         System.out.println("mutaciones seleccionadas: " + positionsMutationsSelected);
 
-        ArrayList<Date> calendar = Controller.getSingletonController().getCalendarsList().get(selectedCalendar);
-        CalendarConfiguration configuration = Controller.getSingletonController().getConfigurations().get(selectedCalendar);
-        ArrayList<Date> newCalendar = new ArrayList<>();
+       ArrayList<Date> newCalendar = new ArrayList<>();
         Controller.getSingletonController().copyCalendar(newCalendar, calendar);
 
-        //for (int j = 0; j < iterations.getValueFactory().getValue(); j++) {
+        for (int j = 0; j < iterations.getValueFactory().getValue(); j++) {
             for (int i = 0; i < positionsMutationsSelected.size(); i++) {
-                Controller.getSingletonController().selectMutation(newCalendar, positionsMutationsSelected.get(i),configuration.isInauguralGame());
+                Controller.getSingletonController().selectMutation(newCalendar, positionsMutationsSelected.get(i), configuration.isInauguralGame());
             }
-        //}
-
-        /*ArrayList<ArrayList<Integer>> itineraryCopy = Controller.getSingletonController().teamsItinerary(newCalendar);
-        Controller.getSingletonController().setCalendarCopy(newCalendar);
-        Controller.getSingletonController().setCopied(true);
-        Controller.getSingletonController().setGeneratedCalendar(false);
-        Controller.getSingletonController().setCopied(true);
-        Controller.getSingletonController().setItineraryCopy(itineraryCopy);*/
-
-        /*AnchorPane structureOver = homeController.getPrincipalPane();
-        homeController.createPage(new CalendarController(), structureOver, "/visual/Calendar.fxml");
-        homeController.getButtonReturnSelectionTeamConfiguration().setVisible(false);*/
+        }
 
 
         Controller.getSingletonController().getCalendarsList().add(newCalendar);
@@ -332,9 +322,9 @@ public class MutationsConfigurationController implements Initializable {
         this.homeController = homeController;
     }
 
-    private CalendarConfiguration copyConfiguration(CalendarConfiguration configuration){
+    private CalendarConfiguration copyConfiguration(CalendarConfiguration configuration) {
         CalendarConfiguration conf = new CalendarConfiguration();
-        conf.setCalendarId(configuration.getCalendarId()+" Mutado");
+        conf.setCalendarId(configuration.getCalendarId() + " Mutado");
         conf.setInauguralGame(configuration.isInauguralGame());
         conf.setChampion(configuration.getChampion());
         conf.setSecondPlace(configuration.getSecondPlace());

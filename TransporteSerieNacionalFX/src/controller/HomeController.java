@@ -90,10 +90,6 @@ public class HomeController implements Initializable {
     void showCalendar(ActionEvent event) throws IOException {
 
         this.createPage(new ConfigurationCalendarController(), home, "/visual/ConfigurationCalendar.fxml");
-        Controller.getSingletonController().setGeneratedCalendar(true);
-        Controller.getSingletonController().setCalendar(new ArrayList<Date>());
-        Controller.getSingletonController().setCopied(false);
-
     }
 
 
@@ -139,8 +135,6 @@ public class HomeController implements Initializable {
                 notification.setAnimationType(AnimationType.FADE);
                 notification.showAndDismiss(Duration.seconds(2));
                 buttonReturnSelectionTeamConfiguration.setVisible(false);
-                Controller.getSingletonController().setGeneratedCalendar(false);
-                Controller.getSingletonController().setCopied(false);
                 this.createPage(new CalendarController(),home, "/visual/Calendar.fxml");
             }
 

@@ -109,7 +109,7 @@ public class SelectGridController implements Initializable {
                 matrix[i][j] = 0;
             }
         }
-        matrix = Controller.getSingletonController().symmetricCalendar(matrix);
+        matrix = Controller.getSingletonController().symmetricCalendar(matrix,configuration);
 
         System.out.println("Matriz de 1 y 2:");
         for (int i = 0; i < matrix.length; i++) {

@@ -232,11 +232,10 @@ public class ConfigurationCalendarController implements Initializable {
         if (ok) {
             HomeController.escogidos = true;
 
-            /*teams = indexes.size();
-            Controller.getSingletonController().setTeamsIndexes(indexes);*/
+
             teams = selectedIndexes.size();
 
-            Controller.getSingletonController().setTeamsIndexes(selectedIndexes);
+
             secondRound = secondRoundButton.isSelected();
             int posChampion = -1;
             int posSub =-1;
@@ -254,19 +253,7 @@ public class ConfigurationCalendarController implements Initializable {
             );
 
             Controller.getSingletonController().getConfigurations().add(configuration);
-            /*if (Controller.getSingletonController().isInauguralGame()) {
-                Controller.getSingletonController().setPosChampion(posSub);
-                Controller.getSingletonController().setPosSubChampion(posChampion);
-            } else {
-                Controller.getSingletonController().setPosChampion(posChampion);
-                Controller.getSingletonController().setPosSubChampion(posSub);
-            }
 
-            Controller.getSingletonController().setSecondRound(secondRound);
-            Controller.getSingletonController().setSymmetricSecondRound(symmetricSecondRound.isSelected());
-            Controller.getSingletonController().setMaxHomeGame(maxHomeGamesSpinner.getValueFactory().getValue());
-            Controller.getSingletonController().setMaxVisitorGame(maxVisitorGamesSpinner.getValueFactory().getValue());
-            Controller.getSingletonController().setInauguralGame(inauguralGame.isSelected());*/
             if (showMatrix)
                 showTeamsMatrix(configuration);
             else
@@ -303,14 +290,10 @@ public class ConfigurationCalendarController implements Initializable {
         symmetricSecondRound.setVisible(true);
 
 
-        Controller.getSingletonController().setPosChampion(-1);
-        Controller.getSingletonController().setPosSubChampion(-1);
-        Controller.getSingletonController().setSecondRound(false);
         secondRoundButton.setSelected(true);
 
 
         //fill the TeamsListView
-        Controller.getSingletonController().setTeamsIndexes(new ArrayList<>());
         List<String> teams = Controller.getSingletonController().getTeams();
 
         teamsSelectionListView.setItems(FXCollections.observableArrayList(teams));

@@ -10,6 +10,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Control;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Paint;
@@ -128,24 +129,11 @@ public class HomeController implements Initializable {
 
             if (file != null) {
                 ArrayList<Date> importedCalendar = ReadExcel.readExcelItineraryToCalendar(file.toString());
-
-                Controller.getSingletonController().setCalendar(importedCalendar);
-
-            /*ArrayList<Date> calendar = Controller.getSingletonController().getCalendar();
-            System.out.println("Calendario Final:");
-            for (int i= 0; i < calendar.size(); i++) {
-                for(int j=0; j < calendar.get(i).getGames().size();j++){
-                    int posLocal = calendar.get(i).getGames().get(j).get(0);
-                    int posVisitor = calendar.get(i).getGames().get(j).get(1);
-                    System.out.print("["+ Controller.getSingletonController().getTeams().get(posLocal)+","+ Controller.getSingletonController().getTeams().get(posVisitor)+"]");
-
-                }
-                System.out.println(" ");
-            }*/
+                Controller.getSingletonController().getCalendarsList().add(importedCalendar);
 
                 notification = getNotification();
                 notification.setTitle("Importación de Calendario");
-                notification.setMessage("Calendario importado con éxito");
+                notification.setMessage("Calendario importado con ?xito");
                 notification.setNotificationType(NotificationType.SUCCESS);
                 notification.setRectangleFill(Paint.valueOf("#2F2484"));
                 notification.setAnimationType(AnimationType.FADE);
@@ -164,18 +152,19 @@ public class HomeController implements Initializable {
     @FXML
     void exportCalendar(ActionEvent event) {
 
-        if(Controller.getSingletonController().getCalendar().isEmpty()){
+        int calendarToExport = CalendarController.selectedCalendar;
+        /*if(calendarToExport == -1){
             notification = getNotification();
-            notification.setTitle("Exportación de Calendario");
-            notification.setMessage("No existe ningún calendario para exportar");
+            notification.setTitle("Exportaci?n de Calendario");
+            notification.setMessage("No se seleccionó ningún calendario a exportar");
             notification.setNotificationType(NotificationType.ERROR);
             notification.setRectangleFill(Paint.valueOf("#2F2484"));
             notification.setAnimationType(AnimationType.FADE);
             notification.showAndDismiss(Duration.seconds(2));
-        }
-        else{
-            ExportFiles.exportItineraryInExcelFormat();
-        }
+        }*/
+        //else{
+            ExportFiles.exportItineraryInExcelFormat(calendarToExport);
+       // }
     }
 
     @FXML
@@ -255,7 +244,7 @@ public class HomeController implements Initializable {
 
             Parent root = FXMLLoader.load(getClass().getResource("/visual/MutationsConfiguration.fxml"));
             Stage stage = new Stage();
-            stage.setTitle("Configuración de las mutaciones");
+            stage.setTitle("Configuraci?n de las mutaciones");
             stage.setScene(new Scene(anchorPane));
 
 

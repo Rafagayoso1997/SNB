@@ -272,7 +272,7 @@ public class MutationsConfigurationController implements Initializable {
         }
 
 
-        Controller.getSingletonController().setConfigurationsList(configurationsList);
+        Controller.getSingletonController().setMutationsConfigurationsList(configurationsList);
         //if(Controller.getSingletonController().getMutationsIndexes().isEmpty())
         Controller.getSingletonController().setMutationsIndexes(positionsMutationsSelected);
 

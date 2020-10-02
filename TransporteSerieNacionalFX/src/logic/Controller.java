@@ -1,19 +1,13 @@
 package logic;
 
-import com.opencsv.CSVReader;
 import file_management.ReadFiles;
-import org.apache.commons.compress.archivers.ar.ArArchiveEntry;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
-import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.lang.reflect.Array;
-import java.nio.charset.StandardCharsets;
 import java.util.*;
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -31,44 +25,22 @@ public class Controller {
     private int iterations;//Number of iterations
     private ArrayList<LocalVisitorDistance> positionsDistance;//List of LocalVisitorDistance
     private ArrayList<String> teams;//List of resources.teams
-
-
-
+    private ArrayList<CalendarConfiguration>configurations;
+    private ArrayList<ArrayList<Date>> calendarsList;
     private ArrayList<String>acronyms;
     private boolean generatedCalendar;
-
-
     private boolean isCopied;
-
-
-    private ArrayList<ArrayList<Integer>> configurationsList;//list of configurations for the mutations
-
+    private ArrayList<ArrayList<Integer>> mutationsConfigurationsList;//list of configurations for the mutations
     private ArrayList<Date> calendar;//List of Date that belongs to the calendar
     private double[][] matrixDistance;//Matrix that represents the distance between resources.teams
     private ArrayList<Integer> teamsIndexes;
-
     private ArrayList<Integer> mutationsIndexes;
     private static Controller singletonController;//Singleton Pattern
     private int posChampion;//Position of the champion team
     private int posSubChampion;//Position of the subchampion team
     private boolean secondRound;
     private boolean symmetricSecondRound;
-
     private float calendarDistance;
-    private float lessDistance;
-    private float moreDistance;
-    private float copyLessDistance;
-
-
-    private float copyMoreDistance;
-    private String teamLessDistance;
-
-    private String teamMoreDistance;
-
-    private String copyTeamLessDistance;
-
-    private String copyTeamMoreDistance;
-
     private int[][] matrix;
 
 
@@ -97,15 +69,13 @@ public class Controller {
         this.secondRound = false;
         this.symmetricSecondRound = false;
         this.matrix = new int[teamsIndexes.size()][teamsIndexes.size()];
-        this.calendarDistance = 0;
-        this.lessDistance = 0;
-        this.moreDistance = 0;
-        this.teamMoreDistance = "";
-        this.teamLessDistance = "";
         this.iterations = 20000;
-        this.configurationsList = new ArrayList<>();
+        this.calendarDistance = 0;
+        this.mutationsConfigurationsList = new ArrayList<>();
         this.generatedCalendar = true;
         this.isCopied = false;
+        this.configurations = new ArrayList<>();
+        this.calendarsList = new ArrayList<>();
     }
 
     /**
@@ -170,20 +140,21 @@ public class Controller {
         this.mutationsIndexes = mutationsIndexes;
     }
 
+
+    public ArrayList<ArrayList<Integer>> getmutationsConfigurationsList() {
+        return mutationsConfigurationsList;
+    }
+
+    public void setMutationsConfigurationsList(ArrayList<ArrayList<Integer>> mutationsConfigurationsList) {
+        this.mutationsConfigurationsList = mutationsConfigurationsList;
+    }
+
     public float getCalendarDistance() {
         return calendarDistance;
     }
 
     public void setCalendarDistance(float calendarDistance) {
         this.calendarDistance = calendarDistance;
-    }
-
-    public ArrayList<ArrayList<Integer>> getConfigurationsList() {
-        return configurationsList;
-    }
-
-    public void setConfigurationsList(ArrayList<ArrayList<Integer>> configurationsList) {
-        this.configurationsList = configurationsList;
     }
 
     public ArrayList<Date> getCalendarCopy() {
@@ -234,6 +205,22 @@ public class Controller {
         this.symmetricSecondRound = symmetricSecondRound;
     }
 
+    public ArrayList<CalendarConfiguration> getConfigurations() {
+        return configurations;
+    }
+
+    public void setConfigurations(ArrayList<CalendarConfiguration> configurations) {
+        this.configurations = configurations;
+    }
+
+    public ArrayList<ArrayList<Date>> getCalendarsList() {
+        return calendarsList;
+    }
+
+    public void setCalendarsList(ArrayList<ArrayList<Date>> calendarsList) {
+        this.calendarsList = calendarsList;
+    }
+
 
     /**
      * Return the LocalVisitorDistance list
@@ -272,37 +259,8 @@ public class Controller {
     }
 
 
-    public float getLessDistance() {
-        return lessDistance;
-    }
 
-    public void setLessDistance(float lessDistance) {
-        this.lessDistance = lessDistance;
-    }
 
-    public float getMoreDistance() {
-        return moreDistance;
-    }
-
-    public void setMoreDistance(float moreDistance) {
-        this.moreDistance = moreDistance;
-    }
-
-    public String getTeamLessDistance() {
-        return teamLessDistance;
-    }
-
-    public void setTeamLessDistance(String teamLessDistance) {
-        this.teamLessDistance = teamLessDistance;
-    }
-
-    public String getTeamMoreDistance() {
-        return teamMoreDistance;
-    }
-
-    public void setTeamMoreDistance(String teamMoreDistance) {
-        this.teamMoreDistance = teamMoreDistance;
-    }
 
     /**
      * Return the champion team position
@@ -372,38 +330,6 @@ public class Controller {
     }
 
 
-    public float getCopyLessDistance() {
-        return copyLessDistance;
-    }
-
-    public void setCopyLessDistance(float copyLessDistance) {
-        this.copyLessDistance = copyLessDistance;
-    }
-
-    public float getCopyMoreDistance() {
-        return copyMoreDistance;
-    }
-
-    public void setCopyMoreDistance(float copyMoreDistance) {
-        this.copyMoreDistance = copyMoreDistance;
-    }
-
-    public String getCopyTeamLessDistance() {
-        return copyTeamLessDistance;
-    }
-
-    public void setCopyTeamLessDistance(String copyTeamLessDistance) {
-        this.copyTeamLessDistance = copyTeamLessDistance;
-    }
-
-    public String getCopyTeamMoreDistance() {
-        return copyTeamMoreDistance;
-    }
-
-    public void setCopyTeamMoreDistance(String copyTeamMoreDistance) {
-        this.copyTeamMoreDistance = copyTeamMoreDistance;
-    }
-
     public ArrayList<ArrayList<Integer>> getItinerary() {
         return itinerary;
     }
@@ -430,7 +356,7 @@ public class Controller {
         try {
             FileInputStream fis = new FileInputStream(direction);
 
-            //Creamos el objeto XSSF  para el archivo eexcel
+            //Creamos el objeto XSSF  para el archivo excel
             XSSFWorkbook workbook = new XSSFWorkbook(fis);
 
             Sheet sheet = workbook.getSheetAt(0);
@@ -502,9 +428,9 @@ public class Controller {
     /**
      * Generate the calendar
      */
-    public void generateCalendar() throws IOException {
+    public void generateCalendar(ArrayList<Integer> teamsIndexes) throws IOException {
 
-        calendar = new ArrayList<>();
+        ArrayList<Date> calendar = new ArrayList<>();
         for (int f = 0; f < teamsIndexes.size() - 1; f++) {
             int j = 0;
             int lastLocal = 0;
@@ -585,7 +511,7 @@ public class Controller {
             }
             System.out.println("************************************************");
         }
-        if (this.posChampion != -1 && !inauguralGame) {
+        /*if (this.posChampion != -1 && !inauguralGame) {
             fixChampionSubchampion(calendar);
         }
 
@@ -612,8 +538,8 @@ public class Controller {
             copyCalendar(secondRoundCalendar, calendar);
             generateSecondRound(secondRoundCalendar);
             calendar.addAll(secondRoundCalendar);
-        }
-
+        }*/
+        calendarsList.add(calendar);
     }
 
     /**
@@ -923,9 +849,9 @@ public class Controller {
 
         int startPosition = 0;
 
-        if (!configurationsList.isEmpty()) {
-            selectedDate = configurationsList.get(number).get(0);
-            dateToChange = configurationsList.get(number).get(1);
+        if (!mutationsConfigurationsList.isEmpty()) {
+            selectedDate = mutationsConfigurationsList.get(number).get(0);
+            dateToChange = mutationsConfigurationsList.get(number).get(1);
         }
         else{
             if(inauguralGame){
@@ -999,8 +925,8 @@ public class Controller {
     private void changeBetweenLocalAndVisitorOfATeam(ArrayList<Date> calendar, int number) {
         int selectedTeam = -1;
 
-        if (!configurationsList.isEmpty()) {
-            selectedTeam = configurationsList.get(number).get(2);
+        if (!mutationsConfigurationsList.isEmpty()) {
+            selectedTeam = mutationsConfigurationsList.get(number).get(2);
         }
 
         if (selectedTeam == -1) {
@@ -1034,9 +960,9 @@ public class Controller {
         int secondDate = -1;
         int startPosition = 0;
 
-        if (!configurationsList.isEmpty()) {
-            firstDate = configurationsList.get(number).get(0);
-            secondDate = configurationsList.get(number).get(1);
+        if (!mutationsConfigurationsList.isEmpty()) {
+            firstDate = mutationsConfigurationsList.get(number).get(0);
+            secondDate = mutationsConfigurationsList.get(number).get(1);
         }
         else{
             if(inauguralGame){
@@ -1112,9 +1038,9 @@ public class Controller {
         int selectedDuel = -1;
 
 
-        if (!configurationsList.isEmpty()) {
-            selectedDateIndex = configurationsList.get(number).get(0);
-            selectedDuel = configurationsList.get(number).get(2);
+        if (!mutationsConfigurationsList.isEmpty()) {
+            selectedDateIndex = mutationsConfigurationsList.get(number).get(0);
+            selectedDuel = mutationsConfigurationsList.get(number).get(2);
         }
 
         if (selectedDateIndex == -1) {
@@ -1142,9 +1068,9 @@ public class Controller {
         int lastDate = -1;
         int startPosition = 0;
 
-        if (!configurationsList.isEmpty()) {
-            firstDate = configurationsList.get(number).get(0);
-            lastDate = configurationsList.get(number).get(1);
+        if (!mutationsConfigurationsList.isEmpty()) {
+            firstDate = mutationsConfigurationsList.get(number).get(0);
+            lastDate = mutationsConfigurationsList.get(number).get(1);
 
             if (firstDate > lastDate) {
                 int temp = lastDate;
@@ -1194,10 +1120,10 @@ public class Controller {
         int posFirstDuel = -1;
         int startPosition = 0;
 
-        if (!configurationsList.isEmpty()) {
-            posFirstDate = configurationsList.get(number).get(0);
-            posLastDate = configurationsList.get(number).get(1);
-            posFirstDuel = configurationsList.get(number).get(2);
+        if (!mutationsConfigurationsList.isEmpty()) {
+            posFirstDate = mutationsConfigurationsList.get(number).get(0);
+            posLastDate = mutationsConfigurationsList.get(number).get(1);
+            posFirstDuel = mutationsConfigurationsList.get(number).get(2);
         }
         else{
             if(inauguralGame){
@@ -1398,16 +1324,7 @@ public class Controller {
         }
 
 
-        lessStatistics(this.itinerary);
-        moreStatistics(this.itinerary);
 
-       /* System.out.println("----------");
-        for (int l=0; l < itiner.get(0).size();l++){
-            for (int p=0; p < itiner.size();p++){
-                System.out.print(itiner.get(p).get(l)+" ");
-            }
-            System.out.println();
-        }*/
         return this.calendar;
     }
 
@@ -1539,7 +1456,9 @@ public class Controller {
         return distancesItinerary;
     }
 
-    public void lessStatistics(ArrayList<ArrayList<Integer>> itinerary) {
+    public CalendarStatistic lessStatistics(ArrayList<ArrayList<Integer>> itinerary) {
+
+
         ArrayList<ArrayList<Double>> distances = itineraryDistances(itinerary);
         double max = Double.MAX_VALUE;
         double sum = 0;
@@ -1557,35 +1476,14 @@ public class Controller {
             sum = 0;
         }
 
-        lessDistance = (float) max;
-        teamLessDistance = teams.get(pos);
+        return new CalendarStatistic(teams.get(pos),(float) max);
 
     }
 
-    public void copyLessStatistics(ArrayList<ArrayList<Integer>> itinerary) {
-        ArrayList<ArrayList<Double>> distances = itineraryDistances(itinerary);
-        double max = Double.MAX_VALUE;
-        double sum = 0;
-        int pos = -1;
-        for (int l = 0; l < distances.get(0).size(); l++) {
 
-            for (int p = 0; p < distances.size(); p++) {
-                sum += distances.get(p).get(l);
-            }
 
-            if (sum <= max) {
-                max = sum;
-                pos = l;
-            }
-            sum = 0;
-        }
+    public CalendarStatistic moreStatistics(ArrayList<ArrayList<Integer>> itinerary) {
 
-        copyLessDistance = (float) max;
-        copyTeamLessDistance = teams.get(pos);
-
-    }
-
-    public void moreStatistics(ArrayList<ArrayList<Integer>> itinerary) {
         ArrayList<ArrayList<Double>> distances = itineraryDistances(itinerary);
 
         double max = Double.MIN_VALUE;
@@ -1604,36 +1502,8 @@ public class Controller {
             sum = 0;
         }
 
-        moreDistance = (float) max;
-        teamMoreDistance = teams.get(pos);
-
+        return new CalendarStatistic(teams.get(pos),(float) max);
     }
-
-    public void copyMoreStatistics(ArrayList<ArrayList<Integer>> itinerary) {
-        ArrayList<ArrayList<Double>> distances = itineraryDistances(itinerary);
-
-        double max = Double.MIN_VALUE;
-        double sum = 0;
-        int pos = -1;
-        for (int l = 0; l < distances.get(0).size(); l++) {
-
-            for (int p = 0; p < distances.size(); p++) {
-                sum += distances.get(p).get(l);
-            }
-
-            if (sum >= max) {
-                max = sum;
-                pos = l;
-            }
-            sum = 0;
-        }
-
-        copyMoreDistance = (float) max;
-        copyTeamMoreDistance = teams.get(pos);
-
-
-    }
-
 
     public void selectMutation(ArrayList<Date> calendar, int number) {
 

@@ -43,6 +43,7 @@ public class ConfigurationCalendarController implements Initializable {
 
     public static int teams;
     public static ArrayList<String> teamsNames;
+    public static ArrayList<Integer>selectedIndexes;
     @FXML
     private JFXListView<String> teamsSelectionListView;
 
@@ -189,18 +190,30 @@ public class ConfigurationCalendarController implements Initializable {
     }
 
     private void validateData(boolean showMatrix) throws IOException {
-        ArrayList<Integer> indexes = new ArrayList<>(teamsSelectionListView.getSelectionModel().getSelectedIndices());
+        //ArrayList<Integer> indexes = new ArrayList<>(teamsSelectionListView.getSelectionModel().getSelectedIndices());
+        selectedIndexes = new ArrayList<>(teamsSelectionListView.getSelectionModel().getSelectedIndices());
         teamsNames = new ArrayList<>();
-        for (int index : indexes) {
+        /*for (int index : indexes) {
+            teamsNames.add(Controller.getSingletonController().getAcronyms().get(index));
+        }*/
+        for (int index : selectedIndexes) {
             teamsNames.add(Controller.getSingletonController().getAcronyms().get(index));
         }
         //teamsNames = new ArrayList<>(teamsSelectionListView.getSelectionModel().getSelectedItems());
         System.out.println(teamsNames);
-        if (indexes.size() <= 2) {
+        /*if (indexes.size() <= 2) {
             showNotification("Selecci?n de equipos","Debe escoger m?s de dos equipos", false);
             ok = false;
         }
         if (indexes.size() % 2 != 0) {
+            showNotification("Selecci?n de equipos","Debe escoger una cantidad par de equipos.", false);
+            ok = false;
+        }*/
+        if (selectedIndexes.size() <= 2) {
+            showNotification("Selecci?n de equipos","Debe escoger m?s de dos equipos", false);
+            ok = false;
+        }
+        if (selectedIndexes.size() % 2 != 0) {
             showNotification("Selecci?n de equipos","Debe escoger una cantidad par de equipos.", false);
             ok = false;
         }
@@ -221,8 +234,10 @@ public class ConfigurationCalendarController implements Initializable {
         }
         if (ok) {
             HomeController.escogidos = true;
-            teams = indexes.size();
-            Controller.getSingletonController().setTeamsIndexes(indexes);
+            /*teams = indexes.size();
+            Controller.getSingletonController().setTeamsIndexes(indexes);*/
+            teams = selectedIndexes.size();
+            Controller.getSingletonController().setTeamsIndexes(selectedIndexes);
             secondRound = secondRoundButton.isSelected();
 
             if(Controller.getSingletonController().isInauguralGame()){
@@ -339,12 +354,21 @@ public class ConfigurationCalendarController implements Initializable {
     @FXML
     void mouseClickedListView(MouseEvent event) {
         System.out.println("Clicked");
+        int selectedTeams = teamsSelectionListView.getSelectionModel().getSelectedIndices().size();
         System.out.println(teamsSelectionListView.getSelectionModel().getSelectedIndices());
 
         if (comboChamp.isVisible() || comboSub.isVisible()) {
             comboChamp.setItems(teamsSelectionListView.getSelectionModel().getSelectedItems());
             comboSub.setItems(teamsSelectionListView.getSelectionModel().getSelectedItems());
         }
+
+        if(selectedTeams == Controller.getSingletonController().getTeams().size()){
+            selectAll.setSelected(true);
+        }
+        else{
+            selectAll.setSelected(false);
+        }
+
     }
 
     @FXML

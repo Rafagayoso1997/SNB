@@ -2,6 +2,8 @@ package controller;
 
 import com.jfoenix.controls.*;
 import file_management.ExportFiles;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -48,6 +50,11 @@ public class CalendarController implements Initializable {
     private Controller controller;
     private ArrayList<TableView<Duel>> tables;
     private HomeController homeController;
+    public static int selectedCalendar;
+
+    @FXML
+    private JFXTabPane calendarsTabPane;
+
 
     @FXML
     private JFXButton statisticsBtn;
@@ -69,12 +76,55 @@ public class CalendarController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        selectedCalendar = 0;
 
         controller = Controller.getSingletonController();
 
-        System.out.println("Mutaciones a oplicar " +controller.getMutationsIndexes().size());
-        boolean generated = controller.isGeneratedCalendar();
-        boolean copied = controller.isCopied();
+        tables = new ArrayList<>();
+        ArrayList<ArrayList<Date>> calendarsList = controller.getCalendarsList();
+
+        for(int i=0; i < calendarsList.size();i++){
+            ArrayList<Date> calendar = calendarsList.get(i);
+            JFXTabPane currentCalendarTabPane = new JFXTabPane();
+            //currentCalendarTabPane.setPrefHeight(calendarsTabPane.getHeight());
+            for(int j=0; j < calendar.size();j++){
+                TableView<Duel> table = new TableView<Duel>();
+                TableColumn<Duel, String> col = new TableColumn<>("Local");
+                TableColumn<Duel, String> col2 = new TableColumn<>("Visitante");
+                col.setCellValueFactory(new PropertyValueFactory<>("local"));
+                col2.setCellValueFactory(new PropertyValueFactory<>("visitor"));
+
+                ObservableList<TableColumn<Duel, ?>> columns = table.getColumns();
+                columns.add(col);
+                columns.add(col2);
+                for (int k = 0; k < calendar.get(j).getGames().size(); k++) {
+                    int posLocal = calendar.get(j).getGames().get(k).get(0);
+                    int posVisitor = calendar.get(j).getGames().get(k).get(1);
+                    table.getItems().add(new Duel(controller.getTeams().get(posLocal), controller.getTeams().get(posVisitor)));
+                }
+
+                Tab tab = new Tab("Fecha " + (j + 1));
+                tab.setContent(table);
+                tables.add(table);
+                currentCalendarTabPane.getTabs().add(tab);
+            }
+            Tab tab =  new Tab("Calendario "+(i+1));
+            tab.setContent(currentCalendarTabPane);
+            calendarsTabPane.getTabs().add(tab);
+        }
+
+        calendarsTabPane.getSelectionModel().selectedItemProperty().addListener(
+                new ChangeListener<Tab>() {
+                    @Override
+                    public void changed(ObservableValue<? extends Tab> ov, Tab t, Tab t1) {
+                        selectedCalendar =calendarsTabPane.getTabs().indexOf(t1);
+                    }
+                }
+        );
+
+        //System.out.println("Mutaciones a oplicar " +controller.getMutationsIndexes().size());
+        //boolean generated = controller.isGeneratedCalendar();
+        //boolean copied = controller.isCopied();
 
         //if (copied) {
           //  calendar = controller.getCalendarCopy();
@@ -82,7 +132,7 @@ public class CalendarController implements Initializable {
             //controller.moreStatistics(calendar);
        // } else {
 
-           if (generated) {
+           /*if (generated) {
                if(controller.getCalendar().size() ==0){
                    try {
                        controller.generateCalendar();
@@ -92,11 +142,11 @@ public class CalendarController implements Initializable {
                }
 
             }
-            calendar = controller.getCalendar();
+            calendar = controller.getCalendar();*/
             //controller.setItinerary(controller.teamsItinerary(calendar));
 
 
-        tables = new ArrayList<>();
+        /*tables = new ArrayList<>();
 
         for (int i = 0; i < calendar.size(); i++) {
             TableView<Duel> table = new TableView<Duel>();
@@ -118,7 +168,7 @@ public class CalendarController implements Initializable {
             tab.setContent(table);
             tables.add(table);
             calendarTabPane.getTabs().add(tab);
-        }
+        }*/
 
     }
 

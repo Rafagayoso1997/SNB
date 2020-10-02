@@ -4,7 +4,7 @@
     <file url="file://$PROJECT_DIR$/src/controller/CalendarController.java" charset="ISO-8859-1" />
     <file url="file://$PROJECT_DIR$/src/controller/CalendarStatisticsController.java" charset="ISO-8859-1" />
     <file url="file://$PROJECT_DIR$/src/controller/ConfigurationCalendarController.java" charset="ISO-8859-1" />
-    <file url="file://$PROJECT_DIR$/src/controller/HomeController.java" charset="windows-1252" />
+    <file url="file://$PROJECT_DIR$/src/controller/HomeController.java" charset="ISO-8859-1" />
     <file url="file://$PROJECT_DIR$/src/controller/SelectGridController.java" charset="ISO-8859-1" />
     <file url="file://$PROJECT_DIR$/src/file_management/ExportFiles.java" charset="ISO-8859-1" />
     <file url="file://$PROJECT_DIR$/src/files/data.csv" charset="ISO-8859-1" />

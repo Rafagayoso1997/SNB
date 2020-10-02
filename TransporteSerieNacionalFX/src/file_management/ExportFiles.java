@@ -6,6 +6,7 @@ import javafx.stage.DirectoryChooser;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import logic.Controller;
+import logic.Date;
 import logic.Duel;
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.usermodel.XSSFCellStyle;
@@ -99,7 +100,7 @@ public class ExportFiles {
     }
 
 
-    public static void exportItineraryInExcelFormat(){
+    public static void exportItineraryInExcelFormat(int calendarToExport){
         dc = new DirectoryChooser();
         f = dc.showDialog(new Stage());
 
@@ -108,7 +109,8 @@ public class ExportFiles {
 
 
         Controller controller = Controller.getSingletonController();
-        ArrayList<ArrayList<Integer>> teamDate = controller.getItinerary();
+        ArrayList<Date> calendar = controller.getCalendarsList().get(calendarToExport);
+        ArrayList<ArrayList<Integer>> teamDate = controller.teamsItinerary(calendar);
         Row row = spreadsheet.createRow(0);
         //Style of the cell
         XSSFFont headerCellFont = workbook.createFont();

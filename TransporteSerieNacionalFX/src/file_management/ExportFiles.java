@@ -3,6 +3,7 @@ package file_management;
 import javafx.scene.control.TableView;
 import javafx.scene.paint.Paint;
 import javafx.stage.DirectoryChooser;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import logic.CalendarConfiguration;
@@ -22,6 +23,7 @@ import java.io.FileOutputStream;
 import java.util.ArrayList;
 
 public class ExportFiles {
+    private  static FileChooser fc;
     private static DirectoryChooser dc;
 
      private static File f;
@@ -102,8 +104,15 @@ public class ExportFiles {
 
 
     public static void exportItineraryInExcelFormat(int calendarToExport){
-        dc = new DirectoryChooser();
-        f = dc.showDialog(new Stage());
+        fc = new FileChooser();
+
+        //Set extension filter for text files
+        FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("Excel files (*.xlsx)", "*.xlsx");
+        fc.getExtensionFilters().add(extFilter);
+
+
+        //dc = new DirectoryChooser();
+        f = fc.showSaveDialog(new Stage());
 
         workbook = new XSSFWorkbook();
         Sheet spreadsheet = workbook.createSheet("Calendario");
@@ -165,7 +174,7 @@ public class ExportFiles {
         FileOutputStream fileOut = null;
         try {
 
-            fileOut = new FileOutputStream(f.getAbsolutePath() + "/ Itinerario del Calendario Serie Nacional.xlsx");
+            fileOut = new FileOutputStream(f.getAbsolutePath());
             workbook.write(fileOut);
             fileOut.close();
             showSuccessfulMessage();

@@ -86,6 +86,7 @@ public class CalendarController implements Initializable {
         for(int i=0; i < calendarsList.size();i++){
             ArrayList<Date> calendar = calendarsList.get(i);
             JFXTabPane currentCalendarTabPane = new JFXTabPane();
+            String id = controller.getConfigurations().get(i).getCalendarId();
             //currentCalendarTabPane.setPrefHeight(calendarsTabPane.getHeight());
             for(int j=0; j < calendar.size();j++){
                 TableView<Duel> table = new TableView<Duel>();
@@ -108,7 +109,7 @@ public class CalendarController implements Initializable {
                 tables.add(table);
                 currentCalendarTabPane.getTabs().add(tab);
             }
-            Tab tab =  new Tab("Calendario "+(i+1));
+            Tab tab =  new Tab(id);
             tab.setContent(currentCalendarTabPane);
             calendarsTabPane.getTabs().add(tab);
         }

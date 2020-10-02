@@ -96,20 +96,11 @@ public class CalendarStatisticsController {
 
         Controller controller = Controller.getSingletonController();
         ArrayList<ArrayList<Date>> calendarsList = controller.getCalendarsList();
-        /*controller.moreStatistics(controller.getItinerary());
-        controller.lessStatistics(controller.getItinerary());
-
-        float lessDistance = controller.getLessDistance();
-        String teamLessDistance = controller.getTeamLessDistance();
-
-        float moreDistance = controller.getMoreDistance();
-        String teamMoreDistance = controller.getTeamMoreDistance();*/
 
         ArrayList<String> xAxisCalendarData = new ArrayList<>();
         ArrayList<String> xAxisLessTeamData = new ArrayList<>();
         ArrayList<String> xAxisMoreTeamData = new ArrayList<>();
 
-        //ArrayList<String> xAxisData = new ArrayList<>();
 
         if(calendarsList.size() == 1){
             barChartCalendar.setBarGap(0);
@@ -125,19 +116,18 @@ public class CalendarStatisticsController {
             
             //Distancias de los calendarios
             ArrayList<Date> calendar = calendarsList.get(i);
-            xAxisCalendarData.add("Calendario " + (i+1));
+            xAxisCalendarData.add(controller.getConfigurations().get(i).getCalendarId());
             calendarData.add(xAxisCalendarData.get(i));
-            ArrayList<ArrayList<Integer>> itinerary = controller.teamsItinerary(calendar);
             XYChart.Series<String, Float>seriesCalendar = new XYChart.Series<String, Float>();
             seriesCalendar.setName(calendarData.get(i));
-            seriesCalendar.getData().add(new XYChart.Data(xAxisCalendarData.get(i), controller.calculateDistance(itinerary)));
+            seriesCalendar.getData().add(new XYChart.Data(xAxisCalendarData.get(i), controller.calculateDistance(calendar,controller.getConfigurations().get(i))));
             barChartCalendar.getData().addAll(seriesCalendar);
             
             //Estadísticas de los calendarios
             
             //estadisticas de los equipos que menos distancias recorren
             
-            statistics = controller.lessStatistics(itinerary);
+            statistics = controller.lessStatistics(calendar);
             xAxisLessTeamData.add(statistics.getTeam());
             lessTeamData.addAll(xAxisLessTeamData);
             XYChart.Series<String, Float> seriesLessTeam = new XYChart.Series<String,Float>();
@@ -146,7 +136,7 @@ public class CalendarStatisticsController {
             seriesLessTeam.getData().add(new XYChart.Data(xAxisLessTeamData.get(i), statistics.getDistance()));
             barChartLessTeam.getData().addAll(seriesLessTeam);
 
-            statistics = controller.moreStatistics(itinerary);
+            statistics = controller.moreStatistics(calendar);
             xAxisMoreTeamData.add(statistics.getTeam());
             moreTeamData.addAll(xAxisMoreTeamData);
             XYChart.Series<String, Float> seriesMoreTeam = new XYChart.Series<String,Float>();

@@ -8,15 +8,15 @@ public class CalendarConfiguration {
     private ArrayList<Integer> teamsIndexes;
     private boolean inauguralGame;
     private boolean championVsSecondPlace;
-    private String champion;
-    private String secondPlace;
+    private int champion;
+    private int secondPlace;
     private boolean secondRoundCalendar;
     private boolean symmetricSecondRound;
     private int maxLocalGamesInARow;
     private int maxVisitorGamesInARow;
 
     public CalendarConfiguration(String calendarId, ArrayList<Integer> teamsIndexes, boolean inauguralGame,
-                                 boolean championVsSecondPlace, String champion, String secondPlace,
+                                 boolean championVsSecondPlace, int champion, int secondPlace,
                                  boolean secondRoundCalendar, boolean symmetricSecondRound, int maxLocalGamesInARow,
                                  int maxVisitorGamesInARow) {
         this.calendarId = calendarId;
@@ -29,6 +29,19 @@ public class CalendarConfiguration {
         this.symmetricSecondRound = symmetricSecondRound;
         this.maxLocalGamesInARow = maxLocalGamesInARow;
         this.maxVisitorGamesInARow = maxVisitorGamesInARow;
+    }
+
+    public CalendarConfiguration() {
+        this.calendarId = "";
+        this.teamsIndexes = new ArrayList<>();
+        this.inauguralGame = false;
+        this.championVsSecondPlace = false;
+        this.champion = -1;
+        this.secondPlace = -1;
+        this.secondRoundCalendar = false;
+        this.symmetricSecondRound = false;
+        this.maxLocalGamesInARow = 0;
+        this.maxVisitorGamesInARow = 0;
     }
 
     public String getCalendarId() {
@@ -63,19 +76,19 @@ public class CalendarConfiguration {
         this.championVsSecondPlace = championVsSecondPlace;
     }
 
-    public String getChampion() {
+    public int getChampion() {
         return champion;
     }
 
-    public void setChampion(String champion) {
+    public void setChampion(int champion) {
         this.champion = champion;
     }
 
-    public String getSecondPlace() {
+    public int getSecondPlace() {
         return secondPlace;
     }
 
-    public void setSecondPlace(String secondPlace) {
+    public void setSecondPlace(int secondPlace) {
         this.secondPlace = secondPlace;
     }
 

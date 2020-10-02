@@ -124,12 +124,12 @@ public class ReadExcel {
         if(calendar.get(0).getGames().size()<2){
             controller.setInauguralGame(true);
         }
-        ArrayList<ArrayList<Integer>> itinerary = controller.teamsItinerary(calendar);
+        /*ArrayList<ArrayList<Integer>> itinerary = controller.teamsItinerary(calendar);
         for (ArrayList<Integer> integers : itinerary) {
             System.out.println(integers);
             System.out.println();
         }
-        controller.setItinerary(itinerary);
+        controller.setItinerary(itinerary);*/
         System.out.println("************************************************");
         return calendar;
     }

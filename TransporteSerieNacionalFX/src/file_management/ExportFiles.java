@@ -5,6 +5,7 @@ import javafx.scene.paint.Paint;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+import logic.CalendarConfiguration;
 import logic.Controller;
 import logic.Date;
 import logic.Duel;
@@ -110,7 +111,8 @@ public class ExportFiles {
 
         Controller controller = Controller.getSingletonController();
         ArrayList<Date> calendar = controller.getCalendarsList().get(calendarToExport);
-        ArrayList<ArrayList<Integer>> teamDate = controller.teamsItinerary(calendar);
+        CalendarConfiguration configuration = controller.getConfigurations().get(calendarToExport);
+        ArrayList<ArrayList<Integer>> teamDate = controller.teamsItinerary(calendar,configuration);
         Row row = spreadsheet.createRow(0);
         //Style of the cell
         XSSFFont headerCellFont = workbook.createFont();
@@ -184,4 +186,6 @@ public class ExportFiles {
         notification.setAnimationType(AnimationType.FADE);
         notification.showAndDismiss(Duration.seconds(2));
     }
+
+
 }

@@ -16,6 +16,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.RowConstraints;
 import javafx.scene.paint.Paint;
 import javafx.util.Duration;
+import logic.CalendarConfiguration;
 import logic.Controller;
 import logic.Date;
 import tray.animations.AnimationType;
@@ -29,6 +30,8 @@ import java.util.ResourceBundle;
 
 public class SelectGridController implements Initializable {
 
+    public static CalendarConfiguration configuration;
+
     private HomeController homeController;
 
     @FXML
@@ -41,6 +44,10 @@ public class SelectGridController implements Initializable {
     private GridPane selectionGrid;
 
 
+    @FXML
+    private JFXButton saveLocations;
+
+
     boolean error = false;
     JFXToggleButton[][] matrix;
     static int[][] matrixCalendar;
@@ -49,8 +56,13 @@ public class SelectGridController implements Initializable {
 
 
 
-    @FXML
-    private JFXButton saveLocations;
+    public CalendarConfiguration getConfiguration() {
+        return configuration;
+    }
+
+    public void setConfiguration(CalendarConfiguration configuration) {
+        this.configuration = configuration;
+    }
 
     @FXML
     void saveLocations(ActionEvent event) throws IOException{
@@ -110,8 +122,8 @@ public class SelectGridController implements Initializable {
     }
 
     private JFXToggleButton[][] generateMatrixToggleButton(int size) {
-        int posChampion = Controller.getSingletonController().getTeamsIndexes().indexOf(Controller.getSingletonController().getPosChampion());
-        int posSecond   = Controller.getSingletonController().getTeamsIndexes().indexOf(Controller.getSingletonController().getPosSubChampion());
+        int posChampion = configuration.getChampion();
+        int posSecond   = configuration.getSecondPlace();
         //false el equipo no se ha cogido
         //matrixCalendar = generateMatrix(SIZE);
 
@@ -252,7 +264,7 @@ public class SelectGridController implements Initializable {
    
    void showCalendar() throws IOException {
         checkSymetricMatrix();
-        Controller.getSingletonController().generateCalendar(ConfigurationCalendarController.selectedIndexes);
+        Controller.getSingletonController().generateCalendar(configuration);
         AnchorPane structureOver = homeController.getPrincipalPane();
         homeController.createPage(new CalendarController(), structureOver, "/visual/Calendar.fxml");
         homeController.getButtonReturnSelectionTeamConfiguration().setVisible(false);

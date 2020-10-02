@@ -18,6 +18,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import logic.CalendarConfiguration;
 import logic.Controller;
 import logic.Date;
 import logic.Duel;
@@ -32,6 +33,7 @@ public class MutationsConfigurationController implements Initializable {
 
 
 
+    private int selectedCalendar;
     private HomeController homeController;
 
     private ArrayList<ArrayList<Boolean>> booleanValues;//lista de boolean para saber que componentes activar o no
@@ -77,6 +79,7 @@ public class MutationsConfigurationController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        this.selectedCalendar = CalendarController.selectedCalendar;
         iterations.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(1, Integer.MAX_VALUE));
         iterations.getValueFactory().setValue(20000);
         mutationsToAdd = new ArrayList<>();
@@ -278,27 +281,31 @@ public class MutationsConfigurationController implements Initializable {
 
         System.out.println("mutaciones seleccionadas: " + positionsMutationsSelected);
 
+        ArrayList<Date> calendar = Controller.getSingletonController().getCalendarsList().get(selectedCalendar);
+        CalendarConfiguration configuration = Controller.getSingletonController().getConfigurations().get(selectedCalendar);
         ArrayList<Date> newCalendar = new ArrayList<>();
-        Controller.getSingletonController().copyCalendar(newCalendar, Controller.getSingletonController().getCalendar());
+        Controller.getSingletonController().copyCalendar(newCalendar, calendar);
 
         //for (int j = 0; j < iterations.getValueFactory().getValue(); j++) {
             for (int i = 0; i < positionsMutationsSelected.size(); i++) {
-                Controller.getSingletonController().selectMutation(newCalendar, positionsMutationsSelected.get(i));
+                Controller.getSingletonController().selectMutation(newCalendar, positionsMutationsSelected.get(i),configuration.isInauguralGame());
             }
         //}
 
-        ArrayList<ArrayList<Integer>> itineraryCopy = Controller.getSingletonController().teamsItinerary(newCalendar);
+        /*ArrayList<ArrayList<Integer>> itineraryCopy = Controller.getSingletonController().teamsItinerary(newCalendar);
         Controller.getSingletonController().setCalendarCopy(newCalendar);
         Controller.getSingletonController().setCopied(true);
         Controller.getSingletonController().setGeneratedCalendar(false);
         Controller.getSingletonController().setCopied(true);
-        Controller.getSingletonController().setItineraryCopy(itineraryCopy);
+        Controller.getSingletonController().setItineraryCopy(itineraryCopy);*/
 
         /*AnchorPane structureOver = homeController.getPrincipalPane();
         homeController.createPage(new CalendarController(), structureOver, "/visual/Calendar.fxml");
         homeController.getButtonReturnSelectionTeamConfiguration().setVisible(false);*/
 
 
+        Controller.getSingletonController().getCalendarsList().add(newCalendar);
+        Controller.getSingletonController().getConfigurations().add(copyConfiguration(configuration));
         System.out.println("************************************************");
         System.out.println("Calendario:");
         for (Date date : newCalendar) {
@@ -311,6 +318,10 @@ public class MutationsConfigurationController implements Initializable {
 
         Stage stage = (Stage) selectMutations.getScene().getWindow();
         stage.close();
+
+        AnchorPane structureOver = homeController.getPrincipalPane();
+        homeController.createPage(new CalendarController(), structureOver, "/visual/Calendar.fxml");
+        homeController.getButtonReturnSelectionTeamConfiguration().setVisible(false);
     }
 
     public HomeController getHomeController() {
@@ -319,5 +330,20 @@ public class MutationsConfigurationController implements Initializable {
 
     public void setHomeController(HomeController homeController) {
         this.homeController = homeController;
+    }
+
+    private CalendarConfiguration copyConfiguration(CalendarConfiguration configuration){
+        CalendarConfiguration conf = new CalendarConfiguration();
+        conf.setCalendarId(configuration.getCalendarId()+" Mutado");
+        conf.setInauguralGame(configuration.isInauguralGame());
+        conf.setChampion(configuration.getChampion());
+        conf.setSecondPlace(configuration.getSecondPlace());
+        conf.setTeamsIndexes(configuration.getTeamsIndexes());
+        conf.setChampionVsSecondPlace(configuration.isChampionVsSecondPlace());
+        conf.setSecondRoundCalendar(configuration.isSecondRoundCalendar());
+        conf.setSymmetricSecondRound(configuration.isSymmetricSecondRound());
+        conf.setMaxLocalGamesInARow(configuration.getMaxLocalGamesInARow());
+        conf.setMaxVisitorGamesInARow(configuration.getMaxVisitorGamesInARow());
+        return conf;
     }
 }

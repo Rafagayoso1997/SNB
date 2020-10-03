@@ -68,6 +68,16 @@ public class CalendarController implements Initializable {
     @FXML
     private JFXTabPane calendarTabPane;
 
+    @FXML
+    private JFXButton itineraryBtn;
+
+    @FXML
+    private JFXButton stadiumItineraryBtn;
+
+    @FXML
+    private JFXButton restrictionsBtn;
+
+
 
     public void setHomeController(HomeController homeController) {
         this.homeController = homeController;
@@ -222,6 +232,27 @@ public class CalendarController implements Initializable {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    @FXML
+    void showItinerary(ActionEvent event) {
+        try {
+            homeController.createPage(new TeamsItineraryController(), null, "/visual/TeamsItinerary.fxml");
+            // Hide this current window (if this is what you want)
+            // ((Node)(event.getSource())).getScene().getWindow().hide();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    void showRestrictions(ActionEvent event) {
+
+    }
+
+    @FXML
+    void showStadiumItinerary(ActionEvent event) {
+
     }
 
 

@@ -249,7 +249,19 @@ public class HomeController implements Initializable {
             ((MutationsConfigurationController) object).setHomeController(this);
 
             stage.show();
-        } else if (object instanceof CalendarController) {
+        } else if (object instanceof TeamsItineraryController) {
+
+            Parent root = FXMLLoader.load(getClass().getResource("/visual/TeamsItinerary.fxml"));
+            Stage stage = new Stage();
+            stage.setTitle("Itinerario de equipos");
+            stage.setScene(new Scene(anchorPane));
+
+
+            object = loader.getController();
+            ((TeamsItineraryController) object).setHomeController(this);
+
+            stage.show();
+        }else if (object instanceof CalendarController) {
             object = loader.getController();
             ((CalendarController) object).setHomeController(this);
             setNode(anchorPane);

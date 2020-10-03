@@ -1,5 +1,7 @@
 package file_management;
 
+import logic.Auxiliar;
+import logic.CalendarConfiguration;
 import logic.Controller;
 import logic.Date;
 import org.apache.poi.ss.usermodel.Cell;
@@ -49,15 +51,11 @@ public class ReadExcel {
                 ArrayList<Integer> pair = new ArrayList<>();
                 while (cellIterator.hasNext()){
                     Cell cell  = cellIterator.next();
-                    //System.out.print(cell.toString() + ";");
                     pair.add(controller.getTeams().indexOf(cell.toString()));
                 }
                 date.getGames().add(pair);
-                //System.out.println();
             }
             calendar.add(date);
-
-            //System.out.println();
         }
         workbook.close();
         fis.close();
@@ -65,12 +63,13 @@ public class ReadExcel {
         return calendar;
     }
 
-    public static ArrayList<Date> readExcelItineraryToCalendar(String route) throws IOException {
+    public static Auxiliar readExcelItineraryToCalendar(String route) throws IOException {
+
+        Auxiliar aux = new Auxiliar();
 
         Controller controller = Controller.getSingletonController();
         ArrayList<Date> calendar = new ArrayList<>();
-        ArrayList<Integer>teamsIndexes = controller.getTeamsIndexes();
-        teamsIndexes = new ArrayList<>();
+        ArrayList<Integer>teamsIndexes = new ArrayList<>();
 
         FileInputStream fis = new FileInputStream(route);
         XSSFWorkbook workbook = new XSSFWorkbook(fis);
@@ -86,12 +85,6 @@ public class ReadExcel {
             teamsIndexes.add(controller.getTeams().indexOf(cellNames.toString()));
         }
 
-        //controller.setTeamsIndexes(teamsIndexes);
-
-        /*
-        Hay que arreglar este método despues de que se ponagn las configuraciones en el excel para leer
-        los indices de los equipos del calendario que se importa
-         */
         while (rowIterator.hasNext()){
 
             Date date = new Date();
@@ -115,19 +108,33 @@ public class ReadExcel {
             }
             calendar.add(date);
         }
+
+        aux.setCalendar(calendar);
+
+        XSSFSheet xssfSheetData = workbook.getSheetAt(1);
+        Iterator<Row> rowIteratorData = xssfSheetData.iterator();
+
+        aux.getConfiguration().setCalendarId(rowIteratorData.next().getCell(0).getStringCellValue());
+
+        Row rowTeamIndexes = rowIteratorData.next();
+        Iterator<Cell> cellIteratorData = rowTeamIndexes.iterator();
+
+        while(cellIteratorData.hasNext()){
+            Cell cellData  = cellIteratorData.next();
+            aux.getConfiguration().getTeamsIndexes().add((int)cellData.getNumericCellValue());
+        }
+
+        aux.getConfiguration().setInauguralGame(rowIteratorData.next().getCell(0).getBooleanCellValue());
+        aux.getConfiguration().setChampionVsSecondPlace(rowIteratorData.next().getCell(0).getBooleanCellValue());
+        aux.getConfiguration().setChampion((int)rowIteratorData.next().getCell(0).getNumericCellValue());
+        aux.getConfiguration().setSecondPlace((int)rowIteratorData.next().getCell(0).getNumericCellValue());
+        aux.getConfiguration().setSecondRoundCalendar(rowIteratorData.next().getCell(0).getBooleanCellValue());
+        aux.getConfiguration().setSymmetricSecondRound(rowIteratorData.next().getCell(0).getBooleanCellValue());
+        aux.getConfiguration().setMaxLocalGamesInARow((int)rowIteratorData.next().getCell(0).getNumericCellValue());
+        aux.getConfiguration().setMaxVisitorGamesInARow((int)rowIteratorData.next().getCell(0).getNumericCellValue());
+
         workbook.close();
         fis.close();
-
-
-
-        /*
-        arrelar para saber si hay juego inaugural o no
-         */
-        /*if(calendar.get(0).getGames().size()<2){
-            controller.setInauguralGame(true);
-        }*/
-
-        System.out.println("************************************************");
-        return calendar;
+        return aux;
     }
 }

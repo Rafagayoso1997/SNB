@@ -17,6 +17,8 @@ import javafx.scene.paint.Paint;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+import logic.Auxiliar;
+import logic.CalendarConfiguration;
 import logic.Controller;
 import logic.Date;
 import file_management.ReadExcel;
@@ -124,11 +126,12 @@ public class HomeController implements Initializable {
         try {
 
             if (file != null) {
-                ArrayList<Date> importedCalendar = ReadExcel.readExcelItineraryToCalendar(file.toString());
-                Controller.getSingletonController().getCalendarsList().add(importedCalendar);
+                Auxiliar aux = ReadExcel.readExcelItineraryToCalendar(file.toString());
+                Controller.getSingletonController().getCalendarsList().add(aux.getCalendar());
+                Controller.getSingletonController().getConfigurations().add(aux.getConfiguration());
 
                 notification = getNotification();
-                notification.setTitle("Importación de Calendario");
+                notification.setTitle("Importaciï¿½n de Calendario");
                 notification.setMessage("Calendario importado con ?xito");
                 notification.setNotificationType(NotificationType.SUCCESS);
                 notification.setRectangleFill(Paint.valueOf("#2F2484"));
@@ -150,7 +153,7 @@ public class HomeController implements Initializable {
         /*if(calendarToExport == -1){
             notification = getNotification();
             notification.setTitle("Exportaci?n de Calendario");
-            notification.setMessage("No se seleccionó ningún calendario a exportar");
+            notification.setMessage("No se seleccionï¿½ ningï¿½n calendario a exportar");
             notification.setNotificationType(NotificationType.ERROR);
             notification.setRectangleFill(Paint.valueOf("#2F2484"));
             notification.setAnimationType(AnimationType.FADE);

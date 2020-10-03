@@ -22,6 +22,7 @@ public class Controller {
     private int iterations;//Number of iterations
     private ArrayList<LocalVisitorDistance> positionsDistance;//List of LocalVisitorDistance
     private ArrayList<String> teams;//List of resources.teams
+
     private ArrayList<CalendarConfiguration>configurations;
     private ArrayList<ArrayList<Date>> calendarsList;
     private ArrayList<String>acronyms;
@@ -36,6 +37,7 @@ public class Controller {
 
     private float calendarDistance;
     private int[][] matrix;
+
 
 
 
@@ -57,6 +59,7 @@ public class Controller {
         this.mutationsConfigurationsList = new ArrayList<>();
         this.configurations = new ArrayList<>();
         this.calendarsList = new ArrayList<>();
+
     }
 
     /**

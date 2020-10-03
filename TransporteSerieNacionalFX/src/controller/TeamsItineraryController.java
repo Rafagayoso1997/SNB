@@ -8,6 +8,7 @@ import javafx.collections.ObservableList;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableColumn.CellDataFeatures;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.util.Callback;
 
 import com.jfoenix.controls.JFXButton;
@@ -32,7 +33,7 @@ public class TeamsItineraryController implements Initializable {
     private JFXListView<String> teamsListView;
 
     @FXML
-    private TableView<String> itineraryTable;
+    private TableView<TeamItineraryName> itineraryTable;
 
     @FXML
     private JFXButton showItinerary;
@@ -61,6 +62,7 @@ public class TeamsItineraryController implements Initializable {
     void displayItinerary(ActionEvent event) {
 
         itineraryTable.getColumns().removeAll(itineraryTable.getColumns());
+        itineraryTable.setItems(FXCollections.observableArrayList(new ArrayList<>()));
         ArrayList<Integer> selectedTeams = new ArrayList<>(teamsListView.getSelectionModel().getSelectedIndices());
         ArrayList<Date> calendar = controller.getCalendarsList().get(selectedCalendar);
         CalendarConfiguration configuration = controller.getConfigurations().get(selectedCalendar);
@@ -70,8 +72,16 @@ public class TeamsItineraryController implements Initializable {
 
         for (int selectedTeam : selectedTeams) {
             TableColumn col = new TableColumn<>(controller.getAcronyms().get(selectedTeam));
-            col.setCellValueFactory(param -> new SimpleStringProperty(controller.getAcronyms().get(selectedTeam)));
+            col.setCellValueFactory(new PropertyValueFactory<>("team"));
             itineraryTable.getColumns().add(col);
+        }
+
+        for (int selectedTeam : selectedTeams) {
+            ArrayList<Integer> currentItinerary = itinerary.get(selectedTeam);
+            for(int teamIndex: currentItinerary){
+                String team = controller.getAcronyms().get(teamIndex);
+                itineraryTable.getItems().add(new TeamItineraryName(team));
+            }
         }
         
 

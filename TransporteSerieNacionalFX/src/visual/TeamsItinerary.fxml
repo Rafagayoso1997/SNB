@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXListView?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane prefHeight="632.0" prefWidth="1148.0" stylesheets="@../styles/PrincipalMenu.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.TeamsItineraryController">
+   <children>
+      <JFXListView fx:id="teamListView" layoutX="9.0" layoutY="58.0" prefHeight="565.0" prefWidth="382.0" />
+      <Label layoutX="139.0" layoutY="21.0" text="Equipos" textFill="#2f2484">
+         <font>
+            <Font name="Segoe UI Emoji" size="27.0" />
+         </font>
+      </Label>
+      <Label layoutX="803.0" layoutY="21.0" text="Itinerario" textFill="#2f2484">
+         <font>
+            <Font name="Segoe UI Emoji" size="27.0" />
+         </font>
+      </Label>
+      <TableView fx:id="itineraryTable" layoutX="566.0" layoutY="58.0" prefHeight="565.0" prefWidth="573.0" />
+      <JFXButton fx:id="showItinerary" buttonType="RAISED" layoutX="405.0" layoutY="301.0" onAction="#displayItinerary" prefHeight="58.0" prefWidth="139.0" text="Ver Itinerario">
+         <font>
+            <Font name="Segoe UI Symbol" size="18.0" />
+         </font>
+      </JFXButton>
+   </children>
+</AnchorPane>

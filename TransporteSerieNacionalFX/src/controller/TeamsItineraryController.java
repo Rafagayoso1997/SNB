@@ -8,7 +8,6 @@ import javafx.collections.ObservableList;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableColumn.CellDataFeatures;
 import javafx.scene.control.TableView;
-import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.util.Callback;
 
 import com.jfoenix.controls.JFXButton;
@@ -21,7 +20,6 @@ import logic.*;
 
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -30,7 +28,7 @@ public class TeamsItineraryController implements Initializable {
     private  Controller controller;
     public static int selectedCalendar;
     @FXML
-    private JFXListView teamsListView;
+    private JFXListView<String> teamsListView;
 
     @FXML
     private TableView<ObservableList> itineraryTable;
@@ -79,8 +77,8 @@ public class TeamsItineraryController implements Initializable {
         int index=0;
         for (int selectedTeam : selectedTeams) {
             final int j= index;
-            TableColumn col = new TableColumn(controller.getAcronyms().get(selectedTeam));
-            col.setCellValueFactory((Callback<CellDataFeatures<ObservableList, String>, ObservableValue<String>>)
+            TableColumn<ObservableList, String> col = new TableColumn(controller.getAcronyms().get(selectedTeam));
+            col.setCellValueFactory(
                     param -> new SimpleStringProperty(param.getValue().get(j).toString()));
             index++;
             itineraryTable.getColumns().add(col);

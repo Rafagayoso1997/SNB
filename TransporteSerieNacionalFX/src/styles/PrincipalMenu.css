@@ -47,3 +47,7 @@
     -fx-border-color: #bdbdbd;
     -fx-font-size: 20px;
 }
+
+.jfx-textfield{
+    -fx-text-inner-color: #2F2484;
+}

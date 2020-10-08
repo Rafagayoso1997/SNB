@@ -17,7 +17,10 @@ import javafx.scene.control.Tooltip;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
+import logic.CalendarStatistic;
 import logic.Controller;
+import logic.Date;
+import org.apache.poi.ss.formula.functions.MatrixFunction;
 
 import java.util.ArrayList;
 
@@ -92,154 +95,63 @@ public class CalendarStatisticsController {
 
 
         Controller controller = Controller.getSingletonController();
-        controller.moreStatistics(controller.getItinerary());
-        controller.lessStatistics(controller.getItinerary());
-
-        float lessDistance = controller.getLessDistance();
-        String teamLessDistance = controller.getTeamLessDistance();
-
-        float moreDistance = controller.getMoreDistance();
-        String teamMoreDistance = controller.getTeamMoreDistance();
+        ArrayList<ArrayList<Date>> calendarsList = controller.getCalendarsList();
 
         ArrayList<String> xAxisCalendarData = new ArrayList<>();
         ArrayList<String> xAxisLessTeamData = new ArrayList<>();
         ArrayList<String> xAxisMoreTeamData = new ArrayList<>();
 
-        //ArrayList<String> xAxisData = new ArrayList<>();
 
-        /****CAlendarios*****/
-        xAxisCalendarData.add("Calendario Original");
-        calendarData.addAll(xAxisCalendarData);
-        XYChart.Series seriesOriginalCalendar = new XYChart.Series();
-        XYChart.Series seriesCopyCalendar = new XYChart.Series();
-
-        seriesOriginalCalendar.setName("Calendario Original");
-        seriesOriginalCalendar.getData().add(new XYChart.Data(xAxisCalendarData.get(0), controller.calculateDistance(controller.getItinerary())));
-
-        /****Menor Distancia*****/
-        xAxisLessTeamData.add(teamLessDistance);
-        lessTeamData.addAll(xAxisLessTeamData);
-        XYChart.Series seriesOriginalLessTeam = new XYChart.Series();
-        XYChart.Series seriesCopyLessTeam= new XYChart.Series();
-
-        seriesOriginalLessTeam.setName("Equipo que menor distancia recorre del Calendario Original");
-        seriesOriginalLessTeam.getData().add(new XYChart.Data(xAxisLessTeamData.get(0), lessDistance));
-
-        /****Mayor Distancia***/
-
-
-        xAxisMoreTeamData.add(teamMoreDistance);
-        moreTeamData.addAll(xAxisMoreTeamData);
-        XYChart.Series seriesOriginalMoreTeam = new XYChart.Series();
-        XYChart.Series seriesCopyMoreTeam= new XYChart.Series();
-
-        seriesOriginalMoreTeam.setName("Equipo que mayor distancia recorre del Calendario Original");
-        seriesOriginalMoreTeam.getData().add(new XYChart.Data(xAxisMoreTeamData.get(0), moreDistance));
-
-        //barChartCalendar.getData().addAll(seriesOriginalCalendar);
-       /* xAxisData.add(teamLessDistance);
-        xAxisData.add(teamMoreDistance);
-
-
-        data.addAll(xAxisData);
-
-        XYChart.Series series1 = new XYChart.Series();
-        series1.setName("Calendarios");
-        XYChart.Series series2 = new XYChart.Series();
-        series2.setName("Equipos que menor distancia recorren");
-        XYChart.Series series3 = new XYChart.Series();
-        series3.setName("Equipos que más distancia recorren");
-        series1.getData().add(new XYChart.Data(xAxisData.get(0), controller.calculateDistance(controller.getCalendar())));
-        series2.getData().add(new XYChart.Data(data.get(1), lessDistance));
-        series3.getData().add(new XYChart.Data(data.get(2), moreDistance));*/
-
-        if (controller.isCopied()) {
-            xAxisCalendarData.add("Nuevo Calendario");
-            controller.copyMoreStatistics(controller.getItineraryCopy());
-            controller.copyLessStatistics(controller.getItineraryCopy());
-            float copyLessDistance = controller.getCopyLessDistance();
-            float copyMoreDistance = controller.getCopyMoreDistance();
-            String copyTeamLessDistance = controller.getCopyTeamLessDistance();
-            String copyTeamMoreDistance = controller.getCopyTeamMoreDistance();
-            xAxisLessTeamData.add(copyTeamLessDistance);
-            xAxisMoreTeamData.add(copyTeamMoreDistance);
-
-            seriesCopyCalendar.setName("Nuevo Calendario");
-            seriesCopyCalendar.getData().add(new XYChart.Data(xAxisCalendarData.get(1), controller.calculateDistance(controller.getItineraryCopy())));
-            seriesCopyLessTeam.setName("Equipo que menor distancia recorre del Nuevo Calendario");
-            seriesCopyLessTeam.getData().add(new XYChart.Data(xAxisLessTeamData.get(1), copyLessDistance));
-            seriesCopyMoreTeam.setName("Equipo que mayor distancia recorre del Nuevo Calendario");
-            seriesCopyMoreTeam.getData().add(new XYChart.Data(xAxisLessTeamData.get(1), copyMoreDistance));
-
+        if(calendarsList.size() == 1){
+            barChartCalendar.setBarGap(0);
+            barChartCalendar.setCategoryGap(900);
+            barChartLessTeam.setBarGap(0);
+            barChartLessTeam.setCategoryGap(900);
+            barChartMoreTeam.setBarGap(0);
+            barChartMoreTeam.setCategoryGap(900);
         }
 
+        CalendarStatistic statistics = null;
+        for(int i =0; i < calendarsList.size();i++){
+            
+            //Distancias de los calendarios
+            ArrayList<Date> calendar = calendarsList.get(i);
+            xAxisCalendarData.add(controller.getConfigurations().get(i).getCalendarId());
+            calendarData.add(xAxisCalendarData.get(i));
+            XYChart.Series<String, Float>seriesCalendar = new XYChart.Series<String, Float>();
+            seriesCalendar.setName(calendarData.get(i));
+            seriesCalendar.getData().add(new XYChart.Data(xAxisCalendarData.get(i), controller.calculateDistance(calendar,controller.getConfigurations().get(i))));
+            barChartCalendar.getData().addAll(seriesCalendar);
+            
+            //Estadísticas de los calendarios
+            
+            //estadisticas de los equipos que menos distancias recorren
+            
+            statistics = controller.lessStatistics(calendar);
+            xAxisLessTeamData.add(statistics.getTeam());
+            lessTeamData.addAll(xAxisLessTeamData);
+            XYChart.Series<String, Float> seriesLessTeam = new XYChart.Series<String,Float>();
 
-        barChartCalendar.getData().addAll(seriesOriginalCalendar/*, series2, series3*/);
-        barChartLessTeam.getData().add(seriesOriginalLessTeam);
-        barChartMoreTeam.getData().add(seriesOriginalMoreTeam);
+            seriesLessTeam.setName("Equipo que menor distancia recorre del "+ xAxisCalendarData.get(i));
+            seriesLessTeam.getData().add(new XYChart.Data(xAxisLessTeamData.get(i), statistics.getDistance()));
+            barChartLessTeam.getData().addAll(seriesLessTeam);
 
-        if(seriesCopyCalendar.getData().size()>0){
-            barChartCalendar.getData().addAll(seriesCopyCalendar);
+            statistics = controller.moreStatistics(calendar);
+            xAxisMoreTeamData.add(statistics.getTeam());
+            moreTeamData.addAll(xAxisMoreTeamData);
+            XYChart.Series<String, Float> seriesMoreTeam = new XYChart.Series<String,Float>();
 
-            barChartLessTeam.getData().addAll(seriesCopyLessTeam);
-
-            barChartMoreTeam.getData().addAll(seriesCopyMoreTeam);
-
-            barChartCalendar.setCategoryGap(300);
-            barChartLessTeam.setCategoryGap(300);
-            barChartMoreTeam.setCategoryGap(300);
+            seriesMoreTeam.setName("Equipo que mayor distancia recorre del "+ xAxisCalendarData.get(i));
+            seriesMoreTeam.getData().add(new XYChart.Data(xAxisMoreTeamData.get(i), statistics.getDistance()));
+            barChartMoreTeam.getData().addAll(seriesMoreTeam);
+            
         }
-        /*if(seriesCopyLessTeam.getData().size()>0){
-            barChartLessTeam.getData().addAll(seriesCopyLessTeam);
-            //barChartCalendar.setBarGap(3);
-            barChartLessTeam.setCategoryGap(300);
-        }*/
-
-
-        /*barChartCalendar.setBarGap(3);
-        barChartCalendar.setCategoryGap(20);*/
 
         setTooltipToChart(barChartCalendar);
 
         setTooltipToChart(barChartLessTeam);
 
         setTooltipToChart(barChartMoreTeam);
-
-
-        AnchorPane popupPane = new AnchorPane();
-        VBox vBox = new VBox();
-        JFXListView<JFXButton> list = new JFXListView<JFXButton>();
-        JFXButton btnCurrentCalendar = new JFXButton("Mantener el calendario original");
-        btnCurrentCalendar.setCursor(Cursor.HAND);
-        JFXButton btnNewCalendar = new JFXButton("Mantener el calendario nuevo");
-        btnCurrentCalendar.setCursor(Cursor.HAND);
-
-
-        vBox.getChildren().add(btnCurrentCalendar);
-        vBox.getChildren().add(btnNewCalendar);
-        popupPane.getChildren().add(vBox);
-        JFXPopup popup = new JFXPopup(popupPane);
-
-        if (controller.isCopied()) {
-            backButton.setOnAction(event -> {
-                popup.show(backButton, JFXPopup.PopupVPosition.TOP, JFXPopup.PopupHPosition.RIGHT);
-            });
-            btnCurrentCalendar.setOnAction(event -> {
-                popup.hide();
-                returnButton();
-            });
-            btnNewCalendar.setOnAction(event -> {
-                controller.setCalendar(controller.getCalendarCopy());
-                returnButton();
-                popup.hide();
-            });
-
-
-        }
-        else{
-            backButton.setOnAction( event -> returnButton());
-        }
-
 
     }
 
@@ -272,28 +184,5 @@ public class CalendarStatisticsController {
         }
 
     }
-
-    /**
-     * Sets the persons to show the statistics for.
-     *
-     * @param persons
-     */
-    /*public void setPersonData(List<Person> persons) {
-        // Count the number of people having their birthday in a specific month.
-        int[] monthCounter = new int[12];
-        for (Person p : persons) {
-            int month = p.getBirthday().getMonthValue() - 1;
-            monthCounter[month]++;
-        }
-
-        XYChart.Series<String, Integer> series = new XYChart.Series<>();
-
-        // Create a XYChart.Data object for each month. Add it to the series.
-        for (int i = 0; i < monthCounter.length; i++) {
-            series.getData().add(new XYChart.Data<>(monthNames.get(i), monthCounter[i]));
-        }
-
-        barChart.getData().add(series);
-    }*/
 
 }

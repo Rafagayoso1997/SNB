@@ -3,10 +3,14 @@ package file_management;
 import javafx.scene.control.TableView;
 import javafx.scene.paint.Paint;
 import javafx.stage.DirectoryChooser;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+import logic.CalendarConfiguration;
 import logic.Controller;
+import logic.Date;
 import logic.Duel;
+import org.apache.poi.ss.SpreadsheetVersion;
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.usermodel.XSSFCellStyle;
 import org.apache.poi.xssf.usermodel.XSSFFont;
@@ -20,6 +24,7 @@ import java.io.FileOutputStream;
 import java.util.ArrayList;
 
 public class ExportFiles {
+    private  static FileChooser fc;
     private static DirectoryChooser dc;
 
      private static File f;
@@ -99,16 +104,25 @@ public class ExportFiles {
     }
 
 
-    public static void exportItineraryInExcelFormat(){
-        dc = new DirectoryChooser();
-        f = dc.showDialog(new Stage());
+    public static void exportItineraryInExcelFormat(int calendarToExport){
+        fc = new FileChooser();
+
+        //Set extension filter for text files
+        FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("Excel files (*.xlsx)", "*.xlsx");
+        fc.getExtensionFilters().add(extFilter);
+
+
+        //dc = new DirectoryChooser();
+        f = fc.showSaveDialog(new Stage());
 
         workbook = new XSSFWorkbook();
         Sheet spreadsheet = workbook.createSheet("Calendario");
 
 
         Controller controller = Controller.getSingletonController();
-        ArrayList<ArrayList<Integer>> teamDate = controller.getItinerary();
+        ArrayList<Date> calendar = controller.getCalendarsList().get(calendarToExport);
+        CalendarConfiguration configuration = controller.getConfigurations().get(calendarToExport);
+        ArrayList<ArrayList<Integer>> teamDate = controller.teamsItinerary(calendar,configuration);
         Row row = spreadsheet.createRow(0);
         //Style of the cell
         XSSFFont headerCellFont = workbook.createFont();
@@ -150,10 +164,76 @@ public class ExportFiles {
             }
         }
 
+        Sheet spreadsheetData = workbook.createSheet("Data");
+        Row rowData = spreadsheetData.createRow(0);
+        Cell cellData =  rowData.createCell(0);
+        cellData.setCellStyle(style);
+        cellData.setCellValue(configuration.getCalendarId());
+
+        rowData = spreadsheetData.createRow(1);
+
+        for (int i = 0; i < configuration.getTeamsIndexes().size(); i++){
+            cellData = rowData.createCell(i);
+            cellData.setCellStyle(style);
+            cellData.setCellValue(configuration.getTeamsIndexes().get(i));
+        }
+
+        rowData = spreadsheetData.createRow(2);
+        cellData =  rowData.createCell(0);
+        cellData.setCellStyle(style);
+        cellData.setCellValue(configuration.isInauguralGame());
+
+        rowData = spreadsheetData.createRow(3);
+        cellData =  rowData.createCell(0);
+        cellData.setCellStyle(style);
+        cellData.setCellValue(configuration.isChampionVsSecondPlace());
+
+        rowData = spreadsheetData.createRow(4);
+        cellData =  rowData.createCell(0);
+        cellData.setCellStyle(style);
+        cellData.setCellValue(configuration.getChampion());
+
+        rowData = spreadsheetData.createRow(5);
+        cellData =  rowData.createCell(0);
+        cellData.setCellStyle(style);
+        cellData.setCellValue(configuration.getSecondPlace());
+
+        rowData = spreadsheetData.createRow(6);
+        cellData =  rowData.createCell(0);
+        cellData.setCellStyle(style);
+        cellData.setCellValue(configuration.isSecondRoundCalendar());
+
+        rowData = spreadsheetData.createRow(7);
+        cellData =  rowData.createCell(0);
+        cellData.setCellStyle(style);
+        cellData.setCellValue(configuration.isSymmetricSecondRound());
+
+        rowData = spreadsheetData.createRow(8);
+        cellData =  rowData.createCell(0);
+        cellData.setCellStyle(style);
+        cellData.setCellValue(configuration.getMaxLocalGamesInARow());
+
+        rowData = spreadsheetData.createRow(9);
+        cellData =  rowData.createCell(0);
+        cellData.setCellStyle(style);
+        cellData.setCellValue(configuration.getMaxVisitorGamesInARow());
+
+        workbook.setSheetHidden(1, true);
+
+
+
+
+
+
+
 
         //autosize each column of the excel document
         for(int i=0; i < row.getLastCellNum(); i++){
             spreadsheet.autoSizeColumn(i);
+        }
+
+        for(int i=0; i < rowData.getLastCellNum(); i++){
+            spreadsheetData.autoSizeColumn(i);
         }
 
 
@@ -161,7 +241,7 @@ public class ExportFiles {
         FileOutputStream fileOut = null;
         try {
 
-            fileOut = new FileOutputStream(f.getAbsolutePath() + "/ Itinerario del Calendario Serie Nacional.xlsx");
+            fileOut = new FileOutputStream(f.getAbsolutePath());
             workbook.write(fileOut);
             fileOut.close();
             showSuccessfulMessage();

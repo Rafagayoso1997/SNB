@@ -13,6 +13,7 @@ import javafx.scene.control.SpinnerValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Paint;
 import javafx.util.Duration;
+import logic.CalendarConfiguration;
 import logic.Controller;
 import tray.animations.AnimationType;
 import tray.notification.NotificationType;
@@ -41,11 +42,27 @@ public class AdvanceConfigurationController implements Initializable {
 
     public static boolean ok = true;
 
+    private CalendarConfiguration configuration;
 
+
+    public AdvanceConfigurationController() {
+    }
+
+    public AdvanceConfigurationController(CalendarConfiguration configuration) {
+        this.configuration = configuration;
+    }
+
+    public CalendarConfiguration getConfiguration() {
+        return configuration;
+    }
+
+    public void setConfiguration(CalendarConfiguration configuration) {
+        this.configuration = configuration;
+    }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        iterationsSpinner.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(1,Integer.MAX_VALUE,20000));
+        iterationsSpinner.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(1,Integer.MAX_VALUE,200000));
 
         List<String> mutationsRead = ReadFiles.readMutations();
         List<String> mutations = new ArrayList<>();

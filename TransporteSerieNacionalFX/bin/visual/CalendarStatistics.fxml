@@ -19,7 +19,7 @@
               <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <BarChart fx:id="barChartCalendar" barGap="0.0" categoryGap="600.0" prefHeight="421.0" prefWidth="1114.0">
+                        <BarChart fx:id="barChartCalendar" barGap="0.0" categoryGap="0.0" prefHeight="421.0" prefWidth="1114.0">
                           <xAxis>
                             <CategoryAxis side="BOTTOM" fx:id="xAxisCalendar" />
                           </xAxis>
@@ -38,7 +38,7 @@
               <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <BarChart fx:id="barChartLessTeam" barGap="0.0" categoryGap="600.0" prefHeight="421.0" prefWidth="1114.0">
+                        <BarChart fx:id="barChartLessTeam" prefHeight="421.0" prefWidth="1114.0">
                           <xAxis>
                             <CategoryAxis side="BOTTOM" fx:id="xAxisLessTeam" />
                           </xAxis>
@@ -57,7 +57,7 @@
               <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <BarChart fx:id="barChartMoreTeam" barGap="0.0" categoryGap="600.0" prefHeight="421.0" prefWidth="1114.0">
+                        <BarChart fx:id="barChartMoreTeam" prefHeight="421.0" prefWidth="1114.0">
                           <xAxis>
                             <CategoryAxis side="BOTTOM" fx:id="xAxisMoreTeam" />
                           </xAxis>

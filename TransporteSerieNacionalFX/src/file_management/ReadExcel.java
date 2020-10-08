@@ -1,5 +1,7 @@
 package file_management;
 
+import logic.Auxiliar;
+import logic.CalendarConfiguration;
 import logic.Controller;
 import logic.Date;
 import org.apache.poi.ss.usermodel.Cell;
@@ -49,15 +51,11 @@ public class ReadExcel {
                 ArrayList<Integer> pair = new ArrayList<>();
                 while (cellIterator.hasNext()){
                     Cell cell  = cellIterator.next();
-                    //System.out.print(cell.toString() + ";");
                     pair.add(controller.getTeams().indexOf(cell.toString()));
                 }
                 date.getGames().add(pair);
-                //System.out.println();
             }
             calendar.add(date);
-
-            //System.out.println();
         }
         workbook.close();
         fis.close();
@@ -65,12 +63,13 @@ public class ReadExcel {
         return calendar;
     }
 
-    public static ArrayList<Date> readExcelItineraryToCalendar(String route) throws IOException {
+    public static Auxiliar readExcelItineraryToCalendar(String route) throws IOException {
+
+        Auxiliar aux = new Auxiliar();
 
         Controller controller = Controller.getSingletonController();
         ArrayList<Date> calendar = new ArrayList<>();
-        ArrayList<Integer>teamsIndexes = controller.getTeamsIndexes();
-        teamsIndexes = new ArrayList<>();
+        ArrayList<Integer>teamsIndexes = new ArrayList<>();
 
         FileInputStream fis = new FileInputStream(route);
         XSSFWorkbook workbook = new XSSFWorkbook(fis);
@@ -85,8 +84,6 @@ public class ReadExcel {
             Cell cellNames = cellIteratorColumns.next();
             teamsIndexes.add(controller.getTeams().indexOf(cellNames.toString()));
         }
-
-        controller.setTeamsIndexes(teamsIndexes);
 
         while (rowIterator.hasNext()){
 
@@ -111,26 +108,33 @@ public class ReadExcel {
             }
             calendar.add(date);
         }
+
+        aux.setCalendar(calendar);
+
+        XSSFSheet xssfSheetData = workbook.getSheetAt(1);
+        Iterator<Row> rowIteratorData = xssfSheetData.iterator();
+
+        aux.getConfiguration().setCalendarId(rowIteratorData.next().getCell(0).getStringCellValue());
+
+        Row rowTeamIndexes = rowIteratorData.next();
+        Iterator<Cell> cellIteratorData = rowTeamIndexes.iterator();
+
+        while(cellIteratorData.hasNext()){
+            Cell cellData  = cellIteratorData.next();
+            aux.getConfiguration().getTeamsIndexes().add((int)cellData.getNumericCellValue());
+        }
+
+        aux.getConfiguration().setInauguralGame(rowIteratorData.next().getCell(0).getBooleanCellValue());
+        aux.getConfiguration().setChampionVsSecondPlace(rowIteratorData.next().getCell(0).getBooleanCellValue());
+        aux.getConfiguration().setChampion((int)rowIteratorData.next().getCell(0).getNumericCellValue());
+        aux.getConfiguration().setSecondPlace((int)rowIteratorData.next().getCell(0).getNumericCellValue());
+        aux.getConfiguration().setSecondRoundCalendar(rowIteratorData.next().getCell(0).getBooleanCellValue());
+        aux.getConfiguration().setSymmetricSecondRound(rowIteratorData.next().getCell(0).getBooleanCellValue());
+        aux.getConfiguration().setMaxLocalGamesInARow((int)rowIteratorData.next().getCell(0).getNumericCellValue());
+        aux.getConfiguration().setMaxVisitorGamesInARow((int)rowIteratorData.next().getCell(0).getNumericCellValue());
+
         workbook.close();
         fis.close();
-
-        /*for (Date value : calendar) {
-            for (int h = 0; h < value.getGames().size(); h++) {
-                System.out.print(value.getGames().get(h));
-            }
-            System.out.println();
-        }*/
-
-        if(calendar.get(0).getGames().size()<2){
-            controller.setInauguralGame(true);
-        }
-        ArrayList<ArrayList<Integer>> itinerary = controller.teamsItinerary(calendar);
-        for (ArrayList<Integer> integers : itinerary) {
-            System.out.println(integers);
-            System.out.println();
-        }
-        controller.setItinerary(itinerary);
-        System.out.println("************************************************");
-        return calendar;
+        return aux;
     }
 }

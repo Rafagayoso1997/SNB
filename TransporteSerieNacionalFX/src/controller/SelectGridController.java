@@ -16,7 +16,9 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.RowConstraints;
 import javafx.scene.paint.Paint;
 import javafx.util.Duration;
+import logic.CalendarConfiguration;
 import logic.Controller;
+import logic.Date;
 import tray.animations.AnimationType;
 import tray.notification.NotificationType;
 import tray.notification.TrayNotification;
@@ -28,6 +30,8 @@ import java.util.ResourceBundle;
 
 public class SelectGridController implements Initializable {
 
+    public static CalendarConfiguration configuration;
+
     private HomeController homeController;
 
     @FXML
@@ -35,12 +39,14 @@ public class SelectGridController implements Initializable {
     @FXML
     private FontAwesomeIconView balanceCalendar;
     @FXML
-    private FontAwesomeIconView notbalanceCalendar;
+    private FontAwesomeIconView notBalanceCalendar;
     @FXML
     private GridPane selectionGrid;
 
+
     @FXML
-    private JFXButton btnCalendar;
+    private JFXButton saveLocations;
+
 
     boolean error = false;
     JFXToggleButton[][] matrix;
@@ -50,11 +56,16 @@ public class SelectGridController implements Initializable {
 
 
 
-    @FXML
-    private JFXButton saveLocations;
+    public CalendarConfiguration getConfiguration() {
+        return configuration;
+    }
+
+    public void setConfiguration(CalendarConfiguration configuration) {
+        this.configuration = configuration;
+    }
 
     @FXML
-    void saveLocations(ActionEvent event) {
+    void saveLocations(ActionEvent event) throws IOException{
         if (matrix != null) {
             if (!error) {
                 HomeController.matrix = true;
@@ -72,8 +83,8 @@ public class SelectGridController implements Initializable {
                 notification.setAnimationType(AnimationType.FADE);
                 notification.showAndDismiss(Duration.seconds(2));
                 Controller.getSingletonController().setMatrix(matrixCalendar);
-                btnCalendar.setDisable(false);
-                homeController.conf = true;
+                showCalendar();
+                HomeController.conf = true;
             } else {
                 TrayNotification notification = new TrayNotification();
                 notification.setTitle("Escoger sedes");
@@ -98,7 +109,7 @@ public class SelectGridController implements Initializable {
                 matrix[i][j] = 0;
             }
         }
-        matrix = Controller.getSingletonController().symmetricCalendar(matrix);
+        matrix = Controller.getSingletonController().symmetricCalendar(matrix,configuration);
 
         System.out.println("Matriz de 1 y 2:");
         for (int i = 0; i < matrix.length; i++) {
@@ -111,8 +122,8 @@ public class SelectGridController implements Initializable {
     }
 
     private JFXToggleButton[][] generateMatrixToggleButton(int size) {
-        int posChampion = Controller.getSingletonController().getTeamsIndexes().indexOf(Controller.getSingletonController().getPosChampion());
-        int posSecond   = Controller.getSingletonController().getTeamsIndexes().indexOf(Controller.getSingletonController().getPosSubChampion());
+        int posChampion = configuration.getChampion();
+        int posSecond   = configuration.getSecondPlace();
         //false el equipo no se ha cogido
         //matrixCalendar = generateMatrix(SIZE);
 
@@ -147,11 +158,11 @@ public class SelectGridController implements Initializable {
                             if (stop) {
                                 error = false;
                                 balanceCalendar.setVisible(true);
-                                notbalanceCalendar.setVisible(false);
+                                notBalanceCalendar.setVisible(false);
                             } else {
                                 error = true;
                                 balanceCalendar.setVisible(false);
-                                notbalanceCalendar.setVisible(true);
+                                notBalanceCalendar.setVisible(true);
                             }
                         }
                     });
@@ -176,17 +187,16 @@ public class SelectGridController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         matrixCalendar = generateMatrix(SIZE);
         HomeController.matrix = false;
-        btnCalendar.setDisable(true);
 
         Controller.getSingletonController().setMatrix(null);
         HomeController.conf = false;
         boolean symmetric = checkSymetricMatrix();
         if (symmetric) {
-            notbalanceCalendar.setVisible(false);
+            notBalanceCalendar.setVisible(false);
             balanceCalendar.setVisible(true);
             error=false;
         } else {
-            notbalanceCalendar.setVisible(true);
+            notBalanceCalendar.setVisible(true);
             balanceCalendar.setVisible(false);
             error = true;
         }
@@ -246,16 +256,17 @@ public class SelectGridController implements Initializable {
             }
             cantRow = 0;
         }
-
         return symmetric;
     }
 
     //*********************DAVID CHANGES******************
 
-    @FXML
-    void showCalendar(ActionEvent event) throws IOException {
+   
+   void showCalendar() throws IOException {
+        checkSymetricMatrix();
+        Controller.getSingletonController().generateCalendar(configuration);
         AnchorPane structureOver = homeController.getPrincipalPane();
-        homeController.createPage(structureOver, "/visual/Calendar.fxml");
+        homeController.createPage(new CalendarController(), structureOver, "/visual/Calendar.fxml");
         homeController.getButtonReturnSelectionTeamConfiguration().setVisible(false);
     }
 

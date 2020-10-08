@@ -4,6 +4,7 @@
     -fx-background-insets: 2 2 2 2 ;
     /*-fx-border-color: white;*/
     -fx-background-radius: 0 10 0 10;
+    -fx-text-fill: white;
     /*-fx-border-radius:100;*/
 }
 
@@ -38,13 +39,15 @@
 
 .spinner .increment-arrow-button .increment-arrow, .spinner .decrement-arrow-button .decrement-arrow {
     -fx-background-color: #2F2484;
-    -fx-font-size: 30px;
+    -fx-font-size: 20px;
 }
 .spinner .text-field {
     -fx-background-color: transparent;
     -fx-border-width: 0 0 1 0;
     -fx-border-color: #bdbdbd;
-    -fx-font-size: 26px;
+    -fx-font-size: 20px;
 }
 
-
+.jfx-textfield{
+    -fx-text-inner-color: #2F2484;
+}

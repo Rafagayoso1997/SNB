@@ -109,6 +109,5 @@
     <orderEntry type="library" name="TrayNotification" level="project" />
     <orderEntry type="library" name="jaxb-core-2.3.0.1" level="project" />
     <orderEntry type="library" name="poi-4.1.2" level="project" />
-    <orderEntry type="library" name="jfxtras-labs" level="project" />
   </component>
 </module>

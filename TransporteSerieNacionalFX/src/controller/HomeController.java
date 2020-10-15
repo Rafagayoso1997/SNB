@@ -15,7 +15,9 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Paint;
 import javafx.stage.FileChooser;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import javafx.util.Duration;
 import logic.Auxiliar;
 import logic.CalendarConfiguration;
@@ -265,6 +267,7 @@ public class HomeController implements Initializable {
 
             Parent root = FXMLLoader.load(getClass().getResource("/visual/Restrictions.fxml"));
             Stage stage = new Stage();
+            stage.initModality(Modality.WINDOW_MODAL);
             stage.setTitle("Restricciones del calendario");
             stage.setScene(new Scene(anchorPane));
 

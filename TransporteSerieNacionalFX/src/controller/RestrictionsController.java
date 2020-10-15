@@ -3,6 +3,7 @@ package controller;
 import com.jfoenix.controls.JFXButton;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -14,6 +15,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.Tooltip;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 import logic.CalendarConfiguration;
 import logic.CalendarStatistic;
 import logic.Controller;
@@ -24,6 +26,9 @@ import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class RestrictionsController implements Initializable {
+
+    @FXML
+    private JFXButton closeButton;
 
     @FXML
     private Label lblLocalText;
@@ -79,12 +84,15 @@ public class RestrictionsController implements Initializable {
 
     }
 
+    @FXML
+    void closeButtonAction(ActionEvent event) {
+    // get a handle to the stage
+        Stage stage = (Stage) closeButton.getScene().getWindow();
+        // do what you have to do
+        stage.close();
+    }
 
 
-
-
-
-    //@FXML
 
 
 }

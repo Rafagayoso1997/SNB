@@ -51,3 +51,32 @@
 .jfx-textfield{
     -fx-text-inner-color: #2F2484;
 }
+
+#itineraryTable .table-cell {
+    -fx-border-color: -fx-box-border -fx-box-border transparent transparent;
+    -fx-font: 21px "Segoe UI Symbol";
+    -fx-text-fill: #2f2484;
+    -fx-alignment: CENTER;
+}
+
+#itineraryTable .column-header .label {
+    -fx-font-size: 22px;
+    -fx-font-family: "Segoe UI Light";
+    -fx-font-weight: bold;
+    -fx-text-fill: white;
+    -fx-background-color: #2f2484;
+    -fx-alignment: center;
+    -fx-opacity: 1;
+}
+
+#itineraryTable .column-header, .table-view .filler {
+    -fx-font-size: 22px;
+    -fx-border-width: 0 0 1 0;
+    -fx-background-color: transparent;
+    -fx-border-color:
+            transparent
+            transparent
+            derive(-fx-base, 80%)
+            transparent;
+    -fx-border-insets: 0 10 1 0;
+}

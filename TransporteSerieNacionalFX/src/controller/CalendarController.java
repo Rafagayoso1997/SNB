@@ -250,10 +250,6 @@ public class CalendarController implements Initializable {
 
     }
 
-    @FXML
-    void showStadiumItinerary(ActionEvent event) {
-
-    }
 
 
 }

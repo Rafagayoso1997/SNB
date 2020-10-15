@@ -659,7 +659,7 @@ public class Controller {
         return teamDate;
     }
 
-    private int checkLongTrips(ArrayList<ArrayList<Integer>> itinerary, ArrayList<Integer> teamsIndexes) {
+    public int checkLongTrips(ArrayList<ArrayList<Integer>> itinerary, ArrayList<Integer> teamsIndexes) {
         int count = 0;
         ArrayList<Double> distances = new ArrayList<>(teamsIndexes.size());
         for (int i = 0; i < teamsIndexes.size(); i++) {
@@ -1203,7 +1203,7 @@ public class Controller {
      * @param
      * @return
      */
-    private int penalizeGamesVisitor(ArrayList<ArrayList<Integer>> itinerary, int maxVisitorGame) {
+    public int penalizeGamesVisitor(ArrayList<ArrayList<Integer>> itinerary, int maxVisitorGame) {
         int cont = 0;
         ArrayList<Integer> counts = new ArrayList<>();
 
@@ -1233,7 +1233,7 @@ public class Controller {
         return cont;
     }
 
-    private int penalizeGamesHome(ArrayList<ArrayList<Integer>> itinerary, int maxHomeGame) {
+    public int penalizeGamesHome(ArrayList<ArrayList<Integer>> itinerary, int maxHomeGame) {
         int cont = 0;
         ArrayList<Integer> counts = new ArrayList<>();
         for (int i = 0; i < teams.size(); i++) {

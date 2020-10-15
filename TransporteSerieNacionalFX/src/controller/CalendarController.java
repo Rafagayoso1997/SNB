@@ -247,7 +247,13 @@ public class CalendarController implements Initializable {
 
     @FXML
     void showRestrictions(ActionEvent event) {
-
+        try {
+            homeController.createPage(new RestrictionsController(), null, "/visual/Restrictions.fxml");
+            // Hide this current window (if this is what you want)
+            // ((Node)(event.getSource())).getScene().getWindow().hide();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
 

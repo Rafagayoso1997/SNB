@@ -123,4 +123,20 @@ public class CalendarConfiguration {
     public void setMaxVisitorGamesInARow(int maxVisitorGamesInARow) {
         this.maxVisitorGamesInARow = maxVisitorGamesInARow;
     }
+
+    @Override
+    public String toString() {
+        return "CalendarConfiguration{" +
+                "calendarId='" + calendarId + '\'' +
+                ", teamsIndexes=" + teamsIndexes +
+                ", inauguralGame=" + inauguralGame +
+                ", championVsSecondPlace=" + championVsSecondPlace +
+                ", champion=" + champion +
+                ", secondPlace=" + secondPlace +
+                ", secondRoundCalendar=" + secondRoundCalendar +
+                ", symmetricSecondRound=" + symmetricSecondRound +
+                ", maxLocalGamesInARow=" + maxLocalGamesInARow +
+                ", maxVisitorGamesInARow=" + maxVisitorGamesInARow +
+                '}';
+    }
 }

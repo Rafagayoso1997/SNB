@@ -241,7 +241,7 @@ public class HomeController implements Initializable {
 
             Parent root = FXMLLoader.load(getClass().getResource("/visual/MutationsConfiguration.fxml"));
             Stage stage = new Stage();
-            stage.setTitle("Configuraci?n de las mutaciones");
+            stage.setTitle("Configuración de las mutaciones");
             stage.setScene(new Scene(anchorPane));
 
 
@@ -259,6 +259,18 @@ public class HomeController implements Initializable {
 
             object = loader.getController();
             ((TeamsItineraryController) object).setHomeController(this);
+
+            stage.show();
+        }else if (object instanceof RestrictionsController) {
+
+            Parent root = FXMLLoader.load(getClass().getResource("/visual/Restrictions.fxml"));
+            Stage stage = new Stage();
+            stage.setTitle("Restricciones del calendario");
+            stage.setScene(new Scene(anchorPane));
+
+
+            object = loader.getController();
+            ((RestrictionsController) object).setHomeController(this);
 
             stage.show();
         }else if (object instanceof CalendarController) {

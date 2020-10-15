@@ -10,9 +10,11 @@ import javafx.scene.chart.BarChart;
 import javafx.scene.chart.CategoryAxis;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
+import javafx.scene.control.Label;
 import javafx.scene.control.Tooltip;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import logic.CalendarConfiguration;
 import logic.CalendarStatistic;
 import logic.Controller;
 import logic.Date;
@@ -22,22 +24,25 @@ import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class RestrictionsController implements Initializable {
+
     @FXML
-    private JFXButton backButton;
+    private Label lblLocalText;
+
+    @FXML
+    private Label lblVisitorText;
+
+    @FXML
+    private Label lblLocalNumber;
+
+    @FXML
+    private Label lblVisitorNumber;
+
+    @FXML
+    private Label lblLongTripNumber;
+
+
 
     private HomeController homeController;
-
-    @FXML
-    private BarChart<String, Float> barChartCalendar;
-
-    @FXML
-    private CategoryAxis xAxisCalendar;
-
-    @FXML
-    private NumberAxis yAxisCalendar;
-
-
-    private ObservableList<String> calendarData = FXCollections.observableArrayList();
 
     public void setHomeController(HomeController homeController) {
         this.homeController = homeController;
@@ -53,49 +58,33 @@ public class RestrictionsController implements Initializable {
     @FXML
     public void initialize(URL location, ResourceBundle resources) {
 
-
-        //barChart.setTitle("Estadísticas");
-        yAxisCalendar.setLabel("Distancia en KM");
-
         Controller controller = Controller.getSingletonController();
-        ArrayList<ArrayList<Date>> calendarsList = controller.getCalendarsList();
+        ArrayList<Date> calendar = controller.getCalendarsList().get(CalendarController.selectedCalendar);
+        CalendarConfiguration configuration = controller.getConfigurations().get(CalendarController.selectedCalendar);
+        ArrayList<ArrayList<Integer>> itinerary = controller.teamsItinerary(calendar,configuration);
+        System.out.println(configuration);
 
-        ArrayList<String> xAxisCalendarData = new ArrayList<>();
-        ArrayList<String> xAxisLessTeamData = new ArrayList<>();
-        ArrayList<String> xAxisMoreTeamData = new ArrayList<>();
+        int maxVisitorGamesBrokeRule = controller.penalizeGamesVisitor(itinerary,configuration.getMaxVisitorGamesInARow());
+        int maxHomeGamesBrokeRule = controller.penalizeGamesHome(itinerary,configuration.getMaxLocalGamesInARow());
+        int longTripBrokeRule = controller.checkLongTrips(itinerary,configuration.getTeamsIndexes());
 
-        setTooltipToChart(barChartCalendar);
+        lblLocalText.setText(lblLocalText.getText().replace("#",Integer.toString(configuration.getMaxLocalGamesInARow())));
+        lblVisitorText.setText(lblVisitorText.getText().replace("#",Integer.toString(configuration.getMaxVisitorGamesInARow())));
+
+        lblLocalNumber.setText(Integer.toString(maxHomeGamesBrokeRule));
+        lblVisitorNumber.setText(Integer.toString(maxVisitorGamesBrokeRule));
+        lblLongTripNumber.setText(Integer.toString(longTripBrokeRule));
+
+
 
     }
 
 
 
-    static void setTooltipToChart(BarChart<String, Float> barChart) {
-        for (XYChart.Series<String, Float> series : barChart.getData()) {
-            for (XYChart.Data<String, Float> item : series.getData()) {
-                item.getNode().addEventHandler(MouseEvent.MOUSE_ENTERED, new EventHandler<MouseEvent>() {
-                    @Override
-                    public void handle(MouseEvent event) {
-                        Tooltip.install(item.getNode(), new Tooltip(item.getXValue() + ":\n" + item.getYValue()));
-                    }
-                });
 
-            }
-        }
-    }
 
 
     //@FXML
-    @FXML
-    private void returnButton(/*ActionEvent event*/) {
-        try {
-            AnchorPane structureOver = homeController.getPrincipalPane();
-            homeController.createPage(new CalendarController(), structureOver, "/visual/Calendar.fxml");
-            homeController.getButtonReturnSelectionTeamConfiguration().setVisible(false);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
 
-    }
 
 }

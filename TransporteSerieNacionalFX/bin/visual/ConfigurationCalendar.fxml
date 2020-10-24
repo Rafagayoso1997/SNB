@@ -54,7 +54,7 @@
             </Label>
             <JFXToggleButton fx:id="secondRoundButton" contentDisplay="RIGHT" onAction="#setSecondRound" prefHeight="76.0" prefWidth="135.0" size="12.0" text="Sí" textFill="#2f2484" toggleColor="WHITE" toggleLineColor="#2f2484" GridPane.columnIndex="2" GridPane.rowIndex="4">
                <font>
-                  <Font name="Segoe UI Symbol" size="24.0" />
+                  <Font name="Segoe UI Symbol" size="22.0" />
                </font>
                <cursor>
                   <Cursor fx:constant="HAND" />
@@ -69,7 +69,7 @@
             </JFXToggleButton>
             <JFXToggleButton fx:id="inauguralGame" contentDisplay="RIGHT" onAction="#setInauguralGame" prefHeight="76.0" prefWidth="135.0" size="12.0" text="No" textFill="#2f2484" toggleColor="WHITE" toggleLineColor="#2f2484" GridPane.columnIndex="2" GridPane.rowIndex="1">
                <font>
-                  <Font size="24.0" />
+                  <Font size="22.0" />
                </font>
                <tooltip>
                   <Tooltip text="Juego inaugural entre el campeón y subcampeón de la serie anterior que se efectuará previamente a la fecha inicial del torneo">
@@ -130,7 +130,7 @@
                </cursor></Spinner>
             <JFXToggleButton fx:id="champVsSub" contentDisplay="RIGHT" onAction="#setChampVsSub" prefHeight="76.0" prefWidth="135.0" size="12.0" text="Sí" textFill="#2f2484" toggleColor="WHITE" toggleLineColor="#2f2484" GridPane.columnIndex="2" GridPane.rowIndex="2">
                <font>
-                  <Font name="Segoe UI Symbol" size="24.0" />
+                  <Font name="Segoe UI Symbol" size="22.0" />
                </font>
                <cursor>
                   <Cursor fx:constant="HAND" />
@@ -158,7 +158,7 @@
             </Label>
             <JFXToggleButton fx:id="symmetricSecondRound" contentDisplay="RIGHT" onAction="#setSymmetricSecondRound" prefHeight="76.0" prefWidth="135.0" size="12.0" text="No" textFill="#2f2484" toggleColor="WHITE" toggleLineColor="#2f2484" GridPane.columnIndex="2" GridPane.rowIndex="5">
                <font>
-                  <Font name="Segoe UI Symbol" size="24.0" />
+                  <Font name="Segoe UI Symbol" size="22.0" />
                </font>
                <cursor>
                   <Cursor fx:constant="HAND" />

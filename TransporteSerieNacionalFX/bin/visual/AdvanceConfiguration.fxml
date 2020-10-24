@@ -21,7 +21,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </JFXListView>
-      <JFXButton fx:id="select" layoutX="507.0" layoutY="576.0" onAction="#openDuelSelection" prefHeight="51.0" prefWidth="135.0" stylesheets="@../styles/PrincipalMenu.css" text="Avanzar" textFill="#fcf8f8">
+      <JFXButton fx:id="select" layoutX="507.0" layoutY="576.0" onAction="#saveNewAdvancesConfigurations" prefHeight="51.0" prefWidth="135.0" stylesheets="@../styles/PrincipalMenu.css" text="Aceptar" textFill="#fcf8f8">
          <font>
             <Font name="Segoe UI Symbol" size="20.0" />
          </font>

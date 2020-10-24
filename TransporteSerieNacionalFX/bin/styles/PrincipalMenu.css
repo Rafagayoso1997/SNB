@@ -69,7 +69,8 @@
     -fx-opacity: 1;
 }
 
-.table-view .column-header, .table-view .filler {
+#itineraryTable .column-header, .table-view .filler {
+    -fx-font-size: 22px;
     -fx-border-width: 0 0 1 0;
     -fx-background-color: transparent;
     -fx-border-color:

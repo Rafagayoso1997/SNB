@@ -5,6 +5,7 @@ import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.*;
@@ -37,6 +38,8 @@ public class Controller {
 
     private float calendarDistance;
     private int[][] matrix;
+    private CalendarConfiguration lastSavedConfiguration;
+    private boolean configurationAdded;
 
 
 
@@ -54,11 +57,12 @@ public class Controller {
         this.mutationsIndexes = addAllMutations();
         fillMatrixDistance();
         this.matrix = new int[teamsIndexes.size()][teamsIndexes.size()];
-        this.iterations = 200000;
+        this.iterations = 20000;
         this.calendarDistance = 0;
         this.mutationsConfigurationsList = new ArrayList<>();
         this.configurations = new ArrayList<>();
         this.calendarsList = new ArrayList<>();
+        this.configurationAdded = false;
 
     }
 
@@ -72,6 +76,22 @@ public class Controller {
             singletonController = new Controller();
         }
         return singletonController;
+    }
+
+    public boolean isConfigurationAdded() {
+        return configurationAdded;
+    }
+
+    public void setConfigurationAdded(boolean configurationAdded) {
+        this.configurationAdded = configurationAdded;
+    }
+
+    public CalendarConfiguration getLastSavedConfiguration() {
+        return lastSavedConfiguration;
+    }
+
+    public void setLastSavedConfiguration(CalendarConfiguration lastSavedConfiguration) {
+        this.lastSavedConfiguration = lastSavedConfiguration;
     }
 
     public ArrayList<String> getAcronyms() {
@@ -691,7 +711,6 @@ public class Controller {
      * @param calendar
      */
     private void changeDatePosition(ArrayList<Date> calendar, int number, boolean inauguralGame) {
-        System.out.println("Mutacion Change Date Position");
         int selectedDate = -1;
         int dateToChange = -1;
 
@@ -804,7 +823,6 @@ public class Controller {
      * @param calendar
      */
     private void swapDates(ArrayList<Date> calendar, int number, boolean inauguralGame) {
-        System.out.println("Mutacion Swap Dates");
         int firstDate = -1;
         int secondDate = -1;
         int startPosition = 0;
@@ -913,7 +931,6 @@ public class Controller {
      * @param calendar
      */
     private void changeDateOrder(ArrayList<Date> calendar, int number, boolean inauguralGame) {
-        System.out.println("Mutacion Change Date Order");
         int firstDate = -1;
         int lastDate = -1;
         int startPosition = 0;
@@ -964,8 +981,6 @@ public class Controller {
      * @param calendar
      */
     private void changeDuel(ArrayList<Date> calendar, int number, boolean inauguralGame) {
-        System.out.println("Mutacion Change Duel");
-
         int posFirstDate = -1;
         int posLastDate = -1;
         int posFirstDuel = -1;

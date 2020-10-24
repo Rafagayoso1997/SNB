@@ -124,6 +124,7 @@ public class CalendarConfiguration {
         this.maxVisitorGamesInARow = maxVisitorGamesInARow;
     }
 
+
     @Override
     public String toString() {
         return "CalendarConfiguration{" +

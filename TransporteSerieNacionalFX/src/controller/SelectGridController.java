@@ -30,7 +30,7 @@ import java.util.ResourceBundle;
 
 public class SelectGridController implements Initializable {
 
-    public static CalendarConfiguration configuration;
+    public static CalendarConfiguration configuration = Controller.getSingletonController().getLastSavedConfiguration();
 
     private HomeController homeController;
 
@@ -77,7 +77,7 @@ public class SelectGridController implements Initializable {
                 }*/
                 TrayNotification notification = new TrayNotification();
                 notification.setTitle("Escoger sedes");
-                notification.setMessage("Sedes guardadas con éxito");
+                notification.setMessage("Sedes guardadas con ï¿½xito");
                 notification.setNotificationType(NotificationType.SUCCESS);
                 notification.setRectangleFill(Paint.valueOf("#2F2484"));
                 notification.setAnimationType(AnimationType.FADE);
@@ -263,7 +263,8 @@ public class SelectGridController implements Initializable {
 
    
    void showCalendar() throws IOException {
-        checkSymetricMatrix();
+        //checkSymetricMatrix();
+       Controller.getSingletonController().setConfigurationAdded(false);
         Controller.getSingletonController().generateCalendar(configuration);
         AnchorPane structureOver = homeController.getPrincipalPane();
         homeController.createPage(new CalendarController(), structureOver, "/visual/Calendar.fxml");

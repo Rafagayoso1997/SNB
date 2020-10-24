@@ -92,16 +92,19 @@ public class HomeController implements Initializable {
 
     @FXML
     void showCalendar(ActionEvent event) throws IOException {
-
-        this.createPage(new ConfigurationCalendarController(), home, "/visual/ConfigurationCalendar.fxml");
+        if(Controller.getSingletonController().getCalendarsList().isEmpty()){
+            this.createPage(new ConfigurationCalendarController(), home, "/visual/ConfigurationCalendar.fxml");
+        }
+        else{
+            this.createPage(new CalendarController(), home, "/visual/Calendar.fxml");
+            this.buttonReturnSelectionTeamConfiguration.setVisible(true);
+        }
     }
-
 
     @FXML
     void showReturnSelectionTeamConfiguration(ActionEvent event) throws IOException {
         this.createPage(new ConfigurationCalendarController(), home, "/visual/ConfigurationCalendar.fxml");
         buttonReturnSelectionTeamConfiguration.setVisible(false);
-
     }
 
     @FXML
@@ -114,7 +117,6 @@ public class HomeController implements Initializable {
         notification.setRectangleFill(Paint.valueOf("#2F2484"));
         notification.setAnimationType(AnimationType.FADE);
         notification.showAndDismiss(Duration.seconds(2));
-
     }
 
     @FXML
@@ -126,7 +128,6 @@ public class HomeController implements Initializable {
         file = fc.showOpenDialog(stage);
 
         try {
-
             if (file != null) {
                 Auxiliar aux = ReadExcel.readExcelItineraryToCalendar(file.toString());
                 Controller.getSingletonController().getCalendarsList().add(aux.getCalendar());
@@ -142,7 +143,6 @@ public class HomeController implements Initializable {
                 buttonReturnSelectionTeamConfiguration.setVisible(false);
                 this.createPage(new CalendarController(),home, "/visual/Calendar.fxml");
             }
-
         } catch (IOException e) {
             e.printStackTrace();
         }

@@ -5,6 +5,7 @@ import file_management.ReadFiles;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
+import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -436,7 +437,7 @@ public class ConfigurationCalendarController implements Initializable {
         }
 
         calendarId.setTextFormatter(new TextFormatter<>(change ->
-                (change.getControlNewText().matches("^[A-Za-z0-9 _]*[A-Za-z0-9][A-Za-z0-9 _]*$")) ? change : null));
+                (change.getControlNewText().matches("^[A-Za-z0-9 _]*$")) ? change : null));
     }
 
     private void showNotification(String message) {

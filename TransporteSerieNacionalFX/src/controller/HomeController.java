@@ -168,10 +168,11 @@ public class HomeController implements Initializable {
 
     @FXML
     void showData(ActionEvent event) throws IOException {
-        File file = new File("src/files/Data.xlsx");
+        this.createPage(new CrudsController(),home, "/visual/Cruds.fxml");
+        //File file = new File("src/files/Data.xlsx");
 
         //first check if Desktop is supported by Platform or not
-        if(!Desktop.isDesktopSupported()){
+       /* if(!Desktop.isDesktopSupported()){
             System.out.println("Desktop is not supported");
             return;
         }
@@ -179,7 +180,7 @@ public class HomeController implements Initializable {
         Desktop desktop = Desktop.getDesktop();
 
         //let's try to open PDF file
-        if(file.exists()) desktop.open(file);
+        if(file.exists()) desktop.open(file);*/
     }
 
     @FXML
@@ -299,6 +300,20 @@ public class HomeController implements Initializable {
 
             ((CalendarStatisticsController) object).setHomeController(this);
             setNode(anchorPane);
+        }
+
+        else if (object instanceof CrudsController) {
+
+            Parent root = FXMLLoader.load(getClass().getResource("/visual/Cruds.fxml"));
+            Stage stage = new Stage();
+            stage.setTitle("Gestión de datos");
+            stage.setScene(new Scene(anchorPane));
+
+
+            object = loader.getController();
+            ((CrudsController) object).setHomeController(this);
+
+            stage.show();
         }
     }
 }

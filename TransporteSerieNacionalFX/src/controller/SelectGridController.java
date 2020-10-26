@@ -268,7 +268,7 @@ public class SelectGridController implements Initializable {
         Controller.getSingletonController().generateCalendar(configuration);
         AnchorPane structureOver = homeController.getPrincipalPane();
         homeController.createPage(new CalendarController(), structureOver, "/visual/Calendar.fxml");
-        homeController.getButtonReturnSelectionTeamConfiguration().setVisible(false);
+        homeController.getButtonReturnSelectionTeamConfiguration().setVisible(true);
     }
 
     public void setHomeController(HomeController homeController) {

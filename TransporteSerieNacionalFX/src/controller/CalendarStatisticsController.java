@@ -178,7 +178,7 @@ public class CalendarStatisticsController {
         try {
             AnchorPane structureOver = homeController.getPrincipalPane();
             homeController.createPage(new CalendarController(), structureOver, "/visual/Calendar.fxml");
-            homeController.getButtonReturnSelectionTeamConfiguration().setVisible(false);
+            homeController.getButtonReturnSelectionTeamConfiguration().setVisible(true);
         } catch (Exception e) {
             e.printStackTrace();
         }

@@ -118,7 +118,7 @@ public class ConfigurationCalendarController implements Initializable {
             comboChamp.setVisible(true);
             comboSub.setVisible(true);
             btnSwap.setVisible(true);
-            champVsSub.setText("SÃ­");
+            champVsSub.setText("Sí");
 
             //DAVID change => update the Champion ComboBox and Sub-Champion ComboBox
             comboChamp.setItems(teamsSelectionListView.getSelectionModel().getSelectedItems());
@@ -134,7 +134,7 @@ public class ConfigurationCalendarController implements Initializable {
     @FXML
     void setSecondRound(ActionEvent event) {
         if (secondRoundButton.isSelected()) {
-            secondRoundButton.setText("SÃ­");
+            secondRoundButton.setText("Sí");
             lblSymmetricSecondRound.setVisible(true);
             symmetricSecondRound.setVisible(true);
         } else {
@@ -149,7 +149,7 @@ public class ConfigurationCalendarController implements Initializable {
     @FXML
     void setSymmetricSecondRound(ActionEvent event) {
         if (symmetricSecondRound.isSelected()) {
-            symmetricSecondRound.setText("SÃ­");
+            symmetricSecondRound.setText("Sí");
         } else {
             symmetricSecondRound.setText("No");
         }
@@ -158,9 +158,9 @@ public class ConfigurationCalendarController implements Initializable {
     @FXML
     void setInauguralGame(ActionEvent event) {
         if (inauguralGame.isSelected()) {
-            inauguralGame.setText("SÃ­");
+            inauguralGame.setText("Sí");
             champVsSub.setSelected(true);
-            champVsSub.setText("SÃ­");
+            champVsSub.setText("Sí");
             comboChamp.setVisible(true);
             comboSub.setVisible(true);
             btnSwap.setVisible(true);
@@ -213,7 +213,7 @@ public class ConfigurationCalendarController implements Initializable {
             ok = false;
         }
         if (selectedIndexes.size() <= 2) {
-            showNotification("Debe escoger m?s de dos equipos");
+            showNotification("Debe escoger más de dos equipos");
             ok = false;
         }
         if (selectedIndexes.size() % 2 != 0) {
@@ -225,7 +225,7 @@ public class ConfigurationCalendarController implements Initializable {
             if (champVsSub.isSelected()) {
                 validateChampionAndSubchampion();
             } else {
-                showNotification("Debe escoger al campe?n y subcampe?n.");
+                showNotification("Debe escoger al campeón y subcampeón.");
                 ok = false;
             }
         }
@@ -277,10 +277,10 @@ public class ConfigurationCalendarController implements Initializable {
         //posSub = comboSub.getSelectionModel().getSelectedIndex();
         if (champion == null || subchampion == null) {
             //ok = false;
-            showNotification("Debe escoger al campe?n y subcampe?n.");
+            showNotification("Debe escoger al campeón y subcampeón.");
             ok = false;
         } else if (champion.equalsIgnoreCase(subchampion)) {
-            showNotification("El campe?n y subcampe?n deben diferentes");
+            showNotification("El campeón y subcampeón deben diferentes");
             ok = false;
         } else {
             ok = true;
@@ -332,7 +332,7 @@ public class ConfigurationCalendarController implements Initializable {
 
             if(configuration.isInauguralGame()){
                 inauguralGame.setSelected(true);
-                inauguralGame.setText("SÃ­");
+                inauguralGame.setText("Sí");
             }
             else{
                 inauguralGame.setSelected(false);
@@ -357,7 +357,7 @@ public class ConfigurationCalendarController implements Initializable {
             if (configuration.isSymmetricSecondRound()){
                 lblSymmetricSecondRound.setVisible(true);
                 symmetricSecondRound.setVisible(true);
-                symmetricSecondRound.setText("SÃ­");
+                symmetricSecondRound.setText("Sí");
             }
             else{
                 lblSymmetricSecondRound.setVisible(false);
@@ -367,7 +367,7 @@ public class ConfigurationCalendarController implements Initializable {
 
             if(configuration.isSecondRoundCalendar()){
                 secondRoundButton.setSelected(true);
-                secondRoundButton.setText("SÃ­");
+                secondRoundButton.setText("Sí");
             }
             else{
                 secondRoundButton.setSelected(false);
@@ -377,7 +377,7 @@ public class ConfigurationCalendarController implements Initializable {
             if(configuration.isChampionVsSecondPlace()){
                 champVsSub.setSelected(true);
 
-                champVsSub.setText("SÃ­");
+                champVsSub.setText("Sí");
                 comboChamp.setVisible(true);
                 comboSub.setVisible(true);
                 btnSwap.setVisible(true);
@@ -441,7 +441,7 @@ public class ConfigurationCalendarController implements Initializable {
     }
 
     private void showNotification(String message) {
-        notification.setTitle("Selecciï¿½n de equipos.");
+        notification.setTitle("Selección de equipos.");
         notification.setMessage(message);
         notification.setNotificationType(NotificationType.ERROR);
         notification.setRectangleFill(Paint.valueOf("#2F2484"));

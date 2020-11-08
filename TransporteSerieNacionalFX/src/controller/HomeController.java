@@ -1,7 +1,9 @@
 package controller;
 
 import com.jfoenix.controls.JFXButton;
+import eu.mihosoft.scaledfx.ScalableContentPane;
 import file_management.ExportFiles;
+import file_management.ReadExcel;
 import javafx.animation.FadeTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -10,20 +12,17 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Control;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.ColumnConstraints;
+import javafx.scene.layout.Priority;
 import javafx.scene.paint.Paint;
 import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 import javafx.util.Duration;
 import logic.Auxiliar;
-import logic.CalendarConfiguration;
 import logic.Controller;
-import logic.Date;
-import file_management.ReadExcel;
 import tray.animations.AnimationType;
 import tray.notification.NotificationType;
 import tray.notification.TrayNotification;
@@ -32,9 +31,7 @@ import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Collections;
 import java.util.ResourceBundle;
 
 public class HomeController implements Initializable {
@@ -244,8 +241,11 @@ public class HomeController implements Initializable {
 
             Parent root = FXMLLoader.load(getClass().getResource("/visual/MutationsConfiguration.fxml"));
             Stage stage = new Stage();
+            ScalableContentPane scale = new ScalableContentPane();
+            scale.setContent(anchorPane);
             stage.setTitle("Configuración de las mutaciones");
-            stage.setScene(new Scene(anchorPane));
+            stage.setResizable(false);
+            stage.setScene(new Scene(scale));
 
 
             object = loader.getController();
@@ -256,8 +256,11 @@ public class HomeController implements Initializable {
 
             Parent root = FXMLLoader.load(getClass().getResource("/visual/TeamsItinerary.fxml"));
             Stage stage = new Stage();
+            ScalableContentPane scale = new ScalableContentPane();
+            scale.setContent(anchorPane);
             stage.setTitle("Itinerario de equipos");
-            stage.setScene(new Scene(anchorPane));
+            stage.setResizable(false);
+            stage.setScene(new Scene(scale));
 
 
             object = loader.getController();
@@ -268,9 +271,12 @@ public class HomeController implements Initializable {
 
             Parent root = FXMLLoader.load(getClass().getResource("/visual/Restrictions.fxml"));
             Stage stage = new Stage();
+            ScalableContentPane scale = new ScalableContentPane();
+            scale.setContent(anchorPane);
             stage.initModality(Modality.WINDOW_MODAL);
             stage.setTitle("Restricciones del calendario");
-            stage.setScene(new Scene(anchorPane));
+            stage.setResizable(false);
+            stage.setScene(new Scene(scale));
 
 
             object = loader.getController();
@@ -288,6 +294,7 @@ public class HomeController implements Initializable {
         } else if (object instanceof ConfigurationCalendarController) {
             object = loader.getController();
             ((ConfigurationCalendarController) object).setHomeController(this);
+
             setNode(anchorPane);
         }else if (object instanceof AdvanceConfigurationController) {
             object = loader.getController();
@@ -307,8 +314,9 @@ public class HomeController implements Initializable {
             Parent root = FXMLLoader.load(getClass().getResource("/visual/Cruds.fxml"));
             Stage stage = new Stage();
             stage.setTitle("Gestión de datos");
-            stage.setScene(new Scene(anchorPane));
+            stage.setResizable(false);
 
+            stage.setScene(new Scene(anchorPane));
 
             object = loader.getController();
             ((CrudsController) object).setHomeController(this);

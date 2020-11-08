@@ -109,5 +109,9 @@
     <orderEntry type="library" name="TrayNotification" level="project" />
     <orderEntry type="library" name="jaxb-core-2.3.0.1" level="project" />
     <orderEntry type="library" name="poi-4.1.2" level="project" />
+    <orderEntry type="library" name="scaledfx-0.6" level="project" />
+    <orderEntry type="library" name="javafx-base-11.0.2-linux" level="project" />
+    <orderEntry type="library" name="scaledfx-0.5" level="project" />
+    <orderEntry type="library" name="scaledfx-0.4" level="project" />
   </component>
 </module>

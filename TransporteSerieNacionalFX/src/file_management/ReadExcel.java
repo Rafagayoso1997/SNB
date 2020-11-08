@@ -1,7 +1,6 @@
 package file_management;
 
 import logic.Auxiliar;
-import logic.CalendarConfiguration;
 import logic.Controller;
 import logic.Date;
 import org.apache.poi.ss.usermodel.Cell;
@@ -10,7 +9,6 @@ import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;

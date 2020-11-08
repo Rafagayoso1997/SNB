@@ -1,22 +1,20 @@
 package controller;
 
 
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.value.ObservableValue;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableColumn.CellDataFeatures;
-import javafx.scene.control.TableView;
-import javafx.util.Callback;
-
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXListView;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.SelectionMode;
-import logic.*;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import logic.CalendarConfiguration;
+import logic.Controller;
+import logic.Date;
 
 import java.net.URL;
 import java.util.ArrayList;

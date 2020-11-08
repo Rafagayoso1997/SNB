@@ -18,7 +18,6 @@ import javafx.scene.paint.Paint;
 import javafx.util.Duration;
 import logic.CalendarConfiguration;
 import logic.Controller;
-import logic.Date;
 import tray.animations.AnimationType;
 import tray.notification.NotificationType;
 import tray.notification.TrayNotification;

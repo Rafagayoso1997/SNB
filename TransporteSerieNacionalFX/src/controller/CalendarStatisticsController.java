@@ -1,14 +1,10 @@
 package controller;
 
 import com.jfoenix.controls.JFXButton;
-import com.jfoenix.controls.JFXListView;
-import com.jfoenix.controls.JFXPopup;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.scene.Cursor;
-import javafx.scene.Node;
 import javafx.scene.chart.BarChart;
 import javafx.scene.chart.CategoryAxis;
 import javafx.scene.chart.NumberAxis;
@@ -16,11 +12,9 @@ import javafx.scene.chart.XYChart;
 import javafx.scene.control.Tooltip;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.VBox;
 import logic.CalendarStatistic;
 import logic.Controller;
 import logic.Date;
-import org.apache.poi.ss.formula.functions.MatrixFunction;
 
 import java.util.ArrayList;
 

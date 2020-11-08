@@ -10,18 +10,18 @@ import logic.CalendarConfiguration;
 import logic.Controller;
 import logic.Date;
 import logic.Duel;
-import org.apache.poi.ss.SpreadsheetVersion;
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.usermodel.XSSFCellStyle;
 import org.apache.poi.xssf.usermodel.XSSFFont;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import tray.animations.AnimationType;
 import tray.notification.NotificationType;
 import tray.notification.TrayNotification;
 
-import java.io.File;
-import java.io.FileOutputStream;
+import java.io.*;
 import java.util.ArrayList;
+import java.util.Iterator;
 
 public class ExportFiles {
     private  static FileChooser fc;
@@ -220,13 +220,6 @@ public class ExportFiles {
 
         workbook.setSheetHidden(1, true);
 
-
-
-
-
-
-
-
         //autosize each column of the excel document
         for(int i=0; i < row.getLastCellNum(); i++){
             spreadsheet.autoSizeColumn(i);
@@ -236,11 +229,8 @@ public class ExportFiles {
             spreadsheetData.autoSizeColumn(i);
         }
 
-
-
         FileOutputStream fileOut = null;
         try {
-
             fileOut = new FileOutputStream(f.getAbsolutePath());
             workbook.write(fileOut);
             fileOut.close();
@@ -250,7 +240,6 @@ public class ExportFiles {
             e.printStackTrace();
         }
     }
-
 
 
     private static void showSuccessfulMessage() {

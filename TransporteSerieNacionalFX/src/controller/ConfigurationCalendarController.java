@@ -1,12 +1,7 @@
 package controller;
 
 import com.jfoenix.controls.*;
-import file_management.ReadFiles;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
-import javafx.collections.ListChangeListener;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -18,14 +13,10 @@ import javafx.scene.paint.Paint;
 import javafx.util.Duration;
 import logic.CalendarConfiguration;
 import logic.Controller;
-import org.controlsfx.control.tableview2.filter.filtereditor.SouthFilter;
 import tray.animations.AnimationType;
 import tray.notification.NotificationType;
 import tray.notification.TrayNotification;
 
-import java.awt.event.ActionListener;
-import java.awt.event.ItemEvent;
-import java.awt.event.ItemListener;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -118,7 +109,7 @@ public class ConfigurationCalendarController implements Initializable {
             comboChamp.setVisible(true);
             comboSub.setVisible(true);
             btnSwap.setVisible(true);
-            champVsSub.setText("SÌ");
+            champVsSub.setText("S√≠");
 
             //DAVID change => update the Champion ComboBox and Sub-Champion ComboBox
             comboChamp.setItems(teamsSelectionListView.getSelectionModel().getSelectedItems());
@@ -134,7 +125,7 @@ public class ConfigurationCalendarController implements Initializable {
     @FXML
     void setSecondRound(ActionEvent event) {
         if (secondRoundButton.isSelected()) {
-            secondRoundButton.setText("SÌ");
+            secondRoundButton.setText("S√≠");
             lblSymmetricSecondRound.setVisible(true);
             symmetricSecondRound.setVisible(true);
         } else {
@@ -149,7 +140,7 @@ public class ConfigurationCalendarController implements Initializable {
     @FXML
     void setSymmetricSecondRound(ActionEvent event) {
         if (symmetricSecondRound.isSelected()) {
-            symmetricSecondRound.setText("SÌ");
+            symmetricSecondRound.setText("S√≠");
         } else {
             symmetricSecondRound.setText("No");
         }
@@ -158,9 +149,9 @@ public class ConfigurationCalendarController implements Initializable {
     @FXML
     void setInauguralGame(ActionEvent event) {
         if (inauguralGame.isSelected()) {
-            inauguralGame.setText("SÌ");
+            inauguralGame.setText("S√≠");
             champVsSub.setSelected(true);
-            champVsSub.setText("SÌ");
+            champVsSub.setText("S√≠");
             comboChamp.setVisible(true);
             comboSub.setVisible(true);
             btnSwap.setVisible(true);
@@ -213,7 +204,7 @@ public class ConfigurationCalendarController implements Initializable {
             ok = false;
         }
         if (selectedIndexes.size() <= 2) {
-            showNotification("Debe escoger m·s de dos equipos");
+            showNotification("Debe escoger m?s de dos equipos");
             ok = false;
         }
         if (selectedIndexes.size() % 2 != 0) {
@@ -225,7 +216,7 @@ public class ConfigurationCalendarController implements Initializable {
             if (champVsSub.isSelected()) {
                 validateChampionAndSubchampion();
             } else {
-                showNotification("Debe escoger al campeÛn y subcampeÛn.");
+                showNotification("Debe escoger al campe?n y subcampe?n.");
                 ok = false;
             }
         }
@@ -277,10 +268,10 @@ public class ConfigurationCalendarController implements Initializable {
         //posSub = comboSub.getSelectionModel().getSelectedIndex();
         if (champion == null || subchampion == null) {
             //ok = false;
-            showNotification("Debe escoger al campeÛn y subcampeÛn.");
+            showNotification("Debe escoger al campe?n y subcampe?n.");
             ok = false;
         } else if (champion.equalsIgnoreCase(subchampion)) {
-            showNotification("El campeÛn y subcampeÛn deben diferentes");
+            showNotification("El campe?n y subcampe?n deben diferentes");
             ok = false;
         } else {
             ok = true;
@@ -332,7 +323,7 @@ public class ConfigurationCalendarController implements Initializable {
 
             if(configuration.isInauguralGame()){
                 inauguralGame.setSelected(true);
-                inauguralGame.setText("SÌ");
+                inauguralGame.setText("S√≠");
             }
             else{
                 inauguralGame.setSelected(false);
@@ -357,7 +348,7 @@ public class ConfigurationCalendarController implements Initializable {
             if (configuration.isSymmetricSecondRound()){
                 lblSymmetricSecondRound.setVisible(true);
                 symmetricSecondRound.setVisible(true);
-                symmetricSecondRound.setText("SÌ");
+                symmetricSecondRound.setText("S√≠");
             }
             else{
                 lblSymmetricSecondRound.setVisible(false);
@@ -367,7 +358,7 @@ public class ConfigurationCalendarController implements Initializable {
 
             if(configuration.isSecondRoundCalendar()){
                 secondRoundButton.setSelected(true);
-                secondRoundButton.setText("SÌ");
+                secondRoundButton.setText("S√≠");
             }
             else{
                 secondRoundButton.setSelected(false);
@@ -377,7 +368,7 @@ public class ConfigurationCalendarController implements Initializable {
             if(configuration.isChampionVsSecondPlace()){
                 champVsSub.setSelected(true);
 
-                champVsSub.setText("SÌ");
+                champVsSub.setText("S√≠");
                 comboChamp.setVisible(true);
                 comboSub.setVisible(true);
                 btnSwap.setVisible(true);
@@ -437,11 +428,11 @@ public class ConfigurationCalendarController implements Initializable {
         }
 
         calendarId.setTextFormatter(new TextFormatter<>(change ->
-                (change.getControlNewText().matches("^[A-Za-z0-9 _]*$")) ? change : null));
+                (change.getControlNewText().matches("^[A-Za-z0-9√±√ë√°√©√≠√≥√∫√Å√â√ç√ì√ö _]*$")) ? change : null));
     }
 
     private void showNotification(String message) {
-        notification.setTitle("SelecciÛn de equipos.");
+        notification.setTitle("SelecciÔøΩn de equipos.");
         notification.setMessage(message);
         notification.setNotificationType(NotificationType.ERROR);
         notification.setRectangleFill(Paint.valueOf("#2F2484"));

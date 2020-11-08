@@ -1,0 +1,16 @@
+<component name="libraryTable">
+  <library name="javafx-base-11.0.2-linux">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/lib/scaledfx/javafx-base-11.0.2-linux.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/scaledfx/javafx-base-11.0.2-mac.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/scaledfx/javafx-controls-11.0.2-linux.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/scaledfx/javafx-controls-11.0.2-mac.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/scaledfx/javafx-fxml-11.0.2-linux.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/scaledfx/javafx-fxml-11.0.2-mac.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/scaledfx/javafx-graphics-11.0.2-linux.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/scaledfx/javafx-graphics-11.0.2-mac.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

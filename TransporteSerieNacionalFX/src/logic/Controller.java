@@ -215,7 +215,7 @@ public class Controller {
      *
      * @param direction
      */
-    private void createTeams(String direction) {
+    public void createTeams(String direction) {
 
         try {
             FileInputStream fis = new FileInputStream(direction);
@@ -225,8 +225,11 @@ public class Controller {
 
             Sheet sheet = workbook.getSheetAt(0);
 
-            //llenar los acrónimos
+            acronyms = new ArrayList<>();
+            teams = new ArrayList<>();
+            positionsDistance = new ArrayList<>();
 
+            //llenar los acrónimos
             Row row = sheet.getRow(0);
             for(int i=1;i< row.getLastCellNum();i++){
                 acronyms.add(row.getCell(i).getStringCellValue());
@@ -383,8 +386,8 @@ public class Controller {
         if(configuration.isInauguralGame()){
             Date inauguralDate = new Date();
             ArrayList<Integer> pair = new ArrayList<>();
-            pair.add(teamsIndexes.get(configuration.getSecondPlace()));
             pair.add(teamsIndexes.get(configuration.getChampion()));
+            pair.add(teamsIndexes.get(configuration.getSecondPlace()));
             inauguralDate.getGames().add(pair);
             calendar.add(0, inauguralDate);
         }
@@ -499,12 +502,12 @@ public class Controller {
                 matrix[posSecond][posChampion] = 1;
             }
             /*
-            if(isInauguralGame()){
+            if(lastSavedConfiguration.isInauguralGame()){
                 int temp =  matrix[posChampion][posSecond];
                 matrix[posChampion][posSecond] =  matrix[posSecond][posChampion];
                 matrix[posSecond][posChampion] = temp;
-            }*/
-
+            }
+*/
            /* System.out.println("Matriz de 1 y 2:");
             for (int i = 0; i < matrix.length; i++) {
                 for (int j = 0; j < matrix.length; j++) {
@@ -580,7 +583,7 @@ public class Controller {
      * Fill the matrix with the distance
      */
 
-    private void fillMatrixDistance() {
+    public void fillMatrixDistance() {
         this.matrixDistance = new double[teams.size()][teams.size()];
         for (LocalVisitorDistance aux : this.positionsDistance) {
             int indexTeam1 = aux.getPosLocal();

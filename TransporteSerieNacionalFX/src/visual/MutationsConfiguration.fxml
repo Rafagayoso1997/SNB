@@ -19,31 +19,31 @@
             <Font name="Segoe UI Emoji" size="26.0" />
          </font>
       </Label>
-      <AnchorPane fx:id="pane" layoutX="859.0" layoutY="45.0" prefHeight="386.0" prefWidth="284.0">
+      <AnchorPane fx:id="pane" layoutX="859.0" layoutY="45.0" prefHeight="386.0" prefWidth="284.0" AnchorPane.bottomAnchor="201.0" AnchorPane.leftAnchor="859.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="45.0">
          <children>
-            <JFXComboBox fx:id="comboDate1" labelFloat="true" layoutX="39.0" layoutY="51.0" prefHeight="31.0" prefWidth="243.0" promptText="Seleccione una fecha">
+            <JFXComboBox fx:id="comboDate1" labelFloat="true" layoutX="39.0" layoutY="51.0" prefHeight="31.0" prefWidth="243.0" promptText="Seleccione una fecha" AnchorPane.bottomAnchor="304.0" AnchorPane.leftAnchor="39.0" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="51.0">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
             </JFXComboBox>
-            <JFXComboBox fx:id="comboDate2" layoutX="39.0" layoutY="145.0" prefHeight="31.0" prefWidth="243.0" promptText="Seleccione una fecha">
+            <JFXComboBox fx:id="comboDate2" layoutX="39.0" layoutY="134.0" prefHeight="31.0" prefWidth="243.0" promptText="Seleccione una fecha" AnchorPane.bottomAnchor="221.0" AnchorPane.leftAnchor="39.0" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="134.0">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
             </JFXComboBox>
-            <JFXComboBox fx:id="comboDuel1" layoutX="39.0" layoutY="234.0" prefHeight="31.0" prefWidth="243.0" promptText="Seleccione un enfrentamiento">
+            <JFXComboBox fx:id="comboDuel1" layoutX="39.0" layoutY="237.0" prefHeight="31.0" prefWidth="243.0" promptText="Seleccione un enfrentamiento" AnchorPane.bottomAnchor="118.0" AnchorPane.leftAnchor="39.0" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="237.0">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
             </JFXComboBox>
-            <JFXComboBox fx:id="comboDuel2" layoutX="39.0" layoutY="329.0" prefHeight="31.0" prefWidth="243.0" promptText="Seleccione un enfrentamiento">
+            <JFXComboBox fx:id="comboDuel2" layoutX="39.0" layoutY="316.0" prefHeight="31.0" prefWidth="243.0" promptText="Seleccione un enfrentamiento" AnchorPane.bottomAnchor="39.0" AnchorPane.leftAnchor="39.0" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="316.0">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
             </JFXComboBox>
          </children>
       </AnchorPane>
-      <JFXButton fx:id="selectMutations" buttonType="RAISED" contentDisplay="CENTER" layoutX="481.0" layoutY="272.0" onAction="#selectMutations" prefHeight="72.0" prefWidth="79.0" text=" ">
+      <JFXButton fx:id="selectMutations" buttonType="RAISED" contentDisplay="CENTER" layoutX="481.0" layoutY="272.0" onAction="#selectMutations" prefHeight="72.0" prefWidth="79.0" text=" " AnchorPane.bottomAnchor="288.0" AnchorPane.leftAnchor="481.0" AnchorPane.rightAnchor="587.0" AnchorPane.topAnchor="272.0">
          <graphic>
             <ImageView fitHeight="60.0" fitWidth="91.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -58,7 +58,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </JFXButton>
-      <JFXButton fx:id="removeMutations" buttonType="RAISED" contentDisplay="CENTER" layoutX="295.0" layoutY="272.0" onAction="#removeMutations" prefHeight="72.0" prefWidth="79.0" text=" ">
+      <JFXButton fx:id="removeMutations" buttonType="RAISED" contentDisplay="CENTER" layoutX="322.0" layoutY="272.0" onAction="#removeMutations" prefHeight="72.0" prefWidth="79.0" text=" " AnchorPane.bottomAnchor="288.0" AnchorPane.leftAnchor="322.0" AnchorPane.rightAnchor="746.0" AnchorPane.topAnchor="272.0">
          <graphic>
             <ImageView fitHeight="60.0" fitWidth="91.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -73,7 +73,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </JFXButton>
-      <JFXButton fx:id="buttonApplyMuttations" buttonType="RAISED" layoutX="903.0" layoutY="532.0" onAction="#applyMutations" prefHeight="36.0" prefWidth="215.0" stylesheets="@../styles/PrincipalMenu.css" text="Aplicar mutaciones">
+      <JFXButton fx:id="buttonApplyMuttations" buttonType="RAISED" layoutX="902.0" layoutY="524.0" onAction="#applyMutations" prefHeight="72.0" prefWidth="227.0" stylesheets="@../styles/PrincipalMenu.css" text="Aplicar mutaciones" AnchorPane.bottomAnchor="36.0" AnchorPane.leftAnchor="902.0" AnchorPane.rightAnchor="19.0" AnchorPane.topAnchor="524.0">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
@@ -81,18 +81,18 @@
             <Font name="Segoe UI Emoji" size="20.0" />
          </font>
       </JFXButton>
-      <Label layoutX="903.0" layoutY="465.0" text="Iteraciones" textFill="#2f2484">
+      <Label layoutX="903.0" layoutY="465.0" text="Iteraciones" textFill="#2f2484" AnchorPane.bottomAnchor="142.0" AnchorPane.leftAnchor="903.0" AnchorPane.rightAnchor="144.0" AnchorPane.topAnchor="465.0">
          <font>
             <Font name="Segoe UI Emoji" size="21.0" />
          </font>
       </Label>
-      <Spinner fx:id="iterations" editable="true" layoutX="1008.0" layoutY="453.0" prefHeight="48.0" prefWidth="128.0" stylesheets="@../styles/PrincipalMenu.css" />
-      <JFXListView fx:id="selectedMutationListView" layoutX="16.0" layoutY="360.0" prefHeight="261.0" prefWidth="842.0" stylesheets="@../styles/PrincipalMenu.css">
+      <Spinner fx:id="iterations" editable="true" layoutX="1008.0" layoutY="453.0" prefHeight="48.0" prefWidth="128.0" stylesheets="@../styles/PrincipalMenu.css" AnchorPane.bottomAnchor="131.0" AnchorPane.leftAnchor="1008.0" AnchorPane.rightAnchor="12.0" AnchorPane.topAnchor="453.0" />
+      <JFXListView fx:id="selectedMutationListView" layoutX="16.0" layoutY="360.0" prefHeight="261.0" prefWidth="842.0" stylesheets="@../styles/PrincipalMenu.css" AnchorPane.bottomAnchor="11.0" AnchorPane.leftAnchor="16.0" AnchorPane.topAnchor="360.0">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
       </JFXListView>
-        <JFXListView fx:id="mutationsListView" layoutX="17.0" layoutY="15.0" prefHeight="233.0" prefWidth="840.0" stylesheets="@../styles/PrincipalMenu.css">
+        <JFXListView fx:id="mutationsListView" layoutX="17.0" layoutY="15.0" prefHeight="233.0" prefWidth="840.0" stylesheets="@../styles/PrincipalMenu.css" AnchorPane.bottomAnchor="384.0" AnchorPane.leftAnchor="17.0" AnchorPane.topAnchor="15.0">
             <cursor>
                 <Cursor fx:constant="HAND" />
             </cursor>

@@ -388,8 +388,8 @@ public class ConfigurationCalendarController implements Initializable {
             int maxGames = teamsSelectionListView.getSelectionModel().getSelectedIndices().size() / 2;
             maxHomeGamesSpinner.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(1, maxGames));
             maxVisitorGamesSpinner.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(1, maxGames - 1));
-            maxHomeGamesSpinner.getValueFactory().setValue(configuration.getMaxLocalGamesInARow());
-            maxVisitorGamesSpinner.getValueFactory().setValue(configuration.getMaxVisitorGamesInARow());
+            maxHomeGamesSpinner.getValueFactory().setValue(0);
+            maxVisitorGamesSpinner.getValueFactory().setValue(0);
             ConfigurationCalendarController.teams = configuration.getTeamsIndexes().size();
         }
 

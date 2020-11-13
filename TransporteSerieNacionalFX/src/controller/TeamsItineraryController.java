@@ -68,7 +68,6 @@ public class TeamsItineraryController implements Initializable {
 
         ArrayList<ArrayList<Integer>> itinerary = controller.teamsItinerary(calendar,configuration);
 
-
         /*
         Poner el encabezado de las columnas y el valor que va dentro 
          */

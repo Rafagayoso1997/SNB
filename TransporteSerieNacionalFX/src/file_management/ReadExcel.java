@@ -67,47 +67,10 @@ public class ReadExcel {
 
         Controller controller = Controller.getSingletonController();
         ArrayList<Date> calendar = new ArrayList<>();
-        ArrayList<Integer>teamsIndexes = new ArrayList<>();
+        //ArrayList<Integer>teamsIndexes = new ArrayList<>();
 
         FileInputStream fis = new FileInputStream(route);
         XSSFWorkbook workbook = new XSSFWorkbook(fis);
-        XSSFSheet xssfSheet = workbook.getSheetAt(0);
-
-        Iterator<Row> rowIterator = xssfSheet.iterator();
-        Row columnNames =  rowIterator.next();
-
-        Iterator<Cell> cellIteratorColumns = columnNames.cellIterator();
-
-        while(cellIteratorColumns.hasNext()){
-            Cell cellNames = cellIteratorColumns.next();
-            teamsIndexes.add(controller.getTeams().indexOf(cellNames.toString()));
-        }
-
-        while (rowIterator.hasNext()){
-
-            Date date = new Date();
-            Row row = rowIterator.next();
-            Iterator<Cell> cellIterator = row.cellIterator();
-
-            int i = 0;
-            while (cellIterator.hasNext()){
-
-                Cell cell  = cellIterator.next();
-                int local = controller.getAcronyms().indexOf(cell.toString());
-                int visitor = teamsIndexes.get(i);
-
-                if(local != visitor){
-                    ArrayList<Integer> pair = new ArrayList<>();
-                    pair.add(local);
-                    pair.add(visitor);
-                    date.getGames().add(pair);
-                }
-                i++;
-            }
-            calendar.add(date);
-        }
-
-        aux.setCalendar(calendar);
 
         XSSFSheet xssfSheetData = workbook.getSheetAt(1);
         Iterator<Row> rowIteratorData = xssfSheetData.iterator();
@@ -130,6 +93,91 @@ public class ReadExcel {
         aux.getConfiguration().setSymmetricSecondRound(rowIteratorData.next().getCell(0).getBooleanCellValue());
         aux.getConfiguration().setMaxLocalGamesInARow((int)rowIteratorData.next().getCell(0).getNumericCellValue());
         aux.getConfiguration().setMaxVisitorGamesInARow((int)rowIteratorData.next().getCell(0).getNumericCellValue());
+
+
+        XSSFSheet xssfSheet = workbook.getSheetAt(0);
+
+        Iterator<Row> rowIterator = xssfSheet.iterator();
+        rowIterator.next();
+/*
+        Iterator<Cell> cellIteratorColumns = columnNames.cellIterator();
+
+        while(cellIteratorColumns.hasNext()){
+            Cell cellNames = cellIteratorColumns.next();
+            teamsIndexes.add(controller.getTeams().indexOf(cellNames.toString()));
+        }
+
+       */
+        if(aux.getConfiguration().isInauguralGame()){
+            rowIterator.next();
+            Date date = new Date();
+            ArrayList<Integer> pair = new ArrayList<>();
+            pair.add(aux.getConfiguration().getChampion());
+            pair.add(aux.getConfiguration().getSecondPlace());
+            date.getGames().add(pair);
+            calendar.add(date);
+        }
+
+
+        boolean secondRound = aux.getConfiguration().isSecondRoundCalendar();
+        int countRow = 1;
+        boolean imparTeams = false;
+        int restMoment = aux.getConfiguration().getTeamsIndexes().size();
+        if (aux.getConfiguration().getTeamsIndexes().size() %2 != 0){
+            imparTeams = true;
+            restMoment += 1;
+        }
+
+        while (rowIterator.hasNext()){
+            Row row = rowIterator.next();
+            if (!secondRound || (secondRound && countRow != restMoment)){
+
+                Date date = new Date();
+                Iterator<Cell> cellIterator = row.cellIterator();
+
+                int i = 0;
+                while (cellIterator.hasNext()){
+
+                    Cell cell  = cellIterator.next();
+                    int local = controller.getAcronyms().indexOf(cell.toString());
+                    int visitor = aux.getConfiguration().getTeamsIndexes().get(i);
+
+                    ArrayList<Integer> pair = new ArrayList<>();
+                    pair.add(local);
+                    pair.add(visitor);
+
+                    if(imparTeams){
+                        boolean added = false;
+                        int j = 0;
+                        while (j < date.getGames().size() && !added){
+
+                            if(date.getGames().get(j).contains(local) || date.getGames().get(j).contains(visitor)){
+                                if (local != visitor){
+                                    date.getGames().remove(j);
+                                    date.getGames().add(pair);
+                                }
+                                added = true;
+                            }
+                            j++;
+                        }
+                        if (added == false){
+                            date.getGames().add(pair);
+                        }
+                    }
+                    else {
+                        if (local != visitor){
+                            date.getGames().add(pair);
+                        }
+                    }
+                    i++;
+                }
+                calendar.add(date);
+            }
+            countRow++;
+        }
+
+        aux.setCalendar(calendar);
+
 
         workbook.close();
         fis.close();

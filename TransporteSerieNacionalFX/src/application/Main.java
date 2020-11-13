@@ -25,7 +25,7 @@ public class Main extends Application {
             primaryStage.setScene(scene);
             primaryStage.setMaxHeight(rectangle.height);
             primaryStage.setMaximized(true);
-            primaryStage.setResizable(true);
+            primaryStage.setResizable(false);
             primaryStage.getIcons().add(new Image(getClass().getResourceAsStream("/resources/snb.png")));
             primaryStage.show();
 

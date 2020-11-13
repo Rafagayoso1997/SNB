@@ -207,10 +207,11 @@ public class ConfigurationCalendarController implements Initializable {
             showNotification("Debe escoger m?s de dos equipos");
             ok = false;
         }
+        /*
         if (selectedIndexes.size() % 2 != 0) {
             showNotification("Debe escoger una cantidad par de equipos.");
             ok = false;
-        }
+        }*/
 
         if (inauguralGame.isSelected()) {
             if (champVsSub.isSelected()) {

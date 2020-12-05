@@ -29,15 +29,14 @@ import java.util.Iterator;
 public class CrudsFiles {
     private  static FileChooser fc;
     private static DirectoryChooser dc;
-
-     private static File f;
-     private static XSSFWorkbook workbook;
+    private static File f;
+    private static XSSFWorkbook workbook;
 
     public CrudsFiles(){
 
     }
 
-    public static void addModifyTeamToData(String teamName, String acronym, Double[] distances, int pos) throws IOException {
+    public static void addModifyTeamToData(String teamName, String acronym, String location, Double[] distances, int pos) throws IOException {
 
         FileInputStream fis = new FileInputStream("src/files/Data.xlsx");
         XSSFWorkbook workbook = new XSSFWorkbook(fis);
@@ -90,6 +89,10 @@ public class CrudsFiles {
             cell.setCellValue(0);
         }
 
+        XSSFSheet locationSheet = workbook.getSheetAt(1);
+        cell = locationSheet.getRow(0).createCell(pos - 1);
+        cell.setCellValue(location);
+
         FileOutputStream fileOut;
         try {
             fileOut = new FileOutputStream("src/files/Data.xlsx");
@@ -121,6 +124,14 @@ public class CrudsFiles {
 
         if (pos < xssfSheet.getLastRowNum()){
             xssfSheet.shiftRows(pos+1, xssfSheet.getLastRowNum(), -1);
+        }
+
+        XSSFSheet locationsSheet = workbook.getSheetAt(1);
+        Cell cell = locationsSheet.getRow(0).getCell(pos - 1);
+        locationsSheet.getRow(0).removeCell(cell);
+
+        if(pos - 1 < locationsSheet.getRow(0).getLastCellNum() - 1){
+            locationsSheet.shiftColumns(pos, locationsSheet.getRow(0).getLastCellNum() - 1, -1);
         }
 
         FileOutputStream fileOut;

@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="632.0" prefWidth="1148.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.TeamsController">
+<AnchorPane prefHeight="632.0" prefWidth="1148.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.TeamsController">
     <children>
         <JFXListView fx:id="teamsListView" layoutX="21.0" layoutY="85.0" prefHeight="497.0" prefWidth="333.0" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="21.0" AnchorPane.rightAnchor="794.0" AnchorPane.topAnchor="85.0">
          <cursor>
@@ -28,6 +28,6 @@
       <Separator layoutX="719.0" layoutY="107.0" orientation="VERTICAL" prefHeight="470.0" prefWidth="6.0" />
       <Separator layoutX="1115.0" layoutY="91.0" orientation="VERTICAL" prefHeight="487.0" prefWidth="6.0" />
       <Separator layoutX="719.0" layoutY="576.0" prefHeight="0.0" prefWidth="395.0" />
-      <Separator layoutX="1081.0" layoutY="90.0" prefHeight="3.0" prefWidth="40.0" />
+      <Separator layoutX="1089.0" layoutY="90.0" prefHeight="3.0" prefWidth="28.0" />
     </children>
 </AnchorPane>

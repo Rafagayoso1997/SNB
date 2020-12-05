@@ -8,11 +8,13 @@ public class Table {
 
      private SimpleStringProperty name;
      private SimpleStringProperty acronym;
+     private SimpleStringProperty location;
      private SimpleObjectProperty distance;
 
-    public Table (String name, String acronym, Object distance){
+    public Table (String name, String acronym, String location, Object distance){
         this.name = new SimpleStringProperty(name);
         this.acronym = new SimpleStringProperty(acronym);
+        this.location = new SimpleStringProperty(location);
         this.distance = new SimpleObjectProperty(distance);
     }
 
@@ -51,4 +53,10 @@ public class Table {
     public void setDistance(Object distance) {
         this.distance.set(distance);
     }
+
+    public String getLocation() { return location.get(); }
+
+    public SimpleStringProperty locationProperty() { return location; }
+
+    public void setLocation(String location) { this.location.set(location); }
 }

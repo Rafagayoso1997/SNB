@@ -122,7 +122,7 @@ public class ExportFiles {
         Controller controller = Controller.getSingletonController();
         ArrayList<Date> calendar = controller.getCalendarsList().get(calendarToExport);
         CalendarConfiguration configuration = controller.getConfigurations().get(calendarToExport);
-        ArrayList<ArrayList<Integer>> teamDate = controller.teamsItinerary(calendar,configuration);
+        ArrayList<ArrayList<Integer>> teamDate = controller.teamsItinerary(calendar,configuration,null);
         Row row = spreadsheet.createRow(0);
         //Style of the cell
         XSSFFont headerCellFont = workbook.createFont();
@@ -211,9 +211,14 @@ public class ExportFiles {
         rowData = spreadsheetData.createRow(8);
         cellData =  rowData.createCell(0);
         cellData.setCellStyle(style);
-        cellData.setCellValue(configuration.getMaxLocalGamesInARow());
+        cellData.setCellValue(configuration.isOccidenteVsOriente());
 
         rowData = spreadsheetData.createRow(9);
+        cellData =  rowData.createCell(0);
+        cellData.setCellStyle(style);
+        cellData.setCellValue(configuration.getMaxLocalGamesInARow());
+
+        rowData = spreadsheetData.createRow(10);
         cellData =  rowData.createCell(0);
         cellData.setCellStyle(style);
         cellData.setCellValue(configuration.getMaxVisitorGamesInARow());

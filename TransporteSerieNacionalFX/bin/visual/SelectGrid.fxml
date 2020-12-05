@@ -9,9 +9,9 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="panel" prefHeight="632.0" prefWidth="1148.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.SelectGridController">
+<AnchorPane fx:id="panel" prefHeight="632.0" prefWidth="1148.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.SelectGridController">
     <children>
-        <JFXButton fx:id="saveLocations" layoutX="618.0" layoutY="575.0" onAction="#saveLocations" prefHeight="49.0" prefWidth="211.0" stylesheets="@../styles/PrincipalMenu.css" text="Generar Calendario" textFill="WHITE" AnchorPane.bottomAnchor="8.0" AnchorPane.leftAnchor="618.0" AnchorPane.rightAnchor="319.0" AnchorPane.topAnchor="575.0">
+        <JFXButton fx:id="saveLocations" layoutX="624.0" layoutY="575.0" onAction="#saveLocations" prefHeight="49.0" prefWidth="205.0" stylesheets="@../styles/PrincipalMenu.css" text="Generar Calendario" textFill="WHITE" AnchorPane.bottomAnchor="8.0" AnchorPane.topAnchor="575.0">
             <font>
                 <Font name="Segoe UI Symbol" size="20.0" />
             </font>
@@ -19,7 +19,7 @@
                 <Cursor fx:constant="HAND" />
             </cursor>
         </JFXButton>
-        <ScrollPane layoutY="1.0" prefHeight="560.0" prefWidth="1148.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="1.0">
+        <ScrollPane layoutX="19.0" layoutY="1.0" prefHeight="560.0" prefWidth="1107.0" AnchorPane.leftAnchor="19.0" AnchorPane.rightAnchor="22.0" AnchorPane.topAnchor="1.0">
             <content>
                 <GridPane fx:id="selectionGrid" prefHeight="557.0" prefWidth="1147.0">
 

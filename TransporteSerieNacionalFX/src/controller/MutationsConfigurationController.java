@@ -10,14 +10,16 @@ import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.SelectionMode;
-import javafx.scene.control.Spinner;
-import javafx.scene.control.SpinnerValueFactory;
+import javafx.scene.Scene;
+import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 import logic.CalendarConfiguration;
 import logic.Controller;
 import logic.Date;
+import tray.notification.TrayNotification;
 
 import java.io.IOException;
 import java.net.URL;
@@ -74,9 +76,10 @@ public class MutationsConfigurationController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+
         this.selectedCalendar = CalendarController.selectedCalendar;
         iterations.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(1, Integer.MAX_VALUE));
-        iterations.getValueFactory().setValue(20000);
+        iterations.getValueFactory().setValue(1);
         mutationsToAdd = new ArrayList<>();
         positionsMutationsSelected = new ArrayList<>();
         booleanValues = new ArrayList<>();
@@ -86,6 +89,15 @@ public class MutationsConfigurationController implements Initializable {
         comboDate2.setVisible(false);
         comboDuel1.setVisible(false);
         comboDuel2.setVisible(false);
+
+        iterations.getEditor().setTextFormatter(new TextFormatter<>(change ->
+                (change.getControlNewText().matches("\\d{0,9}?")) ? change : null));
+
+        iterations.focusedProperty().addListener((observable, oldValue, newValue) -> {
+            if(!newValue){
+                iterations.getValueFactory().setValue(Integer.parseInt(iterations.getEditor().getText()));
+            }
+        });
 
         //lleno la lista de mutaciones y separo los datos de configuracion
         List<String> mutationsReaded = ReadFiles.readMutations();
@@ -237,9 +249,10 @@ public class MutationsConfigurationController implements Initializable {
     @FXML
     void removeMutations(ActionEvent event) {
         int index = selectedMutationListView.getSelectionModel().getSelectedIndex();
-        selectedMutationListView.getItems().remove(index);
-        positionsMutationsSelected.remove(index);
-
+        if(index != -1){
+            selectedMutationListView.getItems().remove(index);
+            positionsMutationsSelected.remove(index);
+        }
         System.out.println(positionsMutationsSelected);
     }
 
@@ -249,12 +262,12 @@ public class MutationsConfigurationController implements Initializable {
         System.out.println(selectedMutationListView.getSelectionModel().getSelectedIndex());
 
 
-        int lastPosSelected = selectedMutationListView.getSelectionModel().getSelectedIndex();
+        int lastPosSelected = selectedMutationListView.getItems().size();
         //si no seleccionas ninguna configuracion para las mutaciones
         ArrayList<Date> calendar = Controller.getSingletonController().getCalendarsList().get(selectedCalendar);
         CalendarConfiguration configuration = Controller.getSingletonController().getConfigurations().get(selectedCalendar);
 
-        if (lastPosSelected != -1) {
+        if (lastPosSelected != 0) {
             int realPos = positionsMutationsSelected.get(lastPosSelected);
 
             if (configuration.isInauguralGame()) {
@@ -268,45 +281,46 @@ public class MutationsConfigurationController implements Initializable {
                 configurationsList.get(realPos).set(2, comboDuel1.getSelectionModel().getSelectedIndex());
                 configurationsList.get(realPos).set(3, comboDuel2.getSelectionModel().getSelectedIndex());
             }
+
+            Controller.getSingletonController().setMutationsConfigurationsList(configurationsList);
+            //if(Controller.getSingletonController().getMutationsIndexes().isEmpty())
+            Controller.getSingletonController().setMutationsIndexes(positionsMutationsSelected);
+
+            System.out.println("mutaciones seleccionadas: " + positionsMutationsSelected);
+
+            ArrayList<Date> newCalendar = new ArrayList<>();
+            Controller.getSingletonController().copyCalendar(newCalendar, calendar);
+
+            for (int j = 0; j < iterations.getValueFactory().getValue(); j++) {
+                for (int i = 0; i < positionsMutationsSelected.size(); i++) {
+                    Controller.getSingletonController().selectMutation(newCalendar, positionsMutationsSelected.get(i), configuration.isInauguralGame(), configuration.isOccidenteVsOriente());
+                }
+            }
+
+            Controller.getSingletonController().getCalendarsList().add(newCalendar);
+            Controller.getSingletonController().getConfigurations().add(copyConfiguration(configuration));
+            System.out.println("************************************************");
+            System.out.println("Calendario:");
+            for (Date date : newCalendar) {
+                for (int h = 0; h < date.getGames().size(); h++) {
+                    System.out.print(date.getGames().get(h));
+                }
+                System.out.println();
+            }
+            System.out.println("************************************************");
+
+            Stage stage = (Stage) selectMutations.getScene().getWindow();
+            stage.close();
+
+            AnchorPane structureOver = homeController.getPrincipalPane();
+            homeController.createPage(new CalendarController(), structureOver, "/visual/Calendar.fxml");
+            homeController.getButtonReturnSelectionTeamConfiguration().setVisible(false);
+
         } else {
-            lastPosSelected = 0;
+            TrayNotification notification = new TrayNotification();
+            notification.setMessage("Debe elegir al menos una mutación");
+            notification.showAndDismiss(Duration.seconds(1));
         }
-
-
-        Controller.getSingletonController().setMutationsConfigurationsList(configurationsList);
-        //if(Controller.getSingletonController().getMutationsIndexes().isEmpty())
-        Controller.getSingletonController().setMutationsIndexes(positionsMutationsSelected);
-
-        System.out.println("mutaciones seleccionadas: " + positionsMutationsSelected);
-
-       ArrayList<Date> newCalendar = new ArrayList<>();
-        Controller.getSingletonController().copyCalendar(newCalendar, calendar);
-
-        for (int j = 0; j < iterations.getValueFactory().getValue(); j++) {
-            for (int i = 0; i < positionsMutationsSelected.size(); i++) {
-                Controller.getSingletonController().selectMutation(newCalendar, positionsMutationsSelected.get(i), configuration.isInauguralGame());
-            }
-        }
-
-
-        Controller.getSingletonController().getCalendarsList().add(newCalendar);
-        Controller.getSingletonController().getConfigurations().add(copyConfiguration(configuration));
-        System.out.println("************************************************");
-        System.out.println("Calendario:");
-        for (Date date : newCalendar) {
-            for (int h = 0; h < date.getGames().size(); h++) {
-                System.out.print(date.getGames().get(h));
-            }
-            System.out.println();
-        }
-        System.out.println("************************************************");
-
-        Stage stage = (Stage) selectMutations.getScene().getWindow();
-        stage.close();
-
-        AnchorPane structureOver = homeController.getPrincipalPane();
-        homeController.createPage(new CalendarController(), structureOver, "/visual/Calendar.fxml");
-        homeController.getButtonReturnSelectionTeamConfiguration().setVisible(false);
     }
 
     public HomeController getHomeController() {

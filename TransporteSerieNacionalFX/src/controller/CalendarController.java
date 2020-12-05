@@ -12,13 +12,21 @@ import javafx.scene.control.Tab;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.paint.Paint;
+import javafx.util.Duration;
+import logic.CalendarConfiguration;
 import logic.Controller;
 import logic.Date;
 import logic.Duel;
+import tray.animations.AnimationType;
+import tray.notification.NotificationType;
+import tray.notification.TrayNotification;
 
+import javax.security.auth.login.Configuration;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.ResourceBundle;
 
 public class CalendarController implements Initializable {
@@ -28,6 +36,7 @@ public class CalendarController implements Initializable {
     private ArrayList<TableView<Duel>> tables;
     private HomeController homeController;
     public static int selectedCalendar;
+    private TrayNotification notification;
 
     @FXML
     private JFXTabPane calendarsTabPane;
@@ -54,8 +63,6 @@ public class CalendarController implements Initializable {
     @FXML
     private JFXButton restrictionsBtn;
 
-
-
     public void setHomeController(HomeController homeController) {
         this.homeController = homeController;
     }
@@ -63,6 +70,7 @@ public class CalendarController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        notification = new TrayNotification();
         selectedCalendar = 0;
 
         controller = Controller.getSingletonController();
@@ -79,12 +87,14 @@ public class CalendarController implements Initializable {
                 TableView<Duel> table = new TableView<Duel>();
                 TableColumn<Duel, String> col = new TableColumn<>("Local");
                 TableColumn<Duel, String> col2 = new TableColumn<>("Visitante");
+
                 col.setCellValueFactory(new PropertyValueFactory<>("local"));
                 col2.setCellValueFactory(new PropertyValueFactory<>("visitor"));
 
                 ObservableList<TableColumn<Duel, ?>> columns = table.getColumns();
                 columns.add(col);
                 columns.add(col2);
+
                 for (int k = 0; k < calendar.get(j).getGames().size(); k++) {
                     int posLocal = calendar.get(j).getGames().get(k).get(0);
                     int posVisitor = calendar.get(j).getGames().get(k).get(1);
@@ -193,48 +203,114 @@ public class CalendarController implements Initializable {
 
     @FXML
     void showConfiguration(ActionEvent event) {
-        try {
-            homeController.createPage(new MutationsConfigurationController(), null, "/visual/MutationsConfiguration.fxml");
-            // Hide this current window (if this is what you want)
-            // ((Node)(event.getSource())).getScene().getWindow().hide();
-        } catch (IOException e) {
-            e.printStackTrace();
+        if(!calendarsTabPane.getTabs().isEmpty()) {
+            try {
+                homeController.createPage(new MutationsConfigurationController(), null, "/visual/MutationsConfiguration.fxml");
+                // Hide this current window (if this is what you want)
+                // ((Node)(event.getSource())).getScene().getWindow().hide();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        else{
+            showNotification("No existe ningún calendario", "Debe crear o importar al menos un calendario.");
         }
     }
 
     @FXML
     void showStatistics(ActionEvent event) {
-        try {
-            homeController.createPage(new CalendarStatisticsController(), null, "/visual/CalendarStatistics.fxml");
-        } catch (IOException e) {
-            e.printStackTrace();
+        if(!calendarsTabPane.getTabs().isEmpty()) {
+            try {
+                homeController.createPage(new CalendarStatisticsController(), null, "/visual/CalendarStatistics.fxml");
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        else{
+            showNotification("No existe ningún calendario", "Debe crear o importar al menos un calendario.");
         }
     }
 
     @FXML
     void showItinerary(ActionEvent event) {
-        try {
-            homeController.createPage(new TeamsItineraryController(), null, "/visual/TeamsItinerary.fxml");
-            // Hide this current window (if this is what you want)
-            // ((Node)(event.getSource())).getScene().getWindow().hide();
-        } catch (IOException e) {
-            e.printStackTrace();
+        if(!calendarsTabPane.getTabs().isEmpty()) {
+            try {
+                homeController.createPage(new TeamsItineraryController(), null, "/visual/TeamsItinerary.fxml");
+                // Hide this current window (if this is what you want)
+                // ((Node)(event.getSource())).getScene().getWindow().hide();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        else{
+            showNotification("No existe ningún calendario", "Debe crear o importar al menos un calendario.");
         }
     }
 
     @FXML
     void showRestrictions(ActionEvent event) {
-        try {
-            homeController.createPage(new RestrictionsController(), null, "/visual/Restrictions.fxml");
-            // Hide this current window (if this is what you want)
-            // ((Node)(event.getSource())).getScene().getWindow().hide();
-        } catch (IOException e) {
-            e.printStackTrace();
+        if(!calendarsTabPane.getTabs().isEmpty()){
+            try {
+                homeController.createPage(new RestrictionsController(), null, "/visual/Restrictions.fxml");
+                // Hide this current window (if this is what you want)
+                // ((Node)(event.getSource())).getScene().getWindow().hide();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        else{
+            showNotification("No existe ningún calendario", "Debe crear o importar al menos un calendario.");
         }
     }
 
+    @FXML
+    void closeSelectedTab(ActionEvent event) {
+        /*
+        for (ArrayList<Date> lis: Controller.getSingletonController().getCalendarsList()) {
+            System.out.println("Calendario: ");
+            System.out.println(lis.get(0).getGames());
+            System.out.println();
+        }
+
+        for (CalendarConfiguration lis: Controller.getSingletonController().getConfigurations()) {
+            System.out.println("Identificadores: ");
+            System.out.println(lis.getCalendarId());
+            System.out.println();
+        }
+
+        System.out.println("Calendario seleccionado: " + selectedCalendar);
 
 
+        System.out.println("Calendario seleccionado" + Controller.getSingletonController().getCalendarsList().get(selectedCalendar).get(0).getGames());
+        System.out.println("Configuracion seleccionada" + Controller.getSingletonController().getConfigurations().get(selectedCalendar).getCalendarId());
+*/
+        Controller.getSingletonController().getCalendarsList().remove(selectedCalendar);
+        Controller.getSingletonController().getConfigurations().remove(selectedCalendar);
+        calendarsTabPane.getTabs().remove(selectedCalendar);
+
+/*
+        System.out.println("Despues de eliminar: ");
+        for (ArrayList<Date> lis: Controller.getSingletonController().getCalendarsList()) {
+            System.out.println("Calendario: ");
+            System.out.println(lis.get(0).getGames());
+            System.out.println();
+        }
+
+        for (CalendarConfiguration lis: Controller.getSingletonController().getConfigurations()) {
+            System.out.println("Identificadores: ");
+            System.out.println(lis.getCalendarId());
+            System.out.println();
+        }*/
+    }
+
+    private void showNotification(String title, String message) {
+        notification.setTitle(title);
+        notification.setMessage(message);
+        notification.setNotificationType(NotificationType.ERROR);
+        notification.setRectangleFill(Paint.valueOf("#2F2484"));
+        notification.setAnimationType(AnimationType.FADE);
+        notification.showAndDismiss(Duration.seconds(1));
+    }
 }
 
 

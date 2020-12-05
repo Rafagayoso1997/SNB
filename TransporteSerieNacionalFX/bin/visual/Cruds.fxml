@@ -13,35 +13,35 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="506.0" prefWidth="776.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.CrudsController">
+<AnchorPane prefHeight="506.0" prefWidth="1015.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.CrudsController">
    <children>
       <GridPane prefHeight="499.0" prefWidth="776.0" stylesheets="@../styles/PrincipalMenu.css" AnchorPane.bottomAnchor="7.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="183.0" minWidth="10.0" prefWidth="161.0" />
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="192.0" minWidth="10.0" prefWidth="162.0" />
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="194.0" minWidth="10.0" prefWidth="173.0" />
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="132.0" minWidth="10.0" prefWidth="111.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="326.0" minWidth="10.0" prefWidth="326.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="132.0" minWidth="0.0" prefWidth="0.0" />
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="163.0" minWidth="10.0" prefWidth="163.0" />
          </columnConstraints>
          <rowConstraints>
-            <RowConstraints maxHeight="113.0" minHeight="10.0" prefHeight="107.0" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="144.0" minHeight="10.0" prefHeight="90.0" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="150.0" minHeight="10.0" prefHeight="98.0" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="136.0" minHeight="10.0" prefHeight="93.0" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="83.0" minHeight="10.0" prefHeight="83.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="113.0" minHeight="10.0" percentHeight="16.6" prefHeight="107.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="144.0" minHeight="10.0" percentHeight="16.6" prefHeight="90.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="144.0" minHeight="10.0" percentHeight="16.6" prefHeight="90.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="150.0" minHeight="10.0" percentHeight="16.6" prefHeight="98.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="136.0" minHeight="10.0" percentHeight="16.6" prefHeight="93.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="83.0" minHeight="10.0" percentHeight="16.6" prefHeight="83.0" vgrow="SOMETIMES" />
          </rowConstraints>
          <children>
             <JFXTextField fx:id="nameTextField" labelFloat="true" promptText="Ingrese el nombre el equipo" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                <GridPane.margin>
                   <Insets left="30.0" right="30.0" />
-               </GridPane.margin>
-            </JFXTextField>
+               </GridPane.margin></JFXTextField>
             <JFXTextField fx:id="acronymTextField" labelFloat="true" promptText="Ingrese el acrónimo del equipo" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
                <GridPane.margin>
                   <Insets left="30.0" right="30.0" />
                </GridPane.margin>
             </JFXTextField>
-            <JFXComboBox fx:id="teamsComboBox" prefHeight="31.0" prefWidth="261.0" promptText="Seleccione (solo para modificar o eliminar)" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+            <JFXComboBox fx:id="teamsComboBox" prefHeight="31.0" prefWidth="324.0" promptText="Seleccione (solo para modificar o eliminar)" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
@@ -49,7 +49,7 @@
                   <Insets left="15.0" right="15.0" />
                </GridPane.margin>
             </JFXComboBox>
-            <JFXButton fx:id="addBtn" onAction="#addNewTeam" prefHeight="50.0" prefWidth="130.0" text="Añadir" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
+            <JFXButton fx:id="addBtn" onAction="#addNewTeam" prefHeight="50.0" prefWidth="130.0" text="Añadir" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
                <font>
                   <Font name="Segoe UI Symbol" size="23.0" />
                </font>
@@ -57,7 +57,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </JFXButton>
-            <JFXButton fx:id="showDataBtn" onAction="#showData" text="Datos generales" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.halignment="LEFT" GridPane.rowIndex="4" GridPane.valignment="CENTER">
+            <JFXButton fx:id="showDataBtn" onAction="#showData" text="Datos generales" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.halignment="LEFT" GridPane.rowIndex="5" GridPane.valignment="CENTER">
                <font>
                   <Font name="Segoe UI Symbol" size="23.0" />
                </font>
@@ -68,7 +68,7 @@
                   <Insets left="15.0" />
                </GridPane.margin>
             </JFXButton>
-            <JFXButton fx:id="closeBtn" onAction="#close" prefHeight="50.0" prefWidth="130.0" text="Regresar" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
+            <JFXButton fx:id="closeBtn" onAction="#close" prefHeight="50.0" prefWidth="130.0" text="Regresar" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER">
                <font>
                   <Font name="Segoe UI Symbol" size="23.0" />
                </font>
@@ -76,7 +76,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </JFXButton>
-            <JFXButton fx:id="deleteBtn" onAction="#removeTeam" prefHeight="50.0" prefWidth="130.0" text="Eliminar" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
+            <JFXButton fx:id="deleteBtn" onAction="#removeTeam" prefHeight="50.0" prefWidth="130.0" text="Eliminar" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER">
                <font>
                   <Font name="Segoe UI Symbol" size="23.0" />
                </font>
@@ -84,17 +84,18 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </JFXButton>
-            <TableView fx:id="table" editable="true" prefHeight="406.0" prefWidth="400.0" GridPane.columnIndex="2" GridPane.columnSpan="3" GridPane.rowSpan="4">
+            <TableView fx:id="table" editable="true" prefHeight="406.0" prefWidth="400.0" styleClass="table-cruds" stylesheets="@../styles/PrincipalMenu.css" GridPane.columnIndex="2" GridPane.columnSpan="3" GridPane.rowSpan="5">
                <columns>
-                  <TableColumn id="columnName" fx:id="columnName" editable="false" prefWidth="212.0" resizable="false" sortable="false" text="Nombre del equipo" />
-                  <TableColumn fx:id="columnAcro" editable="false" prefWidth="97.0" resizable="false" sortable="false" text="Acrónimo" />
-                  <TableColumn id="columnDistance" fx:id="columnDistance" minWidth="0.0" prefWidth="108.0" resizable="false" sortable="false" text="Distancia" />
+                  <TableColumn id="columnName" fx:id="columnName" editable="false" prefWidth="223.0" resizable="false" sortable="false" text="Nombre del equipo" />
+                  <TableColumn fx:id="columnAcro" editable="false" minWidth="5.0" prefWidth="119.0" resizable="false" sortable="false" text="Acrónimo" />
+                  <TableColumn id="columnLocation" fx:id="columnLocation" editable="false" minWidth="0.0" prefWidth="125.0" resizable="false" sortable="false" text="Región" />
+                  <TableColumn id="columnDistance" fx:id="columnDistance" minWidth="0.0" prefWidth="120.0" resizable="false" sortable="false" text="Distancia" />
                </columns>
                <GridPane.margin>
                   <Insets right="20.0" top="20.0" />
                </GridPane.margin>
             </TableView>
-            <JFXButton fx:id="modifyBtn" layoutX="32.0" layoutY="443.0" onAction="#modifyTeam" prefHeight="50.0" prefWidth="130.0" text="Modificar" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
+            <JFXButton fx:id="modifyBtn" layoutX="32.0" layoutY="443.0" onAction="#modifyTeam" prefHeight="50.0" prefWidth="130.0" text="Modificar" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER">
                <font>
                   <Font name="Segoe UI Symbol" size="23.0" />
                </font>
@@ -102,7 +103,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </JFXButton>
-            <JFXButton fx:id="restoreBtn" layoutX="15.0" layoutY="443.0" onAction="#restore" prefHeight="50.0" prefWidth="130.0" text="Restaurar" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
+            <JFXButton fx:id="restoreBtn" layoutX="15.0" layoutY="443.0" onAction="#restore" prefHeight="50.0" prefWidth="130.0" text="Restaurar" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
                <font>
                   <Font name="Segoe UI Symbol" size="23.0" />
                </font>
@@ -110,6 +111,11 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </JFXButton>
+            <JFXComboBox fx:id="locationComboBox" prefHeight="31.0" prefWidth="324.0" promptText="Seleccione una región" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="2">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </JFXComboBox>
          </children>
       </GridPane>
    </children>

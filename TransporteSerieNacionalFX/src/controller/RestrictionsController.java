@@ -55,11 +55,11 @@ public class RestrictionsController implements Initializable {
         Controller controller = Controller.getSingletonController();
         ArrayList<Date> calendar = controller.getCalendarsList().get(CalendarController.selectedCalendar);
         CalendarConfiguration configuration = controller.getConfigurations().get(CalendarController.selectedCalendar);
-        ArrayList<ArrayList<Integer>> itinerary = controller.teamsItinerary(calendar,configuration);
+        ArrayList<ArrayList<Integer>> itinerary = controller.teamsItinerary(calendar,configuration, null);
         System.out.println(configuration);
 
-        int maxVisitorGamesBrokeRule = controller.penalizeGamesVisitor(itinerary,configuration.getMaxVisitorGamesInARow());
-        int maxHomeGamesBrokeRule = controller.penalizeGamesHome(itinerary,configuration.getMaxLocalGamesInARow());
+        int maxVisitorGamesBrokeRule = controller.penalizeGamesVisitor(itinerary,configuration.getMaxVisitorGamesInARow(), configuration.getTeamsIndexes());
+        int maxHomeGamesBrokeRule = controller.penalizeGamesHome(itinerary,configuration.getMaxLocalGamesInARow(), configuration.getTeamsIndexes());
         int longTripBrokeRule = controller.checkLongTrips(itinerary,configuration.getTeamsIndexes());
 
         lblLocalText.setText(lblLocalText.getText().replace("#",Integer.toString(configuration.getMaxLocalGamesInARow())));

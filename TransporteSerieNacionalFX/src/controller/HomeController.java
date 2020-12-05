@@ -6,6 +6,7 @@ import file_management.ExportFiles;
 import file_management.ReadExcel;
 import javafx.animation.FadeTransition;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -20,6 +21,7 @@ import javafx.scene.paint.Paint;
 import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 import javafx.util.Duration;
 import logic.Auxiliar;
 import logic.Controller;
@@ -59,6 +61,10 @@ public class HomeController implements Initializable {
     @FXML
     private AnchorPane pane;
 
+    @FXML
+    private AnchorPane primaryPane;
+
+
     private AnchorPane home;
 
 
@@ -91,6 +97,7 @@ public class HomeController implements Initializable {
     void showCalendar(ActionEvent event) throws IOException {
         if(Controller.getSingletonController().getCalendarsList().isEmpty()){
             this.createPage(new ConfigurationCalendarController(), home, "/visual/ConfigurationCalendar.fxml");
+            this.buttonReturnSelectionTeamConfiguration.setVisible(false);
         }
         else{
             this.createPage(new CalendarController(), home, "/visual/Calendar.fxml");
@@ -139,6 +146,7 @@ public class HomeController implements Initializable {
                 notification.showAndDismiss(Duration.seconds(2));
                 buttonReturnSelectionTeamConfiguration.setVisible(false);
                 this.createPage(new CalendarController(),home, "/visual/Calendar.fxml");
+                this.buttonReturnSelectionTeamConfiguration.setVisible(true);
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -243,13 +251,16 @@ public class HomeController implements Initializable {
             Stage stage = new Stage();
             ScalableContentPane scale = new ScalableContentPane();
             scale.setContent(anchorPane);
+
             stage.setTitle("Configuración de las mutaciones");
             stage.setResizable(false);
             stage.setScene(new Scene(scale));
 
-
             object = loader.getController();
             ((MutationsConfigurationController) object).setHomeController(this);
+
+            stage.initModality(Modality.WINDOW_MODAL);
+            stage.initOwner(primaryPane.getScene().getWindow());
 
             stage.show();
         } else if (object instanceof TeamsItineraryController) {
@@ -262,9 +273,11 @@ public class HomeController implements Initializable {
             stage.setResizable(false);
             stage.setScene(new Scene(scale));
 
-
             object = loader.getController();
             ((TeamsItineraryController) object).setHomeController(this);
+
+            stage.initModality(Modality.WINDOW_MODAL);
+            stage.initOwner(primaryPane.getScene().getWindow());
 
             stage.show();
         }else if (object instanceof RestrictionsController) {
@@ -278,9 +291,11 @@ public class HomeController implements Initializable {
             stage.setResizable(false);
             stage.setScene(new Scene(scale));
 
-
             object = loader.getController();
             ((RestrictionsController) object).setHomeController(this);
+
+            stage.initModality(Modality.WINDOW_MODAL);
+            stage.initOwner(primaryPane.getScene().getWindow());
 
             stage.show();
         }else if (object instanceof CalendarController) {
@@ -320,6 +335,9 @@ public class HomeController implements Initializable {
 
             object = loader.getController();
             ((CrudsController) object).setHomeController(this);
+
+            stage.initModality(Modality.WINDOW_MODAL);
+            stage.initOwner(primaryPane.getScene().getWindow());
 
             stage.show();
         }

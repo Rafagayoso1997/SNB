@@ -3,6 +3,8 @@ package controller;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXListView;
 import file_management.ReadFiles;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -10,6 +12,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.SelectionMode;
 import javafx.scene.control.Spinner;
 import javafx.scene.control.SpinnerValueFactory;
+import javafx.scene.control.TextFormatter;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Paint;
 import javafx.util.Duration;
@@ -63,7 +66,7 @@ public class AdvanceConfigurationController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         iterationsSpinner.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(1,Integer.MAX_VALUE, Controller.getSingletonController().getIterations()));
-        iterationsSpinner.getValueFactory().setValue(Controller.getSingletonController().getIterations());
+        //iterationsSpinner.getValueFactory().setValue(Controller.getSingletonController().getIterations());
 
         List<String> mutationsRead = ReadFiles.readMutations();
         List<String> mutations = new ArrayList<>();
@@ -85,8 +88,16 @@ public class AdvanceConfigurationController implements Initializable {
             }
             mutationListView.getSelectionModel().selectIndices(-1, array);
         }
-    }
 
+       iterationsSpinner.getEditor().setTextFormatter(new TextFormatter<>(change ->
+                (change.getControlNewText().matches("\\d{0,9}?")) ? change : null));
+
+        iterationsSpinner.focusedProperty().addListener((observable, oldValue, newValue) -> {
+            if(!newValue){
+                iterationsSpinner.getValueFactory().setValue(Integer.parseInt(iterationsSpinner.getEditor().getText()));
+            }
+        });
+    }
 /*
     @FXML
     void openDuelSelection(ActionEvent event) throws IOException {
@@ -111,6 +122,7 @@ public class AdvanceConfigurationController implements Initializable {
 
     @FXML
     void saveNewAdvancesConfigurations(ActionEvent event) throws IOException {
+        System.out.println(iterationsSpinner.getValueFactory().getValue());
         ArrayList<Integer> indexesMutations = new ArrayList<>(mutationListView.getSelectionModel().getSelectedIndices());
         if (indexesMutations.isEmpty()) {
             notification = getNotification();

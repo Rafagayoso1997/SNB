@@ -80,3 +80,50 @@
             transparent;
     -fx-border-insets: 0 10 1 0;
 }
+
+.table-cruds {
+
+    -fx-base: white;
+    -fx-control-inner-background: white;
+    -fx-background-color: white;
+    -fx-table-cell-border-color: transparent;
+    -fx-table-header-border-color: transparent;
+    -fx-padding: 5;
+}
+
+.table-cruds .column-header-background {
+    -fx-background-color: transparent;
+}
+
+.table-cruds .column-header, .table-cruds .filler {
+    -fx-size: 60pt;
+    -fx-border-width: 0 0 1 0;
+    -fx-background-color: transparent;
+    -fx-border-color:
+            transparent
+            transparent
+            derive(-fx-base, 80%)
+            transparent;
+    -fx-border-insets: 0 10 1 0;
+}
+
+.table-cruds .column-header .label {
+    -fx-font-size: 22px;
+    -fx-font-family: "Segoe UI Light";
+    -fx-text-fill: #2f2484;
+    -fx-alignment: center;
+    -fx-opacity: 1;
+}
+
+.table-cruds:focused .table-row-cell:filled:focused:selected {
+    -fx-background-color: -fx-focus-color;
+}
+
+.table-cell{
+    /*-fx-pref-width: 548;*/
+    -fx-border-color: -fx-box-border transparent transparent;
+    -fx-font: 21px "Segoe UI Symbol";
+    -fx-text-fill: #2f2484;
+    -fx-alignment: CENTER;
+    -fx-background-color:white;
+}

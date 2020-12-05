@@ -91,6 +91,7 @@ public class ReadExcel {
         aux.getConfiguration().setSecondPlace((int)rowIteratorData.next().getCell(0).getNumericCellValue());
         aux.getConfiguration().setSecondRoundCalendar(rowIteratorData.next().getCell(0).getBooleanCellValue());
         aux.getConfiguration().setSymmetricSecondRound(rowIteratorData.next().getCell(0).getBooleanCellValue());
+        aux.getConfiguration().setOccidenteVsOriente(rowIteratorData.next().getCell(0).getBooleanCellValue());
         aux.getConfiguration().setMaxLocalGamesInARow((int)rowIteratorData.next().getCell(0).getNumericCellValue());
         aux.getConfiguration().setMaxVisitorGamesInARow((int)rowIteratorData.next().getCell(0).getNumericCellValue());
 

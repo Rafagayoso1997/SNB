@@ -46,6 +46,9 @@ public class CrudsController implements Initializable {
     private JFXTextField acronymTextField;
 
     @FXML
+    private JFXComboBox<String> locationComboBox;
+
+    @FXML
     private Spinner<Integer> distanceSpinner;
 
     @FXML
@@ -73,10 +76,11 @@ public class CrudsController implements Initializable {
     private TableColumn<Table, String> columnAcro;
 
     @FXML
-    private TableColumn<Table, JFXTextField> columnDistance;
+    private TableColumn<Table, String> columnLocation;
 
     @FXML
-    private JFXButton restoreBtn;
+    private TableColumn<Table, JFXTextField> columnDistance;
+
 
     @FXML
     private JFXComboBox<String> teamsComboBox;
@@ -88,6 +92,7 @@ public class CrudsController implements Initializable {
         notification = new TrayNotification();
         columnName.setCellValueFactory(new PropertyValueFactory<Table, String>("name"));
         columnAcro.setCellValueFactory(new PropertyValueFactory<Table, String>("acronym"));
+        columnLocation.setCellValueFactory(new PropertyValueFactory<Table, String>("location"));
         columnDistance.setCellValueFactory(new PropertyValueFactory<Table, JFXTextField>("distance"));
 
         nameTextField.setTextFormatter(new TextFormatter<>(change ->
@@ -98,6 +103,8 @@ public class CrudsController implements Initializable {
 
         ObservableList<String> comboTeams = FXCollections.observableArrayList(Controller.getSingletonController().getTeams());
         teamsComboBox.setItems(comboTeams);
+        locationComboBox.setItems(FXCollections.observableArrayList("Occidental","Oriental"));
+
         setListenerForComboBox();
         modifyBtn.setDisable(true);
         deleteBtn.setDisable(true);
@@ -130,6 +137,7 @@ public class CrudsController implements Initializable {
 
         ArrayList<String> namesList = Controller.getSingletonController().getTeams();
         ArrayList<String> acroList = Controller.getSingletonController().getAcronyms();
+        ArrayList<String> locationsList = Controller.getSingletonController().getLocations();
 
         for (int i = 0; i < namesList.size(); i++) {
             JFXTextField textField = new JFXTextField();
@@ -138,7 +146,7 @@ public class CrudsController implements Initializable {
                     (change.getControlNewText().matches("\\d{0,9}(\\d[.]\\d{0,2})?")) ? change : null));
 
             textField.setText("0.0");
-            data.add(new Table(namesList.get(i), acroList.get(i), textField));
+            data.add(new Table(namesList.get(i), acroList.get(i), locationsList.get(i), textField));
         }
         table.setItems(data);
     }
@@ -149,6 +157,7 @@ public class CrudsController implements Initializable {
 
         String teamName = nameTextField.getText();
         String acro = acronymTextField.getText();
+        String  location = locationComboBox.getSelectionModel().getSelectedItem();
         acro = acro.toUpperCase();
         Double distances[] = new Double[Controller.getSingletonController().getTeams().size()];
 
@@ -193,13 +202,13 @@ public class CrudsController implements Initializable {
                                         (change.getControlNewText().matches("\\d{0,9}(\\d[.]\\d{0,2})?")) ? change : null));
 
                                 textField.setText("0.0");
-                                Table newTableRow = new Table(teamName, acro, textField);
+                                Table newTableRow = new Table(teamName, acro, location, textField);
                                 data.add(newTableRow);
 
                                 //addModifyDistancesToController(distances,distances.length);
 
                                 int pos = Controller.getSingletonController().getTeams().size() + 1;
-                                CrudsFiles.addModifyTeamToData(teamName, acro, distances, pos);
+                                CrudsFiles.addModifyTeamToData(teamName, acro, location, distances, pos);
 
                                 Controller.getSingletonController().createTeams("src/files/Data.xlsx");
                                 Controller.getSingletonController().fillMatrixDistance();
@@ -238,6 +247,7 @@ public class CrudsController implements Initializable {
         int pos = teamsComboBox.getSelectionModel().getSelectedIndex();
         String teamName = nameTextField.getText();
         String acro = acronymTextField.getText();
+        String location = locationComboBox.getSelectionModel().getSelectedItem();
         acro = acro.toUpperCase();
         Double distances[] = new Double[Controller.getSingletonController().getTeams().size()];
 
@@ -272,11 +282,12 @@ public class CrudsController implements Initializable {
 
                             data.get(pos).setName(teamName);
                             data.get(pos).setAcronym(acro);
+                            data.get(pos).setLocation(location);
 
                             //addModifyDistancesToController(distances,distances.length);
 
 
-                            CrudsFiles.addModifyTeamToData(teamName, acro, distances, pos+1);
+                            CrudsFiles.addModifyTeamToData(teamName, acro, location, distances, pos+1);
 
                             Controller.getSingletonController().createTeams("src/files/Data.xlsx");
                             Controller.getSingletonController().fillMatrixDistance();
@@ -330,6 +341,7 @@ public class CrudsController implements Initializable {
     void restore() {
         nameTextField.clear();
         acronymTextField.clear();
+        locationComboBox.getSelectionModel().clearSelection();
         teamsComboBox.getSelectionModel().clearSelection();
         data.clear();
         fillColumns();
@@ -358,6 +370,7 @@ public class CrudsController implements Initializable {
                     int pos = Controller.getSingletonController().getTeams().indexOf(newValue);
                     nameTextField.setText(Controller.getSingletonController().getTeams().get(pos));
                     acronymTextField.setText(Controller.getSingletonController().getAcronyms().get(pos));
+                    locationComboBox.getSelectionModel().select(Controller.getSingletonController().getLocations().get(pos));
 
                     double distancesRow[] = Controller.getSingletonController().getMatrixDistance()[pos];
 

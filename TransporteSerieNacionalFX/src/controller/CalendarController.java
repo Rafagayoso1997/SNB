@@ -8,6 +8,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -81,7 +82,8 @@ public class CalendarController implements Initializable {
         for(int i=0; i < calendarsList.size();i++){
             ArrayList<Date> calendar = calendarsList.get(i);
             JFXTabPane currentCalendarTabPane = new JFXTabPane();
-            String id = controller.getConfigurations().get(i).getCalendarId();
+            CalendarConfiguration configuration = controller.getConfigurations().get(i);
+            String id = configuration.getCalendarId();
             //currentCalendarTabPane.setPrefHeight(calendarsTabPane.getHeight());
             for(int j=0; j < calendar.size();j++){
                 TableView<Duel> table = new TableView<Duel>();
@@ -105,6 +107,17 @@ public class CalendarController implements Initializable {
                 tab.setContent(table);
                 tables.add(table);
                 currentCalendarTabPane.getTabs().add(tab);
+                if(calendar.size()-j == 1){
+                   ArrayList<Integer> rest = addRestToCalendar(calendar,configuration);
+                    //System.out.println(rest);
+                    for (Integer restDate:
+                         rest) {
+                        Label label = new Label("Descanso");
+                        Tab t = new Tab("Descanso");
+                        t.setContent(label);
+                        currentCalendarTabPane.getTabs().add(restDate,t);
+                    }
+                }
             }
             Tab tab =  new Tab(id);
             tab.setContent(currentCalendarTabPane);
@@ -120,86 +133,20 @@ public class CalendarController implements Initializable {
                 }
         );
 
-        //System.out.println("Mutaciones a oplicar " +controller.getMutationsIndexes().size());
-        //boolean generated = controller.isGeneratedCalendar();
-        //boolean copied = controller.isCopied();
-
-        //if (copied) {
-          //  calendar = controller.getCalendarCopy();
-            //controller.lessStatistics(calendar);
-            //controller.moreStatistics(calendar);
-       // } else {
-
-           /*if (generated) {
-               if(controller.getCalendar().size() ==0){
-                   try {
-                       controller.generateCalendar();
-                   } catch (IOException e) {
-                       e.printStackTrace();
-                   }
-               }
-
-            }
-            calendar = controller.getCalendar();*/
-            //controller.setItinerary(controller.teamsItinerary(calendar));
-
-
-        /*tables = new ArrayList<>();
-
-        for (int i = 0; i < calendar.size(); i++) {
-            TableView<Duel> table = new TableView<Duel>();
-            TableColumn<Duel, String> col = new TableColumn<>("Local");
-            TableColumn<Duel, String> col2 = new TableColumn<>("Visitante");
-            col.setCellValueFactory(new PropertyValueFactory<>("local"));
-            col2.setCellValueFactory(new PropertyValueFactory<>("visitor"));
-
-            ObservableList<TableColumn<Duel, ?>> columns = table.getColumns();
-            columns.add(col);
-            columns.add(col2);
-            for (int j = 0; j < calendar.get(i).getGames().size(); j++) {
-                int posLocal = calendar.get(i).getGames().get(j).get(0);
-                int posVisitor = calendar.get(i).getGames().get(j).get(1);
-                table.getItems().add(new Duel(controller.getTeams().get(posLocal), controller.getTeams().get(posVisitor)));
-            }
-
-            Tab tab = new Tab("Fecha " + (i + 1));
-            tab.setContent(table);
-            tables.add(table);
-            calendarTabPane.getTabs().add(tab);
-        }*/
-
     }
 
-    /*@FXML
-    void exportCalendar(ActionEvent event) {
-        AnchorPane popupExportPane = new AnchorPane();
-        VBox vBoxExport = new VBox();
-        JFXButton btnExportCalendar = new JFXButton("Exportar Calendario");
-        btnExportCalendar.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/resources/exportar.png"))));
-        btnExportCalendar.setCursor(Cursor.HAND);
+    private ArrayList<Integer> addRestToCalendar(ArrayList<Date> calendar, CalendarConfiguration configuration){
+        ArrayList<Integer> rest = new ArrayList<>();
+        ArrayList<ArrayList<Integer>> itinerary = controller.teamsItinerary(calendar, configuration, null);
+        ArrayList<Integer> teams= configuration.getTeamsIndexes();
+        for(int i=1; i < itinerary.size()-1;i++){
+           if(itinerary.get(i).containsAll(teams)){
+               rest.add(i);
+           }
+        }
+        return rest;
+    }
 
-        JFXButton btnExportItinerary = new JFXButton("Exportar Itinerario");
-        btnExportItinerary.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/resources/exportar.png"))));
-        btnExportItinerary.setCursor(Cursor.HAND);
-
-        vBoxExport.getChildren().add(btnExportCalendar);
-        vBoxExport.getChildren().add(btnExportItinerary);
-
-        popupExportPane.getChildren().add(vBoxExport);
-        JFXPopup popupExport = new JFXPopup(popupExportPane);
-
-
-        btnExportCalendar.setOnAction(event1 -> {
-            ExportFiles.exportCalendarInExcelFormat(this.tables);
-            popupExport.hide();
-        });
-        btnExportItinerary.setOnAction(event1 -> {
-            ExportFiles.exportItineraryInExcelFormat();
-            popupExport.hide();
-        });
-
-        popupExport.show(exportBtn, JFXPopup.PopupVPosition.BOTTOM, JFXPopup.PopupHPosition.RIGHT);
-    }*/
 
     @FXML
     void showConfiguration(ActionEvent event) {
@@ -265,42 +212,8 @@ public class CalendarController implements Initializable {
 
     @FXML
     void closeSelectedTab(ActionEvent event) {
-        /*
-        for (ArrayList<Date> lis: Controller.getSingletonController().getCalendarsList()) {
-            System.out.println("Calendario: ");
-            System.out.println(lis.get(0).getGames());
-            System.out.println();
-        }
-
-        for (CalendarConfiguration lis: Controller.getSingletonController().getConfigurations()) {
-            System.out.println("Identificadores: ");
-            System.out.println(lis.getCalendarId());
-            System.out.println();
-        }
-
-        System.out.println("Calendario seleccionado: " + selectedCalendar);
 
 
-        System.out.println("Calendario seleccionado" + Controller.getSingletonController().getCalendarsList().get(selectedCalendar).get(0).getGames());
-        System.out.println("Configuracion seleccionada" + Controller.getSingletonController().getConfigurations().get(selectedCalendar).getCalendarId());
-*/
-        Controller.getSingletonController().getCalendarsList().remove(selectedCalendar);
-        Controller.getSingletonController().getConfigurations().remove(selectedCalendar);
-        calendarsTabPane.getTabs().remove(selectedCalendar);
-
-/*
-        System.out.println("Despues de eliminar: ");
-        for (ArrayList<Date> lis: Controller.getSingletonController().getCalendarsList()) {
-            System.out.println("Calendario: ");
-            System.out.println(lis.get(0).getGames());
-            System.out.println();
-        }
-
-        for (CalendarConfiguration lis: Controller.getSingletonController().getConfigurations()) {
-            System.out.println("Identificadores: ");
-            System.out.println(lis.getCalendarId());
-            System.out.println();
-        }*/
     }
 
     private void showNotification(String title, String message) {

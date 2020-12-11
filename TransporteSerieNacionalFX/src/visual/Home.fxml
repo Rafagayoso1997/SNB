@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="primaryPane" maxHeight="1920.0" maxWidth="1920.0" minHeight="678.0" minWidth="829.0" prefHeight="768.0" prefWidth="1360.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.HomeController">
+<AnchorPane fx:id="primaryPane" maxHeight="1920.0" maxWidth="1920.0" minHeight="678.0" minWidth="829.0" prefHeight="768.0" prefWidth="1360.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.HomeController">
     <GridPane prefHeight="768.0" prefWidth="1360.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="675.0" minWidth="10.0" percentWidth="15.4" prefWidth="210.0" />
@@ -25,24 +25,21 @@
             <RowConstraints maxHeight="630.0" minHeight="10.0" percentHeight="82.2" prefHeight="630.0" vgrow="SOMETIMES" />
         </rowConstraints>
         <children>
-            <AnchorPane prefHeight="657.0" prefWidth="213.0" style="-fx-background-color: #2F2484; -fx-background-radius: 0 70 0 0;" GridPane.rowIndex="1">
+            <AnchorPane prefHeight="510.0" prefWidth="209.0" style="-fx-background-color: #2F2484; -fx-background-radius: 0 70 0 0;" GridPane.rowIndex="1">
                 <children>
-                    <GridPane prefHeight="625.0" prefWidth="209.0">
+                    <GridPane layoutY="59.0" prefHeight="572.0" prefWidth="209.0">
                         <columnConstraints>
                             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                         </columnConstraints>
                         <rowConstraints>
-                            <RowConstraints maxHeight="175.0" minHeight="7.0" percentHeight="8.0" prefHeight="139.0" vgrow="SOMETIMES" />
                             <RowConstraints maxHeight="357.0" minHeight="0.0" percentHeight="16.6" prefHeight="0.0" vgrow="SOMETIMES" />
                             <RowConstraints minHeight="10.0" percentHeight="16.6" prefHeight="30.0" vgrow="SOMETIMES" />
-                            <RowConstraints maxHeight="357.0" minHeight="10.0" percentHeight="16.6" prefHeight="292.0" vgrow="SOMETIMES" />
-                            <RowConstraints maxHeight="357.0" minHeight="10.0" percentHeight="16.6" prefHeight="78.0" vgrow="SOMETIMES" />
-                            <RowConstraints maxHeight="357.0" minHeight="10.0" percentHeight="16.6" prefHeight="92.0" vgrow="SOMETIMES" />
-                            <RowConstraints maxHeight="357.0" minHeight="10.0" percentHeight="16.6" prefHeight="103.0" vgrow="SOMETIMES" />
-                            <RowConstraints maxHeight="357.0" minHeight="10.0" percentHeight="8.0" prefHeight="53.0" vgrow="SOMETIMES" />
+                            <RowConstraints maxHeight="357.0" minHeight="10.0" percentHeight="16.6" prefHeight="149.0" vgrow="SOMETIMES" />
+                            <RowConstraints maxHeight="357.0" minHeight="10.0" percentHeight="16.6" prefHeight="184.0" vgrow="SOMETIMES" />
+                            <RowConstraints maxHeight="357.0" minHeight="10.0" percentHeight="16.6" prefHeight="26.0" vgrow="SOMETIMES" />
                         </rowConstraints>
                         <children>
-                            <JFXButton fx:id="buttonInfromation" alignment="CENTER_RIGHT" buttonType="RAISED" graphicTextGap="10.0" onAction="#showInformation" prefHeight="66.0" prefWidth="166.0" ripplerFill="WHITE" stylesheets="@../styles/PrincipalMenu.css" text="Ayuda     " textAlignment="RIGHT" textFill="WHITE" wrapText="true" GridPane.halignment="CENTER" GridPane.rowIndex="6">
+                            <JFXButton fx:id="buttonInfromation" alignment="CENTER_RIGHT" buttonType="RAISED" graphicTextGap="10.0" onAction="#showInformation" prefHeight="66.0" prefWidth="166.0" ripplerFill="WHITE" stylesheets="@../styles/PrincipalMenu.css" text="Ayuda     " textAlignment="RIGHT" textFill="WHITE" wrapText="true" GridPane.halignment="CENTER" GridPane.rowIndex="4">
                                 <font>
                                     <Font name="Segoe UI Symbol" size="16.0" />
                                 </font>
@@ -60,7 +57,7 @@
                                     <Tooltip text="Información sobre la aplicación" />
                                 </tooltip>
                             </JFXButton>
-                            <JFXButton fx:id="dataBtn" alignment="CENTER_RIGHT" buttonType="RAISED" graphicTextGap="12.0" onAction="#showData" prefHeight="66.0" prefWidth="166.0" ripplerFill="WHITE" stylesheets="@../styles/PrincipalMenu.css" text="Datos     " textAlignment="RIGHT" textFill="WHITE" wrapText="true" GridPane.halignment="CENTER" GridPane.rowIndex="5">
+                            <JFXButton fx:id="dataBtn" alignment="CENTER_RIGHT" buttonType="RAISED" graphicTextGap="12.0" onAction="#showData" prefHeight="66.0" prefWidth="166.0" ripplerFill="WHITE" stylesheets="@../styles/PrincipalMenu.css" text="Datos     " textAlignment="RIGHT" textFill="WHITE" wrapText="true" GridPane.halignment="CENTER" GridPane.rowIndex="3">
                                 <font>
                                     <Font name="Segoe UI Symbol" size="16.0" />
                                 </font>
@@ -78,7 +75,7 @@
                                     <Tooltip text="Datos a utilizar para la generación del calendario" />
                                 </tooltip>
                             </JFXButton>
-                            <JFXButton fx:id="buttonImportCalendar" alignment="CENTER_RIGHT" buttonType="RAISED" graphicTextGap="12.0" onAction="#importCalendar" prefHeight="66.0" prefWidth="166.0" ripplerFill="WHITE" stylesheets="@../styles/PrincipalMenu.css" text="Importar  " textAlignment="RIGHT" textFill="WHITE" wrapText="true" GridPane.halignment="CENTER" GridPane.rowIndex="2">
+                            <JFXButton fx:id="buttonImportCalendar" alignment="CENTER_RIGHT" buttonType="RAISED" graphicTextGap="12.0" onAction="#importCalendar" prefHeight="66.0" prefWidth="166.0" ripplerFill="WHITE" stylesheets="@../styles/PrincipalMenu.css" text="Importar  " textAlignment="RIGHT" textFill="WHITE" wrapText="true" GridPane.halignment="CENTER" GridPane.rowIndex="1">
                                 <font>
                                     <Font name="Segoe UI Symbol" size="16.0" />
                                 </font>
@@ -96,7 +93,7 @@
                                     <Tooltip text="Permite importar un calendario desde un fichero Excel y modificarlo" />
                                 </tooltip>
                             </JFXButton>
-                            <JFXButton fx:id="buttonCalendar" alignment="CENTER_RIGHT" buttonType="RAISED" graphicTextGap="12.0" onAction="#showCalendar" prefHeight="66.0" prefWidth="166.0" ripplerFill="WHITE" stylesheets="@../styles/PrincipalMenu.css" text="Calendario" textAlignment="RIGHT" textFill="WHITE" wrapText="true" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+                            <JFXButton fx:id="buttonCalendar" alignment="CENTER_RIGHT" buttonType="RAISED" graphicTextGap="12.0" onAction="#showCalendar" prefHeight="66.0" prefWidth="166.0" ripplerFill="WHITE" stylesheets="@../styles/PrincipalMenu.css" text="Calendario" textAlignment="RIGHT" textFill="WHITE" wrapText="true" GridPane.halignment="CENTER">
                                 <font>
                                     <Font name="Segoe UI Symbol" size="16.0" />
                                 </font>
@@ -114,7 +111,7 @@
                                     <Tooltip text="Calendario generado para el torneo" />
                                 </tooltip>
                             </JFXButton>
-                            <JFXButton fx:id="buttonExportCalendar" alignment="CENTER_RIGHT" buttonType="RAISED" graphicTextGap="12.0" lineSpacing="10.0" onAction="#exportCalendar" prefHeight="66.0" prefWidth="166.0" ripplerFill="WHITE" stylesheets="@../styles/PrincipalMenu.css" text="Exportar  " textAlignment="RIGHT" textFill="WHITE" wrapText="true" GridPane.halignment="CENTER" GridPane.rowIndex="3">
+                            <JFXButton fx:id="buttonExportCalendar" alignment="CENTER_RIGHT" buttonType="RAISED" graphicTextGap="12.0" lineSpacing="10.0" onAction="#exportCalendar" prefHeight="66.0" prefWidth="166.0" ripplerFill="WHITE" stylesheets="@../styles/PrincipalMenu.css" text="Exportar  " textAlignment="RIGHT" textFill="WHITE" wrapText="true" GridPane.halignment="CENTER" GridPane.rowIndex="2">
                                 <font>
                                     <Font name="Segoe UI Symbol" size="16.0" />
                                 </font>
@@ -130,24 +127,6 @@
                                 </graphic>
                                 <tooltip>
                                     <Tooltip text="Permite importar un calendario desde un fichero Excel y modificarlo" />
-                                </tooltip>
-                            </JFXButton>
-                            <JFXButton fx:id="buttonTeam" alignment="CENTER_RIGHT" buttonType="RAISED" graphicTextGap="12.0" onAction="#showTeams" prefHeight="66.0" prefWidth="166.0" ripplerFill="WHITE" stylesheets="@../styles/PrincipalMenu.css" text="Equipos   " textAlignment="RIGHT" textFill="WHITE" wrapText="true" GridPane.halignment="CENTER" GridPane.rowIndex="4">
-                                <font>
-                                    <Font name="Segoe UI Symbol" size="16.0" />
-                                </font>
-                                <cursor>
-                                    <Cursor fx:constant="HAND" />
-                                </cursor>
-                                <graphic>
-                                    <ImageView fitHeight="43.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
-                                        <image>
-                                            <Image url="@../resources/stadium.png" />
-                                        </image>
-                                    </ImageView>
-                                </graphic>
-                                <tooltip>
-                                    <Tooltip text="Listado de los equipos participantes en el torneo" />
                                 </tooltip>
                             </JFXButton>
                         </children>

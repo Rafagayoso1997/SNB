@@ -1033,13 +1033,24 @@ public class Controller {
             }
         }
         else{
+
+            for (int k = 0; k < teamsIndexes.size(); k++) {
+                row.add(-1);
+            }
+
             for (int k = 0; k < dateToStart.getGames().size(); k++) {
-                for (int l = 0; l < dateToStart.getGames().get(k).size(); l++) {
-                    row.add(dateToStart.getGames().get(k).get(l));
-                }
+
+                int local = dateToStart.getGames().get(k).get(0);
+                int visitor = dateToStart.getGames().get(k).get(1);
+
+                int posLocal = teamsIndexes.indexOf(local);
+                int posVisitor = teamsIndexes.indexOf(visitor);
+
+                row.set(posLocal, local);
+                row.set(posVisitor, local);
+
             }
         }
-
         teamDate.add(row);
 
         if(configuration.isInauguralGame() && dateToStart == null){
@@ -1103,19 +1114,24 @@ public class Controller {
     }
 
     public int checkLongTrips(ArrayList<ArrayList<Integer>> itinerary, ArrayList<Integer> teamsIndexes) {
+
         int count = 0;
         ArrayList<Double> distances = new ArrayList<>(teamsIndexes.size());
         for (int i = 0; i < teamsIndexes.size(); i++) {
             distances.add(0.0);
         }
+
         for (int i = 0; i < itinerary.size() - 1; i++) {
             ArrayList<Integer> row1 = itinerary.get(i);
             ArrayList<Integer> row2 = itinerary.get(i + 1);
+
             for (int j = 0; j < itinerary.get(i).size(); j++) {
                 int first = row1.get(j);
                 int second = row2.get(j);
+
                 double dist = matrixDistance[second][first];
                 distances.set(j, distances.get(j) + dist);
+
                 if (distances.get(j) > 2000) {
                     count++;
                 }

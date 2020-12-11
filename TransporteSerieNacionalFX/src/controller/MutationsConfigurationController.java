@@ -157,41 +157,35 @@ public class MutationsConfigurationController implements Initializable {
                     selectMutations.setVisible(true);
                     removeMutations.setVisible(true);
                 }
-                /*int position = (int) newValue;
-                ArrayList<Boolean> values = booleanValues.get(position);
-                comboDate1.setVisible(values.get(0));
-                comboDate2.setVisible(values.get(1));
-                comboDuel1.setVisible(values.get(2));
-                comboDuel2.setVisible(values.get(3));
-*/
             }
         });
-
 
         selectedMutationListView.getSelectionModel().selectedIndexProperty().addListener(new ChangeListener<Number>() {
             @Override
             public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
 
-                int positionNew = positionsMutationsSelected.get((int) newValue);
-                ArrayList<Boolean> values = booleanValues.get(positionNew);
-                comboDate1.setVisible(values.get(0));
-                comboDate2.setVisible(values.get(1));
-                comboDuel1.setVisible(values.get(2));
-                comboDuel2.setVisible(values.get(3));
+                if ((int)newValue != -1){
+                    int positionNew = positionsMutationsSelected.get((int) newValue);
+                    ArrayList<Boolean> values = booleanValues.get(positionNew);
+                    comboDate1.setVisible(values.get(0));
+                    comboDate2.setVisible(values.get(1));
+                    comboDuel1.setVisible(values.get(2));
+                    comboDuel2.setVisible(values.get(3));
 
-                if ((int) oldValue != -1) {
-                    int positionOld = positionsMutationsSelected.get((int) oldValue);
-                    configurationsList.get(positionOld).set(0, comboDate1.getSelectionModel().getSelectedIndex());
-                    configurationsList.get(positionOld).set(1, comboDate2.getSelectionModel().getSelectedIndex());
-                    configurationsList.get(positionOld).set(2, comboDuel1.getSelectionModel().getSelectedIndex());
-                    configurationsList.get(positionOld).set(3, comboDuel2.getSelectionModel().getSelectedIndex());
+                    if ((int) oldValue != -1) {
+                        int positionOld = positionsMutationsSelected.get((int) oldValue);
+                        configurationsList.get(positionOld).set(0, comboDate1.getSelectionModel().getSelectedIndex());
+                        configurationsList.get(positionOld).set(1, comboDate2.getSelectionModel().getSelectedIndex());
+                        configurationsList.get(positionOld).set(2, comboDuel1.getSelectionModel().getSelectedIndex());
+                        configurationsList.get(positionOld).set(3, comboDuel2.getSelectionModel().getSelectedIndex());
+                    }
+                    System.out.println("Lista de configuraciones");
+                    System.out.println(configurationsList);
+                    comboDate1.getSelectionModel().select(configurationsList.get(positionNew).get(0));
+                    comboDate2.getSelectionModel().select(configurationsList.get(positionNew).get(1));
+                    comboDuel1.getSelectionModel().select(configurationsList.get(positionNew).get(2));
+                    comboDuel2.getSelectionModel().select(configurationsList.get(positionNew).get(3));
                 }
-                System.out.println("Lista de configuraciones");
-                System.out.println(configurationsList);
-                comboDate1.getSelectionModel().select(configurationsList.get(positionsMutationsSelected.get((int) newValue)).get(0));
-                comboDate2.getSelectionModel().select(configurationsList.get(positionsMutationsSelected.get((int) newValue)).get(1));
-                comboDuel1.getSelectionModel().select(configurationsList.get(positionsMutationsSelected.get((int) newValue)).get(2));
-                comboDuel2.getSelectionModel().select(configurationsList.get(positionsMutationsSelected.get((int) newValue)).get(3));
             }
         });
 
@@ -262,28 +256,34 @@ public class MutationsConfigurationController implements Initializable {
         System.out.println(selectedMutationListView.getSelectionModel().getSelectedIndex());
 
 
-        int lastPosSelected = selectedMutationListView.getItems().size();
-        //si no seleccionas ninguna configuracion para las mutaciones
+        int atLestOneMutationSelected = selectedMutationListView.getItems().size();
+
         ArrayList<Date> calendar = Controller.getSingletonController().getCalendarsList().get(selectedCalendar);
         CalendarConfiguration configuration = Controller.getSingletonController().getConfigurations().get(selectedCalendar);
 
-        if (lastPosSelected != 0) {
-            int realPos = positionsMutationsSelected.get(lastPosSelected);
+        if (atLestOneMutationSelected != 0) {
+            if(selectedMutationListView.getSelectionModel().getSelectedIndex() != -1){
+                int posSelectedMutation = positionsMutationsSelected.get(selectedMutationListView.getSelectionModel().getSelectedIndex());
 
-            if (configuration.isInauguralGame()) {
-                configurationsList.get(realPos).set(0, comboDate1.getSelectionModel().getSelectedIndex() + 1);
-                configurationsList.get(realPos).set(1, comboDate2.getSelectionModel().getSelectedIndex() + 1);
-                configurationsList.get(realPos).set(2, comboDuel1.getSelectionModel().getSelectedIndex() + 1);
-                configurationsList.get(realPos).set(3, comboDuel2.getSelectionModel().getSelectedIndex() + 1);
-            } else {
-                configurationsList.get(realPos).set(0, comboDate1.getSelectionModel().getSelectedIndex());
-                configurationsList.get(realPos).set(1, comboDate2.getSelectionModel().getSelectedIndex());
-                configurationsList.get(realPos).set(2, comboDuel1.getSelectionModel().getSelectedIndex());
-                configurationsList.get(realPos).set(3, comboDuel2.getSelectionModel().getSelectedIndex());
+                configurationsList.get(posSelectedMutation).set(0, comboDate1.getSelectionModel().getSelectedIndex());
+                configurationsList.get(posSelectedMutation).set(1, comboDate2.getSelectionModel().getSelectedIndex());
+                configurationsList.get(posSelectedMutation).set(2, comboDuel1.getSelectionModel().getSelectedIndex());
+                configurationsList.get(posSelectedMutation).set(3, comboDuel2.getSelectionModel().getSelectedIndex());
+
+                if (configuration.isInauguralGame()){
+                    for (int i = 0; i < configurationsList.size(); i++) {
+                        for (int j = 0; j < configurationsList.get(i).size(); j++) {
+                            if(configurationsList.get(i).get(j) != -1){
+                                configurationsList.get(i).set(j, configurationsList.get(i).get(j) + 1);
+                            }
+                        }
+                    }
+                }
+                System.out.println("Lista de configuraciones");
+                System.out.println(configurationsList);
             }
 
             Controller.getSingletonController().setMutationsConfigurationsList(configurationsList);
-            //if(Controller.getSingletonController().getMutationsIndexes().isEmpty())
             Controller.getSingletonController().setMutationsIndexes(positionsMutationsSelected);
 
             System.out.println("mutaciones seleccionadas: " + positionsMutationsSelected);
@@ -314,7 +314,7 @@ public class MutationsConfigurationController implements Initializable {
 
             AnchorPane structureOver = homeController.getPrincipalPane();
             homeController.createPage(new CalendarController(), structureOver, "/visual/Calendar.fxml");
-            homeController.getButtonReturnSelectionTeamConfiguration().setVisible(false);
+            homeController.getButtonReturnSelectionTeamConfiguration().setVisible(true);
 
         } else {
             TrayNotification notification = new TrayNotification();

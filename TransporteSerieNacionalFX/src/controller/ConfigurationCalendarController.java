@@ -199,40 +199,37 @@ public class ConfigurationCalendarController implements Initializable {
     private void validateData() throws IOException {
         Controller controller = Controller.getSingletonController();
 
-        //ArrayList<Integer> indexes = new ArrayList<>(teamsSelectionListView.getSelectionModel().getSelectedIndices());
         selectedIndexes = new ArrayList<>(teamsSelectionListView.getSelectionModel().getSelectedIndices());
         teamsNames = new ArrayList<>();
-        /*for (int index : indexes) {
-            teamsNames.add(controller.getAcronyms().get(index));
-        }*/
+        int occAmount = 0;
+        int orAmount = 0;
+
         for (int index : selectedIndexes) {
             teamsNames.add(controller.getAcronyms().get(index));
-        }
-        //teamsNames = new ArrayList<>(teamsSelectionListView.getSelectionModel().getSelectedItems());
 
-        /*if (indexes.size() <= 2) {
-            showNotification("Selecci?n de equipos","Debe escoger m?s de dos equipos", false);
-            ok = false;
+            if (occidenteVsOrienteToggle.isSelected()){
+                if (controller.getLocations().get(index).equalsIgnoreCase("Occidental")){
+                    occAmount++;
+                }
+                else{
+                    orAmount++;
+                }
+            }
         }
-        if (indexes.size() % 2 != 0) {
-            showNotification("Selecci?n de equipos","Debe escoger una cantidad par de equipos.", false);
-            ok = false;
-        }*/
+
         if(calendarId.getText().equalsIgnoreCase(" ")||calendarId.getText().equalsIgnoreCase("")){
             showNotification("Debe Introducir el identificador del calendario");
             ok = false;
         }
-        if (selectedIndexes.size() <= 2) {
-            showNotification("Debe escoger más de dos equipos");
+        else if (selectedIndexes.size() <= 2) {
+            showNotification("Debe escoger al menos dos equipos");
             ok = false;
         }
-        /*
-        if (selectedIndexes.size() % 2 != 0) {
-            showNotification("Debe escoger una cantidad par de equipos.");
+        else if(occidenteVsOrienteToggle.isSelected() && (occAmount != orAmount)){
+            showNotification("Las cantidades de equipos seleccionados" + "\n" + " de Oriente y Occidente deben ser iguales");
             ok = false;
-        }*/
-
-        if (inauguralGame.isSelected()) {
+        }
+        else if (inauguralGame.isSelected()) {
             if (champVsSub.isSelected()) {
                 validateChampionAndSubchampion();
             } else {
@@ -240,10 +237,10 @@ public class ConfigurationCalendarController implements Initializable {
                 ok = false;
             }
         }
-
-        if (champVsSub.isSelected()) {
+        else if (champVsSub.isSelected()) {
             validateChampionAndSubchampion();
         }
+
         if (ok) {
             HomeController.escogidos = true;
             teams = selectedIndexes.size();
@@ -275,7 +272,6 @@ public class ConfigurationCalendarController implements Initializable {
             controller.setLastSavedConfiguration(configuration);
 
             showTeamsMatrix(controller.getLastSavedConfiguration());
-
         }
         ok = true;
     }

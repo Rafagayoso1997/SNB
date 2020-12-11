@@ -1,6 +1,7 @@
 package controller;
 
 import com.jfoenix.controls.JFXButton;
+import javafx.beans.binding.Bindings;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
@@ -97,14 +98,7 @@ public class CalendarStatisticsController {
         ArrayList<String> xAxisMoreTeamData = new ArrayList<>();
 
 
-        if(calendarsList.size() == 1){
-            barChartCalendar.setBarGap(0);
-            barChartCalendar.setCategoryGap(900);
-            barChartLessTeam.setBarGap(0);
-            barChartLessTeam.setCategoryGap(900);
-            barChartMoreTeam.setBarGap(0);
-            barChartMoreTeam.setCategoryGap(900);
-        }
+
 
         CalendarStatistic statistics = null;
         for(int i =0; i < calendarsList.size();i++){
@@ -150,6 +144,14 @@ public class CalendarStatisticsController {
 
         setTooltipToChart(barChartMoreTeam);
 
+        if(calendarsList.size() == 1){
+            barChartCalendar.setBarGap(0);
+            barChartCalendar.setCategoryGap(900);
+            barChartLessTeam.setBarGap(0);
+            barChartLessTeam.setCategoryGap(900);
+            barChartMoreTeam.setBarGap(0);
+            barChartMoreTeam.setCategoryGap(900);
+        }
     }
 
 

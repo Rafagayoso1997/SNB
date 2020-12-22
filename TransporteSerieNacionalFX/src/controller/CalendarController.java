@@ -103,13 +103,33 @@ public class CalendarController implements Initializable {
                     table.getItems().add(new Duel(controller.getTeams().get(posLocal), controller.getTeams().get(posVisitor)));
                 }
 
+
                 Tab tab = new Tab("Fecha " + (j + 1));
                 tab.setContent(table);
                 tables.add(table);
                 currentCalendarTabPane.getTabs().add(tab);
+/*
+                if (configuration.isSecondRoundCalendar()){
+                    if (configuration.isInauguralGame()){
+                        if (dateToAdd == configuration.getTeamsIndexes().size()){
+                            Label label = new Label("Descanso");
+                            Tab t = new Tab("Descanso");
+                            t.setContent(label);
+                            currentCalendarTabPane.getTabs().add(t);
+                        }
+                    }
+                    else {
+                        if (dateToAdd == configuration.getTeamsIndexes().size() - 1){
+                            Label label = new Label("Descanso");
+                            Tab t = new Tab("Descanso");
+                            t.setContent(label);
+                            currentCalendarTabPane.getTabs().add(t);
+                        }
+                    }
+                }*/
+
                 if(calendar.size()-j == 1){
                    ArrayList<Integer> rest = addRestToCalendar(calendar,configuration);
-                    //System.out.println(rest);
                     for (Integer restDate:
                          rest) {
                         Label label = new Label("Descanso");
@@ -141,7 +161,7 @@ public class CalendarController implements Initializable {
         ArrayList<Integer> teams= configuration.getTeamsIndexes();
         for(int i=1; i < itinerary.size()-1;i++){
            if(itinerary.get(i).containsAll(teams)){
-               rest.add(i);
+               rest.add(i - 1);
            }
         }
         return rest;
@@ -215,7 +235,6 @@ public class CalendarController implements Initializable {
         Controller.getSingletonController().getCalendarsList().remove(selectedCalendar);
         Controller.getSingletonController().getConfigurations().remove(selectedCalendar);
         calendarsTabPane.getTabs().remove(selectedCalendar);
-
     }
 
     private void showNotification(String title, String message) {

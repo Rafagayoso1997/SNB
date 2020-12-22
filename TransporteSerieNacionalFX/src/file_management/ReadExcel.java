@@ -121,17 +121,17 @@ public class ReadExcel {
 
 
         boolean secondRound = aux.getConfiguration().isSecondRoundCalendar();
-        int countRow = 1;
+        int cantRealRowAdded = 0;
         boolean imparTeams = false;
-        int restMoment = aux.getConfiguration().getTeamsIndexes().size();
+        int restMoment = aux.getConfiguration().getTeamsIndexes().size() - 1;
         if (aux.getConfiguration().getTeamsIndexes().size() %2 != 0){
             imparTeams = true;
-            restMoment += 1;
+            //restMoment += 1;
         }
 
         while (rowIterator.hasNext()){
             Row row = rowIterator.next();
-            if (!secondRound || (secondRound && countRow != restMoment)){
+            if (!secondRound || (secondRound && cantRealRowAdded != restMoment)){
 
                 Date date = new Date();
                 Iterator<Cell> cellIterator = row.cellIterator();
@@ -174,7 +174,7 @@ public class ReadExcel {
                 }
                 calendar.add(date);
             }
-            countRow++;
+            cantRealRowAdded++;
         }
 
         aux.setCalendar(calendar);

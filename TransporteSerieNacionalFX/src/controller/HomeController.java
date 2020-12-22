@@ -138,8 +138,8 @@ public class HomeController implements Initializable {
                 Controller.getSingletonController().getConfigurations().add(aux.getConfiguration());
 
                 notification = getNotification();
-                notification.setTitle("Importaci�n de Calendario");
-                notification.setMessage("Calendario importado con ?xito");
+                notification.setTitle("Importación de Calendario");
+                notification.setMessage("Calendario importado con éxito");
                 notification.setNotificationType(NotificationType.SUCCESS);
                 notification.setRectangleFill(Paint.valueOf("#2F2484"));
                 notification.setAnimationType(AnimationType.FADE);

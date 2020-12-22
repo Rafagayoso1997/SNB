@@ -217,8 +217,14 @@ public class ConfigurationCalendarController implements Initializable {
             }
         }
 
+        boolean alreadyExisteName = controller.existCalendarName(calendarId.getText());
+
         if(calendarId.getText().equalsIgnoreCase(" ")||calendarId.getText().equalsIgnoreCase("")){
             showNotification("Debe Introducir el identificador del calendario");
+            ok = false;
+        }
+        else if(alreadyExisteName){
+            showNotification("Ya existe ese identificador del calendario");
             ok = false;
         }
         else if (selectedIndexes.size() <= 2) {

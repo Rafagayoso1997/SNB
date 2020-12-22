@@ -1074,11 +1074,15 @@ public class Controller {
             teamDate.add(row);
         }
 
+        int cantRealDatesAdded = 0;
+
+
         for (int i = startPosition; i < calendar.size(); i++) {
 
             if (configuration.isSecondRoundCalendar()) {
 
-                if ((i - 1 + startPosition) == (calendar.size() / 2) + 1) {
+                //if ((i - 1 + startPosition) == (calendar.size() / 2) + 1) {
+                if(cantRealDatesAdded == teamsIndexes.size() - 1){
                     row = new ArrayList<>();
                     for (int j = 0; j < teamsIndexes.size(); j++) {
                         row.add(teamsIndexes.get(j));
@@ -1102,6 +1106,7 @@ public class Controller {
             }
 
             teamDate.add(row);
+            cantRealDatesAdded++;
         }
 
         row = new ArrayList<>();
@@ -1158,6 +1163,9 @@ public class Controller {
         if (!mutationsConfigurationsList.isEmpty()) {
             selectedDate = mutationsConfigurationsList.get(number).get(0);
             dateToChange = mutationsConfigurationsList.get(number).get(1);
+            if(inauguralGame){
+                startPosition = 1;
+            }
         }
         else{
             if(inauguralGame && !occidentVsOrient){
@@ -1270,6 +1278,9 @@ public class Controller {
         if (!mutationsConfigurationsList.isEmpty()) {
             firstDate = mutationsConfigurationsList.get(number).get(0);
             secondDate = mutationsConfigurationsList.get(number).get(1);
+            if (inauguralGame){
+                startPosition = 1;
+            }
         }
         else{
             if(inauguralGame && !occidentVsOrient){
@@ -1389,6 +1400,9 @@ public class Controller {
                 lastDate = firstDate;
                 firstDate = temp;
             }
+            if (inauguralGame){
+                startPosition = 1;
+            }
         }
         else{
             if(inauguralGame && !occidentVsOrient){
@@ -1441,6 +1455,9 @@ public class Controller {
             posFirstDate = mutationsConfigurationsList.get(number).get(0);
             posLastDate = mutationsConfigurationsList.get(number).get(1);
             posFirstDuel = mutationsConfigurationsList.get(number).get(2);
+            if (inauguralGame){
+                startPosition = 1;
+            }
         }
         else{
             if(inauguralGame && !occidentVsOrient){
@@ -1913,6 +1930,24 @@ public class Controller {
             default:
                 throw new IllegalStateException("Unexpected value: " + number);
         }
+    }
+
+    public boolean existCalendarName(String name){
+    boolean exist =false;
+
+    int i =0;
+
+    while(i < configurations.size() && !exist){
+        if(configurations.get(i).getCalendarId().equalsIgnoreCase(name)){
+            exist = true;
+            break;
+        }
+        else{
+            i++;
+        }
+    }
+
+    return exist;
     }
 
 

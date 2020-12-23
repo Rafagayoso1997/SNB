@@ -232,9 +232,12 @@ public class CalendarController implements Initializable {
 
     @FXML
     void closeSelectedTab(ActionEvent event) {
-        Controller.getSingletonController().getCalendarsList().remove(selectedCalendar);
-        Controller.getSingletonController().getConfigurations().remove(selectedCalendar);
-        calendarsTabPane.getTabs().remove(selectedCalendar);
+        if(controller.getCalendarsList().size()>1){
+            Controller.getSingletonController().getCalendarsList().remove(selectedCalendar);
+            Controller.getSingletonController().getConfigurations().remove(selectedCalendar);
+            calendarsTabPane.getTabs().remove(selectedCalendar);
+        }
+
     }
 
     private void showNotification(String title, String message) {

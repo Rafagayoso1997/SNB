@@ -159,7 +159,7 @@ public class CrudsController implements Initializable {
         String acro = acronymTextField.getText();
         String  location = locationComboBox.getSelectionModel().getSelectedItem();
         acro = acro.toUpperCase();
-        Double distances[] = new Double[Controller.getSingletonController().getTeams().size()];
+        Double[] distances = new Double[Controller.getSingletonController().getTeams().size()];
 
         for (int i = 0; i < data.size(); i++){
             String temp = ((JFXTextField)(data.get(i).getDistance())).getText();
@@ -249,7 +249,7 @@ public class CrudsController implements Initializable {
         String acro = acronymTextField.getText();
         String location = locationComboBox.getSelectionModel().getSelectedItem();
         acro = acro.toUpperCase();
-        Double distances[] = new Double[Controller.getSingletonController().getTeams().size()];
+        Double[] distances = new Double[Controller.getSingletonController().getTeams().size()];
 
         for (int i = 0; i < data.size(); i++){
             String temp = ((JFXTextField)(data.get(i).getDistance())).getText();
@@ -372,7 +372,7 @@ public class CrudsController implements Initializable {
                     acronymTextField.setText(Controller.getSingletonController().getAcronyms().get(pos));
                     locationComboBox.getSelectionModel().select(Controller.getSingletonController().getLocations().get(pos));
 
-                    double distancesRow[] = Controller.getSingletonController().getMatrixDistance()[pos];
+                    double[] distancesRow = Controller.getSingletonController().getMatrixDistance()[pos];
 
                     for(int i = 0; i < data.size(); i++){
                         ((JFXTextField)(data.get(i).getDistance())).setText(Double.toString(distancesRow[i]));

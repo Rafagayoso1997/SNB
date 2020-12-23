@@ -79,7 +79,7 @@ public class MutationsConfigurationController implements Initializable {
 
         this.selectedCalendar = CalendarController.selectedCalendar;
         iterations.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(1, Integer.MAX_VALUE));
-        iterations.getValueFactory().setValue(1);
+        iterations.getValueFactory().setValue(20000);
         mutationsToAdd = new ArrayList<>();
         positionsMutationsSelected = new ArrayList<>();
         booleanValues = new ArrayList<>();

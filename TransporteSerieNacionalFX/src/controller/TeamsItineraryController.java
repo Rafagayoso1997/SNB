@@ -3,6 +3,7 @@ package controller;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXListView;
+import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -36,7 +37,10 @@ public class TeamsItineraryController implements Initializable {
 
     private HomeController homeController;
 
-    private ObservableList<ObservableList> data;
+    private ObservableList<ObservableList> data ;
+
+    @FXML
+
 
 
 
@@ -60,6 +64,7 @@ public class TeamsItineraryController implements Initializable {
     void displayItinerary(ActionEvent event) {
         data = FXCollections.observableArrayList();
 
+
         itineraryTable.getColumns().removeAll(itineraryTable.getColumns());
         itineraryTable.setItems(FXCollections.observableArrayList(new ArrayList<>()));
         ArrayList<Integer> selectedTeams = new ArrayList<>(teamsListView.getSelectionModel().getSelectedIndices());
@@ -69,8 +74,9 @@ public class TeamsItineraryController implements Initializable {
         ArrayList<ArrayList<Integer>> itinerary = controller.teamsItinerary(calendar,configuration, null);
 
         /*
-        Poner el encabezado de las columnas y el valor que va dentro 
+        Poner el encabezado de las columnas y el valor que va dentro
          */
+
         int index=0;
         for (int selectedTeam : selectedTeams) {
             final int j= index;
@@ -88,10 +94,13 @@ public class TeamsItineraryController implements Initializable {
             for (int selectedTeam : selectedTeams) {
                 row.add(controller.getAcronyms().get(current.get(selectedTeam)));
             }
+            System.out.println(row);
             data.add(row);
         }
 
         itineraryTable.setItems(data);
+
+
 
         /*for (int selectedTeam : selectedTeams) {
             ObservableList<String> row = FXCollections.observableArrayList();
@@ -107,7 +116,7 @@ public class TeamsItineraryController implements Initializable {
                 itineraryTable.getItems().add(new TeamItineraryName(team));
             }*/
         //}
-        
+
 
     }
 

@@ -28,102 +28,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f431f424-8f9f-474a-8daa-5cfa5e47082b" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/artifacts/TransporteSerieNacionalFX_jar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/files/Data Metro.xlsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/application/Main.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/controller/AdvanceConfigurationController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/controller/CalendarController$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/controller/CalendarController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/controller/CalendarStatisticsController$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/controller/CalendarStatisticsController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/controller/ConfigurationCalendarController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/controller/CrudsController$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/controller/CrudsController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/controller/HomeController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/controller/MutationsConfigurationController$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/controller/MutationsConfigurationController$2.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/controller/MutationsConfigurationController$3.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/controller/MutationsConfigurationController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/controller/RestrictionsController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/controller/SelectGridController$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/controller/SelectGridController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/controller/TeamsItineraryController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/file_management/CrudsFiles.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/file_management/ExportFiles.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/file_management/ReadExcel.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/file_management/ReadFiles.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/files/2722C500" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/files/C1C1C500" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/files/Copia Data.xlsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/files/D8109520" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/files/Data.xlsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/files/Itinerario del Calendario Serie Nacional no inaugural.xlsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/files/Itinerario del Calendario Serie Nacional.xlsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/files/Mutaciones.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/files/data.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/files/datos - rosete.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/files/datos.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/files/original.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/help/help.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/logic/Auxiliar.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/logic/CalendarConfiguration.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/logic/CalendarStatistic.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/logic/Controller.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/logic/Date.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/logic/Duel.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/logic/LocalVisitorDistance.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/logic/Table.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/resources/bar_chart.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/resources/baseball.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/resources/calendarRestrictions.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/resources/calendario.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/resources/close-button.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/resources/data.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/resources/destination.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/resources/down-arrow.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/resources/exportar.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/resources/icons8-swap-48.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/resources/importar.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/resources/settings.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/resources/snb.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/resources/snb1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/resources/stadium.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/resources/switch.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/resources/teams/Artemisa.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/resources/teams/Camaguey.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/resources/teams/Ciego de Ávila.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/resources/teams/Cienfuegos.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/resources/teams/Granma.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/resources/teams/Guantánamo.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/resources/teams/Holguín.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/resources/teams/Industriales.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/resources/teams/Isla de la Juventud.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/resources/teams/Las Tunas.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/resources/teams/Matanzas.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/resources/teams/Mayabeque.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/resources/teams/Pinar del Río.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/resources/teams/Sancti Spíritus.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/resources/teams/Santiago de Cuba.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/resources/teams/Villa Clara.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/resources/up-arrow.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/styles/PrincipalMenu.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/styles/application.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/visual/AdvanceConfiguration.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/visual/Calendar.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/visual/CalendarStatistics.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/visual/ConfigurationCalendar.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/visual/Cruds.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/visual/Home.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/visual/MutationsConfiguration.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/visual/Restrictions.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/visual/SelectGrid.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/visual/TeamsItinerary.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controller/CalendarController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/CalendarController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controller/ConfigurationCalendarController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/ConfigurationCalendarController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/controller/HomeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/HomeController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/file_management/ReadExcel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/file_management/ReadExcel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/files/Data.xlsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controller/MutationsConfigurationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/MutationsConfigurationController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controller/TeamsItineraryController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/TeamsItineraryController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/file_management/ReadFiles.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/file_management/ReadFiles.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/logic/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/logic/Controller.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/styles/PrincipalMenu.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/PrincipalMenu.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/styles/application.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/application.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/visual/ConfigurationCalendar.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/visual/ConfigurationCalendar.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/visual/Restrictions.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/visual/Restrictions.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/visual/TeamsItinerary.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/visual/TeamsItinerary.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -167,7 +83,7 @@
     <property name="aspect.path.notification.shown" value="true" />
     <property name="extract.method.default.visibility" value="private" />
     <property name="last_directory_selection" value="$PROJECT_DIR$/src/application" />
-    <property name="last_opened_file_path" value="$USER_HOME$/Desktop" />
+    <property name="last_opened_file_path" value="$USER_HOME$/AppData/Local/SceneBuilder/SceneBuilder.exe" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
@@ -443,7 +359,9 @@
       <workItem from="1606378286271" duration="634000" />
       <workItem from="1607444061558" duration="235000" />
       <workItem from="1607444323775" duration="163000" />
-      <workItem from="1608602719229" duration="1136000" />
+      <workItem from="1608602719229" duration="1470000" />
+      <workItem from="1608605014666" duration="926000" />
+      <workItem from="1608676751399" duration="7920000" />
     </task>
     <servers />
   </component>
@@ -463,10 +381,46 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="740" y="246" key="FileChooserDialogImpl" timestamp="1608603581918">
+    <state x="690" y="266" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1608604109842">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="740" y="246" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1608603581918" />
+    <state x="690" y="266" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1608604109842" />
+    <state x="740" y="246" key="FileChooserDialogImpl" timestamp="1608683566698">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="740" y="246" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1608683566698" />
+    <state width="1877" height="282" key="GridCell.Tab.0.bottom" timestamp="1608688360817">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="282" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1608688360817" />
+    <state width="1877" height="282" key="GridCell.Tab.0.center" timestamp="1608688360817">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="282" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1608688360817" />
+    <state width="1877" height="282" key="GridCell.Tab.0.left" timestamp="1608688360816">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="282" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1608688360816" />
+    <state width="1877" height="282" key="GridCell.Tab.0.right" timestamp="1608688360817">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="282" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1608688360817" />
+    <state width="1877" height="348" key="GridCell.Tab.1.bottom" timestamp="1608686707440">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="348" key="GridCell.Tab.1.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1608686707440" />
+    <state width="1877" height="348" key="GridCell.Tab.1.center" timestamp="1608686707440">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="348" key="GridCell.Tab.1.center/0.0.1920.1040@0.0.1920.1040" timestamp="1608686707440" />
+    <state width="1877" height="348" key="GridCell.Tab.1.left" timestamp="1608686707440">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="348" key="GridCell.Tab.1.left/0.0.1920.1040@0.0.1920.1040" timestamp="1608686707440" />
+    <state width="1877" height="348" key="GridCell.Tab.1.right" timestamp="1608686707440">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="348" key="GridCell.Tab.1.right/0.0.1920.1040@0.0.1920.1040" timestamp="1608686707440" />
     <state x="461" y="165" key="SettingsEditor" timestamp="1608603144352">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -475,6 +429,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="690" y="267" key="extract.method.dialog/0.0.1920.1040@0.0.1920.1040" timestamp="1608603825753" />
+    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1608682273901">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1608682273901" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -483,6 +441,11 @@
           <url>file://$PROJECT_DIR$/src/controller/SelectGridController.java</url>
           <line>268</line>
           <option name="timeStamp" value="3" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/controller/RestrictionsController.java</url>
+          <line>60</line>
+          <option name="timeStamp" value="6" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

@@ -284,12 +284,11 @@ public class HomeController implements Initializable {
 
             Parent root = FXMLLoader.load(getClass().getResource("/visual/Restrictions.fxml"));
             Stage stage = new Stage();
-            ScalableContentPane scale = new ScalableContentPane();
-            scale.setContent(anchorPane);
+
             stage.initModality(Modality.WINDOW_MODAL);
             stage.setTitle("Restricciones del calendario");
             stage.setResizable(false);
-            stage.setScene(new Scene(scale));
+            stage.setScene(new Scene(anchorPane));
 
             object = loader.getController();
             ((RestrictionsController) object).setHomeController(this);

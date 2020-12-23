@@ -106,10 +106,10 @@ public class MutationsConfigurationController implements Initializable {
             String[] mutation = mutationsReaded.get(i).split("\\.");
             mutations.add(mutation[0]);
 
-            String[] values = mutation[1].split(",");
+            //String[] values = mutation[1].split(",");
             ArrayList<Boolean> booleans = new ArrayList<>();
-            for (int j = 0; j < values.length; j++) {
-                if (values[j].equalsIgnoreCase("V")) {
+            for (int j = 0; j < mutation[1].length(); j++) {
+                if (mutation[1].charAt(j) == 'V') {
                     booleans.add(true);
                 } else {
                     booleans.add(false);

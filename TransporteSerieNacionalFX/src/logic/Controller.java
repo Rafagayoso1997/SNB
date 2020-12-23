@@ -1623,6 +1623,7 @@ public class Controller {
                 }
 
                 penalizeVisitorGames = penalizeGamesVisitor(itineraryCopy, configuration.getMaxVisitorGamesInARow(), configuration.getTeamsIndexes());
+                System.out.println(penalizeVisitorGames + "Penalizar");
                 penalizeHomeGames = penalizeGamesHome(itineraryCopy, configuration.getMaxLocalGamesInARow(), configuration.getTeamsIndexes());
                 penalizeWrongInaugural = penalizeWrongInaugural(configuration, calendarCopy);
 

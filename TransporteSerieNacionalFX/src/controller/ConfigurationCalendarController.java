@@ -24,6 +24,7 @@ import tray.notification.TrayNotification;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.stream.Collectors;
@@ -303,6 +304,8 @@ public class ConfigurationCalendarController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        int year = Calendar.getInstance().get(Calendar.YEAR);
+        calendarId.setText("Calendario Serie "+(year - 1960));
 
         Controller controller = Controller.getSingletonController();
         CalendarConfiguration configuration = new CalendarConfiguration();
@@ -342,8 +345,8 @@ public class ConfigurationCalendarController implements Initializable {
                     maxVisitorGamesSpinner.getValueFactory().setValue(maxGamesOther);
                 }
             } else{
-                maxHomeGamesSpinner.getValueFactory().setValue(1);
-                maxVisitorGamesSpinner.getValueFactory().setValue(1);
+                maxHomeGamesSpinner.getValueFactory().setValue(4);
+                maxVisitorGamesSpinner.getValueFactory().setValue(4);
             }
 
             comboChamp.getSelectionModel().clearSelection();
@@ -381,9 +384,12 @@ public class ConfigurationCalendarController implements Initializable {
             secondRoundButton.setSelected(true);
             teamsSelectionListView.getSelectionModel().selectAll();
             listComboChamp = FXCollections.observableArrayList(teamsSelectionListView.getSelectionModel().getSelectedItems());
+
             listComboSub = FXCollections.observableArrayList(teamsSelectionListView.getSelectionModel().getSelectedItems());
             comboChamp.setItems(listComboChamp);
+            comboChamp.getSelectionModel().select("Matanzas");
             comboSub.setItems(listComboSub);
+            comboSub.getSelectionModel().select("Camaguey");
             occidenteVsOrienteToggle.setSelected(false);
 
             champVsSub.setSelected(true);
@@ -474,8 +480,8 @@ public class ConfigurationCalendarController implements Initializable {
             int maxGames = teamsSelectionListView.getSelectionModel().getSelectedIndices().size() / 2;
             maxHomeGamesSpinner.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(1, maxGames));
             maxVisitorGamesSpinner.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(1, maxGames));
-            maxHomeGamesSpinner.getValueFactory().setValue(1);
-            maxVisitorGamesSpinner.getValueFactory().setValue(1);
+            maxHomeGamesSpinner.getValueFactory().setValue(4);
+            maxVisitorGamesSpinner.getValueFactory().setValue(4);
             ConfigurationCalendarController.teams = configuration.getTeamsIndexes().size();
         }
 
@@ -491,8 +497,8 @@ public class ConfigurationCalendarController implements Initializable {
         notification = new TrayNotification();
 
         if(!existingConfiguration){
-            maxHomeGamesSpinner.getValueFactory().setValue(1);
-            maxVisitorGamesSpinner.getValueFactory().setValue(1);
+            maxHomeGamesSpinner.getValueFactory().setValue(4);
+            maxVisitorGamesSpinner.getValueFactory().setValue(4);
             ConfigurationCalendarController.teams = 0;
         }
 

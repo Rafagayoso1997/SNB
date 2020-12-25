@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="632.0" prefWidth="1147.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MutationsConfigurationController">
+<AnchorPane prefHeight="632.0" prefWidth="1147.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MutationsConfigurationController">
     <children>
       <Label layoutX="909.0" layoutY="27.0" text="Configuraciones" textFill="#2f2484">
          <font>
@@ -21,22 +21,22 @@
       </Label>
       <AnchorPane fx:id="pane" layoutX="860.0" layoutY="67.0" prefHeight="379.0" prefWidth="283.0" AnchorPane.bottomAnchor="216.0" AnchorPane.leftAnchor="860.0" AnchorPane.rightAnchor="4.0" AnchorPane.topAnchor="67.0">
          <children>
-            <JFXComboBox fx:id="comboDate1" labelFloat="true" layoutX="21.0" layoutY="33.0" prefHeight="40.0" prefWidth="242.0" promptText="Seleccione una fecha" AnchorPane.leftAnchor="21.0" AnchorPane.rightAnchor="20.0">
+            <JFXComboBox fx:id="comboDate1" labelFloat="true" layoutX="21.0" layoutY="33.0" prefHeight="40.0" prefWidth="242.0" promptText="Seleccione una fecha" stylesheets="@../styles/application.css" AnchorPane.leftAnchor="21.0" AnchorPane.rightAnchor="20.0">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
             </JFXComboBox>
-            <JFXComboBox fx:id="comboDate2" layoutX="21.0" layoutY="113.0" prefHeight="40.0" prefWidth="242.0" promptText="Seleccione una fecha" AnchorPane.leftAnchor="21.0" AnchorPane.rightAnchor="20.0">
+            <JFXComboBox fx:id="comboDate2" layoutX="21.0" layoutY="113.0" prefHeight="40.0" prefWidth="242.0" promptText="Seleccione una fecha" stylesheets="@../styles/application.css" AnchorPane.leftAnchor="21.0" AnchorPane.rightAnchor="20.0">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
             </JFXComboBox>
-            <JFXComboBox fx:id="comboDuel1" layoutX="21.0" layoutY="195.0" prefHeight="40.0" prefWidth="242.0" promptText="Seleccione un enfrentamiento" AnchorPane.leftAnchor="21.0" AnchorPane.rightAnchor="20.0">
+            <JFXComboBox fx:id="comboDuel1" layoutX="21.0" layoutY="195.0" prefHeight="40.0" prefWidth="242.0" promptText="Seleccione un enfrentamiento" stylesheets="@../styles/application.css" AnchorPane.leftAnchor="21.0" AnchorPane.rightAnchor="20.0">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
             </JFXComboBox>
-            <JFXComboBox fx:id="comboDuel2" layoutX="21.0" layoutY="286.0" prefHeight="40.0" prefWidth="242.0" promptText="Seleccione un enfrentamiento" AnchorPane.leftAnchor="21.0" AnchorPane.rightAnchor="20.0">
+            <JFXComboBox fx:id="comboDuel2" layoutX="21.0" layoutY="286.0" prefHeight="40.0" prefWidth="242.0" promptText="Seleccione un enfrentamiento" stylesheets="@../styles/application.css" AnchorPane.leftAnchor="21.0" AnchorPane.rightAnchor="20.0">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>

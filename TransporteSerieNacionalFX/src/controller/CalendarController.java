@@ -232,11 +232,16 @@ public class CalendarController implements Initializable {
 
     @FXML
     void closeSelectedTab(ActionEvent event) {
-        if(controller.getCalendarsList().size()>1){
             Controller.getSingletonController().getCalendarsList().remove(selectedCalendar);
             Controller.getSingletonController().getConfigurations().remove(selectedCalendar);
             calendarsTabPane.getTabs().remove(selectedCalendar);
-        }
+
+            if(calendarsTabPane.getTabs().isEmpty()){
+                Tab tab  =  new Tab("No existen calendarios para mostrar");
+                Label label = new Label("No hay datos para mostrar");
+                tab.setContent(label);
+                calendarsTabPane.getTabs().add(tab);
+            }
 
     }
 

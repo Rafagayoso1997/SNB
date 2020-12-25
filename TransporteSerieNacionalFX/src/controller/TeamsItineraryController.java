@@ -39,7 +39,9 @@ public class TeamsItineraryController implements Initializable {
 
     private ObservableList<ObservableList> data ;
 
+
     @FXML
+    private TableColumn<ObservableList, String> colDates;
 
 
 
@@ -76,20 +78,31 @@ public class TeamsItineraryController implements Initializable {
         /*
         Poner el encabezado de las columnas y el valor que va dentro
          */
+        colDates = new TableColumn("Fecha");
+        colDates.setPrefWidth(92);
+
 
         int index=0;
         for (int selectedTeam : selectedTeams) {
             final int j= index;
+            if(index == 0){
+                itineraryTable.getColumns().add(colDates);
+            }
+            colDates.setCellValueFactory(
+                   param1 -> new SimpleStringProperty(param1.getValue().get(0).toString()));
             TableColumn<ObservableList, String> col = new TableColumn(controller.getAcronyms().get(selectedTeam));
             col.setCellValueFactory(
-                    param -> new SimpleStringProperty(param.getValue().get(j).toString()));
+                    param -> new SimpleStringProperty(param.getValue().get(j+1).toString()));
+
             index++;
             itineraryTable.getColumns().add(col);
         }
 
 
-        for(int i=0; i < itinerary.size();i++){
+
+        for(int i=1; i < itinerary.size();i++){
             ObservableList<String> row = FXCollections.observableArrayList();
+            row.add(Integer.toString(i));
             ArrayList<Integer> current = itinerary.get(i);
             for (int selectedTeam : selectedTeams) {
                 row.add(controller.getAcronyms().get(current.get(selectedTeam)));

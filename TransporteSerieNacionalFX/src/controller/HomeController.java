@@ -134,19 +134,23 @@ public class HomeController implements Initializable {
         try {
             if (file != null) {
                 Auxiliar aux = ReadExcel.readExcelItineraryToCalendar(file.toString());
-                Controller.getSingletonController().getCalendarsList().add(aux.getCalendar());
-                Controller.getSingletonController().getConfigurations().add(aux.getConfiguration());
+                if(aux.getCalendar().size()>0){
+                    Controller.getSingletonController().getCalendarsList().add(aux.getCalendar());
+                    Controller.getSingletonController().getConfigurations().add(aux.getConfiguration());
 
-                notification = getNotification();
-                notification.setTitle("Importación de Calendario");
-                notification.setMessage("Calendario importado con éxito");
-                notification.setNotificationType(NotificationType.SUCCESS);
-                notification.setRectangleFill(Paint.valueOf("#2F2484"));
-                notification.setAnimationType(AnimationType.FADE);
-                notification.showAndDismiss(Duration.seconds(2));
-                buttonReturnSelectionTeamConfiguration.setVisible(false);
-                this.createPage(new CalendarController(),home, "/visual/Calendar.fxml");
-                this.buttonReturnSelectionTeamConfiguration.setVisible(true);
+                    notification = getNotification();
+                    notification.setTitle("Importación de Calendario");
+                    notification.setMessage("Calendario importado con éxito");
+                    notification.setNotificationType(NotificationType.SUCCESS);
+                    notification.setRectangleFill(Paint.valueOf("#2F2484"));
+                    notification.setAnimationType(AnimationType.FADE);
+                    notification.showAndDismiss(Duration.seconds(2));
+                    buttonReturnSelectionTeamConfiguration.setVisible(false);
+                    this.createPage(new CalendarController(),home, "/visual/Calendar.fxml");
+                    this.buttonReturnSelectionTeamConfiguration.setVisible(true);
+                }
+
+
             }
         } catch (IOException e) {
             e.printStackTrace();

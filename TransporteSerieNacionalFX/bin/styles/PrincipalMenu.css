@@ -15,7 +15,6 @@
     -fx-border-color: -fx-box-border -fx-box-border transparent transparent;
     -fx-font: 20px "Segoe UI Symbol";
     -fx-text-fill: #2f2484;
-    -fx-alignment: CENTER;
 }
 
 .list-cell:filled:selected:focused, .list-cell:filled:selected {

@@ -161,18 +161,20 @@ public class HomeController implements Initializable {
     void exportCalendar(ActionEvent event) {
 
         int calendarToExport = CalendarController.selectedCalendar;
-        /*if(calendarToExport == -1){
+        System.out.println(calendarToExport+"EXPORTAR");
+        if(Controller.getSingletonController().getCalendarsList().isEmpty()){
             notification = getNotification();
-            notification.setTitle("Exportaci?n de Calendario");
-            notification.setMessage("No se seleccion� ning�n calendario a exportar");
+            notification.setTitle("Exportación de Calendario");
+            notification.setMessage("No hay calendarios para exportar");
             notification.setNotificationType(NotificationType.ERROR);
             notification.setRectangleFill(Paint.valueOf("#2F2484"));
             notification.setAnimationType(AnimationType.FADE);
             notification.showAndDismiss(Duration.seconds(2));
-        }*/
-        //else{
+        }
+        else{
+
             ExportFiles.exportItineraryInExcelFormat(calendarToExport);
-       // }
+        }
     }
 
     @FXML

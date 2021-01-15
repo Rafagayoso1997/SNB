@@ -2,6 +2,7 @@ package application;
 
 import eu.mihosoft.scaledfx.ScalableContentPane;
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -28,6 +29,8 @@ public class Main extends Application {
             primaryStage.setResizable(false);
             primaryStage.getIcons().add(new Image(getClass().getResourceAsStream("/resources/snb.png")));
             primaryStage.show();
+            primaryStage.setOnCloseRequest(event ->
+                    System.exit(0));
 
 
         } catch (Exception e) {

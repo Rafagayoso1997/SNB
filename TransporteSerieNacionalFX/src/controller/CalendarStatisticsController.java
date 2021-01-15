@@ -1,7 +1,6 @@
 package controller;
 
 import com.jfoenix.controls.JFXButton;
-import javafx.beans.binding.Bindings;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
@@ -111,7 +110,7 @@ public class CalendarStatisticsController {
             calendarData.add(xAxisCalendarData.get(i));
             XYChart.Series<String, Float>seriesCalendar = new XYChart.Series<String, Float>();
             seriesCalendar.setName(calendarData.get(i));
-            seriesCalendar.getData().add(new XYChart.Data(xAxisCalendarData.get(i), controller.calculateDistance(itinerary)));
+            seriesCalendar.getData().add(new XYChart.Data(xAxisCalendarData.get(i), controller.calculateCalendarDistance(itinerary)));
             barChartCalendar.getData().addAll(seriesCalendar);
             
             //Estadísticas de los calendarios

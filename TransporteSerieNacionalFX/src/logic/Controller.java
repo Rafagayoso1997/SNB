@@ -4,9 +4,7 @@ import file_management.ReadFiles;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
-import org.apache.poi.xssf.streaming.SXSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-import org.omg.CORBA.INTERNAL;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -1005,7 +1003,7 @@ public class Controller {
      * @param
      * @return float
      */
-    public float calculateDistance(ArrayList<ArrayList<Integer>> itinerary)  {
+    public float calculateCalendarDistance(ArrayList<ArrayList<Integer>> itinerary)  {
         float totalDistance = 0;
 
         for (int i = 0; i < itinerary.size() - 1; i++) {
@@ -1588,7 +1586,7 @@ public class Controller {
         int penalizeWrongInaugural = penalizeWrongInaugural(configuration, calendar);
         int longTrips = checkLongTrips(itinerary, configuration.getTeamsIndexes());
         int actualization = 0;
-        float distance = calculateDistance(itinerary) + (PENALIZATION * (penalizeVisitorGames + penalizeHomeGames + penalizeWrongInaugural));
+        float distance = calculateCalendarDistance(itinerary) + (PENALIZATION * (penalizeVisitorGames + penalizeHomeGames + penalizeWrongInaugural));
 
         //System.out.println("Se incumple " + longTrips);
         if (longTrips > 0) {
@@ -1614,7 +1612,7 @@ public class Controller {
 
             ArrayList<ArrayList<Integer>> itineraryCopy = teamsItinerary(calendarCopy, configuration, dateToStart);
             try {
-                float newDistance = calculateDistance(itineraryCopy);
+                float newDistance = calculateCalendarDistance(itineraryCopy);
 
                  longTrips = checkLongTrips(itineraryCopy, configuration.getTeamsIndexes());
 
@@ -1674,7 +1672,7 @@ public class Controller {
 
         calendarDistance = distance;
         ArrayList<ArrayList<Integer>> finalItinerary = teamsItinerary(calendar, configuration, null);
-        System.out.println("Distancia Original Calendario Mutado :" + calculateDistance(finalItinerary));
+        System.out.println("Distancia Original Calendario Mutado :" + calculateCalendarDistance(finalItinerary));
         System.out.println();
         System.out.println("Mutado " + distance);
         System.out.println();

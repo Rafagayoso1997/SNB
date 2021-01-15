@@ -1,27 +1,30 @@
 package controller;
 
 import com.jfoenix.controls.JFXButton;
+import eu.mihosoft.scaledfx.ScalableContentPane;
 import file_management.ExportFiles;
+import file_management.ReadExcel;
 import javafx.animation.FadeTransition;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Control;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.ColumnConstraints;
+import javafx.scene.layout.Priority;
 import javafx.scene.paint.Paint;
 import javafx.stage.FileChooser;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 import javafx.util.Duration;
 import logic.Auxiliar;
-import logic.CalendarConfiguration;
 import logic.Controller;
-import logic.Date;
-import file_management.ReadExcel;
 import tray.animations.AnimationType;
 import tray.notification.NotificationType;
 import tray.notification.TrayNotification;
@@ -30,9 +33,7 @@ import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Collections;
 import java.util.ResourceBundle;
 
 public class HomeController implements Initializable {
@@ -59,6 +60,10 @@ public class HomeController implements Initializable {
 
     @FXML
     private AnchorPane pane;
+
+    @FXML
+    private AnchorPane primaryPane;
+
 
     private AnchorPane home;
 
@@ -90,16 +95,20 @@ public class HomeController implements Initializable {
 
     @FXML
     void showCalendar(ActionEvent event) throws IOException {
-
-        this.createPage(new ConfigurationCalendarController(), home, "/visual/ConfigurationCalendar.fxml");
+        if(Controller.getSingletonController().getCalendarsList().isEmpty()){
+            this.createPage(new ConfigurationCalendarController(), home, "/visual/ConfigurationCalendar.fxml");
+            this.buttonReturnSelectionTeamConfiguration.setVisible(false);
+        }
+        else{
+            this.createPage(new CalendarController(), home, "/visual/Calendar.fxml");
+            this.buttonReturnSelectionTeamConfiguration.setVisible(true);
+        }
     }
-
 
     @FXML
     void showReturnSelectionTeamConfiguration(ActionEvent event) throws IOException {
         this.createPage(new ConfigurationCalendarController(), home, "/visual/ConfigurationCalendar.fxml");
         buttonReturnSelectionTeamConfiguration.setVisible(false);
-
     }
 
     @FXML
@@ -112,7 +121,6 @@ public class HomeController implements Initializable {
         notification.setRectangleFill(Paint.valueOf("#2F2484"));
         notification.setAnimationType(AnimationType.FADE);
         notification.showAndDismiss(Duration.seconds(2));
-
     }
 
     @FXML
@@ -124,23 +132,26 @@ public class HomeController implements Initializable {
         file = fc.showOpenDialog(stage);
 
         try {
-
             if (file != null) {
                 Auxiliar aux = ReadExcel.readExcelItineraryToCalendar(file.toString());
-                Controller.getSingletonController().getCalendarsList().add(aux.getCalendar());
-                Controller.getSingletonController().getConfigurations().add(aux.getConfiguration());
+                if(aux.getCalendar().size()>0){
+                    Controller.getSingletonController().getCalendarsList().add(aux.getCalendar());
+                    Controller.getSingletonController().getConfigurations().add(aux.getConfiguration());
 
-                notification = getNotification();
-                notification.setTitle("Importaci�n de Calendario");
-                notification.setMessage("Calendario importado con ?xito");
-                notification.setNotificationType(NotificationType.SUCCESS);
-                notification.setRectangleFill(Paint.valueOf("#2F2484"));
-                notification.setAnimationType(AnimationType.FADE);
-                notification.showAndDismiss(Duration.seconds(2));
-                buttonReturnSelectionTeamConfiguration.setVisible(false);
-                this.createPage(new CalendarController(),home, "/visual/Calendar.fxml");
+                    notification = getNotification();
+                    notification.setTitle("Importación de Calendario");
+                    notification.setMessage("Calendario importado con éxito");
+                    notification.setNotificationType(NotificationType.SUCCESS);
+                    notification.setRectangleFill(Paint.valueOf("#2F2484"));
+                    notification.setAnimationType(AnimationType.FADE);
+                    notification.showAndDismiss(Duration.seconds(2));
+                    buttonReturnSelectionTeamConfiguration.setVisible(false);
+                    this.createPage(new CalendarController(),home, "/visual/Calendar.fxml");
+                    this.buttonReturnSelectionTeamConfiguration.setVisible(true);
+                }
+
+
             }
-
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -150,26 +161,29 @@ public class HomeController implements Initializable {
     void exportCalendar(ActionEvent event) {
 
         int calendarToExport = CalendarController.selectedCalendar;
-        /*if(calendarToExport == -1){
+        System.out.println(calendarToExport+"EXPORTAR");
+        if(Controller.getSingletonController().getCalendarsList().isEmpty()){
             notification = getNotification();
-            notification.setTitle("Exportaci?n de Calendario");
-            notification.setMessage("No se seleccion� ning�n calendario a exportar");
+            notification.setTitle("Exportación de Calendario");
+            notification.setMessage("No hay calendarios para exportar");
             notification.setNotificationType(NotificationType.ERROR);
             notification.setRectangleFill(Paint.valueOf("#2F2484"));
             notification.setAnimationType(AnimationType.FADE);
             notification.showAndDismiss(Duration.seconds(2));
-        }*/
-        //else{
+        }
+        else{
+
             ExportFiles.exportItineraryInExcelFormat(calendarToExport);
-       // }
+        }
     }
 
     @FXML
     void showData(ActionEvent event) throws IOException {
-        File file = new File("src/files/Data.xlsx");
+        this.createPage(new CrudsController(),home, "/visual/Cruds.fxml");
+        //File file = new File("src/files/Data.xlsx");
 
         //first check if Desktop is supported by Platform or not
-        if(!Desktop.isDesktopSupported()){
+       /* if(!Desktop.isDesktopSupported()){
             System.out.println("Desktop is not supported");
             return;
         }
@@ -177,7 +191,7 @@ public class HomeController implements Initializable {
         Desktop desktop = Desktop.getDesktop();
 
         //let's try to open PDF file
-        if(file.exists()) desktop.open(file);
+        if(file.exists()) desktop.open(file);*/
     }
 
     @FXML
@@ -241,24 +255,52 @@ public class HomeController implements Initializable {
 
             Parent root = FXMLLoader.load(getClass().getResource("/visual/MutationsConfiguration.fxml"));
             Stage stage = new Stage();
-            stage.setTitle("Configuraci?n de las mutaciones");
-            stage.setScene(new Scene(anchorPane));
+            ScalableContentPane scale = new ScalableContentPane();
+            scale.setContent(anchorPane);
 
+            stage.setTitle("Configuración de las mutaciones");
+            stage.setResizable(false);
+            stage.setScene(new Scene(scale));
 
             object = loader.getController();
             ((MutationsConfigurationController) object).setHomeController(this);
+
+            stage.initModality(Modality.WINDOW_MODAL);
+            stage.initOwner(primaryPane.getScene().getWindow());
 
             stage.show();
         } else if (object instanceof TeamsItineraryController) {
 
             Parent root = FXMLLoader.load(getClass().getResource("/visual/TeamsItinerary.fxml"));
             Stage stage = new Stage();
+            ScalableContentPane scale = new ScalableContentPane();
+            scale.setContent(anchorPane);
             stage.setTitle("Itinerario de equipos");
-            stage.setScene(new Scene(anchorPane));
-
+            stage.setResizable(false);
+            stage.setScene(new Scene(scale));
 
             object = loader.getController();
             ((TeamsItineraryController) object).setHomeController(this);
+
+            stage.initModality(Modality.WINDOW_MODAL);
+            stage.initOwner(primaryPane.getScene().getWindow());
+
+            stage.show();
+        }else if (object instanceof RestrictionsController) {
+
+            Parent root = FXMLLoader.load(getClass().getResource("/visual/Restrictions.fxml"));
+            Stage stage = new Stage();
+
+            stage.initModality(Modality.WINDOW_MODAL);
+            stage.setTitle("Restricciones del calendario");
+            stage.setResizable(false);
+            stage.setScene(new Scene(anchorPane));
+
+            object = loader.getController();
+            ((RestrictionsController) object).setHomeController(this);
+
+            stage.initModality(Modality.WINDOW_MODAL);
+            stage.initOwner(primaryPane.getScene().getWindow());
 
             stage.show();
         }else if (object instanceof CalendarController) {
@@ -272,6 +314,7 @@ public class HomeController implements Initializable {
         } else if (object instanceof ConfigurationCalendarController) {
             object = loader.getController();
             ((ConfigurationCalendarController) object).setHomeController(this);
+
             setNode(anchorPane);
         }else if (object instanceof AdvanceConfigurationController) {
             object = loader.getController();
@@ -284,6 +327,24 @@ public class HomeController implements Initializable {
 
             ((CalendarStatisticsController) object).setHomeController(this);
             setNode(anchorPane);
+        }
+
+        else if (object instanceof CrudsController) {
+
+            Parent root = FXMLLoader.load(getClass().getResource("/visual/Cruds.fxml"));
+            Stage stage = new Stage();
+            stage.setTitle("Gestión de datos");
+            stage.setResizable(false);
+
+            stage.setScene(new Scene(anchorPane));
+
+            object = loader.getController();
+            ((CrudsController) object).setHomeController(this);
+
+            stage.initModality(Modality.WINDOW_MODAL);
+            stage.initOwner(primaryPane.getScene().getWindow());
+
+            stage.show();
         }
     }
 }

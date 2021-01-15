@@ -1,12 +1,12 @@
 package controller;
 
 import com.jfoenix.controls.*;
-import file_management.ReadFiles;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
@@ -17,17 +17,14 @@ import javafx.scene.paint.Paint;
 import javafx.util.Duration;
 import logic.CalendarConfiguration;
 import logic.Controller;
-import org.controlsfx.control.tableview2.filter.filtereditor.SouthFilter;
 import tray.animations.AnimationType;
 import tray.notification.NotificationType;
 import tray.notification.TrayNotification;
 
-import java.awt.event.ActionListener;
-import java.awt.event.ItemEvent;
-import java.awt.event.ItemListener;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.stream.Collectors;
@@ -35,8 +32,9 @@ import java.util.stream.Collectors;
 public class ConfigurationCalendarController implements Initializable {
 
     private TrayNotification notification;
-
     private HomeController homeController;
+    private ObservableList<String> listComboChamp;
+    private ObservableList<String> listComboSub;
 
     public static int posChampion = -1, posSub = -2;
     public static boolean secondRound = false;
@@ -79,6 +77,9 @@ public class ConfigurationCalendarController implements Initializable {
     private JFXToggleButton inauguralGame;
 
     @FXML
+    private JFXToggleButton occidenteVsOrienteToggle;
+
+    @FXML
     private JFXToggleButton symmetricSecondRound;
 
 
@@ -99,15 +100,20 @@ public class ConfigurationCalendarController implements Initializable {
 
             //DAVID change => update the Champion ComboBox and Sub-Champion ComboBox
             teamsSelectionListView.getSelectionModel().selectAll();
-            comboChamp.setItems(teamsSelectionListView.getItems());
-            comboSub.setItems(teamsSelectionListView.getItems());
+
+            listComboChamp.clear();
+            listComboChamp.addAll(teamsSelectionListView.getItems());
+
+            listComboSub.clear();
+            listComboSub.addAll(teamsSelectionListView.getItems());
+
 
         } else {
             teamsSelectionListView.getSelectionModel().clearSelection();
 
             //DAVID change => update the Champion ComboBox and Sub-Champion ComboBox
-            comboChamp.setItems(teamsSelectionListView.getSelectionModel().getSelectedItems());
-            comboSub.setItems(teamsSelectionListView.getSelectionModel().getSelectedItems());
+            listComboChamp.clear();
+            listComboSub.clear();
         }
     }
 
@@ -117,11 +123,8 @@ public class ConfigurationCalendarController implements Initializable {
             comboChamp.setVisible(true);
             comboSub.setVisible(true);
             btnSwap.setVisible(true);
-            champVsSub.setText("Sï¿½");
+            champVsSub.setText("Sí");
 
-            //DAVID change => update the Champion ComboBox and Sub-Champion ComboBox
-            comboChamp.setItems(teamsSelectionListView.getSelectionModel().getSelectedItems());
-            comboSub.setItems(teamsSelectionListView.getSelectionModel().getSelectedItems());
         } else {
             comboChamp.setVisible(false);
             comboSub.setVisible(false);
@@ -133,31 +136,42 @@ public class ConfigurationCalendarController implements Initializable {
     @FXML
     void setSecondRound(ActionEvent event) {
         if (secondRoundButton.isSelected()) {
-            secondRoundButton.setText("Sï¿½");
+            secondRoundButton.setText("Sí");
             lblSymmetricSecondRound.setVisible(true);
             symmetricSecondRound.setVisible(true);
         } else {
             secondRoundButton.setText("No");
             lblSymmetricSecondRound.setVisible(false);
             symmetricSecondRound.setVisible(false);
+            symmetricSecondRound.setSelected(false);
+            symmetricSecondRound.setText("No");
         }
     }
 
     @FXML
     void setSymmetricSecondRound(ActionEvent event) {
         if (symmetricSecondRound.isSelected()) {
-            symmetricSecondRound.setText("Sï¿½");
+            symmetricSecondRound.setText("Sí");
         } else {
             symmetricSecondRound.setText("No");
         }
     }
 
     @FXML
+    void setOccidenteVsOriente(ActionEvent event) {
+        if (occidenteVsOrienteToggle.isSelected()) {
+            occidenteVsOrienteToggle.setText("Sí");
+        } else {
+            occidenteVsOrienteToggle.setText("No");
+        }
+    }
+
+    @FXML
     void setInauguralGame(ActionEvent event) {
         if (inauguralGame.isSelected()) {
-            inauguralGame.setText("Sï¿½");
+            inauguralGame.setText("Sí");
             champVsSub.setSelected(true);
-            champVsSub.setText("Sï¿½");
+            champVsSub.setText("Sí");
             comboChamp.setVisible(true);
             comboSub.setVisible(true);
             btnSwap.setVisible(true);
@@ -171,70 +185,72 @@ public class ConfigurationCalendarController implements Initializable {
 
     @FXML
     void selectTeams(ActionEvent event) throws IOException {
-        validateData(true);
+        validateData();
         //true indicates that show the duel selection matrix
         //false indicates that show the advance configuration
     }
 
     @FXML
     void advanceConfiguration(ActionEvent event) throws IOException {
-        validateData(false);
+        showAdvanceConfiguration(Controller.getSingletonController().getLastSavedConfiguration());
         //true indicates that show the duel selection matrix
         //false indicates that show the advance configuration
     }
 
-    private void validateData(boolean showMatrix) throws IOException {
-        //ArrayList<Integer> indexes = new ArrayList<>(teamsSelectionListView.getSelectionModel().getSelectedIndices());
+    private void validateData() throws IOException {
+        Controller controller = Controller.getSingletonController();
+
         selectedIndexes = new ArrayList<>(teamsSelectionListView.getSelectionModel().getSelectedIndices());
         teamsNames = new ArrayList<>();
-        /*for (int index : indexes) {
-            teamsNames.add(Controller.getSingletonController().getAcronyms().get(index));
-        }*/
-        for (int index : selectedIndexes) {
-            teamsNames.add(Controller.getSingletonController().getAcronyms().get(index));
-        }
-        //teamsNames = new ArrayList<>(teamsSelectionListView.getSelectionModel().getSelectedItems());
+        int occAmount = 0;
+        int orAmount = 0;
 
-        /*if (indexes.size() <= 2) {
-            showNotification("Selecci?n de equipos","Debe escoger m?s de dos equipos", false);
-            ok = false;
+        for (int index : selectedIndexes) {
+            teamsNames.add(controller.getAcronyms().get(index));
+
+            if (occidenteVsOrienteToggle.isSelected()){
+                if (controller.getLocations().get(index).equalsIgnoreCase("Occidental")){
+                    occAmount++;
+                }
+                else{
+                    orAmount++;
+                }
+            }
         }
-        if (indexes.size() % 2 != 0) {
-            showNotification("Selecci?n de equipos","Debe escoger una cantidad par de equipos.", false);
-            ok = false;
-        }*/
+
+        boolean alreadyExisteName = controller.existCalendarName(calendarId.getText());
+
         if(calendarId.getText().equalsIgnoreCase(" ")||calendarId.getText().equalsIgnoreCase("")){
             showNotification("Debe Introducir el identificador del calendario");
             ok = false;
         }
-        if (selectedIndexes.size() <= 2) {
-            showNotification("Debe escoger m?s de dos equipos");
+        else if(alreadyExisteName){
+            showNotification("Ya existe ese identificador del calendario");
             ok = false;
         }
-        if (selectedIndexes.size() % 2 != 0) {
-            showNotification("Debe escoger una cantidad par de equipos.");
+        else if (selectedIndexes.size() <= 2) {
+            showNotification("Debe escoger al menos dos equipos");
             ok = false;
         }
-
-        if (inauguralGame.isSelected()) {
+        else if(occidenteVsOrienteToggle.isSelected() && (occAmount != orAmount)){
+            showNotification("Las cantidades de equipos seleccionados" + "\n" + " de Oriente y Occidente deben ser iguales");
+            ok = false;
+        }
+        else if (inauguralGame.isSelected()) {
             if (champVsSub.isSelected()) {
                 validateChampionAndSubchampion();
             } else {
-                showNotification("Debe escoger al campe?n y subcampe?n.");
+                showNotification("Debe escoger al campeón y subcampeón.");
                 ok = false;
             }
         }
-
-        if (champVsSub.isSelected()) {
+        else if (champVsSub.isSelected()) {
             validateChampionAndSubchampion();
-
         }
+
         if (ok) {
             HomeController.escogidos = true;
-
-
             teams = selectedIndexes.size();
-
 
             secondRound = secondRoundButton.isSelected();
             int posChampion = -1;
@@ -242,23 +258,27 @@ public class ConfigurationCalendarController implements Initializable {
             if(champVsSub.isSelected()){
                 String champion = comboChamp.getSelectionModel().getSelectedItem();
                 String subchampion = comboSub.getSelectionModel().getSelectedItem();
-                posChampion = Controller.getSingletonController().getTeams().indexOf(champion);
-                posSub = Controller.getSingletonController().getTeams().indexOf(subchampion);
+                posChampion = controller.getTeams().indexOf(champion);
+                posSub = controller.getTeams().indexOf(subchampion);
             }
 
             CalendarConfiguration configuration = new CalendarConfiguration(
                     calendarId.getText(),selectedIndexes,inauguralGame.isSelected(),
                     champVsSub.isSelected(),posChampion,posSub,secondRound,symmetricSecondRound.isSelected(),
-                    maxHomeGamesSpinner.getValueFactory().getValue(),maxVisitorGamesSpinner.getValueFactory().getValue()
+                    occidenteVsOrienteToggle.isSelected(), maxHomeGamesSpinner.getValueFactory().getValue(),maxVisitorGamesSpinner.getValueFactory().getValue()
             );
 
+            if(controller.isConfigurationAdded()){
+                controller.getConfigurations().remove(controller.getConfigurations().size()-1);
+                controller.setConfigurationAdded(false);
+            }
 
-            Controller.getSingletonController().getConfigurations().add(configuration);
+            controller.getConfigurations().add(configuration);
+            controller.setConfigurationAdded(true);
 
-            if (showMatrix)
-                showTeamsMatrix(configuration);
-            else
-                showAdvanceConfiguration(configuration);
+            controller.setLastSavedConfiguration(configuration);
+
+            showTeamsMatrix(controller.getLastSavedConfiguration());
         }
         ok = true;
     }
@@ -270,10 +290,10 @@ public class ConfigurationCalendarController implements Initializable {
         //posSub = comboSub.getSelectionModel().getSelectedIndex();
         if (champion == null || subchampion == null) {
             //ok = false;
-            showNotification("Debe escoger al campe?n y subcampe?n.");
+            showNotification("Debe escoger al campeón y subcampeón.");
             ok = false;
         } else if (champion.equalsIgnoreCase(subchampion)) {
-            showNotification("El campe?n y subcampe?n deben diferentes");
+            showNotification("El campeón y subcampeón deben ser diferentes");
             ok = false;
         } else {
             ok = true;
@@ -284,59 +304,210 @@ public class ConfigurationCalendarController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        int year = Calendar.getInstance().get(Calendar.YEAR);
+        calendarId.setText("Calendario Serie "+(year - 1960));
 
         Controller controller = Controller.getSingletonController();
+        CalendarConfiguration configuration = new CalendarConfiguration();
+        boolean existingConfiguration = false;
 
+        if(controller.getLastSavedConfiguration() != null){
+            existingConfiguration = true;
+            configuration = controller.getLastSavedConfiguration();
+        }
 
-        HomeController.escogidos = false;
-
-        selectAll.setSelected(true);
-        notification = new TrayNotification();
-        lblSymmetricSecondRound.setVisible(true);
-        symmetricSecondRound.setVisible(true);
-        secondRoundButton.setSelected(true);
-
-        //fill the TeamsListView
         List<String> teams = controller.getTeams();
 
         teamsSelectionListView.setItems(FXCollections.observableArrayList(teams));
         teamsSelectionListView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
-        teamsSelectionListView.getSelectionModel().selectAll();
-        teamsSelectionListView.getSelectionModel().selectedIndexProperty().addListener((observable, oldValue, newValue) -> {
+
+        teamsSelectionListView.setOnMouseClicked(event -> {
             int indices = teamsSelectionListView.getSelectionModel().getSelectedIndices().size();
             if (indices > 1) {
-                int maxGames = indices / 2;
-                maxHomeGamesSpinner.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(1, maxGames));
-                maxVisitorGamesSpinner.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(1, maxGames));
+                int valTempLocal = maxHomeGamesSpinner.getValue();
+                int valTempVisitor = maxVisitorGamesSpinner.getValue();
+
+                int maxGamesOther = indices / 2;
+                maxHomeGamesSpinner.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(1, maxGamesOther));
+                maxVisitorGamesSpinner.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(1, maxGamesOther));
+
+                if(valTempLocal <= maxGamesOther){
+                    maxHomeGamesSpinner.getValueFactory().setValue(valTempLocal);
+                }
+                else{
+                    maxHomeGamesSpinner.getValueFactory().setValue(maxGamesOther);
+                }
+
+                if(valTempVisitor <= maxGamesOther){
+                    maxVisitorGamesSpinner.getValueFactory().setValue(valTempVisitor);
+                }
+                else{
+                    maxVisitorGamesSpinner.getValueFactory().setValue(maxGamesOther);
+                }
+            } else{
+                maxHomeGamesSpinner.getValueFactory().setValue(4);
+                maxVisitorGamesSpinner.getValueFactory().setValue(4);
             }
 
+            comboChamp.getSelectionModel().clearSelection();
+            comboSub.getSelectionModel().clearSelection();
+
+            listComboChamp.clear();
+            listComboChamp.addAll(teamsSelectionListView.getSelectionModel().getSelectedItems());
+
+            listComboSub.clear();
+            listComboSub.addAll(teamsSelectionListView.getSelectionModel().getSelectedItems());
+
+            if (indices == Controller.getSingletonController().getTeams().size()) {
+                selectAll.setSelected(true);
+            } else {
+                selectAll.setSelected(false);
+            }
+        });
+        /*
+        comboChamp.focusedProperty().addListener((observable, oldValue, newValue) -> {
+            if(newValue){
+                comboChamp.setItems(teamsSelectionListView.getSelectionModel().getSelectedItems());
+                comboSub.setItems(teamsSelectionListView.getSelectionModel().getSelectedItems());
+                comboChamp.getItems().removeAll("");
+                comboSub.getItems().removeAll("");
+            }
         });
 
-        comboChamp.getItems().addAll(teamsSelectionListView.getItems());
-        comboSub.getItems().addAll(teamsSelectionListView.getItems());
+         */
 
-        int maxGames = teamsSelectionListView.getSelectionModel().getSelectedIndices().size() / 2;
-        maxHomeGamesSpinner.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(1, maxGames));
-        maxHomeGamesSpinner.getValueFactory().setValue(2);
+        if(!existingConfiguration){
+            HomeController.escogidos = false;
+            selectAll.setSelected(true);
+            lblSymmetricSecondRound.setVisible(true);
+            symmetricSecondRound.setVisible(true);
+            secondRoundButton.setSelected(true);
+            teamsSelectionListView.getSelectionModel().selectAll();
+            listComboChamp = FXCollections.observableArrayList(teamsSelectionListView.getSelectionModel().getSelectedItems());
 
-        maxVisitorGamesSpinner.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(1, maxGames - 1));
-        maxVisitorGamesSpinner.getValueFactory().setValue(2);
+            listComboSub = FXCollections.observableArrayList(teamsSelectionListView.getSelectionModel().getSelectedItems());
+            comboChamp.setItems(listComboChamp);
+            comboChamp.getSelectionModel().select("Matanzas");
+            comboSub.setItems(listComboSub);
+            comboSub.getSelectionModel().select("Camaguey");
+            occidenteVsOrienteToggle.setSelected(false);
 
-        //Fill the Champion and Sub-Champions ComboBox
-        champVsSub.setSelected(true);
-        comboChamp.setVisible(true);
-        comboSub.setVisible(true);
-        btnSwap.setVisible(true);
-        ConfigurationCalendarController.teams = 0;
+            champVsSub.setSelected(true);
+            comboChamp.setVisible(true);
+            comboSub.setVisible(true);
+            btnSwap.setVisible(true);
+
+            int maxGames = teamsSelectionListView.getSelectionModel().getSelectedIndices().size() / 2;
+            maxHomeGamesSpinner.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(1, maxGames));
+            maxVisitorGamesSpinner.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(1, maxGames));
+        }
+        else{
+            HomeController.escogidos = true;
+            calendarId.setText(configuration.getCalendarId());
+
+            if(configuration.isInauguralGame()){
+                inauguralGame.setSelected(true);
+                inauguralGame.setText("Sí");
+            }
+            else{
+                inauguralGame.setSelected(false);
+                inauguralGame.setText("No");
+            }
+
+            if(configuration.getTeamsIndexes().size() == controller.getTeams().size()){
+                selectAll.setSelected(true);
+                teamsSelectionListView.getSelectionModel().selectAll();
+                listComboChamp = FXCollections.observableArrayList(teamsSelectionListView.getSelectionModel().getSelectedItems());
+                listComboSub = FXCollections.observableArrayList(teamsSelectionListView.getSelectionModel().getSelectedItems());
+                comboChamp.setItems(listComboChamp);
+                comboSub.setItems(listComboSub);
+            }
+            else{
+                selectAll.setSelected(false);
+
+                teamsSelectionListView.getSelectionModel().clearSelection();
+                int[] array = new int[configuration.getTeamsIndexes().size()];
+                for (int i = 0; i < configuration.getTeamsIndexes().size(); i++){
+                    array[i] = configuration.getTeamsIndexes().get(i);
+                }
+                teamsSelectionListView.getSelectionModel().selectIndices(-1, array);
+                listComboChamp = FXCollections.observableArrayList(teamsSelectionListView.getSelectionModel().getSelectedItems());
+                listComboSub = FXCollections.observableArrayList(teamsSelectionListView.getSelectionModel().getSelectedItems());
+                comboChamp.setItems(listComboChamp);
+                comboSub.setItems(listComboSub);
+            }
+
+            if (configuration.isSymmetricSecondRound()){
+                lblSymmetricSecondRound.setVisible(true);
+                symmetricSecondRound.setVisible(true);
+                symmetricSecondRound.setText("Sí");
+            }
+            else{
+                lblSymmetricSecondRound.setVisible(false);
+                symmetricSecondRound.setVisible(false);
+                symmetricSecondRound.setText("No");
+            }
+
+            if(configuration.isSecondRoundCalendar()){
+                secondRoundButton.setSelected(true);
+                secondRoundButton.setText("Sí");
+            }
+            else{
+                secondRoundButton.setSelected(false);
+                secondRoundButton.setText("No");
+            }
+
+            if(configuration.isChampionVsSecondPlace()){
+                champVsSub.setSelected(true);
+
+                champVsSub.setText("Sí");
+                comboChamp.setVisible(true);
+                comboSub.setVisible(true);
+                btnSwap.setVisible(true);
+
+                comboChamp.setValue(teams.get(configuration.getChampion()));
+                comboSub.setValue(teams.get(configuration.getSecondPlace()));
+                listComboSub.remove(teams.get(configuration.getChampion()));
+            }
+            else{
+                champVsSub.setText("No");
+                champVsSub.setSelected(false);
+                comboChamp.setVisible(false);
+                comboSub.setVisible(false);
+                btnSwap.setVisible(false);
+            }
+
+            int maxGames = teamsSelectionListView.getSelectionModel().getSelectedIndices().size() / 2;
+            maxHomeGamesSpinner.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(1, maxGames));
+            maxVisitorGamesSpinner.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(1, maxGames));
+            maxHomeGamesSpinner.getValueFactory().setValue(4);
+            maxVisitorGamesSpinner.getValueFactory().setValue(4);
+            ConfigurationCalendarController.teams = configuration.getTeamsIndexes().size();
+        }
+
+        if(configuration.isOccidenteVsOriente()){
+            occidenteVsOrienteToggle.setSelected(true);
+            occidenteVsOrienteToggle.setText("Sí");
+
+        }else{
+            occidenteVsOrienteToggle.setSelected(false);
+            occidenteVsOrienteToggle.setText("No");
+        }
+
+        notification = new TrayNotification();
+
+        if(!existingConfiguration){
+            maxHomeGamesSpinner.getValueFactory().setValue(4);
+            maxVisitorGamesSpinner.getValueFactory().setValue(4);
+            ConfigurationCalendarController.teams = 0;
+        }
 
         calendarId.setTextFormatter(new TextFormatter<>(change ->
-                (change.getControlNewText().matches("^[A-Za-z0-9 _]*[A-Za-z0-9][A-Za-z0-9 _]*$")) ? change : null));
-
-
+                (change.getControlNewText().matches("^[A-Za-z0-9ñÑáéíóúÁÉÍÓÚ _]*$")) ? change : null));
     }
 
     private void showNotification(String message) {
-        notification.setTitle("Selecciï¿½n de equipos.");
+        notification.setTitle("Selección de equipos.");
         notification.setMessage(message);
         notification.setNotificationType(NotificationType.ERROR);
         notification.setRectangleFill(Paint.valueOf("#2F2484"));
@@ -345,28 +516,6 @@ public class ConfigurationCalendarController implements Initializable {
     }
 
     //************DAVID's New Methods**************\\
-
-    @FXML
-    void scrollListView(ScrollEvent event) {
-        System.out.println("Scroll");
-    }
-
-    @FXML
-    void mouseClickedListView(MouseEvent event) {
-        int selectedTeams = teamsSelectionListView.getSelectionModel().getSelectedIndices().size();
-
-        if (comboChamp.isVisible() || comboSub.isVisible()) {
-            comboChamp.setItems(teamsSelectionListView.getSelectionModel().getSelectedItems());
-            comboSub.setItems(teamsSelectionListView.getSelectionModel().getSelectedItems());
-        }
-
-        if (selectedTeams == Controller.getSingletonController().getTeams().size()) {
-            selectAll.setSelected(true);
-        } else {
-            selectAll.setSelected(false);
-        }
-
-    }
 
     @FXML
     void selectTeamChamp(ActionEvent event) {
@@ -382,16 +531,14 @@ public class ConfigurationCalendarController implements Initializable {
             comboChamp.getSelectionModel().select(teamSwap);
         }
         */
-
-        List<String> list = comboChamp.getItems().stream().collect(Collectors.toList());
-        list.remove(comboChamp.getSelectionModel().getSelectedItem());
-        comboSub.setItems(FXCollections.observableList(list));
-
+        listComboSub.clear();
+        listComboSub.addAll(teamsSelectionListView.getSelectionModel().getSelectedItems());
+        listComboSub.remove(comboChamp.getSelectionModel().getSelectedItem());
     }
 
     @FXML
     void selectTeamSubChamp(ActionEvent event) {
-        System.out.println("Sub-Champion Team Selected => " + comboSub.getSelectionModel().getSelectedItem());
+        //System.out.println("Sub-Champion Team Selected => " + comboSub.getSelectionModel().getSelectedItem());
 
         //comentario
 
@@ -427,7 +574,6 @@ public class ConfigurationCalendarController implements Initializable {
     void showAdvanceConfiguration(CalendarConfiguration configuration) throws IOException {
         AnchorPane structureOver = homeController.getPrincipalPane();
         homeController.createPage(new AdvanceConfigurationController(configuration), structureOver, "/visual/AdvanceConfiguration.fxml");
-        homeController.getButtonReturnSelectionTeamConfiguration().setVisible(true);
+        homeController.getButtonReturnSelectionTeamConfiguration().setVisible(false);
     }
-
 }

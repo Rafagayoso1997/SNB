@@ -3,6 +3,8 @@ package controller;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXListView;
 import file_management.ReadFiles;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -10,6 +12,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.SelectionMode;
 import javafx.scene.control.Spinner;
 import javafx.scene.control.SpinnerValueFactory;
+import javafx.scene.control.TextFormatter;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Paint;
 import javafx.util.Duration;
@@ -62,7 +65,8 @@ public class AdvanceConfigurationController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        iterationsSpinner.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(1,Integer.MAX_VALUE,200000));
+        iterationsSpinner.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(1,Integer.MAX_VALUE, Controller.getSingletonController().getIterations()));
+        //iterationsSpinner.getValueFactory().setValue(Controller.getSingletonController().getIterations());
 
         List<String> mutationsRead = ReadFiles.readMutations();
         List<String> mutations = new ArrayList<>();
@@ -73,10 +77,28 @@ public class AdvanceConfigurationController implements Initializable {
         mutationListView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
 
         mutationListView.setItems(FXCollections.observableList(mutations));
-        mutationListView.getSelectionModel().selectAll();
 
+        if(Controller.getSingletonController().getMutationsIndexes().isEmpty()){
+            mutationListView.getSelectionModel().selectAll();
+        }
+        else{
+            int[] array = new int[Controller.getSingletonController().getMutationsIndexes().size()];
+            for (int i = 0; i < Controller.getSingletonController().getMutationsIndexes().size(); i++){
+                array[i] = Controller.getSingletonController().getMutationsIndexes().get(i);
+            }
+            mutationListView.getSelectionModel().selectIndices(-1, array);
+        }
+
+       iterationsSpinner.getEditor().setTextFormatter(new TextFormatter<>(change ->
+                (change.getControlNewText().matches("\\d{0,9}?")) ? change : null));
+
+        iterationsSpinner.focusedProperty().addListener((observable, oldValue, newValue) -> {
+            if(!newValue){
+                iterationsSpinner.getValueFactory().setValue(Integer.parseInt(iterationsSpinner.getEditor().getText()));
+            }
+        });
     }
-
+/*
     @FXML
     void openDuelSelection(ActionEvent event) throws IOException {
 
@@ -96,6 +118,29 @@ public class AdvanceConfigurationController implements Initializable {
             Controller.getSingletonController().setIterations(iterationsSpinner.getValueFactory().getValue());
             showTeamsMatrix();
         }
+    }*/
+
+    @FXML
+    void saveNewAdvancesConfigurations(ActionEvent event) throws IOException {
+        System.out.println(iterationsSpinner.getValueFactory().getValue());
+        ArrayList<Integer> indexesMutations = new ArrayList<>(mutationListView.getSelectionModel().getSelectedIndices());
+        if (indexesMutations.isEmpty()) {
+            notification = getNotification();
+            notification.setTitle("Selección de cambios");
+            notification.setMessage("Debe escoger al menos una mutación");
+            notification.setNotificationType(NotificationType.ERROR);
+            notification.setRectangleFill(Paint.valueOf("#2F2484"));
+            notification.setAnimationType(AnimationType.FADE);
+            notification.showAndDismiss(Duration.seconds(1));
+        }
+        else{
+            Controller.getSingletonController().setMutationsIndexes(indexesMutations);
+            Controller.getSingletonController().setIterations(iterationsSpinner.getValueFactory().getValue());
+
+            AnchorPane structureOver = homeController.getPrincipalPane();
+            homeController.createPage(new ConfigurationCalendarController(), structureOver, "/visual/ConfigurationCalendar.fxml");
+            homeController.getButtonReturnSelectionTeamConfiguration().setVisible(false);
+        }
     }
 
     private TrayNotification getNotification() {
@@ -111,5 +156,4 @@ public class AdvanceConfigurationController implements Initializable {
     public void setHomeController(HomeController homeController) {
         this.homeController = homeController;
     }
-
 }

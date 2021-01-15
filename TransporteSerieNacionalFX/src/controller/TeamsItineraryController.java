@@ -1,27 +1,24 @@
 package controller;
 
 
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.value.ObservableValue;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableColumn.CellDataFeatures;
-import javafx.scene.control.TableView;
-import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.util.Callback;
-
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXListView;
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.SelectionMode;
-import logic.*;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import logic.CalendarConfiguration;
+import logic.Controller;
+import logic.Date;
 
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -30,7 +27,7 @@ public class TeamsItineraryController implements Initializable {
     private  Controller controller;
     public static int selectedCalendar;
     @FXML
-    private JFXListView teamsListView;
+    private JFXListView<String> teamsListView;
 
     @FXML
     private TableView<ObservableList> itineraryTable;
@@ -40,7 +37,12 @@ public class TeamsItineraryController implements Initializable {
 
     private HomeController homeController;
 
-    private ObservableList<ObservableList> data;
+    private ObservableList<ObservableList> data ;
+
+
+    @FXML
+    private TableColumn<ObservableList, String> colDates;
+
 
 
 
@@ -64,39 +66,54 @@ public class TeamsItineraryController implements Initializable {
     void displayItinerary(ActionEvent event) {
         data = FXCollections.observableArrayList();
 
+
         itineraryTable.getColumns().removeAll(itineraryTable.getColumns());
         itineraryTable.setItems(FXCollections.observableArrayList(new ArrayList<>()));
         ArrayList<Integer> selectedTeams = new ArrayList<>(teamsListView.getSelectionModel().getSelectedIndices());
         ArrayList<Date> calendar = controller.getCalendarsList().get(selectedCalendar);
         CalendarConfiguration configuration = controller.getConfigurations().get(selectedCalendar);
 
-        ArrayList<ArrayList<Integer>> itinerary = controller.teamsItinerary(calendar,configuration);
-
+        ArrayList<ArrayList<Integer>> itinerary = controller.teamsItinerary(calendar,configuration, null);
 
         /*
-        Poner el encabezado de las columnas y el valor que va dentro 
+        Poner el encabezado de las columnas y el valor que va dentro
          */
+        colDates = new TableColumn("Fecha");
+        colDates.setPrefWidth(92);
+
+
         int index=0;
         for (int selectedTeam : selectedTeams) {
             final int j= index;
-            TableColumn col = new TableColumn(controller.getAcronyms().get(selectedTeam));
-            col.setCellValueFactory((Callback<CellDataFeatures<ObservableList, String>, ObservableValue<String>>)
-                    param -> new SimpleStringProperty(param.getValue().get(j).toString()));
+            if(index == 0){
+                itineraryTable.getColumns().add(colDates);
+            }
+            colDates.setCellValueFactory(
+                   param1 -> new SimpleStringProperty(param1.getValue().get(0).toString()));
+            TableColumn<ObservableList, String> col = new TableColumn(controller.getAcronyms().get(selectedTeam));
+            col.setCellValueFactory(
+                    param -> new SimpleStringProperty(param.getValue().get(j+1).toString()));
+
             index++;
             itineraryTable.getColumns().add(col);
         }
 
 
-        for(int i=0; i < itinerary.size();i++){
+
+        for(int i=1; i < itinerary.size();i++){
             ObservableList<String> row = FXCollections.observableArrayList();
+            row.add(Integer.toString(i));
             ArrayList<Integer> current = itinerary.get(i);
             for (int selectedTeam : selectedTeams) {
                 row.add(controller.getAcronyms().get(current.get(selectedTeam)));
             }
+            System.out.println(row);
             data.add(row);
         }
 
         itineraryTable.setItems(data);
+
+
 
         /*for (int selectedTeam : selectedTeams) {
             ObservableList<String> row = FXCollections.observableArrayList();
@@ -112,7 +129,7 @@ public class TeamsItineraryController implements Initializable {
                 itineraryTable.getItems().add(new TeamItineraryName(team));
             }*/
         //}
-        
+
 
     }
 

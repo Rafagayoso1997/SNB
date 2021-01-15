@@ -1,19 +1,13 @@
 package logic;
 
-import com.opencsv.CSVReader;
 import file_management.ReadFiles;
-import org.apache.commons.compress.archivers.ar.ArArchiveEntry;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
-import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.lang.reflect.Array;
-import java.nio.charset.StandardCharsets;
 import java.util.*;
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -24,88 +18,53 @@ import java.util.concurrent.ThreadLocalRandom;
  */
 public class Controller {
 
-    private int maxVisitorGame;//Number of games that a visitor team can play in a row
-    private int maxHomeGame;
-    private boolean inauguralGame;
+
     private final int PENALIZATION = 100000;//Penalization if the calendar breaks the restrictions
     private int iterations;//Number of iterations
     private ArrayList<LocalVisitorDistance> positionsDistance;//List of LocalVisitorDistance
     private ArrayList<String> teams;//List of resources.teams
 
+    private ArrayList<CalendarConfiguration>configurations;
+    private ArrayList<ArrayList<Date>> calendarsList;
+    private ArrayList<String> acronyms;
+    private ArrayList<String> locations;
 
 
-    private ArrayList<String>acronyms;
-    private boolean generatedCalendar;
+    private ArrayList<ArrayList<Integer>> mutationsConfigurationsList;//list of configurations for the mutations
 
-
-    private boolean isCopied;
-
-
-    private ArrayList<ArrayList<Integer>> configurationsList;//list of configurations for the mutations
-
-    private ArrayList<Date> calendar;//List of Date that belongs to the calendar
     private double[][] matrixDistance;//Matrix that represents the distance between resources.teams
     private ArrayList<Integer> teamsIndexes;
-
     private ArrayList<Integer> mutationsIndexes;
     private static Controller singletonController;//Singleton Pattern
-    private int posChampion;//Position of the champion team
-    private int posSubChampion;//Position of the subchampion team
-    private boolean secondRound;
-    private boolean symmetricSecondRound;
 
     private float calendarDistance;
-    private float lessDistance;
-    private float moreDistance;
-    private float copyLessDistance;
-
-
-    private float copyMoreDistance;
-    private String teamLessDistance;
-
-    private String teamMoreDistance;
-
-    private String copyTeamLessDistance;
-
-    private String copyTeamMoreDistance;
-
     private int[][] matrix;
+    private CalendarConfiguration lastSavedConfiguration;
+    private boolean configurationAdded;
 
 
-    private ArrayList<Date> calendarCopy;
-    private ArrayList<ArrayList<Integer>> itinerary;
-    private ArrayList<ArrayList<Integer>> itineraryCopy;
+
+
 
     /**
      * Class Constructor
      */
     private Controller() {
-        this.maxVisitorGame = 2;
-        this.maxHomeGame = 2;
-        this.inauguralGame = false;
         this.teams = new ArrayList<>();
         this.acronyms = new ArrayList<>();
         this.positionsDistance = new ArrayList<>();
         createTeams("src/files/Data.xlsx");
-        this.calendar = new ArrayList<>();
-        this.calendarCopy = new ArrayList<>();
-        this.posChampion = -1;
-        this.posSubChampion = -1;
         this.teamsIndexes = new ArrayList<>();
         this.mutationsIndexes = addAllMutations();
         fillMatrixDistance();
-        this.secondRound = false;
-        this.symmetricSecondRound = false;
         this.matrix = new int[teamsIndexes.size()][teamsIndexes.size()];
-        this.calendarDistance = 0;
-        this.lessDistance = 0;
-        this.moreDistance = 0;
-        this.teamMoreDistance = "";
-        this.teamLessDistance = "";
         this.iterations = 20000;
-        this.configurationsList = new ArrayList<>();
-        this.generatedCalendar = true;
-        this.isCopied = false;
+        this.calendarDistance = 0;
+        this.mutationsConfigurationsList = new ArrayList<>();
+        this.configurations = new ArrayList<>();
+        this.calendarsList = new ArrayList<>();
+        this.configurationAdded = false;
+
     }
 
     /**
@@ -118,6 +77,26 @@ public class Controller {
             singletonController = new Controller();
         }
         return singletonController;
+    }
+
+    public ArrayList<String> getLocations() { return locations; }
+
+    public void setLocations(ArrayList<String> locations) { this.locations = locations; }
+
+    public boolean isConfigurationAdded() {
+        return configurationAdded;
+    }
+
+    public void setConfigurationAdded(boolean configurationAdded) {
+        this.configurationAdded = configurationAdded;
+    }
+
+    public CalendarConfiguration getLastSavedConfiguration() {
+        return lastSavedConfiguration;
+    }
+
+    public void setLastSavedConfiguration(CalendarConfiguration lastSavedConfiguration) {
+        this.lastSavedConfiguration = lastSavedConfiguration;
     }
 
     public ArrayList<String> getAcronyms() {
@@ -150,17 +129,7 @@ public class Controller {
         return teamsIndexes;
     }
 
-    public void setTeamsIndexes(ArrayList<Integer> teamsIndexes) {
-        this.teamsIndexes = teamsIndexes;
-    }
 
-    public boolean isGeneratedCalendar() {
-        return generatedCalendar;
-    }
-
-    public void setGeneratedCalendar(boolean generatedCalendar) {
-        this.generatedCalendar = generatedCalendar;
-    }
 
     public ArrayList<Integer> getMutationsIndexes() {
         return mutationsIndexes;
@@ -168,6 +137,15 @@ public class Controller {
 
     public void setMutationsIndexes(ArrayList<Integer> mutationsIndexes) {
         this.mutationsIndexes = mutationsIndexes;
+    }
+
+
+    public ArrayList<ArrayList<Integer>> getmutationsConfigurationsList() {
+        return mutationsConfigurationsList;
+    }
+
+    public void setMutationsConfigurationsList(ArrayList<ArrayList<Integer>> mutationsConfigurationsList) {
+        this.mutationsConfigurationsList = mutationsConfigurationsList;
     }
 
     public float getCalendarDistance() {
@@ -178,60 +156,22 @@ public class Controller {
         this.calendarDistance = calendarDistance;
     }
 
-    public ArrayList<ArrayList<Integer>> getConfigurationsList() {
-        return configurationsList;
+
+
+    public ArrayList<CalendarConfiguration> getConfigurations() {
+        return configurations;
     }
 
-    public void setConfigurationsList(ArrayList<ArrayList<Integer>> configurationsList) {
-        this.configurationsList = configurationsList;
+    public void setConfigurations(ArrayList<CalendarConfiguration> configurations) {
+        this.configurations = configurations;
     }
 
-    public ArrayList<Date> getCalendarCopy() {
-        return calendarCopy;
+    public ArrayList<ArrayList<Date>> getCalendarsList() {
+        return calendarsList;
     }
 
-    public void setCalendarCopy(ArrayList<Date> calendarCopy) {
-        this.calendarCopy = calendarCopy;
-    }
-
-    public boolean isCopied() {
-        return isCopied;
-    }
-
-    public void setCopied(boolean copied) {
-        isCopied = copied;
-    }
-
-    public int getMaxVisitorGame() {
-        return maxVisitorGame;
-    }
-
-    public void setMaxVisitorGame(int maxVisitorGame) {
-        this.maxVisitorGame = maxVisitorGame;
-    }
-
-    public int getMaxHomeGame() {
-        return maxHomeGame;
-    }
-
-    public void setMaxHomeGame(int maxHomeGame) {
-        this.maxHomeGame = maxHomeGame;
-    }
-
-    public boolean isInauguralGame() {
-        return inauguralGame;
-    }
-
-    public void setInauguralGame(boolean inauguralGame) {
-        this.inauguralGame = inauguralGame;
-    }
-
-    public boolean isSymmetricSecondRound() {
-        return symmetricSecondRound;
-    }
-
-    public void setSymmetricSecondRound(boolean symmetricSecondRound) {
-        this.symmetricSecondRound = symmetricSecondRound;
+    public void setCalendarsList(ArrayList<ArrayList<Date>> calendarsList) {
+        this.calendarsList = calendarsList;
     }
 
 
@@ -271,153 +211,8 @@ public class Controller {
         this.matrixDistance = matrixDistance;
     }
 
-
-    public float getLessDistance() {
-        return lessDistance;
-    }
-
-    public void setLessDistance(float lessDistance) {
-        this.lessDistance = lessDistance;
-    }
-
-    public float getMoreDistance() {
-        return moreDistance;
-    }
-
-    public void setMoreDistance(float moreDistance) {
-        this.moreDistance = moreDistance;
-    }
-
-    public String getTeamLessDistance() {
-        return teamLessDistance;
-    }
-
-    public void setTeamLessDistance(String teamLessDistance) {
-        this.teamLessDistance = teamLessDistance;
-    }
-
-    public String getTeamMoreDistance() {
-        return teamMoreDistance;
-    }
-
-    public void setTeamMoreDistance(String teamMoreDistance) {
-        this.teamMoreDistance = teamMoreDistance;
-    }
-
-    /**
-     * Return the champion team position
-     *
-     * @return
-     */
-    public int getPosChampion() {
-        return posChampion;
-    }
-
-    /**
-     * Set the champion team position
-     *
-     * @param posChampion
-     */
-    public void setPosChampion(int posChampion) {
-        this.posChampion = posChampion;
-    }
-
-    /**
-     * Return the subchampion team position
-     *
-     * @return
-     */
-    public int getPosSubChampion() {
-        return posSubChampion;
-    }
-
-    /**
-     * Set the subchampion team position
-     *
-     * @param posSubChampion
-     */
-    public void setPosSubChampion(int posSubChampion) {
-        this.posSubChampion = posSubChampion;
-    }
-
-    /**
-     * Says that the calendar have a secondRound
-     *
-     * @return
-     */
-    public boolean isSecondRound() {
-        return secondRound;
-    }
-
-    /**
-     * Set if the calendar would have a secondRound
-     *
-     * @param secondRound
-     */
-    public void setSecondRound(boolean secondRound) {
-        this.secondRound = secondRound;
-    }
-
     public ArrayList<String> getTeams() {
         return teams;
-    }
-
-    public ArrayList<Date> getCalendar() {
-        return calendar;
-    }
-
-
-    public void setCalendar(ArrayList<Date> calendar) {
-        this.calendar = calendar;
-    }
-
-
-    public float getCopyLessDistance() {
-        return copyLessDistance;
-    }
-
-    public void setCopyLessDistance(float copyLessDistance) {
-        this.copyLessDistance = copyLessDistance;
-    }
-
-    public float getCopyMoreDistance() {
-        return copyMoreDistance;
-    }
-
-    public void setCopyMoreDistance(float copyMoreDistance) {
-        this.copyMoreDistance = copyMoreDistance;
-    }
-
-    public String getCopyTeamLessDistance() {
-        return copyTeamLessDistance;
-    }
-
-    public void setCopyTeamLessDistance(String copyTeamLessDistance) {
-        this.copyTeamLessDistance = copyTeamLessDistance;
-    }
-
-    public String getCopyTeamMoreDistance() {
-        return copyTeamMoreDistance;
-    }
-
-    public void setCopyTeamMoreDistance(String copyTeamMoreDistance) {
-        this.copyTeamMoreDistance = copyTeamMoreDistance;
-    }
-
-    public ArrayList<ArrayList<Integer>> getItinerary() {
-        return itinerary;
-    }
-
-    public void setItinerary(ArrayList<ArrayList<Integer>> itinerary) {
-        this.itinerary = itinerary;
-    }
-
-    public ArrayList<ArrayList<Integer>> getItineraryCopy() {
-        return itineraryCopy;
-    }
-
-    public void setItineraryCopy(ArrayList<ArrayList<Integer>> itineraryCopy) {
-        this.itineraryCopy = itineraryCopy;
     }
 
     /**
@@ -425,22 +220,27 @@ public class Controller {
      *
      * @param direction
      */
-    private void createTeams(String direction) {
+    public void createTeams(String direction) {
 
         try {
             FileInputStream fis = new FileInputStream(direction);
 
-            //Creamos el objeto XSSF  para el archivo eexcel
+            //Creamos el objeto XSSF  para el archivo excel
             XSSFWorkbook workbook = new XSSFWorkbook(fis);
 
             Sheet sheet = workbook.getSheetAt(0);
 
-            //llenar los acrónimos
+            acronyms = new ArrayList<>();
+            teams = new ArrayList<>();
+            positionsDistance = new ArrayList<>();
 
+            //llenar los acrónimos
             Row row = sheet.getRow(0);
-            for(int i=1;i< row.getLastCellNum();i++){
-                acronyms.add(row.getCell(i).getStringCellValue());
+            Iterator<Cell> cellAcro = row.cellIterator();
+            while (cellAcro.hasNext()){
+                acronyms.add(cellAcro.next().getStringCellValue());
             }
+
             matrixDistance  = new double[acronyms.size()][acronyms.size()];
 
             System.out.println(acronyms);
@@ -484,10 +284,19 @@ public class Controller {
                 positionsDistance.add(new LocalVisitorDistance(indexTeam1, indexTeam2, distance));
             }
             reader.close();*/
+
+            Sheet sheetLocations = workbook.getSheetAt(1);
+            locations = new ArrayList<>();
+            Row rowLocations = sheetLocations.getRow(0);
+            Iterator<Cell> cellLoc = rowLocations.cellIterator();
+
+            while(cellLoc.hasNext()){
+                locations.add(cellLoc.next().getStringCellValue());
+            }
+
         } catch (IOException e) {
             e.getMessage();
         }
-       //System.out.println(teams);
     }
 
     private ArrayList<Integer> addAllMutations(){
@@ -502,21 +311,62 @@ public class Controller {
     /**
      * Generate the calendar
      */
-    public void generateCalendar() throws IOException {
+    public ArrayList<Date> generateCalendar(CalendarConfiguration configuration, int[][] matrix, int numberOfDates, Date dateToStart) throws IOException {
 
-        calendar = new ArrayList<>();
-        for (int f = 0; f < teamsIndexes.size() - 1; f++) {
+        boolean impar = false;
+        int newMatrix[][] = matrix.clone();
+        ArrayList<Integer> teamsIndexes = configuration.getTeamsIndexes();
+        ArrayList<Date> calendar = new ArrayList<>();
+        int numberToAdd = -1;
+
+        if(teamsIndexes.size() %2 != 0){
+            impar = true;
+        }
+
+        if(impar) {
+            newMatrix = new int[matrix.length + 1][matrix.length + 1];
+            for (int i = 0; i < matrix.length + 1; i++) {
+                for (int k = 0; k < matrix.length + 1; k++) {
+                    if (k == matrix.length || i == matrix.length) {
+                        newMatrix[i][k] = 1;
+                    } else {
+                        newMatrix[i][k] = matrix[i][k];
+                    }
+                }
+            }
+
+            boolean added = false;
+            numberToAdd = 0;
+            while (!added) {
+                if (teamsIndexes.contains(numberToAdd)) {
+                    numberToAdd++;
+                } else {
+                    teamsIndexes.add(numberToAdd);
+                    added = true;
+                }
+            }
+        }
+
+        for (int f = 0; f < numberOfDates; f++) {
             int j = 0;
             int lastLocal = 0;
-            Date date = new Date(teamsIndexes.size() / 2);
-            for (int i = 0; i < matrix.length; i++) {
-                for (; j < matrix[i].length; j++) {
+
+            Date date;
+            if(!impar){
+                date = new Date(teamsIndexes.size() / 2);
+            }
+            else {
+                date = new Date(((int)Math.floor(teamsIndexes.size() / 2)) + 1);
+            }
+
+            for (int i = 0; i < newMatrix.length; i++) {
+                for (; j < newMatrix[i].length; j++) {
                     if (i < j) {
-                        if (matrix[i][j] != 0) {
+                        if (newMatrix[i][j] != 0) {
                             boolean isIn = isInDate(teamsIndexes.get(i), teamsIndexes.get(j), date);
                             if (!isIn) {
                                 ArrayList<Integer> pair = new ArrayList<>(2);
-                                if (matrix[i][j] == 1) {
+                                if (newMatrix[i][j] == 1) {
                                     pair.add(teamsIndexes.get(j));
                                     pair.add(teamsIndexes.get(i));
                                 } else {
@@ -524,24 +374,13 @@ public class Controller {
                                     pair.add(teamsIndexes.get(j));
                                 }
                                 date.getGames().add(pair);
-                                lastLocal = matrix[i][j];
-                                matrix[i][j] = 0;
-
-                               /* System.out.println("Fecha actual: " + date.getGames());
-                                System.out.println("Lastlocal" + lastLocal);
-
-                                System.out.println("Matriz de 1 y 2:");
-                                for (int g = 0; g < matrix.length; g++) {
-                                    for (int h = 0; h < matrix.length; h++) {
-                                        System.out.print(matrix[g][h]);
-                                    }
-                                    System.out.println();
-                                }*/
+                                lastLocal = newMatrix[i][j];
+                                newMatrix[i][j] = 0;
                             }
                         }
                     }
                 }
-                if (i == matrix.length - 1) {
+                if (i == newMatrix.length - 1) {
                     if (date.getGames().size() != (teamsIndexes.size() / 2)) {
 
                         int local = teamsIndexes.indexOf(date.getGames().get(date.getGames().size() - 1).get(0));
@@ -555,17 +394,8 @@ public class Controller {
                             j = local;
                         }
 
-                        matrix[i][j] = lastLocal;
+                        newMatrix[i][j] = lastLocal;
                         date.getGames().remove(date.getGames().size() - 1);
-
-                        System.out.println(date.getGames());
-                        /*System.out.println("Matriz de 1 y 2:");
-                        for (int g = 0; g < matrix.length; g++) {
-                            for (int h = 0; h < matrix.length; h++) {
-                                System.out.print(matrix[g][h]);
-                            }
-                            System.out.println();
-                        }*/
 
                         i--;
                         j++;
@@ -575,37 +405,268 @@ public class Controller {
                 }
             }
             calendar.add(date);
-            System.out.println("************************************************");
-            System.out.println("Calendario:");
-            for (Date value : calendar) {
-                for (int h = 0; h < value.getGames().size(); h++) {
-                    System.out.print(value.getGames().get(h));
-                }
-                System.out.println();
-            }
-            System.out.println("************************************************");
-        }
-        if (this.posChampion != -1 && !inauguralGame) {
-            fixChampionSubchampion(calendar);
         }
 
-        if(inauguralGame){
+        if(impar){
+            teamsIndexes.remove(teamsIndexes.size()-1);
+            for (int i = 0; i < calendar.size(); i++) {
+                for (int k = 0; k < calendar.get(i).getGames().size(); k++) {
+
+                    int pos = calendar.get(i).getGames().get(k).indexOf(numberToAdd);
+                    if (pos != -1){
+                        if (pos == 0){
+                            calendar.get(i).getGames().get(k).set(pos, calendar.get(i).getGames().get(k).get(1));
+                        }
+                        else{
+                            calendar.get(i).getGames().get(k).set(pos, calendar.get(i).getGames().get(k).get(0));
+                        }
+                    }
+                }
+            }
+        }
+
+        if (configuration.getChampion() != -1 && !configuration.isInauguralGame()) {
+            fixChampionSubchampion(calendar, configuration.getChampion(),configuration.getSecondPlace());
+        }
+
+        if(configuration.isInauguralGame() && !configuration.isOccidenteVsOriente()){
             Date inauguralDate = new Date();
             ArrayList<Integer> pair = new ArrayList<>();
-            pair.add(teamsIndexes.get(posSubChampion));
-            pair.add(teamsIndexes.get(posChampion));
+            pair.add(configuration.getChampion());
+            pair.add(configuration.getSecondPlace());
             inauguralDate.getGames().add(pair);
-            this.calendar.add(0, inauguralDate);
+            calendar.add(0, inauguralDate);
         }
 
-        applyMutations();
-
-        if (secondRound) {
+        if (configuration.isSecondRoundCalendar() && !configuration.isSymmetricSecondRound()) {
             ArrayList<Date> secondRoundCalendar = new ArrayList<>();
             copyCalendar(secondRoundCalendar, calendar);
-            generateSecondRound(secondRoundCalendar);
+            generateSecondRound(secondRoundCalendar, configuration);
             calendar.addAll(secondRoundCalendar);
         }
+
+        calendar = applyMutations(calendar,configuration, dateToStart);
+
+        if (configuration.isSecondRoundCalendar() && configuration.isSymmetricSecondRound()) {
+            ArrayList<Date> secondRoundCalendar = new ArrayList<>();
+            copyCalendar(secondRoundCalendar, calendar);
+            generateSecondRound(secondRoundCalendar,configuration);
+            calendar.addAll(secondRoundCalendar);
+        }
+       return calendar;
+    }
+
+    public ArrayList<Date> generateCalendarOccidentVsOrient(CalendarConfiguration configuration, int[][] matrix) throws IOException {
+
+        ArrayList<Integer> teamsOnlyOccident = new ArrayList<>();
+        ArrayList<Integer> teamsOnlyOrient = new ArrayList<>();
+        int newMatrix[][] = matrix.clone();
+
+        for (Integer index: configuration.getTeamsIndexes()) {
+            if (locations.get(index).equalsIgnoreCase("Occidental")){
+                teamsOnlyOccident.add(index);
+            }
+            else{
+                teamsOnlyOrient.add(index);
+            }
+        }
+
+        int[][] matrixOnlyOccident = new int[teamsOnlyOccident.size()][teamsOnlyOccident.size()];
+        int[][] matrixOnlyOrient = new int[teamsOnlyOrient.size()][teamsOnlyOrient.size()];
+        ArrayList<ArrayList<Integer>> matrixOccidentVsOrient = new ArrayList<>();
+
+        for (int i = 0; i < matrix.length; i++){
+            int posIOccident = teamsOnlyOccident.indexOf(configuration.getTeamsIndexes().get(i));
+            int posIOrient = teamsOnlyOrient.indexOf(configuration.getTeamsIndexes().get(i));
+
+            for (int j = 0; j < matrix[i].length; j++){
+                if (i < j){
+                    int posJOccident = teamsOnlyOccident.indexOf(configuration.getTeamsIndexes().get(j));
+                    int posJOrient = teamsOnlyOrient.indexOf(configuration.getTeamsIndexes().get(j));
+                    if(posIOccident != -1 && posJOccident != -1){
+                        matrixOnlyOccident[posIOccident][posJOccident] = matrix[i][j];
+                        matrixOnlyOccident[posJOccident][posIOccident] = matrix[j][i];
+                        newMatrix[i][j] = 0;
+                        newMatrix[j][i] = 0;
+                    }
+                    else if(posIOrient != -1 && posJOrient != -1){
+                        matrixOnlyOrient[posIOrient][posJOrient] = matrix[i][j];
+                        matrixOnlyOrient[posJOrient][posIOrient] = matrix[j][i];
+                        newMatrix[i][j] = 0;
+                        newMatrix[j][i] = 0;
+                    }
+                    else{
+                        ArrayList<Integer> pair = new ArrayList<>(2);
+                        if (matrix[i][j] == 1) {
+                            pair.add(configuration.getTeamsIndexes().get(j));
+                            pair.add(configuration.getTeamsIndexes().get(i));
+                        } else {
+                            pair.add(configuration.getTeamsIndexes().get(i));
+                            pair.add(configuration.getTeamsIndexes().get(j));
+                        }
+                        matrixOccidentVsOrient.add(pair);
+                    }
+                }
+            }
+        }
+
+
+        CalendarConfiguration configurationOnlyOccident = new CalendarConfiguration(configuration.getCalendarId(),
+                teamsOnlyOccident, configuration.isInauguralGame(),configuration.isChampionVsSecondPlace(),
+                configuration.getChampion(), configuration.getSecondPlace(), configuration.isSecondRoundCalendar(),
+                configuration.isSymmetricSecondRound(), configuration.isOccidenteVsOriente(), configuration.getMaxLocalGamesInARow(),
+                configuration.getMaxVisitorGamesInARow());
+
+        CalendarConfiguration configurationOnlyOrient = new CalendarConfiguration(configuration.getCalendarId(),
+                teamsOnlyOrient, configuration.isInauguralGame(),configuration.isChampionVsSecondPlace(),
+                configuration.getChampion(), configuration.getSecondPlace(), configuration.isSecondRoundCalendar(),
+                configuration.isSymmetricSecondRound(), configuration.isOccidenteVsOriente(), configuration.getMaxLocalGamesInARow(),
+                configuration.getMaxVisitorGamesInARow());
+
+        CalendarConfiguration configurationOccidentVsOrient = new CalendarConfiguration(configuration.getCalendarId(),
+                configuration.getTeamsIndexes(), configuration.isInauguralGame(),configuration.isChampionVsSecondPlace(),
+                configuration.getChampion(), configuration.getSecondPlace(), configuration.isSecondRoundCalendar(),
+                configuration.isSymmetricSecondRound(), configuration.isOccidenteVsOriente(), configuration.getMaxLocalGamesInARow(),
+                configuration.getMaxVisitorGamesInARow());
+
+
+        if (configuration.getChampion() != -1){
+            int posChamp = teamsOnlyOccident.indexOf(configuration.getChampion());
+            int posSub = teamsOnlyOccident.indexOf(configuration.getSecondPlace());
+
+            if(posChamp != -1 && posSub != -1){
+                configurationOnlyOrient.setChampionVsSecondPlace(false);
+                configurationOnlyOrient.setInauguralGame(false);
+                configurationOccidentVsOrient.setChampionVsSecondPlace(false);
+            }
+            else if(posChamp == -1 && posSub == -1){
+                configurationOnlyOccident.setChampionVsSecondPlace(false);
+                configurationOnlyOccident.setInauguralGame(false);
+                configurationOccidentVsOrient.setChampionVsSecondPlace(false);
+            }
+            else if(posChamp != -1 && posSub == -1 && configuration.isInauguralGame()){
+                configurationOnlyOccident.setChampionVsSecondPlace(false);
+                configurationOnlyOccident.setInauguralGame(false);
+            }
+            else if(posChamp == -1 && posSub != -1 && configuration.isInauguralGame()){
+                configurationOnlyOrient.setChampionVsSecondPlace(false);
+                configurationOnlyOrient.setInauguralGame(false);
+            }
+            else{
+                configurationOnlyOrient.setChampionVsSecondPlace(false);
+                configurationOnlyOccident.setChampionVsSecondPlace(false);
+            }
+            if (configuration.isInauguralGame()){
+                configurationOccidentVsOrient.setInauguralGame(false);
+            }
+        }
+
+        ArrayList<Date> onlyOccident = generateCalendar(configurationOnlyOccident, matrixOnlyOccident, teamsOnlyOccident.size() -1, null);
+        ArrayList<Date> onlyOrient = generateCalendar(configurationOnlyOrient, matrixOnlyOrient, teamsOnlyOrient.size() - 1, null);
+        ArrayList<Date> allTogether = new ArrayList<>();
+
+        for (int i = 0; i < onlyOccident.size(); i++) {
+            Date dateToAdd = new Date();
+            dateToAdd.getGames().addAll(onlyOccident.get(i).getGames());
+            dateToAdd.getGames().addAll(onlyOrient.get(i).getGames());
+            allTogether.add(dateToAdd);
+        }
+
+        int numberOfDate = 0;
+        if (!configuration.isSecondRoundCalendar()){
+            numberOfDate = (configuration.getTeamsIndexes().size()-1) - onlyOccident.size();
+        }
+        else{
+            numberOfDate = (configuration.getTeamsIndexes().size()-1) - (onlyOccident.size()/2);
+        }
+
+        Date dateToStart = allTogether.get(allTogether.size()-1);
+        ArrayList<Date> OccidentVsOrient = generateCalendar(configurationOccidentVsOrient, newMatrix, numberOfDate, dateToStart);
+
+        for (Date temp: OccidentVsOrient) {
+            allTogether.add(temp);
+        }
+
+        if (configuration.isInauguralGame()){
+            Date inauguralDate = new Date();
+            ArrayList<Integer> pair = new ArrayList<>();
+            pair.add(configuration.getChampion());
+            pair.add(configuration.getSecondPlace());
+            inauguralDate.getGames().add(pair);
+            allTogether.add(0, inauguralDate);
+        }
+
+
+        System.out.println("Calendario final: ");
+        for (Date temp: allTogether) {
+            System.out.println(temp.getGames());
+        }
+
+
+        /*ArrayList<Date> occidentVsOrient = new ArrayList<>();
+        //int cantDates = (configuration.getTeamsIndexes().size() - 1) - onlyOccident.size();
+        int cantDuelsPerDate = onlyOccident.get(0).getGames().size() * 2;
+
+        Date temp = new Date();
+
+        for (int i = 0; i < matrixOccidentVsOrient.size(); i++){
+            if(temp.getGames().size() < cantDuelsPerDate){
+                temp.getGames().add(matrixOccidentVsOrient.get(i));
+                if (i == (matrixOccidentVsOrient.size() - 1)){
+                    occidentVsOrient.add(temp);
+                }
+            }
+            else{
+                occidentVsOrient.add(temp);
+                temp = new Date();
+                temp.getGames().add(matrixOccidentVsOrient.get(i));
+            }
+        }
+
+
+        ArrayList<Date> allTogether = new ArrayList<>();
+        ArrayList<ArrayList<Integer>> duelsAdded = new ArrayList<>();
+        boolean finishedCalendar = false;
+        boolean finishedDate = false;
+        int i = 0;
+        int j = 0;
+        Date tempDate = new Date();
+
+        while (!finishedCalendar && i < occidentVsOrient.size()){
+            if(finishedDate){
+                tempDate = new Date();
+                finishedDate = false;
+            }
+
+            while (!finishedDate && j < occidentVsOrient.get(i).getGames().size()){
+
+                if(!duelsAdded.contains(occidentVsOrient.get(i).getGames().get(j))){
+
+                    boolean isIn = isInDate(occidentVsOrient.get(i).getGames().get(j).get(0), occidentVsOrient.get(i).getGames().get(j).get(1), tempDate);
+                    if (!isIn){
+                        tempDate.getGames().add(occidentVsOrient.get(i).getGames().get(j));
+                        duelsAdded.add(occidentVsOrient.get(i).getGames().get(j));
+                        if (tempDate.getGames().size() == occidentVsOrient.get(i).getGames().size()){
+                            finishedDate = true;
+                            allTogether.add(tempDate);
+                            i = -1;
+                            j = 0;
+                        }
+                    }
+                }
+                j++;
+            }
+
+            if (allTogether.size() == occidentVsOrient.size()){
+                finishedCalendar = true;
+            }
+            i++;
+            j = 0;
+        }
+*/
+
+
+        return allTogether;
     }
 
     /**
@@ -613,10 +674,16 @@ public class Controller {
      *
      * @param calendar ArrayList
      */
-    private void generateSecondRound(ArrayList<Date> calendar) {
-        for (Date date : calendar) {
-            for (int j = 0; j < date.getGames().size(); j++) {
-                ArrayList<Integer> duel = date.getGames().get(j);
+    private void generateSecondRound(ArrayList<Date> calendar, CalendarConfiguration configuration) {
+
+
+        if(configuration.isInauguralGame() && !configuration.isOccidenteVsOriente()){
+            calendar.remove(0);
+        }
+
+        for (int i = 0; i < calendar.size(); i++) {
+            for (int j = 0; j < calendar.get(i).getGames().size(); j++) {
+                ArrayList<Integer> duel = calendar.get(i).getGames().get(j);
                 swapDuel(duel);
             }
         }
@@ -680,94 +747,236 @@ public class Controller {
      * @param matrix int [][]
      * @return int[][]
      */
-    public int[][] symmetricCalendar(int[][] matrix) {
-        int posChampion = Controller.getSingletonController().getTeamsIndexes().indexOf(Controller.getSingletonController().getPosChampion());
-        int posSecond = Controller.getSingletonController().getTeamsIndexes().indexOf(Controller.getSingletonController().getPosSubChampion());
+    public int[][] symmetricCalendar(int[][] matrix, CalendarConfiguration configuration) {
+
+        ArrayList<ArrayList<Integer>> cantLocalsAndVisitorsPerRow = new ArrayList<>();
+
+        for (int i = 0; i < matrix.length; i++){
+            ArrayList<Integer> row = new ArrayList<>();
+            row.add(0);
+            row.add(0);
+            cantLocalsAndVisitorsPerRow.add(row);
+        }
+
+        int posChampion = configuration.getTeamsIndexes().indexOf(configuration.getChampion());
+        int posSecond = configuration.getTeamsIndexes().indexOf(configuration.getSecondPlace());
         boolean champion = false;
         if (posChampion != -1) {
             champion = true;
-            if (posChampion < posSecond) {
-                matrix[posChampion][posSecond] = 2;
-                matrix[posSecond][posChampion] = 1;
-            } else {
-                matrix[posChampion][posSecond] = 2;
-                matrix[posSecond][posChampion] = 1;
+            if(lastSavedConfiguration.isInauguralGame()) {
+
+               // if(posChampion < posSecond){
+                    matrix[posChampion][posSecond] = 1;
+                    matrix[posSecond][posChampion] = 2;
+                    cantLocalsAndVisitorsPerRow.get(posChampion).set(0, cantLocalsAndVisitorsPerRow.get(posChampion).get(1)+1);
+                    cantLocalsAndVisitorsPerRow.get(posSecond).set(1, cantLocalsAndVisitorsPerRow.get(posSecond).get(1)+1);
+                /*}
+                else{
+                    matrix[posChampion][posSecond] = 2;
+                    matrix[posSecond][posChampion] = 1;
+                    cantLocalsAndVisitorsPerRow.get(posChampion).set(1, cantLocalsAndVisitorsPerRow.get(posChampion).get(1)+1);
+                    cantLocalsAndVisitorsPerRow.get(posSecond).set(0, cantLocalsAndVisitorsPerRow.get(posSecond).get(0)+1);
+                }*/
+
             }
-            /*
-            if(isInauguralGame()){
-                int temp =  matrix[posChampion][posSecond];
-                matrix[posChampion][posSecond] =  matrix[posSecond][posChampion];
-                matrix[posSecond][posChampion] = temp;
-            }*/
-
-           /* System.out.println("Matriz de 1 y 2:");
-            for (int i = 0; i < matrix.length; i++) {
-                for (int j = 0; j < matrix.length; j++) {
-                    System.out.print(matrix[i][j]);
-                }
-                System.out.println();
-            }*/
-
+            else{
+                //if(posChampion < posSecond){
+                    matrix[posChampion][posSecond] = 2;
+                    matrix[posSecond][posChampion] = 1;
+                    cantLocalsAndVisitorsPerRow.get(posChampion).set(1, cantLocalsAndVisitorsPerRow.get(posChampion).get(1)+1);
+                    cantLocalsAndVisitorsPerRow.get(posSecond).set(0, cantLocalsAndVisitorsPerRow.get(posSecond).get(0)+1);
+                /*}
+                else{
+                    matrix[posChampion][posSecond] = 1;
+                    matrix[posSecond][posChampion] = 2;
+                    cantLocalsAndVisitorsPerRow.get(posChampion).set(0, cantLocalsAndVisitorsPerRow.get(posChampion).get(1)+1);
+                    cantLocalsAndVisitorsPerRow.get(posSecond).set(1, cantLocalsAndVisitorsPerRow.get(posSecond).get(1)+1);
+                }*/
+            }
         }
-        int cantLocal = (int) Math.floor((matrix.length - 1) / 2) + 1;
+
+        int cantMaxLocalOrVisitor = matrix.length / 2;
+
         for (int i = 0; i < matrix.length; i++) {
-            int cantLocalsRow = 0;
-            if (champion && i == posSecond)
-                cantLocalsRow++;
             for (int j = 0; j < matrix[i].length; j++) {
                 if (i != j) {
                     if (matrix[i][j] == 0) {
-                        if (cantLocalsRow < cantLocal) {
+                        if (cantLocalsAndVisitorsPerRow.get(i).get(0) < cantMaxLocalOrVisitor) {
                             if (champion) {
-                                int cantVisitor = 0;
-                                for (int k = 0; k < matrix[j].length; k++) {
-                                    if (matrix[j][k] == 2) {
-                                        cantVisitor++;
+                                if (cantLocalsAndVisitorsPerRow.get(j).get(1) < cantMaxLocalOrVisitor) {
+                                    matrix[i][j] = 1;
+                                    matrix[j][i] = 2;
+                                    cantLocalsAndVisitorsPerRow.get(i).set(0, cantLocalsAndVisitorsPerRow.get(i).get(0)+1);
+                                    cantLocalsAndVisitorsPerRow.get(j).set(1, cantLocalsAndVisitorsPerRow.get(j).get(1)+1);
+                                }
+                                else {
+                                    if (cantLocalsAndVisitorsPerRow.get(i).get(1) < cantMaxLocalOrVisitor && cantLocalsAndVisitorsPerRow.get(j).get(0) < cantMaxLocalOrVisitor){
+                                        matrix[i][j] = 2;
+                                        matrix[j][i] = 1;
+                                        cantLocalsAndVisitorsPerRow.get(i).set(1, cantLocalsAndVisitorsPerRow.get(i).get(1)+1);
+                                        cantLocalsAndVisitorsPerRow.get(j).set(0, cantLocalsAndVisitorsPerRow.get(j).get(0)+1);
+                                    }
+                                    else{
+                                        boolean goBackPossibility = false;
+                                        int lastRowModified = -1;
+                                        while (!goBackPossibility && i >= 0){
+                                            while (!goBackPossibility & j > 0){
+                                                j--;
+                                                if (matrix[i][j] == 1){
+                                                    if (cantLocalsAndVisitorsPerRow.get(i).get(1) < cantMaxLocalOrVisitor && cantLocalsAndVisitorsPerRow.get(j).get(0) < cantMaxLocalOrVisitor){
+                                                        matrix[i][j] = 2;
+                                                        matrix[j][i] = 1;
+
+                                                        cantLocalsAndVisitorsPerRow.get(i).set(1, cantLocalsAndVisitorsPerRow.get(i).get(1)+1);
+                                                        cantLocalsAndVisitorsPerRow.get(j).set(0, cantLocalsAndVisitorsPerRow.get(j).get(0)+1);
+
+                                                        cantLocalsAndVisitorsPerRow.get(i).set(0, cantLocalsAndVisitorsPerRow.get(i).get(0)-1);
+                                                        cantLocalsAndVisitorsPerRow.get(j).set(1, cantLocalsAndVisitorsPerRow.get(j).get(1)-1);
+
+                                                        goBackPossibility = true;
+                                                        i = lastRowModified;
+                                                        j = -1;
+                                                    }
+                                                }
+                                                else if(matrix[i][j] == 2){
+                                                    if (cantLocalsAndVisitorsPerRow.get(i).get(0) < cantMaxLocalOrVisitor && cantLocalsAndVisitorsPerRow.get(j).get(1) < cantMaxLocalOrVisitor){
+                                                        matrix[i][j] = 1;
+                                                        matrix[j][i] = 2;
+
+                                                        cantLocalsAndVisitorsPerRow.get(i).set(0, cantLocalsAndVisitorsPerRow.get(i).get(0)+1);
+                                                        cantLocalsAndVisitorsPerRow.get(j).set(1, cantLocalsAndVisitorsPerRow.get(j).get(1)+1);
+
+                                                        cantLocalsAndVisitorsPerRow.get(i).set(1, cantLocalsAndVisitorsPerRow.get(i).get(1)-1);
+                                                        cantLocalsAndVisitorsPerRow.get(j).set(0, cantLocalsAndVisitorsPerRow.get(j).get(0)-1);
+
+                                                        goBackPossibility = true;
+                                                        i = lastRowModified;
+                                                        j = -1;
+                                                    }
+                                                }
+                                                if(!goBackPossibility && matrix[i][j] != 0){
+                                                    if (matrix[i][j] == 1){
+                                                        cantLocalsAndVisitorsPerRow.get(i).set(0, cantLocalsAndVisitorsPerRow.get(i).get(0)-1);
+                                                        cantLocalsAndVisitorsPerRow.get(j).set(1, cantLocalsAndVisitorsPerRow.get(j).get(1)-1);
+                                                    }
+                                                    else {
+                                                        cantLocalsAndVisitorsPerRow.get(i).set(1, cantLocalsAndVisitorsPerRow.get(i).get(1)-1);
+                                                        cantLocalsAndVisitorsPerRow.get(j).set(0, cantLocalsAndVisitorsPerRow.get(j).get(0)-1);
+                                                    }
+                                                    matrix[i][j] = 0;
+                                                    matrix[j][i] = 0;
+                                                    if (i < j){
+                                                        if(i < lastRowModified){
+                                                            lastRowModified = i;
+                                                        }
+                                                    }
+                                                    else{
+                                                        if(j < lastRowModified){
+                                                            lastRowModified = j;
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                            if (!goBackPossibility){
+                                                i--;
+                                                j = matrix.length;
+                                            }
+                                        }
+                                        if(i < 0){
+                                            i = 0;
+                                        }
                                     }
                                 }
-                                if (cantVisitor == cantLocal) {
-                                    int cant = 0;
-                                    int pos = -1;
-                                    for (int k = 0; k < matrix[i].length; k++) {
-                                        if (matrix[i][k] == 2) {
-                                            cant++;
-                                            if (pos == -1) {
-                                                pos = k;
+                            }
+                            else {
+                                matrix[i][j] = 1;
+                                matrix[j][i] = 2;
+                                cantLocalsAndVisitorsPerRow.get(i).set(0, cantLocalsAndVisitorsPerRow.get(i).get(0)+1);
+                                cantLocalsAndVisitorsPerRow.get(j).set(1, cantLocalsAndVisitorsPerRow.get(j).get(1)+1);
+                            }
+                        }
+                        else {
+                            if(cantLocalsAndVisitorsPerRow.get(j).get(0) < cantMaxLocalOrVisitor){
+                                matrix[i][j] = 2;
+                                matrix[j][i] = 1;
+                                cantLocalsAndVisitorsPerRow.get(i).set(1, cantLocalsAndVisitorsPerRow.get(i).get(1)+1);
+                                cantLocalsAndVisitorsPerRow.get(j).set(0, cantLocalsAndVisitorsPerRow.get(j).get(0)+1);
+                            }
+                            else{
+                                boolean goBackPossibility = false;
+                                int lastRowModified = -1;
+                                while (!goBackPossibility && i >= 0){
+                                    while (!goBackPossibility & j > 0){
+                                        j--;
+                                        if (matrix[i][j] == 1){
+                                            if (cantLocalsAndVisitorsPerRow.get(i).get(1) < cantMaxLocalOrVisitor && cantLocalsAndVisitorsPerRow.get(j).get(0) < cantMaxLocalOrVisitor){
+                                                matrix[i][j] = 2;
+                                                matrix[j][i] = 1;
+
+                                                cantLocalsAndVisitorsPerRow.get(i).set(1, cantLocalsAndVisitorsPerRow.get(i).get(1)+1);
+                                                cantLocalsAndVisitorsPerRow.get(j).set(0, cantLocalsAndVisitorsPerRow.get(j).get(0)+1);
+
+                                                cantLocalsAndVisitorsPerRow.get(i).set(0, cantLocalsAndVisitorsPerRow.get(i).get(0)-1);
+                                                cantLocalsAndVisitorsPerRow.get(j).set(1, cantLocalsAndVisitorsPerRow.get(j).get(1)-1);
+
+                                                goBackPossibility = true;
+                                                i = lastRowModified;
+                                                j = -1;
+                                            }
+                                        }
+                                        else if(matrix[i][j] == 2){
+                                            if (cantLocalsAndVisitorsPerRow.get(i).get(0) < cantMaxLocalOrVisitor && cantLocalsAndVisitorsPerRow.get(j).get(1) < cantMaxLocalOrVisitor){
+                                                matrix[i][j] = 1;
+                                                matrix[j][i] = 2;
+
+                                                cantLocalsAndVisitorsPerRow.get(i).set(0, cantLocalsAndVisitorsPerRow.get(i).get(0)+1);
+                                                cantLocalsAndVisitorsPerRow.get(j).set(1, cantLocalsAndVisitorsPerRow.get(j).get(1)+1);
+
+                                                cantLocalsAndVisitorsPerRow.get(i).set(1, cantLocalsAndVisitorsPerRow.get(i).get(1)-1);
+                                                cantLocalsAndVisitorsPerRow.get(j).set(0, cantLocalsAndVisitorsPerRow.get(j).get(0)-1);
+
+                                                goBackPossibility = true;
+                                                i = lastRowModified;
+                                                j = -1;
+                                            }
+                                        }
+                                        if(!goBackPossibility && matrix[i][j] != 0){
+                                            if (matrix[i][j] == 1){
+                                                cantLocalsAndVisitorsPerRow.get(i).set(0, cantLocalsAndVisitorsPerRow.get(i).get(0)-1);
+                                                cantLocalsAndVisitorsPerRow.get(j).set(1, cantLocalsAndVisitorsPerRow.get(j).get(1)-1);
+                                            }
+                                            else {
+                                                cantLocalsAndVisitorsPerRow.get(i).set(1, cantLocalsAndVisitorsPerRow.get(i).get(1)-1);
+                                                cantLocalsAndVisitorsPerRow.get(j).set(0, cantLocalsAndVisitorsPerRow.get(j).get(0)-1);
+                                            }
+                                            matrix[i][j] = 0;
+                                            matrix[j][i] = 0;
+                                            if (i < j){
+                                                if(i < lastRowModified){
+                                                    lastRowModified = i;
+                                                }
+                                            }
+                                            else{
+                                                if(j < lastRowModified){
+                                                    lastRowModified = j;
+                                                }
                                             }
                                         }
                                     }
-                                    if (cant < cantLocal) {
-                                        matrix[i][j] = 2;
-                                        matrix[j][i] = 1;
-                                    } else {
-                                        matrix[i][pos] = 1;
-                                        matrix[pos][i] = 2;
-                                        cantLocalsRow++;
+                                    if (!goBackPossibility){
+                                        i--;
+                                        j = matrix.length;
                                     }
-                                } else {
-                                    matrix[i][j] = 1;
-                                    matrix[j][i] = 2;
-                                    cantLocalsRow++;
                                 }
-                            } else {
-                                matrix[i][j] = 1;
-                                matrix[j][i] = 2;
-                                cantLocalsRow++;
+                                if(i < 0){
+                                    i = 0;
+                                }
                             }
-                        } else {
-                            matrix[i][j] = 2;
-                            matrix[j][i] = 1;
                         }
                     }
                 }
             }
         }
-        /*for (int[] ints : matrix) {
-            for (int anInt : ints) {
-                System.out.print(anInt + " ");
-            }
-            System.out.println(" ");
-        }*/
         return matrix;
     }
 
@@ -775,7 +984,7 @@ public class Controller {
      * Fill the matrix with the distance
      */
 
-    private void fillMatrixDistance() {
+    public void fillMatrixDistance() {
         this.matrixDistance = new double[teams.size()][teams.size()];
         for (LocalVisitorDistance aux : this.positionsDistance) {
             int indexTeam1 = aux.getPosLocal();
@@ -794,7 +1003,7 @@ public class Controller {
      * @param
      * @return float
      */
-    public float calculateDistance(ArrayList<ArrayList<Integer>> itinerary) {
+    public float calculateCalendarDistance(ArrayList<ArrayList<Integer>> itinerary)  {
         float totalDistance = 0;
 
         for (int i = 0; i < itinerary.size() - 1; i++) {
@@ -804,46 +1013,81 @@ public class Controller {
                 int first = row1.get(j);
                 int second = row2.get(j);
                 double dist = matrixDistance[second][first];
-                totalDistance += ((first == second) ? 0.0 : dist);
+                totalDistance += dist;
             }
         }
         return totalDistance;
     }
 
-    public ArrayList<ArrayList<Integer>> teamsItinerary(ArrayList<Date> calendar) {
+    public ArrayList<ArrayList<Integer>> teamsItinerary(ArrayList<Date> calendar, CalendarConfiguration configuration, Date dateToStart) {
         ArrayList<ArrayList<Integer>> teamDate = new ArrayList<>();
+        ArrayList<Integer> teamsIndexes = configuration.getTeamsIndexes();
         ArrayList<Integer> row = new ArrayList<>();
         int startPosition = 0;
 
-        for (int k = 0; k < teamsIndexes.size(); k++) {
-            row.add(teamsIndexes.get(k));
+        if(dateToStart == null){
+            for (int k = 0; k < teamsIndexes.size(); k++) {
+                row.add(teamsIndexes.get(k));
+            }
         }
+        else{
 
+            for (int k = 0; k < teamsIndexes.size(); k++) {
+                row.add(-1);
+            }
+
+            for (int k = 0; k < dateToStart.getGames().size(); k++) {
+
+                int local = dateToStart.getGames().get(k).get(0);
+                int visitor = dateToStart.getGames().get(k).get(1);
+
+                int posLocal = teamsIndexes.indexOf(local);
+                int posVisitor = teamsIndexes.indexOf(visitor);
+
+                row.set(posLocal, local);
+                row.set(posVisitor, local);
+
+            }
+        }
         teamDate.add(row);
 
-        if(inauguralGame){
-            startPosition = 1;
+        if(configuration.isInauguralGame() && dateToStart == null){
+            if (calendar.get(0).getGames().size() == 1){
+                startPosition = 1;
+            }
+
             row = new ArrayList<>();
             for (int k = 0; k < teamsIndexes.size(); k++) {
                 row.add(teamsIndexes.get(k));
             }
-            int posChampeon = teamsIndexes.indexOf(calendar.get(0).getGames().get(0).get(0));
-            int posSub = teamsIndexes.indexOf(calendar.get(0).getGames().get(0).get(1));
-            row.set(posSub, posChampeon);
+            int posChampeon = teamsIndexes.indexOf(configuration.getChampion());
+            int posSub = teamsIndexes.indexOf(configuration.getSecondPlace());
+
+            if(posChampeon != -1 && posSub != -1){
+                row.set(posSub, configuration.getChampion());
+            }
+            else if(posChampeon == -1 && posSub != -1){
+                row.set(posSub, configuration.getChampion());
+            }
             teamDate.add(row);
         }
 
+        int cantRealDatesAdded = 0;
+
+
         for (int i = startPosition; i < calendar.size(); i++) {
 
-            /*if (secondRound) {
-                if ((i - 1) == calendar.size() / 2) {
+            if (configuration.isSecondRoundCalendar()) {
+
+                //if ((i - 1 + startPosition) == (calendar.size() / 2) + 1) {
+                if(cantRealDatesAdded == teamsIndexes.size() - 1){
                     row = new ArrayList<>();
                     for (int j = 0; j < teamsIndexes.size(); j++) {
                         row.add(teamsIndexes.get(j));
                     }
                     teamDate.add(row);
                 }
-            }*/
+            }
 
             row = new ArrayList<>();
             for (int k = 0; k < teamsIndexes.size(); k++) {
@@ -860,6 +1104,7 @@ public class Controller {
             }
 
             teamDate.add(row);
+            cantRealDatesAdded++;
         }
 
         row = new ArrayList<>();
@@ -871,20 +1116,25 @@ public class Controller {
         return teamDate;
     }
 
-    private int checkLongTrips(ArrayList<ArrayList<Integer>> itinerary) {
+    public int checkLongTrips(ArrayList<ArrayList<Integer>> itinerary, ArrayList<Integer> teamsIndexes) {
+
         int count = 0;
         ArrayList<Double> distances = new ArrayList<>(teamsIndexes.size());
         for (int i = 0; i < teamsIndexes.size(); i++) {
             distances.add(0.0);
         }
+
         for (int i = 0; i < itinerary.size() - 1; i++) {
             ArrayList<Integer> row1 = itinerary.get(i);
             ArrayList<Integer> row2 = itinerary.get(i + 1);
+
             for (int j = 0; j < itinerary.get(i).size(); j++) {
                 int first = row1.get(j);
                 int second = row2.get(j);
+
                 double dist = matrixDistance[second][first];
                 distances.set(j, distances.get(j) + dist);
+
                 if (distances.get(j) > 2000) {
                     count++;
                 }
@@ -902,24 +1152,27 @@ public class Controller {
      *
      * @param calendar
      */
-    private void changeDatePosition(ArrayList<Date> calendar, int number) {
+    private void changeDatePosition(ArrayList<Date> calendar, int number, boolean inauguralGame, boolean occidentVsOrient) {
         int selectedDate = -1;
         int dateToChange = -1;
 
         int startPosition = 0;
 
-        if (!configurationsList.isEmpty()) {
-            selectedDate = configurationsList.get(number).get(0);
-            dateToChange = configurationsList.get(number).get(1);
+        if (!mutationsConfigurationsList.isEmpty()) {
+            selectedDate = mutationsConfigurationsList.get(number).get(0);
+            dateToChange = mutationsConfigurationsList.get(number).get(1);
+            if(inauguralGame){
+                startPosition = 1;
+            }
         }
         else{
-            if(inauguralGame){
+            if(inauguralGame && !occidentVsOrient){
                 startPosition = 1;
             }
         }
 
         if (selectedDate == -1) {
-                selectedDate = ThreadLocalRandom.current().nextInt(startPosition, calendar.size());
+            selectedDate = ThreadLocalRandom.current().nextInt(startPosition, calendar.size());
         }
 
         if (dateToChange == -1) {
@@ -929,8 +1182,9 @@ public class Controller {
             } while ((calendar.size() > 3) && ((selectedDate - dateToChange) <= 1) && ((selectedDate - dateToChange) >= (-1)));
         }
 
-        /*System.out.println("Fecha real a cambiar: " + selectedDate);
-        System.out.println("Fecha para donde va: " + dateToChange);*/
+        System.out.println("Fecha real a cambiar: " + selectedDate);
+        System.out.println("Fecha para donde va: " + dateToChange);
+        System.out.println("*********************************************************");
 
         Date date = calendar.get(selectedDate);
 
@@ -984,8 +1238,8 @@ public class Controller {
     private void changeBetweenLocalAndVisitorOfATeam(ArrayList<Date> calendar, int number) {
         int selectedTeam = -1;
 
-        if (!configurationsList.isEmpty()) {
-            selectedTeam = configurationsList.get(number).get(2);
+        if (!mutationsConfigurationsList.isEmpty()) {
+            selectedTeam = mutationsConfigurationsList.get(number).get(2);
         }
 
         if (selectedTeam == -1) {
@@ -1014,17 +1268,20 @@ public class Controller {
      *
      * @param calendar
      */
-    private void swapDates(ArrayList<Date> calendar, int number) {
+    private void swapDates(ArrayList<Date> calendar, int number, boolean inauguralGame, boolean occidentVsOrient) {
         int firstDate = -1;
         int secondDate = -1;
         int startPosition = 0;
 
-        if (!configurationsList.isEmpty()) {
-            firstDate = configurationsList.get(number).get(0);
-            secondDate = configurationsList.get(number).get(1);
+        if (!mutationsConfigurationsList.isEmpty()) {
+            firstDate = mutationsConfigurationsList.get(number).get(0);
+            secondDate = mutationsConfigurationsList.get(number).get(1);
+            if (inauguralGame){
+                startPosition = 1;
+            }
         }
         else{
-            if(inauguralGame){
+            if(inauguralGame && !occidentVsOrient){
                 startPosition = 1;
             }
         }
@@ -1040,6 +1297,11 @@ public class Controller {
                 secondDate = ThreadLocalRandom.current().nextInt(startPosition, calendar.size());
             } while (firstDate == secondDate);
         }
+
+        System.out.println("Primera Fecha: " + firstDate);
+        System.out.println("Ultima Fecha: " + secondDate);
+        System.out.println("Posicion para inicar: " + startPosition);
+        System.out.println("*********************************************************");
 
         Date auxFirstDate = calendar.get(firstDate);
         Date auxSecondDate = calendar.get(secondDate);
@@ -1097,9 +1359,9 @@ public class Controller {
         int selectedDuel = -1;
 
 
-        if (!configurationsList.isEmpty()) {
-            selectedDateIndex = configurationsList.get(number).get(0);
-            selectedDuel = configurationsList.get(number).get(2);
+        if (!mutationsConfigurationsList.isEmpty()) {
+            selectedDateIndex = mutationsConfigurationsList.get(number).get(0);
+            selectedDuel = mutationsConfigurationsList.get(number).get(2);
         }
 
         if (selectedDateIndex == -1) {
@@ -1122,36 +1384,44 @@ public class Controller {
      *
      * @param calendar
      */
-    private void changeDateOrder(ArrayList<Date> calendar, int number) {
+    private void changeDateOrder(ArrayList<Date> calendar, int number, boolean inauguralGame, boolean occidentVsOrient) {
         int firstDate = -1;
         int lastDate = -1;
         int startPosition = 0;
 
-        if (!configurationsList.isEmpty()) {
-            firstDate = configurationsList.get(number).get(0);
-            lastDate = configurationsList.get(number).get(1);
+        if (!mutationsConfigurationsList.isEmpty()) {
+            firstDate = mutationsConfigurationsList.get(number).get(0);
+            lastDate = mutationsConfigurationsList.get(number).get(1);
 
             if (firstDate > lastDate) {
                 int temp = lastDate;
                 lastDate = firstDate;
                 firstDate = temp;
             }
+            if (inauguralGame){
+                startPosition = 1;
+            }
         }
         else{
-            if(inauguralGame){
+            if(inauguralGame && !occidentVsOrient){
                 startPosition = 1;
             }
         }
 
         if (firstDate == -1) {
-                firstDate = ThreadLocalRandom.current().nextInt(startPosition, calendar.size() - 1);
+            firstDate = ThreadLocalRandom.current().nextInt(startPosition, calendar.size() - 1);
         }
 
         if (lastDate == -1) {
             while (lastDate <= firstDate) {
-                    lastDate = ThreadLocalRandom.current().nextInt(startPosition, calendar.size());
+                lastDate = ThreadLocalRandom.current().nextInt(startPosition, calendar.size());
             }
         }
+
+        System.out.println("Primera Fecha: " + firstDate);
+        System.out.println("Ultima Fecha: " + lastDate);
+        System.out.println("Posicion para inicar: " + startPosition);
+        System.out.println("*********************************************************");
 
         Deque<Date> stack = new ArrayDeque<>();
 
@@ -1172,20 +1442,23 @@ public class Controller {
      *
      * @param calendar
      */
-    private void changeDuel(ArrayList<Date> calendar, int number) {
+    private void changeDuel(ArrayList<Date> calendar, int number, boolean inauguralGame, boolean occidentVsOrient) {
 
         int posFirstDate = -1;
         int posLastDate = -1;
         int posFirstDuel = -1;
         int startPosition = 0;
 
-        if (!configurationsList.isEmpty()) {
-            posFirstDate = configurationsList.get(number).get(0);
-            posLastDate = configurationsList.get(number).get(1);
-            posFirstDuel = configurationsList.get(number).get(2);
+        if (!mutationsConfigurationsList.isEmpty()) {
+            posFirstDate = mutationsConfigurationsList.get(number).get(0);
+            posLastDate = mutationsConfigurationsList.get(number).get(1);
+            posFirstDuel = mutationsConfigurationsList.get(number).get(2);
+            if (inauguralGame){
+                startPosition = 1;
+            }
         }
         else{
-            if(inauguralGame){
+            if(inauguralGame && !occidentVsOrient){
                 startPosition = 1;
             }
         }
@@ -1205,12 +1478,19 @@ public class Controller {
         }
 
         Date firstDate = calendar.get(posFirstDate);
-
         Date secondDate = calendar.get(posLastDate);
 
         if (posFirstDuel == -1) {
-            posFirstDuel = ThreadLocalRandom.current().nextInt(0, firstDate.getGames().size());
+            do{
+                posFirstDuel = ThreadLocalRandom.current().nextInt(0, firstDate.getGames().size());
+            }
+            while (secondDate.getGames().contains(firstDate.getGames().get(posFirstDuel)));
         }
+        System.out.println("Primera Fecha: " + posFirstDate);
+        System.out.println("Ultima Fecha: " + posLastDate);
+        System.out.println("Duelo a cambiar" + posFirstDuel);
+        System.out.println("Posicion para inicar: " + startPosition);
+        System.out.println("*********************************************************");
 
         swapTeams(posFirstDuel, false, firstDate, secondDate);
     }
@@ -1234,7 +1514,7 @@ public class Controller {
         return incompatibleDuels;
     }
 
-    private void fixChampionSubchampion(ArrayList<Date> calendar) {
+    private void fixChampionSubchampion(ArrayList<Date> calendar, int posChampion, int posSubChampion) {
 
         boolean found = false;
         int posDate = -1;
@@ -1245,7 +1525,7 @@ public class Controller {
             Date date = calendar.get(i);
             int j = 0;
             while (j < date.getGames().size() && !found) {
-                if (date.getGames().get(j).contains(this.posChampion) && date.getGames().get(j).contains(this.posSubChampion)) {
+                if (date.getGames().get(j).contains(posChampion) && date.getGames().get(j).contains(posSubChampion)) {
                     found = true;
                     posDate = i;
                     posGame = j;
@@ -1255,14 +1535,12 @@ public class Controller {
             i++;
         }
 
-
-        if (posDate != 0) {
+        if ((posDate != -1) && (posDate != 0) ) {
             Date firstDate = calendar.get(posDate);
             Date secondDate = calendar.get(0);
 
             swapTeams(posGame, false, firstDate, secondDate);
         }
-
     }
 
     private void swapTeams(int posGame, boolean compatible, Date firstDate, Date secondDate) {
@@ -1279,7 +1557,11 @@ public class Controller {
             } else {
                 tempSize = firstDate.getGames().size();
                 firstDate.getGames().addAll(results);
-                secondDate.getGames().removeAll(results);
+
+                for (ArrayList<Integer> duel: results) {
+                    secondDate.getGames().remove(secondDate.getGames().indexOf(duel));
+                }
+
                 results = incompatibleDuels(firstDate, results, tempSize);
                 if (results.isEmpty()) {
                     compatible = true;
@@ -1297,14 +1579,16 @@ public class Controller {
      *
      * @return
      */
-    private ArrayList<Date> applyMutations() {
-        this.itinerary = teamsItinerary(calendar);
-        int penalizeVisitorGames = penalizeGamesVisitor(itinerary);
-        int penalizeHomeGames = penalizeGamesHome(itinerary);
-        int longTrips = checkLongTrips(itinerary);
+    private ArrayList<Date> applyMutations(ArrayList<Date> calendar, CalendarConfiguration configuration, Date dateToStart) {
+        ArrayList<ArrayList<Integer>>itinerary = teamsItinerary(calendar, configuration, dateToStart);
+        int penalizeVisitorGames = penalizeGamesVisitor(itinerary, configuration.getMaxVisitorGamesInARow(), configuration.getTeamsIndexes());
+        int penalizeHomeGames = penalizeGamesHome(itinerary, configuration.getMaxLocalGamesInARow(), configuration.getTeamsIndexes());
+        int penalizeWrongInaugural = penalizeWrongInaugural(configuration, calendar);
+        int longTrips = checkLongTrips(itinerary, configuration.getTeamsIndexes());
         int actualization = 0;
-        float distance = calculateDistance(this.itinerary) + PENALIZATION * (penalizeVisitorGames + penalizeHomeGames);
-        System.out.println("Se incumple " + longTrips);
+        float distance = calculateCalendarDistance(itinerary) + (PENALIZATION * (penalizeVisitorGames + penalizeHomeGames + penalizeWrongInaugural));
+
+        //System.out.println("Se incumple " + longTrips);
         if (longTrips > 0) {
             distance += 100 * longTrips;
         }
@@ -1315,56 +1599,86 @@ public class Controller {
 
             int mutation = mutationsIndexes.get(ThreadLocalRandom.current().nextInt(0, mutationsIndexes.size()));
 
-            this.calendarCopy = new ArrayList<>();
-            copyCalendar(this.calendarCopy, this.calendar);
+            System.out.println("Mutacion elegida: " + mutation);
 
-            selectMutation(this.calendarCopy, mutation);
+            ArrayList<Date> calendarCopy = new ArrayList<>();
+            copyCalendar(calendarCopy, calendar);
 
-            if (this.posChampion != -1 && !inauguralGame) {
-                fixChampionSubchampion(this.calendarCopy);
-               /* if (posLocalTeam != this.posChampion && posSecondTeam != this.posSubChampion) {
-                    newDistance += PENALIZATION;
-                }*/
+            selectMutation(calendarCopy, mutation,configuration.isInauguralGame(), configuration.isOccidenteVsOriente());
+
+            if (configuration.getChampion() != -1 && !configuration.isInauguralGame()) {
+                fixChampionSubchampion(calendarCopy,configuration.getChampion(),configuration.getSecondPlace());
             }
 
-            this.itineraryCopy = teamsItinerary(this.calendarCopy);
-            float newDistance = calculateDistance(itineraryCopy);
-            longTrips = checkLongTrips(itineraryCopy);
+            ArrayList<ArrayList<Integer>> itineraryCopy = teamsItinerary(calendarCopy, configuration, dateToStart);
+            try {
+                float newDistance = calculateCalendarDistance(itineraryCopy);
 
-            if (longTrips > 0) {
-                newDistance += 100 * longTrips;
+                 longTrips = checkLongTrips(itineraryCopy, configuration.getTeamsIndexes());
+
+                if (longTrips > 0) {
+                    newDistance += 100 * longTrips;
+                }
+
+                penalizeVisitorGames = penalizeGamesVisitor(itineraryCopy, configuration.getMaxVisitorGamesInARow(), configuration.getTeamsIndexes());
+                System.out.println(penalizeVisitorGames + "Penalizar");
+                penalizeHomeGames = penalizeGamesHome(itineraryCopy, configuration.getMaxLocalGamesInARow(), configuration.getTeamsIndexes());
+                penalizeWrongInaugural = penalizeWrongInaugural(configuration, calendarCopy);
+
+                newDistance += (PENALIZATION * (penalizeVisitorGames + penalizeHomeGames + penalizeWrongInaugural));
+
+                if (newDistance <= distance) {
+                    actualization++;
+                    calendar = calendarCopy;
+                    itinerary = itineraryCopy;
+                    distance = newDistance;
+                    //System.out.println("Se incumple " + longTrips);
+                }
             }
+            catch (Exception e){
+                System.out.println("**********************************************************************************************");
+                System.out.println("**********************************************************************************************");
+                System.out.println("**********************************************************************************************");
+                System.out.println("**********************************************************************************************");
+                System.out.println("**********************************************************************************************");
 
+                System.out.println("Iteracion: " + i);
 
-            penalizeVisitorGames = penalizeGamesVisitor(itineraryCopy);
-            penalizeHomeGames = penalizeGamesHome(itineraryCopy);
+                System.out.println("Calendario ERROR: ");
+                for (int z = 0; z < calendarCopy.size(); z++) {
+                    System.out.println(calendarCopy.get(z).getGames());
+                }
 
-            newDistance += PENALIZATION * (penalizeVisitorGames + penalizeHomeGames);
+                System.out.println("Itinerario ERROR:");
+                for (int z = 0; z < itineraryCopy.size(); z++) {
+                    for (int y = 0; y < itineraryCopy.get(z).size(); y++)
+                    System.out.println(itineraryCopy.get(z));
+                }
+                System.out.println("**********************************************************************************************");
+                System.out.println("**********************************************************************************************");
+                System.out.println("**********************************************************************************************");
+                System.out.println("**********************************************************************************************");
+                System.out.println("**********************************************************************************************");
 
-            if (newDistance <= distance) {
-                actualization++;
-                this.calendar = this.calendarCopy;
-                this.itinerary = this.getItineraryCopy();
-                distance = newDistance;
-                System.out.println("Se incumple " + longTrips);
             }
             i++;
 
         }
 
         System.out.println("Calendario Mutado:");
-        for (int z = 0; z < this.calendar.size(); z++) {
-            System.out.println(this.calendar.get(z).getGames());
+        for (int z = 0; z < calendar.size(); z++) {
+            System.out.println(calendar.get(z).getGames());
         }
 
         calendarDistance = distance;
-        System.out.println("Distancia Original Calendario Mutado :" + calculateDistance(this.itinerary));
+        ArrayList<ArrayList<Integer>> finalItinerary = teamsItinerary(calendar, configuration, null);
+        System.out.println("Distancia Original Calendario Mutado :" + calculateCalendarDistance(finalItinerary));
         System.out.println();
         System.out.println("Mutado " + distance);
         System.out.println();
         System.out.println("Cantidad de actualizaciones: " + actualization);
 
-        ArrayList<ArrayList<Double>> itiner = itineraryDistances(this.itinerary);
+        ArrayList<ArrayList<Double>> itiner = itineraryDistances(configuration, finalItinerary);
 
 
         for (int l = 0; l < itiner.size(); l++) {
@@ -1375,22 +1689,10 @@ public class Controller {
         }
 
         System.out.println("Itinerario Mutado:");
-        for (int z = 0; z < this.itinerary.size(); z++) {
-                System.out.println(this.itinerary.get(z));
+        for (int z = 0; z < itinerary.size(); z++) {
+            System.out.println(itinerary.get(z));
         }
-
-
-        lessStatistics(this.itinerary);
-        moreStatistics(this.itinerary);
-
-       /* System.out.println("----------");
-        for (int l=0; l < itiner.get(0).size();l++){
-            for (int p=0; p < itiner.size();p++){
-                System.out.print(itiner.get(p).get(l)+" ");
-            }
-            System.out.println();
-        }*/
-        return this.calendar;
+        return  calendar;
     }
 
     /**
@@ -1420,28 +1722,57 @@ public class Controller {
      * @param
      * @return
      */
-    private int penalizeGamesVisitor(ArrayList<ArrayList<Integer>> itinerary) {
+    public int penalizeGamesVisitor(ArrayList<ArrayList<Integer>> itinerary, int maxVisitorGame, ArrayList<Integer> teamsIndexes) {
         int cont = 0;
         ArrayList<Integer> counts = new ArrayList<>();
 
-        for (int i = 0; i < teams.size(); i++) {
+        for (int i = 0; i < teamsIndexes.size(); i++) {
             counts.add(0);
         }
 
-        for(int i = 0; i  < itinerary.size(); i++) {
+        for(int i = 1; i  < itinerary.size() - 1; i++) {
+            ArrayList<Integer> row = itinerary.get(i);
+
+            for (int j = 0; j < row.size(); j++) {
+                int destiny = row.get(j);
+                if(destiny != teamsIndexes.get(j)){
+                    counts.set(j, counts.get(j) + 1);
+                }
+                else{
+                    counts.set(j, 0);
+                }
+
+                if (counts.get(j) > maxVisitorGame) {
+                    cont++;
+                    counts.set(j, 0);
+                }
+            }
+        }
+        return cont;
+    }
+
+    public int penalizeGamesHome(ArrayList<ArrayList<Integer>> itinerary, int maxHomeGame, ArrayList<Integer> teamsIndexes) {
+        int cont = 0;
+        ArrayList<Integer> counts = new ArrayList<>();
+
+        for (int i = 0; i < teamsIndexes.size(); i++) {
+            counts.add(0);
+        }
+
+        for(int i = 1; i  < itinerary.size() - 1; i++) {
             ArrayList<Integer> row = itinerary.get(i);
 
             for (int j = 0; j < row.size(); j++) {
                 int destiny = row.get(j);
 
-                if(destiny != j){
+                if(destiny == teamsIndexes.get(j)){
                     counts.set(j, counts.get(j) + 1);
                 }
                 else{
                     counts.set(j, 0);
                 }
 
-                if (counts.get(j) > maxVisitorGame) {
+                if (counts.get(j) > maxHomeGame) {
                     cont++;
                     counts.set(j, 0);
                 }
@@ -1450,43 +1781,50 @@ public class Controller {
         return cont;
     }
 
-    private int penalizeGamesHome(ArrayList<ArrayList<Integer>> itinerary) {
-        int cont = 0;
-        ArrayList<Integer> counts = new ArrayList<>();
-        for (int i = 0; i < teams.size(); i++) {
-            counts.add(0);
-        }
+    private int penalizeWrongInaugural(CalendarConfiguration configuration, ArrayList<Date> calendar){
 
-        for(int i = 0; i  < itinerary.size(); i++) {
-            ArrayList<Integer> row = itinerary.get(i);
+        boolean inauguralGame = configuration.isInauguralGame();
+        int champion = configuration.getChampion();
+        int subChampion = configuration.getSecondPlace();
+        int wrong = 0;
+        int i = 0;
 
-            for (int j = 0; j < row.size(); j++) {
-                int pos = row.get(j);
+        if(inauguralGame){
 
-                if(pos == j){
-                    counts.set(pos, 0);
+            if (calendar.get(0).getGames().size() == 1){
+                while (wrong == 0 && i < calendar.get(1).getGames().size()) {
+                    if(calendar.get(1).getGames().get(i).get(0) == champion && calendar.get(1).getGames().get(i).get(1) == subChampion){
+                        wrong = 1;
+                    }
+                    else if (calendar.get(1).getGames().get(i).get(0) == subChampion && calendar.get(1).getGames().get(i).get(1) == champion){
+                        wrong = 1;
+                    }
+                    i++;
                 }
-                else{
-                    counts.set(j, counts.get(j) + 1);
-                }
-
-                if (counts.get(j) > maxVisitorGame) {
-                    cont++;
-                    counts.set(j, 0);
+            }
+            else{
+                while (wrong == 0 && i < calendar.get(0).getGames().size()) {
+                    if(calendar.get(1).getGames().get(i).get(0) == champion && calendar.get(1).getGames().get(i).get(1) == subChampion){
+                        wrong = 1;
+                    }
+                    else if (calendar.get(1).getGames().get(i).get(0) == subChampion && calendar.get(1).getGames().get(i).get(1) == champion){
+                        wrong = 1;
+                    }
+                    i++;
                 }
             }
         }
-        return cont;
+        return wrong;
     }
 
-    private ArrayList<ArrayList<Double>> itineraryDistances(ArrayList<ArrayList<Integer>> itinerary) {
+    private ArrayList<ArrayList<Double>> itineraryDistances(CalendarConfiguration configuration, ArrayList<ArrayList<Integer>> itinerary) {
         ArrayList<ArrayList<Double>> distancesItinerary = new ArrayList<>();
 
         for (int i = 0; i < itinerary.size() - 1; i++) {
 
-            ArrayList<Double> distances = new ArrayList<>(teamsIndexes.size());
+            ArrayList<Double> distances = new ArrayList<>(configuration.getTeamsIndexes().size());
 
-            for (int m = 0; m < teamsIndexes.size(); m++) {
+            for (int m = 0; m < configuration.getTeamsIndexes().size(); m++) {
                 distances.add(0.0);
             }
 
@@ -1497,7 +1835,7 @@ public class Controller {
                 int second = row2.get(j);
                 double dist = matrixDistance[second][first];
                 distances.set(j, distances.get(j) + dist);
-                if (teamsIndexes.get(j) == second) {
+                if (configuration.getTeamsIndexes().get(j) == second) {
                     distances.set(j, 0.0);
                 }
             }
@@ -1506,8 +1844,9 @@ public class Controller {
         return distancesItinerary;
     }
 
-    public void lessStatistics(ArrayList<ArrayList<Integer>> itinerary) {
-        ArrayList<ArrayList<Double>> distances = itineraryDistances(itinerary);
+    public CalendarStatistic lessStatistics(CalendarConfiguration configuration, ArrayList<ArrayList<Integer>> itinerary) {
+
+        ArrayList<ArrayList<Double>> distances = itineraryDistances(configuration, itinerary);
         double max = Double.MAX_VALUE;
         double sum = 0;
         int pos = -1;
@@ -1524,36 +1863,15 @@ public class Controller {
             sum = 0;
         }
 
-        lessDistance = (float) max;
-        teamLessDistance = teams.get(pos);
+        return new CalendarStatistic(teams.get(pos),(float) max);
 
     }
 
-    public void copyLessStatistics(ArrayList<ArrayList<Integer>> itinerary) {
-        ArrayList<ArrayList<Double>> distances = itineraryDistances(itinerary);
-        double max = Double.MAX_VALUE;
-        double sum = 0;
-        int pos = -1;
-        for (int l = 0; l < distances.get(0).size(); l++) {
 
-            for (int p = 0; p < distances.size(); p++) {
-                sum += distances.get(p).get(l);
-            }
 
-            if (sum <= max) {
-                max = sum;
-                pos = l;
-            }
-            sum = 0;
-        }
+    public CalendarStatistic moreStatistics(CalendarConfiguration configuration, ArrayList<ArrayList<Integer>> itinerary) {
 
-        copyLessDistance = (float) max;
-        copyTeamLessDistance = teams.get(pos);
-
-    }
-
-    public void moreStatistics(ArrayList<ArrayList<Integer>> itinerary) {
-        ArrayList<ArrayList<Double>> distances = itineraryDistances(itinerary);
+        ArrayList<ArrayList<Double>> distances = itineraryDistances(configuration, itinerary);
 
         double max = Double.MIN_VALUE;
         double sum = 0;
@@ -1571,54 +1889,26 @@ public class Controller {
             sum = 0;
         }
 
-        moreDistance = (float) max;
-        teamMoreDistance = teams.get(pos);
-
+        return new CalendarStatistic(teams.get(pos),(float) max);
     }
 
-    public void copyMoreStatistics(ArrayList<ArrayList<Integer>> itinerary) {
-        ArrayList<ArrayList<Double>> distances = itineraryDistances(itinerary);
-
-        double max = Double.MIN_VALUE;
-        double sum = 0;
-        int pos = -1;
-        for (int l = 0; l < distances.get(0).size(); l++) {
-
-            for (int p = 0; p < distances.size(); p++) {
-                sum += distances.get(p).get(l);
-            }
-
-            if (sum >= max) {
-                max = sum;
-                pos = l;
-            }
-            sum = 0;
-        }
-
-        copyMoreDistance = (float) max;
-        copyTeamMoreDistance = teams.get(pos);
-
-
-    }
-
-
-    public void selectMutation(ArrayList<Date> calendar, int number) {
+    public void selectMutation(ArrayList<Date> calendar, int number, boolean inauguralGame, boolean occidentVsOrient) {
 
         switch (mutationsIndexes.get(mutationsIndexes.indexOf(number))) {
 
             case 0:
-                changeDatePosition(calendar, number);
+                changeDatePosition(calendar, number, inauguralGame, occidentVsOrient);
                 break;
 
             case 1:
-                changeDateOrder(calendar, number);//changeTeams(newCalendar);
+                changeDateOrder(calendar, number,inauguralGame, occidentVsOrient);//changeTeams(newCalendar);
                 break;
 
             case 2:
-                swapDates(calendar, number);//changeLocalAndVisitorOnADate(newCalendar);
+                swapDates(calendar, number, inauguralGame, occidentVsOrient);//changeLocalAndVisitorOnADate(newCalendar);
                 break;
             case 3:
-                changeDuel(calendar, number);
+                changeDuel(calendar, number,inauguralGame, occidentVsOrient);
                 break;
                 /*case 4:
                     changeTeamsInDate(calendar, number);
@@ -1639,6 +1929,24 @@ public class Controller {
             default:
                 throw new IllegalStateException("Unexpected value: " + number);
         }
+    }
+
+    public boolean existCalendarName(String name){
+    boolean exist =false;
+
+    int i =0;
+
+    while(i < configurations.size() && !exist){
+        if(configurations.get(i).getCalendarId().equalsIgnoreCase(name)){
+            exist = true;
+            break;
+        }
+        else{
+            i++;
+        }
+    }
+
+    return exist;
     }
 
 

@@ -12,13 +12,14 @@ public class CalendarConfiguration {
     private int secondPlace;
     private boolean secondRoundCalendar;
     private boolean symmetricSecondRound;
+    private boolean OccidenteVsOriente;
     private int maxLocalGamesInARow;
     private int maxVisitorGamesInARow;
 
     public CalendarConfiguration(String calendarId, ArrayList<Integer> teamsIndexes, boolean inauguralGame,
                                  boolean championVsSecondPlace, int champion, int secondPlace,
-                                 boolean secondRoundCalendar, boolean symmetricSecondRound, int maxLocalGamesInARow,
-                                 int maxVisitorGamesInARow) {
+                                 boolean secondRoundCalendar, boolean symmetricSecondRound, boolean OccidenteVsOriente,
+                                 int maxLocalGamesInARow, int maxVisitorGamesInARow) {
         this.calendarId = calendarId;
         this.teamsIndexes = teamsIndexes;
         this.inauguralGame = inauguralGame;
@@ -27,6 +28,7 @@ public class CalendarConfiguration {
         this.secondPlace = secondPlace;
         this.secondRoundCalendar = secondRoundCalendar;
         this.symmetricSecondRound = symmetricSecondRound;
+        this.OccidenteVsOriente = OccidenteVsOriente;
         this.maxLocalGamesInARow = maxLocalGamesInARow;
         this.maxVisitorGamesInARow = maxVisitorGamesInARow;
     }
@@ -40,6 +42,7 @@ public class CalendarConfiguration {
         this.secondPlace = -1;
         this.secondRoundCalendar = false;
         this.symmetricSecondRound = false;
+        this.OccidenteVsOriente = false;
         this.maxLocalGamesInARow = 0;
         this.maxVisitorGamesInARow = 0;
     }
@@ -122,5 +125,25 @@ public class CalendarConfiguration {
 
     public void setMaxVisitorGamesInARow(int maxVisitorGamesInARow) {
         this.maxVisitorGamesInARow = maxVisitorGamesInARow;
+    }
+
+    public boolean isOccidenteVsOriente() { return OccidenteVsOriente; }
+
+    public void setOccidenteVsOriente(boolean occidenteVsOriente) { OccidenteVsOriente = occidenteVsOriente; }
+
+    @Override
+    public String toString() {
+        return "CalendarConfiguration{" +
+                "calendarId='" + calendarId + '\'' +
+                ", teamsIndexes=" + teamsIndexes +
+                ", inauguralGame=" + inauguralGame +
+                ", championVsSecondPlace=" + championVsSecondPlace +
+                ", champion=" + champion +
+                ", secondPlace=" + secondPlace +
+                ", secondRoundCalendar=" + secondRoundCalendar +
+                ", symmetricSecondRound=" + symmetricSecondRound +
+                ", maxLocalGamesInARow=" + maxLocalGamesInARow +
+                ", maxVisitorGamesInARow=" + maxVisitorGamesInARow +
+                '}';
     }
 }

@@ -10,18 +10,18 @@ import logic.CalendarConfiguration;
 import logic.Controller;
 import logic.Date;
 import logic.Duel;
-import org.apache.poi.ss.SpreadsheetVersion;
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.usermodel.XSSFCellStyle;
 import org.apache.poi.xssf.usermodel.XSSFFont;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import tray.animations.AnimationType;
 import tray.notification.NotificationType;
 import tray.notification.TrayNotification;
 
-import java.io.File;
-import java.io.FileOutputStream;
+import java.io.*;
 import java.util.ArrayList;
+import java.util.Iterator;
 
 public class ExportFiles {
     private  static FileChooser fc;
@@ -122,7 +122,7 @@ public class ExportFiles {
         Controller controller = Controller.getSingletonController();
         ArrayList<Date> calendar = controller.getCalendarsList().get(calendarToExport);
         CalendarConfiguration configuration = controller.getConfigurations().get(calendarToExport);
-        ArrayList<ArrayList<Integer>> teamDate = controller.teamsItinerary(calendar,configuration);
+        ArrayList<ArrayList<Integer>> teamDate = controller.teamsItinerary(calendar,configuration,null);
         Row row = spreadsheet.createRow(0);
         //Style of the cell
         XSSFFont headerCellFont = workbook.createFont();
@@ -211,21 +211,19 @@ public class ExportFiles {
         rowData = spreadsheetData.createRow(8);
         cellData =  rowData.createCell(0);
         cellData.setCellStyle(style);
-        cellData.setCellValue(configuration.getMaxLocalGamesInARow());
+        cellData.setCellValue(configuration.isOccidenteVsOriente());
 
         rowData = spreadsheetData.createRow(9);
+        cellData =  rowData.createCell(0);
+        cellData.setCellStyle(style);
+        cellData.setCellValue(configuration.getMaxLocalGamesInARow());
+
+        rowData = spreadsheetData.createRow(10);
         cellData =  rowData.createCell(0);
         cellData.setCellStyle(style);
         cellData.setCellValue(configuration.getMaxVisitorGamesInARow());
 
         workbook.setSheetHidden(1, true);
-
-
-
-
-
-
-
 
         //autosize each column of the excel document
         for(int i=0; i < row.getLastCellNum(); i++){
@@ -236,11 +234,8 @@ public class ExportFiles {
             spreadsheetData.autoSizeColumn(i);
         }
 
-
-
         FileOutputStream fileOut = null;
         try {
-
             fileOut = new FileOutputStream(f.getAbsolutePath());
             workbook.write(fileOut);
             fileOut.close();
@@ -250,7 +245,6 @@ public class ExportFiles {
             e.printStackTrace();
         }
     }
-
 
 
     private static void showSuccessfulMessage() {

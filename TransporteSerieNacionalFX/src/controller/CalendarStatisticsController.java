@@ -1,14 +1,10 @@
 package controller;
 
 import com.jfoenix.controls.JFXButton;
-import com.jfoenix.controls.JFXListView;
-import com.jfoenix.controls.JFXPopup;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.scene.Cursor;
-import javafx.scene.Node;
 import javafx.scene.chart.BarChart;
 import javafx.scene.chart.CategoryAxis;
 import javafx.scene.chart.NumberAxis;
@@ -16,11 +12,10 @@ import javafx.scene.chart.XYChart;
 import javafx.scene.control.Tooltip;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.VBox;
+import logic.CalendarConfiguration;
 import logic.CalendarStatistic;
 import logic.Controller;
 import logic.Date;
-import org.apache.poi.ss.formula.functions.MatrixFunction;
 
 import java.util.ArrayList;
 
@@ -102,32 +97,27 @@ public class CalendarStatisticsController {
         ArrayList<String> xAxisMoreTeamData = new ArrayList<>();
 
 
-        if(calendarsList.size() == 1){
-            barChartCalendar.setBarGap(0);
-            barChartCalendar.setCategoryGap(900);
-            barChartLessTeam.setBarGap(0);
-            barChartLessTeam.setCategoryGap(900);
-            barChartMoreTeam.setBarGap(0);
-            barChartMoreTeam.setCategoryGap(900);
-        }
+
 
         CalendarStatistic statistics = null;
         for(int i =0; i < calendarsList.size();i++){
             
             //Distancias de los calendarios
             ArrayList<Date> calendar = calendarsList.get(i);
-            xAxisCalendarData.add(controller.getConfigurations().get(i).getCalendarId());
+            CalendarConfiguration configuration = controller.getConfigurations().get(i);
+            ArrayList<ArrayList<Integer>> itinerary = controller.teamsItinerary(calendar, configuration, null);
+            xAxisCalendarData.add(configuration.getCalendarId());
             calendarData.add(xAxisCalendarData.get(i));
             XYChart.Series<String, Float>seriesCalendar = new XYChart.Series<String, Float>();
             seriesCalendar.setName(calendarData.get(i));
-            seriesCalendar.getData().add(new XYChart.Data(xAxisCalendarData.get(i), controller.calculateDistance(calendar,controller.getConfigurations().get(i))));
+            seriesCalendar.getData().add(new XYChart.Data(xAxisCalendarData.get(i), controller.calculateCalendarDistance(itinerary)));
             barChartCalendar.getData().addAll(seriesCalendar);
             
             //Estadísticas de los calendarios
             
             //estadisticas de los equipos que menos distancias recorren
             
-            statistics = controller.lessStatistics(calendar);
+            statistics = controller.lessStatistics(configuration, itinerary);
             xAxisLessTeamData.add(statistics.getTeam());
             lessTeamData.addAll(xAxisLessTeamData);
             XYChart.Series<String, Float> seriesLessTeam = new XYChart.Series<String,Float>();
@@ -136,7 +126,7 @@ public class CalendarStatisticsController {
             seriesLessTeam.getData().add(new XYChart.Data(xAxisLessTeamData.get(i), statistics.getDistance()));
             barChartLessTeam.getData().addAll(seriesLessTeam);
 
-            statistics = controller.moreStatistics(calendar);
+            statistics = controller.moreStatistics(configuration, itinerary);
             xAxisMoreTeamData.add(statistics.getTeam());
             moreTeamData.addAll(xAxisMoreTeamData);
             XYChart.Series<String, Float> seriesMoreTeam = new XYChart.Series<String,Float>();
@@ -153,6 +143,14 @@ public class CalendarStatisticsController {
 
         setTooltipToChart(barChartMoreTeam);
 
+        if(calendarsList.size() == 1){
+            barChartCalendar.setBarGap(0);
+            barChartCalendar.setCategoryGap(900);
+            barChartLessTeam.setBarGap(0);
+            barChartLessTeam.setCategoryGap(900);
+            barChartMoreTeam.setBarGap(0);
+            barChartMoreTeam.setCategoryGap(900);
+        }
     }
 
 
@@ -178,7 +176,7 @@ public class CalendarStatisticsController {
         try {
             AnchorPane structureOver = homeController.getPrincipalPane();
             homeController.createPage(new CalendarController(), structureOver, "/visual/Calendar.fxml");
-            homeController.getButtonReturnSelectionTeamConfiguration().setVisible(false);
+            homeController.getButtonReturnSelectionTeamConfiguration().setVisible(true);
         } catch (Exception e) {
             e.printStackTrace();
         }

@@ -30,45 +30,6 @@
     -fx-wrap-text: true;
 }
 
-
-
-/*.table-view .column-header .label {
-    /* -fx-background-color: white;
-     -fx-pref-width: 288;
-     -fx-pref-height: 30;
-     -fx-cursor: hand;*/
-   /* -fx-font: 30px "Segoe UI Symbol";
-    -fx-text-fill: #2f2484;
-}
-
-.table-row-cell:odd {
-    -fx-background-color: #c8d4ff;
-}
-
-.table-view{
-    -fx-base: white;
-}
-.table-view .column-header {
-    -fx-background-color: white;
-    /* -fx-pref-width: 500;
-     -fx-pref-height: 30;*/
-    /*-fx-cursor: hand;
-    -fx-alignment: CENTER;
-}
-
-.table-cell {
-    -fx-pref-width: 550;
-    -fx-border-color: -fx-box-border -fx-box-border transparent transparent;
-    -fx-font: 24px "Segoe UI Symbol";
-    -fx-text-fill: #2f2484;
-    -fx-alignment: CENTER;
-}
-
-.table-cell:hover {
-    -fx-background-color: #c8d4ff;
-    -fx-text-fill: white;
-}*/
-
 .list-cell {
     -fx-border-color: -fx-box-border -fx-box-border transparent transparent;
     -fx-font: 20px "Segoe UI Symbol";
@@ -81,26 +42,6 @@
 
 }
 
-/*#table .table-view .column-header .label {
-    /* -fx-background-color: white;
-     -fx-pref-width: 288;
-     -fx-pref-height: 30;
-     -fx-cursor: hand;*/
-    /*-fx-font: 34px "Segoe UI Symbol";
-    -fx-text-fill: #2f2484;
-}
-
-#table .table-row-cell:odd {
-    -fx-background-color: #c8d4ff;
-}
-
-#table .table-view .column-header {
-    -fx-background-color: white;
-    /* -fx-pref-width: 288;
-     -fx-pref-height: 30;*/
-    /*-fx-cursor: hand;
-    -fx-alignment: CENTER;
-}*/
 
 #selectionGrid .label {
     -fx-text-fill: #2f2484;
@@ -165,5 +106,8 @@
     -fx-text-fill: #2f2484;
     -fx-alignment: CENTER;
 }
+
+
+
 
 

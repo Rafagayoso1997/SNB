@@ -18,7 +18,6 @@ import javafx.scene.paint.Paint;
 import javafx.util.Duration;
 import logic.CalendarConfiguration;
 import logic.Controller;
-import logic.Date;
 import tray.animations.AnimationType;
 import tray.notification.NotificationType;
 import tray.notification.TrayNotification;
@@ -30,7 +29,7 @@ import java.util.ResourceBundle;
 
 public class SelectGridController implements Initializable {
 
-    public static CalendarConfiguration configuration;
+    public static CalendarConfiguration configuration = Controller.getSingletonController().getLastSavedConfiguration();
 
     private HomeController homeController;
 
@@ -77,12 +76,20 @@ public class SelectGridController implements Initializable {
                 }*/
                 TrayNotification notification = new TrayNotification();
                 notification.setTitle("Escoger sedes");
-                notification.setMessage("Sedes guardadas con éxito");
+                notification.setMessage("Sedes guardadas con Ã©xito");
                 notification.setNotificationType(NotificationType.SUCCESS);
                 notification.setRectangleFill(Paint.valueOf("#2F2484"));
                 notification.setAnimationType(AnimationType.FADE);
                 notification.showAndDismiss(Duration.seconds(2));
                 Controller.getSingletonController().setMatrix(matrixCalendar);
+
+                for (int i = 0; i < matrixCalendar.length; i++){
+                    for (int j = 0; j < matrixCalendar.length; j++){
+                        System.out.print(matrixCalendar[i][j] + " ");
+                    }
+                    System.out.println();
+                }
+
                 showCalendar();
                 HomeController.conf = true;
             } else {
@@ -97,8 +104,6 @@ public class SelectGridController implements Initializable {
         } else {
             System.out.println("No se ha creado la matriz");
         }
-
-
     }
 
     private int[][] generateMatrix(int size) {
@@ -110,20 +115,12 @@ public class SelectGridController implements Initializable {
             }
         }
         matrix = Controller.getSingletonController().symmetricCalendar(matrix,configuration);
-
-        System.out.println("Matriz de 1 y 2:");
-        for (int i = 0; i < matrix.length; i++) {
-            for (int j = 0; j < matrix.length; j++) {
-                System.out.print(matrix[i][j]);
-            }
-            System.out.println();
-        }
         return matrix;
     }
 
     private JFXToggleButton[][] generateMatrixToggleButton(int size) {
-        int posChampion = configuration.getChampion();
-        int posSecond   = configuration.getSecondPlace();
+        int posChampion = configuration.getTeamsIndexes().indexOf(configuration.getChampion());
+        int posSecond   = configuration.getTeamsIndexes().indexOf(configuration.getSecondPlace());
         //false el equipo no se ha cogido
         //matrixCalendar = generateMatrix(SIZE);
 
@@ -263,11 +260,18 @@ public class SelectGridController implements Initializable {
 
    
    void showCalendar() throws IOException {
-        checkSymetricMatrix();
-        Controller.getSingletonController().generateCalendar(configuration);
+        Controller controller = Controller.getSingletonController();
+       controller.setConfigurationAdded(false);
+        if (!controller.getLastSavedConfiguration().isOccidenteVsOriente()){
+            controller.getCalendarsList().add(controller.generateCalendar(configuration, controller.getMatrix(), configuration.getTeamsIndexes().size()-1, null));
+        }
+        else{
+            controller.getCalendarsList().add(controller.generateCalendarOccidentVsOrient(configuration, controller.getMatrix()));
+        }
+
         AnchorPane structureOver = homeController.getPrincipalPane();
         homeController.createPage(new CalendarController(), structureOver, "/visual/Calendar.fxml");
-        homeController.getButtonReturnSelectionTeamConfiguration().setVisible(false);
+        homeController.getButtonReturnSelectionTeamConfiguration().setVisible(true);
     }
 
     public void setHomeController(HomeController homeController) {

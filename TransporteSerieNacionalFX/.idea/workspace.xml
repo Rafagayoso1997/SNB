@@ -28,23 +28,45 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f431f424-8f9f-474a-8daa-5cfa5e47082b" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/interfaces/IDoubleRoundChampionNonSymmetric.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/interfaces/IDoubleRoundChampionOccidentNonSymmetric.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/interfaces/IDoubleRoundChampionOccidentSymmetric.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/interfaces/IDoubleRoundChampionSymmetric.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/interfaces/IDoubleRoundInauguralNonSymmetric.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/interfaces/IDoubleRoundInauguralOccidentNonSymmetric.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/interfaces/IDoubleRoundInauguralOccidentSymmetric.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/interfaces/IDoubleRoundInauguralSymmetric.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/interfaces/IDoubleRoundNonSymmetricCalendar.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/interfaces/IDoubleRoundOccidentNonSymmetric.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/interfaces/IDoubleRoundOccidentSymmetric.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/interfaces/IDoubleRoundSymmetric.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/interfaces/IPenalization.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/interfaces/ISimpleRound.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/interfaces/ISimpleRoundChampion.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/interfaces/ISimpleRoundChampionOccidentOrient.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/interfaces/ISimpleRoundInaugural.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/interfaces/ISimpleRoundInauguralOccident.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/interfaces/ISimpleRoundOccidentOrient.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/newlogic/Calendar.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/newlogic/DoubleRoundChampionNonSymmetricCalendar.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/newlogic/DoubleRoundChampionOccidentNonSymmetricCalendar.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/newlogic/DoubleRoundChampionOccidentSymmetricCalendar.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/newlogic/DoubleRoundChampionSymmetricCalendar.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/newlogic/DoubleRoundInauguralNonSymmetricCalendar.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/newlogic/DoubleRoundInauguralOccidentNonSymmetricCalendar.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/newlogic/DoubleRoundInauguralOccidentSymmetricCalendar.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/newlogic/DoubleRoundInauguralSymmetricCalendar.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/newlogic/DoubleRoundNonSymmetricCalendar.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/newlogic/DoubleRoundOccidentNonSymmetricCalendar.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/newlogic/DoubleRoundOccidentSymmetricCalendar.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/newlogic/DoubleRoundSymmetricCalendar.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/newlogic/SimpleRoundCalendar.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/newlogic/SimpleRoundChampionCalendar.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/newlogic/SimpleRoundChampionOccidentOrientCalendar.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/newlogic/SimpleRoundInauguralCalendar.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/newlogic/SimpleRoundInauguralOccidentCalendar.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/newlogic/SimpleRoundOccidentOrientCalendar.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/application/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/application/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/controller/CalendarStatisticsController$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/controller/CalendarStatisticsController$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/controller/CalendarStatisticsController.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/controller/CalendarStatisticsController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/controller/ConfigurationCalendarController.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/controller/ConfigurationCalendarController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/controller/HomeController.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/controller/HomeController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/logic/Controller.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/logic/Controller.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/styles/PrincipalMenu.css" beforeDir="false" afterPath="$PROJECT_DIR$/bin/styles/PrincipalMenu.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/visual/Calendar.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/bin/visual/Calendar.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/visual/MutationsConfiguration.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/bin/visual/MutationsConfiguration.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/application/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/application/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controller/CalendarStatisticsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/CalendarStatisticsController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controller/ConfigurationCalendarController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/ConfigurationCalendarController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controller/HomeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/HomeController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/logic/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/logic/Controller.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/visual/Calendar.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/visual/Calendar.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -59,6 +81,7 @@
       <list>
         <option value="CSS File" />
         <option value="FxmlFile" />
+        <option value="Interface" />
         <option value="Class" />
       </list>
     </option>
@@ -119,15 +142,13 @@
     </key>
   </component>
   <component name="RunManager" selected="Application.Main">
-    <configuration name="Main (1)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="logic.Main" />
-      <module name="TransporteSerieNacionalFX" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="logic.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
+    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -150,7 +171,20 @@
       <module name="TransporteSerieNacionalFX" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="logic.*" />
+          <option name="PATTERN" value="interfaces.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="logic.Main" />
+      <module name="TransporteSerieNacionalFX" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="newlogic.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -162,7 +196,6 @@
       <list>
         <item itemvalue="Application.Main" />
         <item itemvalue="Application.MainTest" />
-        <item itemvalue="Application.Main (1)" />
       </list>
     </recent_temporary>
   </component>
@@ -368,6 +401,7 @@
       <workItem from="1610396457508" duration="155000" />
       <workItem from="1610396645636" duration="585000" />
       <workItem from="1610402003981" duration="1284000" />
+      <workItem from="1610916911442" duration="1755000" />
     </task>
     <servers />
   </component>
@@ -385,64 +419,6 @@
       </map>
     </option>
     <option name="oldMeFiltersMigrated" value="true" />
-  </component>
-  <component name="WindowStateProjectService">
-    <state x="690" y="266" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1608604109842">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state x="690" y="266" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1608604109842" />
-    <state x="740" y="246" key="FileChooserDialogImpl" timestamp="1609025025102">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state x="740" y="246" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1609025025102" />
-    <state width="1877" height="282" key="GridCell.Tab.0.bottom" timestamp="1610404786282">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state width="1877" height="282" key="GridCell.Tab.0.bottom/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1610404786282" />
-    <state width="1877" height="282" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1610397238884" />
-    <state width="1877" height="282" key="GridCell.Tab.0.center" timestamp="1610404786282">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state width="1877" height="282" key="GridCell.Tab.0.center/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1610404786282" />
-    <state width="1877" height="282" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1610397238883" />
-    <state width="1877" height="282" key="GridCell.Tab.0.left" timestamp="1610404786282">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state width="1877" height="282" key="GridCell.Tab.0.left/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1610404786282" />
-    <state width="1877" height="282" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1610397238883" />
-    <state width="1877" height="282" key="GridCell.Tab.0.right" timestamp="1610404786282">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state width="1877" height="282" key="GridCell.Tab.0.right/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1610404786282" />
-    <state width="1877" height="282" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1610397238884" />
-    <state width="1877" height="228" key="GridCell.Tab.1.bottom" timestamp="1608928038775">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state width="1877" height="228" key="GridCell.Tab.1.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1608928038775" />
-    <state width="1877" height="228" key="GridCell.Tab.1.center" timestamp="1608928038775">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state width="1877" height="228" key="GridCell.Tab.1.center/0.0.1920.1040@0.0.1920.1040" timestamp="1608928038775" />
-    <state width="1877" height="228" key="GridCell.Tab.1.left" timestamp="1608928038775">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state width="1877" height="228" key="GridCell.Tab.1.left/0.0.1920.1040@0.0.1920.1040" timestamp="1608928038775" />
-    <state width="1877" height="228" key="GridCell.Tab.1.right" timestamp="1608928038775">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state width="1877" height="228" key="GridCell.Tab.1.right/0.0.1920.1040@0.0.1920.1040" timestamp="1608928038775" />
-    <state x="779" y="144" key="SettingsEditor" timestamp="1608736480336">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state x="779" y="144" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1608736480336" />
-    <state x="690" y="267" key="extract.method.dialog" timestamp="1608603825753">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state x="690" y="267" key="extract.method.dialog/0.0.1920.1040@0.0.1920.1040" timestamp="1608603825753" />
-    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1608682273901">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1608682273901" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

@@ -267,23 +267,7 @@ public class Controller {
                     positionsDistance.add(new LocalVisitorDistance(posLocal,posVisitor,cell.getNumericCellValue()));
                 }
             }
-           /* CSVReader reader = new CSVReader(new InputStreamReader(new FileInputStream(direction), StandardCharsets.ISO_8859_1));
-            String[] nextLine;
-            while ((nextLine = reader.readNext()) != null) {
-                String team1 = nextLine[0];
-                String team2 = nextLine[1];
-                double distance = Double.parseDouble(nextLine[2]);
-                if (!teams.contains(team1)) {
-                    teams.add(team1);
-                }
-                if (!teams.contains(team2)) {
-                    teams.add(team2);
-                }
-                int indexTeam1 = teams.indexOf(team1);
-                int indexTeam2 = teams.indexOf(team2);
-                positionsDistance.add(new LocalVisitorDistance(indexTeam1, indexTeam2, distance));
-            }
-            reader.close();*/
+
 
             Sheet sheetLocations = workbook.getSheetAt(1);
             locations = new ArrayList<>();

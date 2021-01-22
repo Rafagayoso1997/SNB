@@ -1,67 +1,101 @@
 package newlogic;
 
-import logic.Date;
+import interfaces.IMutations;
+import newlogic.CalendarConfiguration;
 
-import java.util.ArrayDeque;
 import java.util.ArrayList;
-import java.util.Deque;
-import java.util.concurrent.ThreadLocalRandom;
 
-public abstract class Calendar {
+public abstract class Calendar implements IMutations{
 
-    /**
-     * Mutation that change the Position of a Date
-     *
-     * @param calendar
-     */
-    public abstract void changeDatePosition(ArrayList<Date> calendar, int number, boolean inauguralGame, boolean occidentVsOrient);
+    private ArrayList<Date> dates;
+    private CalendarConfiguration configuration;
 
-    /**
-     * Mutation that change the position of the local and the visitor resources.teams on a Date
-     *
-     * @param calendar
-     */
-    public abstract void changeLocalAndVisitorOnADate(ArrayList<Date> calendar);
+    Calendar (CalendarConfiguration configuration){
+        this.configuration = configuration;
+    }
 
-    /**
-     * Mutation that swap local and visitor of a team
-     *
-     * @param calendar
-     */
-    public abstract void changeBetweenLocalAndVisitorOfATeam(ArrayList<Date> calendar, int number);
+    public ArrayList<Date> getDates() {
+        return dates;
+    }
 
-    /**
-     * Mutation that swap the positions of two dates
-     *
-     * @param calendar
-     */
-    public abstract void swapDates(ArrayList<Date> calendar, int number, boolean inauguralGame, boolean occidentVsOrient);
+    public void setDates(ArrayList<Date> dates) {
+        this.dates = dates;
+    }
 
-    /**
-     * Mutation that swap the appearance of two resources.teams
-     *
-     * @param calendar
-     */
-    public abstract void changeTeams(ArrayList<Date> calendar);
+    public CalendarConfiguration getConfiguration() {
+        return configuration;
+    }
 
-    /**
-     * Mutation that swap to resources.teams in a Date
-     *
-     * @param calendar
-     */
-    public abstract void changeTeamsInDate(ArrayList<Date> calendar, int number);
+    public void setConfiguration(CalendarConfiguration configuration) {
+        this.configuration = configuration;
+    }
 
-    /**
-     * Mutation that change Date order in the Calendar
-     *
-     * @param calendar
-     */
-    public abstract void changeDateOrder(ArrayList<Date> calendar, int number, boolean inauguralGame, boolean occidentVsOrient);
+    public abstract void generateCalendar();
 
-    /**
-     * Mutation that change Duel between two Dates
-     *
-     * @param calendar
-     */
-    public abstract void changeDuel(ArrayList<Date> calendar, int number, boolean inauguralGame, boolean occidentVsOrient);
+    public abstract ArrayList<ArrayList<Integer>> teamsItinerary( );
+
+    protected boolean isInDate(int row, int col, Date date) {
+        boolean isIn = false;
+        int i = 0;
+        while (i < date.getGames().size() && !isIn) {
+            int j = 0;
+            while (j < date.getGames().get(i).size() && !isIn) {
+                if (date.getGames().get(i).get(j) == row || date.getGames().get(i).get(j) == col)
+                    isIn = true;
+                j++;
+            }
+            i++;
+        }
+        return isIn;
+    }
+
+    protected ArrayList<ArrayList<Integer>> incompatibleDuels(logic.Date date, ArrayList<ArrayList<Integer>> duels, int size) {
+        ArrayList<ArrayList<Integer>> incompatibleDuels = new ArrayList<>();
+
+        for (ArrayList<Integer> duel : duels) {
+            for (int j = 0; j < size; j++) {
+                ArrayList<Integer> dateDuels = date.getGames().get(j);
+
+                if (dateDuels.contains(duel.get(0)) || dateDuels.contains(duel.get(1))) {
+                    if (!incompatibleDuels.contains(dateDuels)) {
+                        incompatibleDuels.add(dateDuels);
+                    }
+                }
+            }
+        }
+        return incompatibleDuels;
+    }
+
+    protected void swapTeams(int posGame, boolean compatible, logic.Date firstDate, logic.Date secondDate) {
+        ArrayList<Integer> firstDuel = firstDate.getGames().get(posGame);
+        int tempSize = secondDate.getGames().size();
+        secondDate.getGames().add(firstDuel);
+        firstDate.getGames().remove(firstDuel);
+        ArrayList<ArrayList<Integer>> results = new ArrayList<>();
+        results.add(firstDuel);
+        while (!compatible) {
+            results = incompatibleDuels(secondDate, results, tempSize);
+            if (results.isEmpty()) {
+                compatible = true;
+            } else {
+                tempSize = firstDate.getGames().size();
+                firstDate.getGames().addAll(results);
+
+                for (ArrayList<Integer> duel: results) {
+                    secondDate.getGames().remove(secondDate.getGames().indexOf(duel));
+                }
+
+                results = incompatibleDuels(firstDate, results, tempSize);
+                if (results.isEmpty()) {
+                    compatible = true;
+                } else {
+                    tempSize = secondDate.getGames().size();
+                    secondDate.getGames().addAll(results);
+                    firstDate.getGames().removeAll(results);
+                }
+            }
+        }
+    }
+
+
 }

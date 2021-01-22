@@ -28,45 +28,90 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f431f424-8f9f-474a-8daa-5cfa5e47082b" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/interfaces/IDoubleRoundChampionNonSymmetric.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/interfaces/IDoubleRoundChampionOccidentNonSymmetric.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/interfaces/IDoubleRoundChampionOccidentSymmetric.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/interfaces/IDoubleRoundChampionSymmetric.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/interfaces/IDoubleRoundInauguralNonSymmetric.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/interfaces/IDoubleRoundInauguralOccidentNonSymmetric.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/interfaces/IDoubleRoundInauguralOccidentSymmetric.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/interfaces/IDoubleRoundInauguralSymmetric.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/interfaces/IDoubleRoundNonSymmetricCalendar.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/interfaces/IDoubleRoundOccidentNonSymmetric.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/interfaces/IDoubleRoundOccidentSymmetric.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/interfaces/IDoubleRoundSymmetric.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/interfaces/IPenalization.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/interfaces/ISimpleRound.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/interfaces/ISimpleRoundChampion.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/interfaces/ISimpleRoundChampionOccidentOrient.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/interfaces/ISimpleRoundInaugural.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/interfaces/ISimpleRoundInauguralOccident.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/interfaces/ISimpleRoundOccidentOrient.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/newlogic/Calendar.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/newlogic/DoubleRoundChampionNonSymmetricCalendar.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/newlogic/DoubleRoundChampionOccidentNonSymmetricCalendar.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/newlogic/DoubleRoundChampionOccidentSymmetricCalendar.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/newlogic/DoubleRoundChampionSymmetricCalendar.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/newlogic/DoubleRoundInauguralNonSymmetricCalendar.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/newlogic/DoubleRoundInauguralOccidentNonSymmetricCalendar.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/newlogic/DoubleRoundInauguralOccidentSymmetricCalendar.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/newlogic/DoubleRoundInauguralSymmetricCalendar.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/newlogic/DoubleRoundNonSymmetricCalendar.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/newlogic/DoubleRoundOccidentNonSymmetricCalendar.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/newlogic/DoubleRoundOccidentSymmetricCalendar.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/newlogic/DoubleRoundSymmetricCalendar.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/newlogic/SimpleRoundCalendar.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/newlogic/SimpleRoundChampionCalendar.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/newlogic/SimpleRoundChampionOccidentOrientCalendar.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/newlogic/SimpleRoundInauguralCalendar.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/newlogic/SimpleRoundInauguralOccidentCalendar.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/newlogic/SimpleRoundOccidentOrientCalendar.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/interfaces/IMutations.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/interfaces/IOccidentVsOrient.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/interfaces/ISeconRound.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/newlogic/CalendarConfiguration.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/newlogic/Controller.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/newlogic/DataFiles.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/newlogic/Date.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/newlogic/Distance.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/newlogic/DoubleRoundChampionNonSymmetricOddCalendar.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/newlogic/DoubleRoundChampionOccidentNonSymmetricOddCalendar.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/newlogic/DoubleRoundChampionOccidentSymmetricOddCalendar.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/newlogic/DoubleRoundChampionSymmetricOddCalendar.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/newlogic/DoubleRoundInauguralNonSymmetricOddCalendar.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/newlogic/DoubleRoundInauguralOccidentNonSymmetricOddCalendar.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/newlogic/DoubleRoundInauguralOccidentSymmetricOddCalendar.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/newlogic/DoubleRoundInauguralSymmetricOddCalendar.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/newlogic/DoubleRoundNonSymmetricOddCalendar.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/newlogic/DoubleRoundNonSymmetricPairCalendar.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/newlogic/DoubleRoundOccidentNonSymmetricOddCalendar.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/newlogic/DoubleRoundOccidentSymmetricOddCalendar.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/newlogic/DoubleRoundSymmetricOddCalendar.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/newlogic/LocalVisitorDistance.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/newlogic/Penalization.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/newlogic/SimpleRoundChampionOccidentOrientOddCalendar.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/newlogic/SimpleRoundChampionOddCalendar.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/newlogic/SimpleRoundInauguralOccidentOddCalendar.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/newlogic/SimpleRoundInauguralOddCalendar.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/newlogic/SimpleRoundInauguralPairCalendar.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/newlogic/SimpleRoundOccidentOrientOddCalendar.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/newlogic/SimpleRoundOccidentOrientPairCalendar.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/newlogic/SimpleRoundOddCalendar.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/newlogic/SimpleRoundPairCalendar.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/newlogic/Statistics.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/artifacts/TransporteSerieNacionalFX_jar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/TransporteSerieNacionalFX_jar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/javafx_base_11_0_2_linux.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/scaledfx_0_5.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/scaledfx_0_6.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TransporteSerieNacionalFX.iml" beforeDir="false" afterPath="$PROJECT_DIR$/TransporteSerieNacionalFX.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/newlogic/Calendar.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/newlogic/Calendar.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/newlogic/IPenalization.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/newlogic/SimpleRoundCalendar.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/newlogic/SimpleRoundCalendar.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/file_management/ExportFiles.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/file_management/ExportFiles.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/file_management/ReadExcel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/file_management/ReadExcel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/file_management/ReadFiles.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/file_management/ReadFiles.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/interfaces/IDoubleRoundChampionNonSymmetric.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/interfaces/IDoubleRoundChampionOccidentNonSymmetric.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/interfaces/IDoubleRoundChampionOccidentSymmetric.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/interfaces/IDoubleRoundChampionSymmetric.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/interfaces/IDoubleRoundInauguralNonSymmetric.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/interfaces/IDoubleRoundInauguralOccidentNonSymmetric.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/interfaces/IDoubleRoundInauguralOccidentSymmetric.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/interfaces/IDoubleRoundInauguralSymmetric.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/interfaces/IDoubleRoundNonSymmetricCalendar.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/interfaces/IDoubleRoundOccidentNonSymmetric.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/interfaces/IDoubleRoundOccidentSymmetric.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/interfaces/IDoubleRoundSymmetric.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/interfaces/IPenalization.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/interfaces/ISimpleRound.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/interfaces/ISimpleRoundChampion.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/interfaces/ISimpleRoundChampionOccidentOrient.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/interfaces/ISimpleRoundInaugural.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/interfaces/ISimpleRoundInauguralOccident.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/interfaces/ISimpleRoundOccidentOrient.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/logic/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/logic/Controller.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/newlogic/Calendar.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/newlogic/Calendar.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/newlogic/DoubleRoundChampionNonSymmetricCalendar.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/newlogic/DoubleRoundChampionNonSymmetricPairCalendar.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/newlogic/DoubleRoundChampionOccidentNonSymmetricCalendar.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/newlogic/DoubleRoundChampionOccidentNonSymmetricPairCalendar.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/newlogic/DoubleRoundChampionOccidentSymmetricCalendar.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/newlogic/DoubleRoundChampionOccidentSymmetricPairCalendar.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/newlogic/DoubleRoundChampionSymmetricCalendar.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/newlogic/DoubleRoundChampionSymmetricPairCalendar.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/newlogic/DoubleRoundInauguralNonSymmetricCalendar.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/newlogic/DoubleRoundInauguralNonSymmetricPairCalendar.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/newlogic/DoubleRoundInauguralOccidentNonSymmetricCalendar.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/newlogic/DoubleRoundInauguralOccidentNonSymmetricPairCalendar.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/newlogic/DoubleRoundInauguralOccidentSymmetricCalendar.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/newlogic/DoubleRoundInauguralOccidentSymmetricPairCalendar.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/newlogic/DoubleRoundInauguralSymmetricCalendar.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/newlogic/DoubleRoundInauguralSymmetricPairCalendar.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/newlogic/DoubleRoundNonSymmetricCalendar.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/newlogic/SimpleRoundChampionPairCalendar.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/newlogic/DoubleRoundOccidentNonSymmetricCalendar.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/newlogic/DoubleRoundOccidentNonSymmetricPairCalendar.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/newlogic/DoubleRoundOccidentSymmetricCalendar.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/newlogic/DoubleRoundOccidentSymmetricPairCalendar.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/newlogic/DoubleRoundSymmetricCalendar.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/newlogic/SimpleRoundCalendar.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/newlogic/DoubleRoundSymmetricPairCalendar.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/newlogic/SimpleRoundChampionCalendar.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/newlogic/SimpleRoundChampionOccidentOrientCalendar.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/newlogic/SimpleRoundChampionOccidentOrientPairCalendar.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/newlogic/SimpleRoundInauguralCalendar.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/newlogic/SimpleRoundInauguralOccidentCalendar.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/newlogic/SimpleRoundInauguralOccidentPairCalendar.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/newlogic/SimpleRoundOccidentOrientCalendar.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -106,39 +151,42 @@
     <property name="Repository.Attach.JavaDocs" value="false" />
     <property name="Repository.Attach.Sources" value="false" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="extract.method.default.visibility" value="private" />
     <property name="last_directory_selection" value="$PROJECT_DIR$/src/application" />
-    <property name="last_opened_file_path" value="$USER_HOME$/Desktop/TransporteSerieNacionalFX" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/lib" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="project.structure.last.edited" value="Artifacts" />
+    <property name="project.structure.last.edited" value="Libraries" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="settings.editor.selected.configurable" value="preferences.sourceCode" />
     <property name="settings.editor.splitter.proportion" value="0.24654832" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\gayos\Documents\GitHub\SNB\TransporteSerieNacionalFX\lib" />
+      <recent name="C:\Users\gayos\Documents\GitHub\SNB\TransporteSerieNacionalFX\src\resources" />
+      <recent name="C:\Users\gayos\Documents\GitHub\SNB\TransporteSerieNacionalFX\src\visual" />
+      <recent name="C:\Users\gayos\Documents\GitHub\SNB\TransporteSerieNacionalFX\src\logic" />
+      <recent name="C:\Users\gayos\Documents\GitHub\SNB\TransporteSerieNacionalFX\src\controller" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\gayos\Documents\GitHub\SNB\TransporteSerieNacionalFX\src\newlogic" />
       <recent name="C:\Users\gayos\Documents\GitHub\SNB\TransporteSerieNacionalFX\src\visual" />
       <recent name="C:\Users\gayos\Documents\GitHub\SNB\TransporteSerieNacionalFX\src\controller" />
       <recent name="C:\Users\gayos\Documents\GitHub\SNB\TransporteSerieNacionalFX\src\files" />
       <recent name="C:\Users\gayos\Documents\GitHub\SNB\TransporteSerieNacionalFX\src\styles" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="newlogic" />
       <recent name="controller" />
       <recent name="logic" />
-    </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\gayos\Documents\GitHub\SNB\TransporteSerieNacionalFX\src\resources" />
-      <recent name="C:\Users\gayos\Documents\GitHub\SNB\TransporteSerieNacionalFX\src\visual" />
-      <recent name="C:\Users\gayos\Documents\GitHub\SNB\TransporteSerieNacionalFX\src\logic" />
-      <recent name="C:\Users\gayos\Documents\GitHub\SNB\TransporteSerieNacionalFX\src\controller" />
-      <recent name="C:\Users\gayos\Documents\GitHub\SNB\TransporteSerieNacionalFX\lib" />
     </key>
   </component>
   <component name="RunManager" selected="Application.Main">

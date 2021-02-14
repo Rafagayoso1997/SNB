@@ -34,74 +34,7 @@ public class ExportFiles {
 
     }
 
-    public static void exportCalendarInExcelFormat(ArrayList<TableView<Duel>> tables){
-        dc = new DirectoryChooser();
-        f = dc.showDialog(new Stage());
 
-        workbook = new XSSFWorkbook();
-
-        XSSFFont headerCellFont = workbook.createFont();
-        headerCellFont.setBold(true);
-        headerCellFont.setColor(IndexedColors.WHITE.getIndex());
-        headerCellFont.setFontHeightInPoints((short) 15);
-        XSSFCellStyle style = workbook.createCellStyle();
-
-        // Setting Background color
-        style.setFillForegroundColor(IndexedColors.DARK_GREEN.getIndex());
-        style.setFillPattern(FillPatternType.SOLID_FOREGROUND);
-        style.setFont(headerCellFont);
-
-
-        for (int k = 0; k < tables.size(); k++) {
-            TableView<Duel> table = tables.get(k);
-            Sheet spreadsheet = workbook.createSheet("Fecha " + (k + 1));
-
-            Row row = spreadsheet.createRow(0);
-
-            for (int i = 0; i < table.getColumns().size(); i++) {
-                Cell cell = row.createCell(i);
-                cell.setCellStyle(style);
-                cell.setCellValue(table.getColumns().get(i).getText());
-            }
-
-
-
-            style = workbook.createCellStyle();
-            headerCellFont = workbook.createFont();
-            headerCellFont.setBold(false);
-            headerCellFont.setFontHeightInPoints((short) 12);
-            for (int i = 0; i < table.getItems().size(); i++) {
-                row = spreadsheet.createRow(i + 1);
-                for (int j = 0; j < table.getColumns().size(); j++) {
-                    Cell cell = row.createCell(j);
-                    if (table.getColumns().get(j).getCellData(i) != null) {
-                        cell.setCellValue(table.getColumns().get(j).getCellData(i).toString());
-                    } else {
-                        cell.setCellValue("");
-                    }
-                    cell.setCellStyle(style);
-                }
-            }
-
-            for(int i=0; i < row.getLastCellNum();i++){
-                spreadsheet.autoSizeColumn(i);
-            }
-
-        }
-
-
-        FileOutputStream fileOut = null;
-        try {
-
-            fileOut = new FileOutputStream(f.getAbsolutePath() + "/ Calendario Serie Nacional.xlsx");
-            workbook.write(fileOut);
-            fileOut.close();
-            showSuccessfulMessage();
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
 
 
     public static void exportItineraryInExcelFormat(int calendarToExport){
